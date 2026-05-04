@@ -44,11 +44,11 @@
   --shadow-md: 0 4px 16px rgba(0, 90, 45, .10);
   --shadow-lg: 0 12px 40px rgba(0, 90, 45, .15);
 
-  /* Phone scale */
-  --phone-w: 270px;
-  --screen-w: 254px;
-  --screen-h: 560px;
-  --scale: 0.6513;
+  /* Phone scale — larger for better readability of real app screens */
+  --phone-w: 358px;     /* +33% từ 270 */
+  --screen-w: 340px;    /* +34% từ 254 */
+  --screen-h: 750px;    /* +34% từ 560 */
+  --scale: 0.8718;      /* = 340/390 */
 }
 html, body {
   font-family: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
@@ -220,18 +220,18 @@ aside.sidebar {
   width: var(--phone-w); /* + tooltip space sẽ overflow visible */
 }
 .phone-frame {
-  width: var(--phone-w); height: 580px;
-  background: #1a1a1a; border-radius: 36px; padding: 8px;
-  box-shadow: 0 12px 40px rgba(0,0,0,.2);
+  width: var(--phone-w); height: 770px;
+  background: #1a1a1a; border-radius: 46px; padding: 9px;
+  box-shadow: 0 16px 50px rgba(0, 90, 45, .25);
   position: relative;
 }
 .phone-notch {
-  position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
-  width: 100px; height: 22px; background: #000; border-radius: 0 0 14px 14px; z-index: 5;
+  position: absolute; top: 7px; left: 50%; transform: translateX(-50%);
+  width: 130px; height: 28px; background: #000; border-radius: 0 0 18px 18px; z-index: 5;
 }
 .phone-screen {
   width: var(--screen-w); height: var(--screen-h);
-  background: var(--white); border-radius: 28px; overflow: hidden;
+  background: var(--white); border-radius: 36px; overflow: hidden;
   position: relative;
 }
 .phone-screen img.bg {
@@ -246,36 +246,36 @@ aside.sidebar {
   pointer-events: none; transition: opacity .3s;
   z-index: 1;
 }
-/* Hotspot — vùng cần highlight */
+/* Hotspot — viền xanh brand thay vì vàng đậm, glow nhẹ hơn */
 .hotspot {
   position: absolute;
-  border: 3px solid #FFD600;
+  border: 2.5px solid var(--green);
   border-radius: 8px;
-  background: rgba(255, 214, 0, 0.05);
+  background: rgba(0, 166, 81, 0.08);
   box-shadow:
-    0 0 0 5px rgba(255, 214, 0, 0.4),
-    0 0 24px 4px rgba(255, 214, 0, 0.95);
+    0 0 0 3px rgba(0, 166, 81, 0.25),
+    0 0 16px 2px rgba(0, 166, 81, 0.55);
   pointer-events: none;
-  animation: pulse 1.6s ease-in-out infinite;
+  animation: pulse 1.8s ease-in-out infinite;
   z-index: 4;
 }
 /* 4 dim rects xung quanh hotspot tạo spotlight. Vị trí set bởi JS. */
 .dim-rect {
   position: absolute;
-  background: rgba(20, 20, 30, 0.85);
+  background: rgba(20, 20, 30, 0.55);   /* sáng hơn 15% so với 0.65 */
   pointer-events: none;
   z-index: 3;
 }
 @keyframes pulse {
   0%, 100% {
     box-shadow:
-      0 0 0 5px rgba(255, 214, 0, 0.4),
-      0 0 24px 4px rgba(255, 214, 0, 0.95);
+      0 0 0 3px rgba(0, 166, 81, 0.25),
+      0 0 16px 2px rgba(0, 166, 81, 0.55);
   }
   50% {
     box-shadow:
-      0 0 0 9px rgba(255, 214, 0, 0.25),
-      0 0 36px 8px rgba(255, 214, 0, 1);
+      0 0 0 6px rgba(0, 166, 81, 0.15),
+      0 0 24px 5px rgba(0, 166, 81, 0.75);
   }
 }
 /* Tooltip — NGOÀI phone frame */
@@ -461,7 +461,9 @@ aside.sidebar {
     padding-bottom: 90px; /* room for fixed nav */
   }
   .demo-wrap { padding: 12px; position: static; }
-  .phone-frame { height: 500px; }
+  .phone-frame { height: 500px; border-radius: 32px; padding: 6px; }
+  .phone-notch { width: 80px; height: 18px; }
+  .phone-screen { border-radius: 26px; }
   .right-panel { position: static; max-height: none; overflow: visible; }
 
   /* Mobile bottom sheet */
