@@ -698,6 +698,157 @@ aside.sidebar {
 @media (max-width: 767px) {
   .phone-nav { display: none; }
 }
+
+/* ============================================================
+   COMPLETION OVERLAY
+   ============================================================ */
+.completion-overlay {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(15, 31, 20, 0.65);
+  backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  animation: overlayIn .3s ease-out;
+}
+@keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+
+.completion-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 36px 32px 28px;
+  max-width: 520px; width: 100%;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  position: relative;
+  animation: cardIn .4s cubic-bezier(.34, 1.56, .64, 1);
+}
+@keyframes cardIn {
+  from { opacity: 0; transform: scale(.85) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.completion-close {
+  position: absolute; top: 12px; right: 12px;
+  width: 32px; height: 32px; padding: 0;
+  background: transparent; border: none;
+  font-size: 16px; color: var(--text-3); cursor: pointer;
+  border-radius: 8px; transition: all .15s;
+}
+.completion-close:hover { background: var(--green-light); color: var(--text); }
+
+.completion-icon {
+  font-size: 64px; margin-bottom: 8px;
+  animation: bounce 0.8s ease;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.completion-card h2 {
+  font-size: 28px; font-weight: 800; color: var(--green-darker);
+  letter-spacing: -0.02em; margin-bottom: 6px;
+}
+.completion-sub {
+  color: var(--text-2); font-size: 15px; margin-bottom: 24px;
+}
+
+.completion-stats {
+  display: flex; align-items: center; justify-content: center;
+  gap: 24px; margin-bottom: 24px;
+  padding: 18px;
+  background: linear-gradient(135deg, var(--green-tint) 0%, var(--green-light) 100%);
+  border-radius: 14px;
+  border: 1px solid var(--green-soft);
+}
+.completion-stats .stat-item {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.completion-stats .stat-value {
+  font-size: 26px; font-weight: 800; color: var(--green-darker);
+  letter-spacing: -0.02em; line-height: 1;
+}
+.completion-stats .stat-label {
+  font-size: 12px; color: var(--text-2); font-weight: 500;
+}
+.completion-stats .stat-divider {
+  width: 1px; height: 36px; background: var(--green-soft);
+}
+
+.next-module-card {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px;
+  background: var(--white);
+  border: 1.5px solid var(--green-soft);
+  border-radius: 12px;
+  margin-bottom: 24px;
+  text-align: left;
+  transition: all .15s;
+}
+.next-module-card:hover {
+  border-color: var(--green); box-shadow: var(--shadow-md);
+}
+.next-module-icon {
+  font-size: 32px; line-height: 1; flex-shrink: 0;
+  width: 48px; height: 48px;
+  background: var(--green-light); border-radius: 12px;
+  display: grid; place-items: center;
+}
+.next-module-info { flex: 1; min-width: 0; }
+.next-module-label {
+  font-size: 11px; font-weight: 700; color: var(--green-dark);
+  text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px;
+}
+.next-module-name {
+  font-size: 16px; font-weight: 700; color: var(--text);
+  margin-bottom: 2px; line-height: 1.2;
+}
+.next-module-meta {
+  font-size: 12px; color: var(--text-3);
+}
+.next-module-empty {
+  padding: 18px; background: var(--green-light); border-radius: 12px;
+  margin-bottom: 24px; color: var(--green-darker); font-weight: 500;
+}
+
+.completion-actions {
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+}
+.completion-actions .btn { font-size: 13px; padding: 10px 16px; }
+.completion-actions .btn-primary { padding: 10px 22px; }
+
+@media (max-width: 480px) {
+  .completion-card { padding: 28px 22px 22px; }
+  .completion-card h2 { font-size: 22px; }
+  .completion-icon { font-size: 52px; }
+  .completion-stats { gap: 18px; padding: 14px; }
+  .completion-stats .stat-value { font-size: 22px; }
+  .completion-actions { flex-direction: column; }
+  .completion-actions .btn { width: 100%; }
+}
+
+/* Confetti */
+.confetti {
+  position: fixed; inset: 0; pointer-events: none; overflow: hidden;
+  z-index: 1;
+}
+.confetti-piece {
+  position: absolute;
+  top: -10px;
+  width: 10px; height: 14px;
+  border-radius: 2px;
+  animation: confettiFall linear forwards;
+}
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
 </style>
 </head>
 <body>
@@ -861,6 +1012,24 @@ aside.sidebar {
     <button class="btn btn-primary" id="btn-next-m">Tiếp →</button>
   </nav>
   <button class="fab-chat" onclick="toggleMobileChat(true)" title="Hỏi AI">💬</button>
+</div>
+
+<!-- COMPLETION OVERLAY — shown when user finishes all steps -->
+<div class="completion-overlay" id="completion-overlay" hidden>
+  <div class="confetti" id="confetti"></div>
+  <div class="completion-card">
+    <button class="completion-close" onclick="hideCompletion()" title="Đóng">✕</button>
+    <div class="completion-icon">🎉</div>
+    <h2>Chúc mừng!</h2>
+    <p class="completion-sub">Bạn đã hoàn thành module này</p>
+    <div class="completion-stats" id="completion-stats"></div>
+    <div id="completion-next-module"></div>
+    <div class="completion-actions">
+      <button class="btn btn-ghost" onclick="restartModule()">🔄 Học lại từ đầu</button>
+      <button class="btn btn-ghost" onclick="backToHome()">← Về trang chủ</button>
+      <button class="btn btn-primary" id="completion-next-btn">Module tiếp theo →</button>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -1102,8 +1271,107 @@ function goToStep(idx) {
   STATE.currentStep = idx;
   renderStep();
 }
-function nextStep() { if (STATE.currentStep < STATE.steps.length - 1) goToStep(STATE.currentStep + 1); }
+function nextStep() {
+  if (STATE.currentStep < STATE.steps.length - 1) {
+    goToStep(STATE.currentStep + 1);
+  } else {
+    // Already at last step → show completion
+    showCompletion();
+  }
+}
 function prevStep() { if (STATE.currentStep > 0) goToStep(STATE.currentStep - 1); }
+
+/* ============================================================
+   COMPLETION CELEBRATION
+   ============================================================ */
+function showCompletion() {
+  const overlay = document.getElementById('completion-overlay');
+  if (!overlay) return;
+
+  // Show stats
+  const totalSteps = STATE.steps.length;
+  const moduleName = STATE.module?.name || 'Module';
+  document.getElementById('completion-stats').innerHTML = `
+    <div class="stat-item">
+      <div class="stat-value">${totalSteps}</div>
+      <div class="stat-label">bước đã học</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-value">✓</div>
+      <div class="stat-label">${escapeHtml(moduleName)}</div>
+    </div>
+  `;
+
+  // Find next module recommendation
+  const allModules = STATE.data?.modules || {};
+  const moduleIds = Object.keys(allModules);
+  const currentIdx = moduleIds.indexOf(STATE.moduleId);
+  const nextId = moduleIds[currentIdx + 1] || null;
+
+  const nextModuleEl = document.getElementById('completion-next-module');
+  const nextBtn = document.getElementById('completion-next-btn');
+
+  if (nextId) {
+    const next = allModules[nextId];
+    nextModuleEl.innerHTML = `
+      <div class="next-module-card">
+        <div class="next-module-icon">${next.icon || '📘'}</div>
+        <div class="next-module-info">
+          <div class="next-module-label">Module tiếp theo</div>
+          <div class="next-module-name">${escapeHtml(next.name)}</div>
+          <div class="next-module-meta">${next.steps.length} bước · ${escapeHtml(next.role || '')}</div>
+        </div>
+      </div>
+    `;
+    nextBtn.style.display = '';
+    nextBtn.onclick = () => {
+      window.location.href = `?module=${encodeURIComponent(nextId)}`;
+    };
+  } else {
+    nextModuleEl.innerHTML = `
+      <div class="next-module-empty">
+        🎓 Bạn đã hoàn thành tất cả modules có sẵn!
+      </div>
+    `;
+    nextBtn.style.display = 'none';
+  }
+
+  overlay.hidden = false;
+  // Trigger confetti animation
+  triggerConfetti();
+}
+
+function hideCompletion() {
+  document.getElementById('completion-overlay').hidden = true;
+}
+
+function restartModule() {
+  hideCompletion();
+  goToStep(0);
+}
+
+function backToHome() {
+  window.location.href = './';
+}
+
+function triggerConfetti() {
+  const wrap = document.getElementById('confetti');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  const colors = ['#00A651', '#FFD600', '#FF6B6B', '#4DABF7', '#A78BFA'];
+  for (let i = 0; i < 60; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti-piece';
+    c.style.left = Math.random() * 100 + '%';
+    c.style.background = colors[Math.floor(Math.random() * colors.length)];
+    c.style.animationDelay = (Math.random() * 0.5) + 's';
+    c.style.animationDuration = (2 + Math.random() * 1.5) + 's';
+    wrap.appendChild(c);
+  }
+  // Cleanup after animation
+  setTimeout(() => { wrap.innerHTML = ''; }, 4000);
+}
 
 /* ============================================================
    RENDER STEP
@@ -1209,23 +1477,50 @@ function renderStep() {
   const hsCx = (hs.x + hs.w / 2) * scale + 8;
   const hsCy = (hs.y - scrollY + hs.h / 2) * scale + 8;
 
-  // Reset inline + class, rồi set theo pos
+  // SMART AUTO-FLIP — measure tooltip height, flip nếu sẽ overflow phone frame
+  // Bước 1: render tạm ẩn để đo height
+  tt.removeAttribute('style');
+  tt.style.visibility = 'hidden';
+  tt.className = `tooltip tt-${pos}`;
+  // Force layout
+  const ttH = tt.getBoundingClientRect().height || 80;
+
+  // Vị trí pixels của hotspot trong phone-container (frame padding 8 đã cộng)
+  const hsTopPx = (hs.y - scrollY) * scale + 8;
+  const hsBottomPx = (hs.y + hs.h - scrollY) * scale + 8;
+  // Phone frame height match CSS .phone-frame: 770px desktop, 500px mobile
+  const phoneFrameH = window.innerWidth < 768 ? 500 : 770;
+  const safeMargin = 12; // khoảng cách giữa hotspot và tooltip
+
+  // Flip 'bottom' → 'top' nếu sẽ tràn xuống dưới phone
+  if (pos === 'bottom' && hsBottomPx + safeMargin + ttH > phoneFrameH - 4) {
+    pos = 'top';
+  }
+  // Flip 'top' → 'bottom' nếu sẽ tràn lên trên
+  else if (pos === 'top' && hsTopPx - safeMargin - ttH < 4) {
+    pos = 'bottom';
+  }
+
+  // Bước 2: reset + apply final position
   tt.removeAttribute('style');
   tt.className = `tooltip tt-${pos}`;
   if (pos === 'left') {
+    // Outside phone left
     tt.style.right = 'calc(100% + 12px)';
     tt.style.top = `${hsCy}px`;
     tt.style.transform = 'translateY(-50%)';
   } else if (pos === 'right') {
+    // Outside phone right
     tt.style.left = 'calc(100% + 12px)';
     tt.style.top = `${hsCy}px`;
     tt.style.transform = 'translateY(-50%)';
   } else if (pos === 'top') {
-    tt.style.bottom = 'calc(100% + 12px)';
+    // Above hotspot, INSIDE phone area
+    tt.style.bottom = `calc(100% - ${hsTopPx}px + 12px)`;
     tt.style.left = `${hsCx}px`;
     tt.style.transform = 'translateX(-50%)';
-  } else { // bottom
-    tt.style.top = 'calc(100% + 12px)';
+  } else { // bottom — below hotspot, INSIDE phone area
+    tt.style.top = `${hsBottomPx + 12}px`;
     tt.style.left = `${hsCx}px`;
     tt.style.transform = 'translateX(-50%)';
   }
@@ -1257,8 +1552,9 @@ function renderStep() {
   // Nav button states
   document.getElementById('btn-prev').disabled = (idx === 0);
   document.getElementById('btn-prev-m').disabled = (idx === 0);
-  document.getElementById('btn-next').disabled = (idx === total - 1);
-  document.getElementById('btn-next-m').disabled = (idx === total - 1);
+  // Last step: don't disable — clicking triggers showCompletion
+  document.getElementById('btn-next').disabled = false;
+  document.getElementById('btn-next-m').disabled = false;
   document.getElementById('btn-next').textContent = (idx === total - 1) ? '✓ Hoàn thành' : 'Tiếp →';
   document.getElementById('btn-next-m').textContent = (idx === total - 1) ? '✓ Hoàn thành' : 'Tiếp →';
 

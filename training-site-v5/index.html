@@ -306,6 +306,12 @@ function renderRoleTabs() {
   Array.from(tabs.querySelectorAll('.role-tab:not([data-role="all"])')).forEach(t => t.remove());
   const allCount = Object.keys(STATE.data.modules || {}).length;
   $('badge-all').textContent = allCount;
+  // Bind "all" tab click (static HTML, only bind once)
+  const allTab = tabs.querySelector('[data-role="all"]');
+  if (allTab && !allTab.dataset.bound) {
+    allTab.addEventListener('click', () => setRole('all'));
+    allTab.dataset.bound = '1';
+  }
   for (const [rid, role] of Object.entries(STATE.data.roles || {})) {
     const count = (role.modules || []).filter(mid => STATE.data.modules[mid]).length;
     const btn = document.createElement('button');

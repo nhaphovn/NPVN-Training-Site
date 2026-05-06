@@ -1,18 +1,46 @@
-# Nhà Phố Training Site v5
+# Nhà Phố Training Site v5.1
 
-Interactive training cho App Nhà Phố Việt Nam. UI/UX overhaul.
+Interactive training cho App Nhà Phố Việt Nam.
+
+## v5.1 — UX fixes
+
+### Issue 1: Nút "Tất cả" giờ click được sau khi đổi role
+- Bug cũ: Static HTML button không có click handler
+- Fix: Bind handler trong `renderRoleTabs()` với `dataset.bound` flag
+
+### Issue 2: Tooltip không che nút Trước/Tiếp
+- Bug cũ: `tt-bottom` ở hotspot dưới → tooltip render dưới phone-frame, đè lên `.phone-nav`
+- Fix: Smart auto-flip — nếu `bottom` overflow → swap thành `top`, vị trí relative hotspot
+- Verified: 0 overlap issues across 35 steps × 3 modules
+
+### Issue 3: Completion celebration + recommend next module
+- Khi user bấm "Tiếp →" ở bước cuối:
+  - Modal overlay với 🎉 + confetti animation 60 pieces
+  - Stats: số bước đã học + tên module
+  - Recommend next module (theo thứ tự trong modules.json) với card icon + name + meta
+  - Nếu là module cuối: hiển thị "🎓 Bạn đã hoàn thành tất cả modules có sẵn!"
+  - 3 buttons: "🔄 Học lại từ đầu" / "← Về trang chủ" / "Module tiếp theo →"
+- Backdrop blur(6px) + dark green tint overlay
+
+### Issue 4: Content quality fixes
+- 12 tooltips có ttText > 15 từ → đã rewrite cho ngắn gọn, đúng giới hạn
+  - dang_tin: steps 2, 3, 4, 6, 8, 9, 10, 11
+  - loc_kho: steps 4, 6, 11
+  - bo_suu_tap: step 2
+- Tất cả tooltips giờ ≤ 15 từ ttText, ≤ 5 từ ttTitle
+- Verified: 35 steps, 0 console errors
 
 ## Cấu trúc
 
 ```
 training-site/
 ├── index.html              ← Landing
-├── training-engine.html    ← Engine — phone +34%, chat panel redesigned
-├── admin-x7q9.html         ← Editor — grouped topbar, polished modal, image upload + ZIP
-├── BRAND.md                ← Brand guidelines
+├── training-engine.html    ← Engine — phone +34%, completion overlay, smart tooltip
+├── admin-x7q9.html         ← Editor — password gate + image upload + ZIP
+├── BRAND.md
 ├── robots.txt
 ├── vercel.json
-├── data/modules.json
+├── data/modules.json       ← Updated tooltip text
 └── images/{module}/...
 ```
 
@@ -20,108 +48,34 @@ training-site/
 
 | URL | Public? |
 |---|---|
-| `/` | ✓ Landing — clean, no Tài liệu section |
+| `/` | ✓ Landing |
 | `/dangtin`, `/lockho`, `/bosutap` | ✓ Short URLs |
 | `/training-engine?module=<id>` | ✓ |
 | `/admin-x7q9` | ⚠ Password protected |
 
-## ✨ v5 — UI/UX overhaul
-
-### Engine
-
-**Chat panel redesigned hoàn toàn:**
-- Header card: icon 💬 gradient + status bar 2 dòng + online indicator dot xanh
-- Empty state: 🤖 trong khung gradient + headline + 3 features check + CTA xanh gradient
-- Has-key state: hint bar "● API key đã lưu" + suggestion chips
-- Has-msg state: message bubbles có gradient + animation slide-in + scrollbar custom
-- Send button vuông 40×40 với icon ↑
-
-**Guide card polish:**
-- Note `.note` có icon ⚠️ ::before + bg vàng nhạt + border-left orange
-- Tip box "💡 LƯU Ý" với label uppercase letterspacing
-
-### Admin
-
-**Topbar grouped:**
-- 12 buttons rời rạc → 5 groups có visual divider 1px×20px
-- Brand + History + Module + File + Export + Account
-- Buttons compact 32px, icon-btn 32×32 cho ↶ ↷ 🚪
-- Module dropdown max-width 180px
-
-**Form panel:**
-- First h3 "📋 BƯỚC N" với border-bottom + step count badge phải
-- Section h3 UPPERCASE green-dark + border-top divider
-- Better spacing 18px vertical, input padding 8/11px
-
-**Modal polish:**
-- Header: gradient soft tint + emoji + border-bottom
-- Body: padding 20/22px riêng (modal-body wrapper)
-- Actions footer: separator + bg green-tint
-- Backdrop: `rgba(15,31,20,0.55)` + blur(4px)
-- Btn-danger margin-right auto đẩy giữa
-
-**Step row + sidebar:**
-- "CÁC BƯỚC" header có vertical stripe gradient xanh trái
-- Step row hover translateX(2px) animation
-- Active state inset shadow 3px stripe + bold name green-darker
-- Step number circle border + active green
-- Add-step button dashed → solid khi hover
-
-**Preview:**
-- Mode toggle "Hotspot/Preview" pill design green-soft
-- Preview info trong pill green-tint mono font
-- Nav buttons hover green-light bg
-
-### Index
-
-- Removed "🛠 Tài liệu" section (Xem cấu trúc data + Reload)
-- Cleaner footer-only landing
-
 ## 🔐 Admin password
 
-**Mặc định:** `nhapho2026` (đổi ngay sau deploy)
+Mặc định: `nhapho2026`
 
 ```js
 // Console:
 await sha256("MAT_KHAU_MOI")
-// Copy hash → replace PASSWORD_HASH trong admin-x7q9.html → re-deploy
+// Replace PASSWORD_HASH trong admin-x7q9.html → re-deploy
 ```
 
-## Features đã có
+## Test results
 
-- Image upload trực tiếp (resize 390 + JPG 0.85, IndexedDB)
-- Export ZIP đầy đủ (📦 ZIP)
-- Undo/Redo 30 levels (Ctrl+Z / Ctrl+Shift+Z)
-- Search step (`/`)
-- Bulk operations (checkboxes + bulk bar)
-- Drag-drop hotspot trên phone preview
-- Live tooltip auto-flip mobile
-
-## Keyboard shortcuts (admin)
-
-| Phím | Action |
-|---|---|
-| `Ctrl+Z` | Undo |
-| `Ctrl+Shift+Z` / `Ctrl+Y` | Redo |
-| `Ctrl+S` | Download JSON |
-| `/` | Focus search |
-| `Esc` | Clear selection / search |
-| `Shift+Click` step | Range select |
-
-## Brand identity
-
-Đọc `BRAND.md`. Color tokens lock:
-- `--green: #00A651`
-- `--green-dark: #007A3D`
-- `--green-darker: #005C2D`
-- `--green-tint: #F7FBF8` (page bg)
-- `--text: #0F1F14`
-- Font: Be Vietnam Pro 300-800
+```
+✓ Issue 1: Tất cả tab clickable after role switch
+✓ Issue 2: Tooltip auto-flip — 0 overlap issues across 35 steps
+✓ Issue 3: Completion modal verified (dang_tin → loc_kho rec, bo_suu_tap → all done)
+✓ Issue 4: Content audit — 0 tooltips over limit, 0 missing fields
+✓ Console errors: 0
+```
 
 ## Deploy
 
-Đảm bảo upload **content** (không phải folder wrapper):
 ```bash
-cd <folder vừa giải nén>  # phải vào BÊN TRONG
+cd <giải nén folder>  # vào BÊN TRONG
 vercel --prod
 ```

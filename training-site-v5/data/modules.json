@@ -94,7 +94,7 @@
           },
           "ttPos": "bottom",
           "ttTitle": "Nhân bản tin đăng",
-          "ttText": "Chọn tin cũ để copy toàn bộ thông tin — chỉ cần chỉnh phần khác nhau",
+          "ttText": "Chọn tin cũ để copy toàn bộ — chỉ cần chỉnh khác nhau",
           "tip": "Nhân bản tiết kiệm 80% thời gian khi đăng nhiều tin cùng loại hình, cùng khu vực.",
           "guide": [
             {
@@ -128,7 +128,7 @@
           },
           "ttPos": "bottom",
           "ttTitle": "Loại hình BĐS",
-          "ttText": "Thổ cư / Chung cư / Dự án — KHÔNG thay đổi được sau khi duyệt",
+          "ttText": "Thổ cư / Chung cư / Dự án — không đổi được sau duyệt",
           "tip": "Loại hình quyết định toàn bộ thông số nhà. KHÔNG thể thay đổi sau khi tin được duyệt.",
           "guide": [
             {
@@ -162,7 +162,7 @@
           },
           "ttPos": "right",
           "ttTitle": "Địa chỉ theo thứ tự",
-          "ttText": "Dropdown tự lọc từ trên xuống — chọn cấp trên trước, cấp dưới tự cập nhật",
+          "ttText": "Dropdown tự lọc — chọn cấp trên trước, cấp dưới tự cập nhật",
           "tip": "Nhà trong ngõ: dùng cú pháp \"Ngõ + số ngõ + Tên đường\". VD: Ngõ 107 Trần Khát Chân.",
           "guide": [
             {
@@ -230,7 +230,7 @@
           },
           "ttPos": "right",
           "ttTitle": "Thông số theo loại hình",
-          "ttText": "Diện tích sổ ≠ thực tế: dùng / (VD: 34/78). Nhà cấp 4: c4. Đất: d",
+          "ttText": "Diện tích sổ ≠ thực tế: dùng / (VD: 34/78). Nhà cấp 4: c4",
           "tip": "Diện tích sổ và thực tế khác nhau: dùng dấu / (VD: 34/78). Nhà cấp 4 nhập tầng = c4. Đất nhập = d.",
           "guide": [
             {
@@ -298,7 +298,7 @@
           },
           "ttPos": "right",
           "ttTitle": "Tiêu đề & Nội dung",
-          "ttText": "Hệ thống tự điền tiêu đề. Nội dung: mô tả chi tiết để chuyên viên tư vấn khách tốt hơn",
+          "ttText": "Hệ thống tự điền tiêu đề. Nội dung: mô tả để chuyên viên tư vấn",
           "tip": "Nội dung càng chi tiết, chuyên viên càng tư vấn được tốt hơn — tỷ lệ chốt deal cao hơn.",
           "guide": [
             {
@@ -332,7 +332,7 @@
           },
           "ttPos": "right",
           "ttTitle": "Pháp lý bắt buộc",
-          "ttText": "Serial sổ và SĐT chủ nhà được công ty bảo mật — chuyên viên không thấy trực tiếp",
+          "ttText": "Serial sổ và SĐT chủ nhà được bảo mật — chuyên viên không thấy",
           "tip": "Serial sổ và SĐT chủ nhà được công ty bảo mật hoàn toàn. Điền đúng để tránh bị từ chối duyệt.",
           "guide": [
             {
@@ -366,7 +366,7 @@
           },
           "ttPos": "right",
           "ttTitle": "Upload đúng thứ tự",
-          "ttText": "Ảnh thực tế → Video → Ảnh pháp lý → Audio. Chờ dấu ✓ sau mỗi lần upload",
+          "ttText": "Ảnh thực tế → Video → Ảnh pháp lý → Audio. Chờ ✓ sau upload",
           "tip": "Chờ dấu ✓ xuất hiện trước khi thoát — ảnh chưa upload xong sẽ bị mất nếu thoát sớm.",
           "guide": [
             {
@@ -400,7 +400,7 @@
           },
           "ttPos": "top",
           "ttTitle": "Bấm Đăng tin",
-          "ttText": "Tin vào Chờ duyệt ngay lập tức — kiểm duyệt trong 24h, nhận thông báo kết quả",
+          "ttText": "Tin vào Chờ duyệt ngay — kiểm duyệt 24h, nhận thông báo kết quả",
           "tip": "Tin đăng kiểm duyệt trong 24h. Quá thời gian hãy liên hệ bộ phận hỗ trợ duyệt hàng.",
           "guide": [
             {
@@ -553,7 +553,7 @@
           },
           "ttPos": "left",
           "ttTitle": "Bố cục tối ưu",
-          "ttText": "Địa chỉ + Thông số + Giá trong 1 màn hình để lướt nhanh nhiều căn",
+          "ttText": "Địa chỉ + Thông số + Giá — lướt nhanh nhiều căn cùng lúc",
           "tip": "Kéo đến vị trí thấy được cột Giá là hợp lý nhất — không cần thấy tất cả cột cùng lúc.",
           "guide": [
             {
@@ -621,7 +621,7 @@
           },
           "ttPos": "left",
           "ttTitle": "Bảng chọn cột",
-          "ttText": "Toggle xanh = hiện cột | Toggle xám = ẩn. Đặt lại = về mặc định",
+          "ttText": "Toggle xanh = hiện | Toggle xám = ẩn. Đặt lại để mặc định",
           "tip": "Gợi ý: Giữ lại Địa chỉ + Phố + Thông số + Giá + Tr/m² + Hiện trạng — đủ để đánh giá nhanh.",
           "guide": [
             {
@@ -791,7 +791,7 @@
           },
           "ttPos": "left",
           "ttTitle": "Mặc định Chi nhánh",
-          "ttText": "Hệ thống tự chọn chi nhánh của bạn — có thể đổi sang All hoặc chi nhánh khác",
+          "ttText": "Hệ thống tự chọn chi nhánh bạn — có thể đổi sang All hoặc khác",
           "tip": "Để trống Chi nhánh = xem toàn bộ hàng công ty. Chọn chi nhánh = chỉ xem hàng của chi nhánh đó.",
           "guide": [
             {
@@ -913,7 +913,7 @@
           },
           "ttPos": "right",
           "ttTitle": "Icon Ghi chú",
-          "ttText": "Chỉ dùng được khi tin đã lưu. Sau khi có ghi chú icon đổi màu cam",
+          "ttText": "Chỉ dùng được khi tin đã lưu. Có ghi chú thì icon đổi cam",
           "tip": "Icon ghi chú màu cam = đã có ghi chú. Bấm vào để xem/sửa ghi chú đã nhập trước đó.",
           "guide": [
             {
