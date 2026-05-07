@@ -1,0 +1,1280 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-05-03",
+  "brand": {
+    "name": "Nhà Phố Việt Nam",
+    "app": "App Nhà Phố",
+    "hotline": "1900 0266",
+    "colors": {
+      "primary": "#00A651",
+      "dark": "#007A3D"
+    },
+    "font": "Be Vietnam Pro"
+  },
+  "roles": {
+    "daucchu": {
+      "name": "Đầu chủ",
+      "icon": "🏠",
+      "modules": [
+        "dang_tin"
+      ]
+    },
+    "hocvien": {
+      "name": "Học viên / Chuyên viên",
+      "icon": "📋",
+      "modules": [
+        "loc_kho",
+        "bo_suu_tap"
+      ]
+    },
+    "truongphong": {
+      "name": "Trưởng phòng",
+      "icon": "👔",
+      "modules": []
+    }
+  },
+  "modules": {
+    "dang_tin": {
+      "name": "Đăng tin BĐS",
+      "role": "Đầu chủ",
+      "icon": "📝",
+      "description": "Toàn bộ quy trình đăng tin từ trang chủ đến gửi duyệt",
+      "images": {
+        "home": "/images/dang_tin/home.jpg",
+        "form": "/images/dang_tin/form.jpg"
+      },
+      "steps": [
+        {
+          "id": 1,
+          "name": "Tìm nút Đăng tin",
+          "desc": "Icon trên màn hình trang chủ",
+          "title": "Bước 1 — Tìm nút Đăng tin",
+          "sub": "Trên màn hình trang chủ, tìm icon Đăng tin ở hàng đầu vị trí thứ 4 từ trái",
+          "img": "home",
+          "scrollY": 0,
+          "hs": {
+            "x": 253,
+            "y": 112,
+            "w": 70,
+            "h": 88
+          },
+          "ttPos": "left",
+          "ttTitle": "Nút Đăng tin",
+          "ttText": "Hàng 1, vị trí 4 — bấm để mở form đăng tin BĐS",
+          "tip": "Cũng có nút Đăng tin trong màn hình Kho tài nguyên góc trên phải.",
+          "guide": [
+            {
+              "title": "Mở App Nhà Phố",
+              "body": "Đăng nhập bằng SĐT + OTP, đợi màn hình trang chủ hiện ra."
+            },
+            {
+              "title": "Nhìn vào lưới tính năng",
+              "body": "Hàng đầu tiên có 5 icon. Icon thứ 4 là Đăng tin — hình tờ giấy có dấu +."
+            },
+            {
+              "title": "Bấm Đăng tin",
+              "body": "Sau khi bấm, form đăng tin mở ra ngay lập tức.",
+              "note": "Cũng có nút Đăng tin trong màn hình Kho tài nguyên góc trên phải."
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Nhân bản tin đăng",
+          "desc": "Chọn tin cũ để nhân bản (tùy chọn)",
+          "title": "Bước 2 — Nhân bản tin đăng",
+          "sub": "Tùy chọn: Bấm \"Chọn tin\" để nhân bản từ tin đã đăng — không cần điền lại từ đầu",
+          "img": "form",
+          "scrollY": 38,
+          "hs": {
+            "x": 8,
+            "y": 118,
+            "w": 374,
+            "h": 51
+          },
+          "ttPos": "bottom",
+          "ttTitle": "Nhân bản tin đăng",
+          "ttText": "Chọn tin cũ để copy toàn bộ — chỉ cần chỉnh khác nhau",
+          "tip": "Nhân bản tiết kiệm 80% thời gian khi đăng nhiều tin cùng loại hình, cùng khu vực.",
+          "guide": [
+            {
+              "title": "Bấm Chọn tin",
+              "body": "Nút màu xanh góc trên phải — chọn 1 tin đã đăng để nhân bản toàn bộ thông tin."
+            },
+            {
+              "title": "Kiểm tra và chỉnh sửa",
+              "body": "Sau khi nhân bản, tất cả thông tin từ tin cũ được copy lại. Chỉ cần chỉnh các trường khác nhau."
+            },
+            {
+              "title": "Bỏ qua nếu đăng tin mới",
+              "body": "Nếu không dùng nhân bản, bỏ qua bước này và điền form từ đầu.",
+              "note": "Nhân bản rất hữu ích khi đăng nhiều căn trong cùng dự án/khu vực."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Loại hình & Đặc điểm",
+          "desc": "Thổ cư / Chung cư / Dự án",
+          "title": "Bước 3 — Chọn Loại hình & Đặc điểm",
+          "sub": "Chọn đúng loại hình — quyết định toàn bộ thông số nhà xuất hiện ở bước sau",
+          "img": "form",
+          "scrollY": 101,
+          "hs": {
+            "x": 10,
+            "y": 181,
+            "w": 372,
+            "h": 92
+          },
+          "ttPos": "bottom",
+          "ttTitle": "Loại hình BĐS",
+          "ttText": "Thổ cư / Chung cư / Dự án — không đổi được sau duyệt",
+          "tip": "Loại hình quyết định toàn bộ thông số nhà. KHÔNG thể thay đổi sau khi tin được duyệt.",
+          "guide": [
+            {
+              "title": "Chọn Loại hình",
+              "body": "Thổ cư: nhà phố, nhà riêng, đất. Chung cư: căn hộ trong tòa. Dự án: sản phẩm trong dự án cụ thể."
+            },
+            {
+              "title": "Chọn Đặc điểm",
+              "body": "Phân loại chi tiết trong loại hình. VD: Thổ cư → Nhà mặt phố / Nhà trong ngõ / Đất nền."
+            },
+            {
+              "title": "Lưu ý quan trọng",
+              "body": "Loại hình và Đặc điểm sẽ quyết định các trường thông số nhà xuất hiện bên dưới.",
+              "note": "KHÔNG thể thay đổi Loại hình sau khi tin được duyệt — chọn kỹ trước khi tiếp tục."
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Vị trí & Địa chỉ BĐS",
+          "desc": "Thành phố, Quận, Phường, Đường",
+          "title": "Bước 4 — Nhập Vị trí & Địa chỉ",
+          "sub": "Chọn từ trên xuống: Thành phố → Quận/Huyện → Phường → Đường/Phố → Số nhà",
+          "img": "form",
+          "scrollY": 198,
+          "hs": {
+            "x": 10,
+            "y": 278,
+            "w": 370,
+            "h": 432
+          },
+          "ttPos": "right",
+          "ttTitle": "Địa chỉ theo thứ tự",
+          "ttText": "Dropdown tự lọc — chọn cấp trên trước, cấp dưới tự cập nhật",
+          "tip": "Nhà trong ngõ: dùng cú pháp \"Ngõ + số ngõ + Tên đường\". VD: Ngõ 107 Trần Khát Chân.",
+          "guide": [
+            {
+              "title": "Chọn Thành phố → Quận → Phường",
+              "body": "Dropdown tự lọc. Chọn Thành phố trước, Quận/Huyện sẽ tự cập nhật theo."
+            },
+            {
+              "title": "Chọn Đường/Phố",
+              "body": "Tìm kiếm tên đường — gõ vài chữ đầu để hệ thống gợi ý."
+            },
+            {
+              "title": "Nhập số nhà cụ thể",
+              "body": "Điền ngõ, hẻm, số nhà, số phòng vào ô \"Nhập ngõ, hẻm, số nhà\".",
+              "note": "Nhà trong ngõ: Ngõ + số + Tên đường. VD: Ngõ 107 Trần Khát Chân."
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Địa chỉ chi tiết",
+          "desc": "Ngõ, hẻm, số nhà, số phòng",
+          "title": "Bước 5 — Nhập địa chỉ chi tiết",
+          "sub": "Điền ngõ, hẻm, số nhà, số phòng vào ô nhập tay — địa chỉ càng chính xác càng tốt",
+          "img": "form",
+          "scrollY": 634,
+          "hs": {
+            "x": 12,
+            "y": 714,
+            "w": 370,
+            "h": 88
+          },
+          "ttPos": "bottom",
+          "ttTitle": "Địa chỉ chi tiết",
+          "ttText": "Nhà trong ngõ: \"Ngõ + số + Tên đường\" VD: Ngõ 107 Trần Khát Chân",
+          "tip": "Nhà trong ngõ dùng cú pháp: Ngõ + số ngõ + Tên đường. VD: Ngõ 107 Trần Khát Chân.",
+          "guide": [
+            {
+              "title": "Nhập địa chỉ cụ thể",
+              "body": "Ô \"Nhập ngõ, hẻm, số nhà\" — điền đầy đủ số nhà, ngõ, hẻm nếu có."
+            },
+            {
+              "title": "Dự án/Khu đô thị (nếu có)",
+              "body": "Chung cư hoặc Dự án: gõ tên dự án vào ô bên dưới để hệ thống gợi ý. VD: Vinhomes Ocean Park."
+            },
+            {
+              "title": "Lưu ý địa chỉ trong ngõ",
+              "body": "Gõ: Ngõ + số ngõ + Tên đường. VD: \"Ngõ 107 Trần Khát Chân\".",
+              "note": "Địa chỉ chính xác giúp chuyên viên khảo sát nhanh và tăng độ tin cậy của tin đăng."
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Thông số nhà",
+          "desc": "Diện tích, tầng, phòng theo loại hình",
+          "title": "Bước 5 — Nhập Thông số nhà",
+          "sub": "Điền thông số kỹ thuật theo đúng loại hình đã chọn — diện tích, số tầng, phòng ngủ, WC",
+          "img": "form",
+          "scrollY": 810,
+          "hs": {
+            "x": 6,
+            "y": 890,
+            "w": 378,
+            "h": 514
+          },
+          "ttPos": "right",
+          "ttTitle": "Thông số theo loại hình",
+          "ttText": "Diện tích sổ ≠ thực tế: dùng / (VD: 34/78). Nhà cấp 4: c4",
+          "tip": "Diện tích sổ và thực tế khác nhau: dùng dấu / (VD: 34/78). Nhà cấp 4 nhập tầng = c4. Đất nhập = d.",
+          "guide": [
+            {
+              "title": "Điền diện tích",
+              "body": "Nếu sổ và thực tế khác nhau dùng dấu / (VD: 34/78 = sổ 34m² thực tế 78m²)."
+            },
+            {
+              "title": "Số tầng đặc biệt",
+              "body": "Nhà cấp 4: nhập \"c4\" hoặc \"1\". Đất (không có tầng): nhập \"d\" hoặc \"0\"."
+            },
+            {
+              "title": "Thông số Chung cư / Dự án",
+              "body": "Với Chung cư: chọn dự án, số tầng, phòng ngủ, WC. Hệ thống hiển thị đúng fields theo loại hình.",
+              "note": "Điền chính xác vì thông số nhà ảnh hưởng đến khả năng khách tìm thấy tin trong kho."
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Hoa hồng & Loại HĐ",
+          "desc": "% hoa hồng, loại hợp đồng, cầu đối tác",
+          "title": "Bước 6 — Nhập Hoa hồng & Loại hợp đồng",
+          "sub": "Điền % hoa hồng, chọn loại hợp đồng ĐC1/ĐC2/ĐC1A, cấu đối tác nếu BĐS từ 20 tỷ",
+          "img": "form",
+          "scrollY": 1323,
+          "hs": {
+            "x": 8,
+            "y": 1403,
+            "w": 374,
+            "h": 168
+          },
+          "ttPos": "right",
+          "ttTitle": "Hoa hồng & Hợp đồng",
+          "ttText": "Loại HĐ: ĐC1, ĐC2, ĐC1A. Cầu đối tác chỉ áp dụng BĐS từ 20 tỷ",
+          "tip": "Hoa hồng rõ ràng thu hút chuyên viên tích cực dẫn khách hơn. Cầu đối tác chỉ áp dụng BĐS từ 20 tỷ.",
+          "guide": [
+            {
+              "title": "Nhập % Hoa hồng",
+              "body": "Điền % hoa hồng bạn cam kết cho chuyên viên dẫn khách thành công."
+            },
+            {
+              "title": "Chọn Loại hợp đồng",
+              "body": "ĐC1, ĐC2 hoặc ĐC1A — chọn theo thỏa thuận với công ty. KHÔNG sửa được sau khi duyệt."
+            },
+            {
+              "title": "Cầu đối tác",
+              "body": "Nhập % chia cho đối tác môi giới nếu có. Chỉ áp dụng BĐS có giá từ 20 tỷ trở lên.",
+              "note": "Loại hợp đồng KHÔNG thể thay đổi sau khi tin được duyệt."
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "name": "Tiêu đề & Nội dung",
+          "desc": "Mô tả chi tiết thu hút khách",
+          "title": "Bước 7 — Nhập Tiêu đề & Nội dung",
+          "sub": "Hệ thống tự điền tiêu đề — bạn chỉ cần nhập nội dung mô tả hấp dẫn",
+          "img": "form",
+          "scrollY": 1498,
+          "hs": {
+            "x": 12,
+            "y": 1578,
+            "w": 369,
+            "h": 354
+          },
+          "ttPos": "right",
+          "ttTitle": "Tiêu đề & Nội dung",
+          "ttText": "Hệ thống tự điền tiêu đề. Nội dung: mô tả để chuyên viên tư vấn",
+          "tip": "Nội dung càng chi tiết, chuyên viên càng tư vấn được tốt hơn — tỷ lệ chốt deal cao hơn.",
+          "guide": [
+            {
+              "title": "Tiêu đề tự động",
+              "body": "Hệ thống tự sinh tiêu đề từ thông tin đã nhập. Có thể chỉnh sửa nếu muốn."
+            },
+            {
+              "title": "Nhập Nội dung",
+              "body": "Mô tả ưu điểm BĐS: vị trí, tiện ích xung quanh, tình trạng nhà, điểm nổi bật."
+            },
+            {
+              "title": "Nội dung chất lượng",
+              "body": "Nội dung tốt giúp chuyên viên tư vấn đúng với khách, tăng tỷ lệ chốt deal.",
+              "note": "Không cần quá dài — 3-5 câu rõ ràng về ưu điểm chính là đủ."
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "name": "Pháp lý & Serial sổ",
+          "desc": "Bắt buộc, được công ty bảo mật",
+          "title": "Bước 8 — Nhập Pháp lý & Thông tin bảo mật",
+          "sub": "Chọn loại pháp lý, nhập Serial sổ và SĐT chủ nhà — được công ty bảo mật hoàn toàn",
+          "img": "form",
+          "scrollY": 1860,
+          "hs": {
+            "x": 14,
+            "y": 1940,
+            "w": 370,
+            "h": 254
+          },
+          "ttPos": "right",
+          "ttTitle": "Pháp lý bắt buộc",
+          "ttText": "Serial sổ và SĐT chủ nhà được bảo mật — chuyên viên không thấy",
+          "tip": "Serial sổ và SĐT chủ nhà được công ty bảo mật hoàn toàn. Điền đúng để tránh bị từ chối duyệt.",
+          "guide": [
+            {
+              "title": "Chọn Pháp lý",
+              "body": "Sổ đỏ, sổ hồng hoặc giấy tờ khác. Chọn đúng loại pháp lý thực tế của BĐS."
+            },
+            {
+              "title": "Serial số sổ",
+              "body": "Mã số trên sổ đỏ/hồng. Được công ty bảo mật — chuyên viên không thấy. KHÔNG sửa được sau duyệt."
+            },
+            {
+              "title": "SĐT chủ nhà",
+              "body": "Số điện thoại chủ sở hữu BĐS. Bảo mật hoàn toàn. KHÔNG sửa được sau duyệt.",
+              "note": "Điền chính xác để tránh bị từ chối duyệt và bảo vệ quyền lợi của bạn."
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "name": "Upload ảnh & File",
+          "desc": "Ảnh thực tế, video, pháp lý, audio",
+          "title": "Bước 9 — Upload ảnh & Tài liệu",
+          "sub": "Upload ảnh thực tế (≤12), video (≤4, mỗi file ≤50MB), ảnh pháp lý (≤20), audio (≤4)",
+          "img": "form",
+          "scrollY": 2122,
+          "hs": {
+            "x": 8,
+            "y": 2202,
+            "w": 370,
+            "h": 536
+          },
+          "ttPos": "right",
+          "ttTitle": "Upload đúng thứ tự",
+          "ttText": "Ảnh thực tế → Video → Ảnh pháp lý → Audio. Chờ ✓ sau upload",
+          "tip": "Chờ dấu ✓ xuất hiện trước khi thoát — ảnh chưa upload xong sẽ bị mất nếu thoát sớm.",
+          "guide": [
+            {
+              "title": "Ảnh thực tế (≤12 ảnh)",
+              "body": "Chụp mặt tiền, phòng khách, phòng ngủ, bếp, WC, hẻm/ngõ. Ảnh sáng rõ nét."
+            },
+            {
+              "title": "Video (≤4, mỗi file ≤50MB)",
+              "body": "Video tour ngắn 30-60 giây. Không quá 50MB/file."
+            },
+            {
+              "title": "Ảnh pháp lý (≤20) & Audio (≤4)",
+              "body": "Ảnh sổ đỏ, HĐ trích thưởng. Audio ghi âm thỏa thuận pháp lý nếu cần.",
+              "note": "Upload xong chờ dấu ✓ mới được thoát màn hình — thoát sớm ảnh bị mất."
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "name": "Hoàn tất & Đăng tin",
+          "desc": "Bấm nút Đăng tin cuối form",
+          "title": "Bước 10 — Bấm Đăng tin",
+          "sub": "Kiểm tra lại toàn bộ, rồi bấm nút \"Đăng tin\" màu xanh cuối form",
+          "img": "form",
+          "scrollY": 2672,
+          "hs": {
+            "x": 12,
+            "y": 2752,
+            "w": 370,
+            "h": 62
+          },
+          "ttPos": "top",
+          "ttTitle": "Bấm Đăng tin",
+          "ttText": "Tin vào Chờ duyệt ngay — kiểm duyệt 24h, nhận thông báo kết quả",
+          "tip": "Tin đăng kiểm duyệt trong 24h. Quá thời gian hãy liên hệ bộ phận hỗ trợ duyệt hàng.",
+          "guide": [
+            {
+              "title": "Cuộn lên đầu kiểm tra lại",
+              "body": "Đọc lại địa chỉ, thông số, pháp lý. Đặc biệt kiểm tra diện tích và giá."
+            },
+            {
+              "title": "Bấm nút Đăng tin màu xanh",
+              "body": "Nút cố định ở cuối form. Sau khi bấm, tin chuyển sang Chờ duyệt ngay."
+            },
+            {
+              "title": "Nhận thông báo kết quả",
+              "body": "Push notification khi duyệt hoặc từ chối kèm lý do cụ thể.",
+              "note": "Đảm bảo bật thông báo cho App Nhà Phố trong cài đặt điện thoại."
+            }
+          ]
+        }
+      ],
+      "iconImg": "assets/icons/dang_tin.png"
+    },
+    "loc_kho": {
+      "name": "Lọc Kho tài nguyên",
+      "role": "Học viên / Chuyên viên",
+      "icon": "🏗",
+      "description": "Tìm kiếm, lọc, ẩn cột và xem chi tiết tin đăng",
+      "images": {
+        "home": "/images/loc_kho/home.jpg",
+        "b02": "/images/loc_kho/b02.jpg",
+        "b04": "/images/loc_kho/b04.jpg",
+        "b06a": "/images/loc_kho/b06a.jpg",
+        "b06s": "/images/loc_kho/b06s.jpg",
+        "b07": "/images/loc_kho/b07.jpg",
+        "b08": "/images/loc_kho/b08.jpg"
+      },
+      "steps": [
+        {
+          "id": 1,
+          "name": "Vào Kho tài nguyên",
+          "desc": "Bấm icon từ trang chủ",
+          "title": "Bước 1 — Vào Kho tài nguyên",
+          "sub": "Từ trang chủ, bấm icon Kho tài nguyên — hàng đầu tiên, vị trí bên trái nhất",
+          "imgKey": "home",
+          "scrollY": 27,
+          "hs": {
+            "x": 10,
+            "y": 107,
+            "w": 63,
+            "h": 102
+          },
+          "ttPos": "right",
+          "ttTitle": "Kho tài nguyên",
+          "ttText": "Hàng icon đầu tiên, vị trí số 1 bên trái",
+          "tip": "Cũng có thể vào Kho tài nguyên qua menu (bấm avatar góc phải trang chủ).",
+          "guide": [
+            {
+              "title": "Mở App Nhà Phố",
+              "body": "Đăng nhập, đợi màn hình trang chủ hiện ra đầy đủ."
+            },
+            {
+              "title": "Tìm icon Kho tài nguyên",
+              "body": "Hàng icon đầu tiên — biểu tượng kho hàng, góc trái ngoài cùng. Label: 'Kho tài nguyên'."
+            },
+            {
+              "title": "Bấm vào icon",
+              "body": "Hệ thống mở màn hình Kho tài nguyên với tab Danh sách mặc định.",
+              "note": "HV chỉ thấy tin dưới 35 tỷ — đây là giới hạn phân quyền."
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Tab Danh sách",
+          "desc": "Màn hình mặc định khi vào kho",
+          "title": "Bước 2 — Tab Danh sách",
+          "sub": "Màn hình mặc định — bảng dữ liệu dạng hàng ngang với đầy đủ thông tin từng tin đăng",
+          "imgKey": "b02",
+          "scrollY": 65,
+          "hs": {
+            "x": 6,
+            "y": 145,
+            "w": 134,
+            "h": 52
+          },
+          "ttPos": "right",
+          "ttTitle": "Tab Danh sách",
+          "ttText": "Tab mặc định — bảng dữ liệu ngang đầy đủ thông tin",
+          "tip": "Tab Danh sách cho thấy nhiều cột nhất — phù hợp lướt nhanh hàng chục tin cùng lúc.",
+          "guide": [
+            {
+              "title": "Tab Danh sách",
+              "body": "Tab đầu tiên — hiển thị dạng bảng ngang. Mặc định sắp xếp theo Tin nổi bật."
+            },
+            {
+              "title": "Các cột hiển thị",
+              "body": "Lưu | Đặt lịch | G.Chú | T.Gian | Hiện trạng | Địa chỉ | Phố | Quận | Thông số | Giá | Tr/m² | Đầu chủ | SĐT | Đặc điểm | B.Cáo | Xem."
+            },
+            {
+              "title": "Hiện trạng màu sắc",
+              "body": "Bán mạnh (trắng) | Hạ chào (xanh) | Tạm dừng (đỏ viền) | Đã bán (đỏ).",
+              "note": "Bấm vào hàng bất kỳ để xem chi tiết tin đăng đó."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Kéo xem đầy đủ cột",
+          "desc": "Vuốt ngang để thấy toàn bộ thông tin",
+          "title": "Bước 3 — Kéo danh sách xem đủ cột",
+          "sub": "Danh sách có nhiều cột — vuốt ngón tay sang phải/trái để thấy toàn bộ thông tin",
+          "imgKey": "b02",
+          "scrollY": 167,
+          "hs": {
+            "x": 1,
+            "y": 247,
+            "w": 385,
+            "h": 559
+          },
+          "ttPos": "left",
+          "ttTitle": "Vuốt ngang",
+          "ttText": "Kéo sang phải để thấy cột Giá, Tr/m², Đầu chủ, SĐT, Đặc điểm",
+          "tip": "Vuốt nhẹ sang phải để thấy cột Giá và Thông số — hai cột quan trọng nhất khi lọc nhanh.",
+          "guide": [
+            {
+              "title": "Bảng cuộn ngang",
+              "body": "Đặt ngón tay lên vùng bảng dữ liệu → kéo sang phải để thấy các cột bị ẩn bên phải."
+            },
+            {
+              "title": "Cột quan trọng hay bị ẩn",
+              "body": "Giá (tỷ) | Tr/m² | Đầu chủ | SĐT | Đặc điểm — cần kéo sang phải để thấy."
+            },
+            {
+              "title": "Mẹo xem nhanh",
+              "body": "Kéo đến vừa đủ hiện cột Địa chỉ + Giá + Thông số trong 1 màn hình — tối ưu nhất để lướt nhanh.",
+              "note": "Xem bước tiếp theo để biết cách tùy chỉnh cột hiển thị."
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Kéo vừa đủ màn hình",
+          "desc": "Tối ưu cột thông tin hữu ích",
+          "title": "Bước 4 — Xem danh sách tối ưu",
+          "sub": "Kéo đến vừa đủ hiện Địa chỉ + Thông số + Giá trong 1 màn hình — xem được nhiều căn nhất",
+          "imgKey": "b04",
+          "scrollY": 155,
+          "hs": {
+            "x": 0,
+            "y": 235,
+            "w": 389,
+            "h": 555
+          },
+          "ttPos": "left",
+          "ttTitle": "Bố cục tối ưu",
+          "ttText": "Địa chỉ + Thông số + Giá — lướt nhanh nhiều căn cùng lúc",
+          "tip": "Kéo đến vị trí thấy được cột Giá là hợp lý nhất — không cần thấy tất cả cột cùng lúc.",
+          "guide": [
+            {
+              "title": "Vị trí tối ưu",
+              "body": "Kéo đến khi thấy: Địa chỉ | Phố | Thông số | Giá — vừa đủ 1 màn hình, lướt được nhiều căn nhất."
+            },
+            {
+              "title": "Đọc thông tin nhanh",
+              "body": "Mỗi hàng = 1 tin đăng. Đọc từ trái sang: địa chỉ → thông số nhà → giá → hiện trạng."
+            },
+            {
+              "title": "Thao tác nhanh",
+              "body": "Bấm icon lưu (🔖) để lưu vào bộ sưu tập. Bấm icon đặt lịch (⏰) để đặt lịch xem nhà.",
+              "note": "Dùng tính năng Ẩn cột (bước tiếp) để tùy chỉnh cột theo nhu cầu của bạn."
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Ẩn cột — Bấm nút",
+          "desc": "Tùy chỉnh cột hiển thị",
+          "title": "Bước 5 — Dùng tính năng Ẩn cột",
+          "sub": "Bấm 'Ẩn cột' trong thanh toolbar để chọn cột nào hiển thị — bớt rối mắt hơn",
+          "imgKey": "b06a",
+          "scrollY": 111,
+          "hs": {
+            "x": 62,
+            "y": 191,
+            "w": 80,
+            "h": 47
+          },
+          "ttPos": "right",
+          "ttTitle": "Nút Ẩn cột",
+          "ttText": "Bấm để chọn cột nào muốn thấy trong danh sách",
+          "tip": "Tắt các cột không cần dùng (G.Chú, B.Cáo...) để bảng gọn hơn, đọc nhanh hơn.",
+          "guide": [
+            {
+              "title": "Vị trí nút Ẩn cột",
+              "body": "Thanh toolbar dưới 3 tab — nút thứ 2 từ trái, biểu tượng mắt gạch chéo + text Ẩn cột."
+            },
+            {
+              "title": "Bấm để mở bảng tùy chỉnh",
+              "body": "Panel chọn cột xuất hiện bên dưới — danh sách toggle xanh/xám cho từng cột."
+            },
+            {
+              "title": "Thao tác",
+              "body": "Gạt toggle xanh = hiện cột đó | Toggle xám = ẩn cột đó khỏi danh sách.",
+              "note": "Cài đặt ẩn cột được lưu cho phiên hiện tại."
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Ẩn cột — Chọn cột",
+          "desc": "Toggle bật/tắt từng cột",
+          "title": "Bước 6 — Chọn cột cần hiển thị",
+          "sub": "Toggle xanh = hiện | Toggle xám = ẩn. Bấm Đặt lại để về mặc định",
+          "imgKey": "b06a",
+          "scrollY": 162,
+          "hs": {
+            "x": 57,
+            "y": 242,
+            "w": 326,
+            "h": 314
+          },
+          "ttPos": "left",
+          "ttTitle": "Bảng chọn cột",
+          "ttText": "Toggle xanh = hiện | Toggle xám = ẩn. Đặt lại để mặc định",
+          "tip": "Gợi ý: Giữ lại Địa chỉ + Phố + Thông số + Giá + Tr/m² + Hiện trạng — đủ để đánh giá nhanh.",
+          "guide": [
+            {
+              "title": "Danh sách cột có thể tùy chỉnh",
+              "body": "Lưu | Đ.Lịch | T.Gian | Hiện trạng | Địa chỉ | Phố | Quận | Thông số | Giá | Tr/m² | Đầu chủ | SĐT | Đặc điểm | B.Cáo | Xem."
+            },
+            {
+              "title": "Toggle bật/tắt",
+              "body": "Toggle xanh đậm = cột đó hiện trong bảng. Toggle xám = ẩn. Thay đổi áp dụng ngay lập tức."
+            },
+            {
+              "title": "Đặt lại mặc định",
+              "body": "Bấm nút Đặt lại (màu xanh cuối bảng) để khôi phục về cài đặt gốc.",
+              "note": "Cột Quận và Giá đang ẩn mặc định trong ảnh — gạt lên để hiện nếu cần."
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "name": "Tab Đã lưu",
+          "desc": "Xem tin đã lưu bộ sưu tập",
+          "title": "Bước 7 — Tab Đã lưu",
+          "sub": "Xem tất cả tin đã lưu vào bộ sưu tập — có ghi chú kèm theo từng tin",
+          "imgKey": "b06s",
+          "scrollY": 64,
+          "hs": {
+            "x": 232,
+            "y": 138,
+            "w": 138,
+            "h": 41
+          },
+          "ttPos": "left",
+          "ttTitle": "Tab Đã lưu",
+          "ttText": "Danh sách tin đã lưu BST — icon đỏ = đã lưu",
+          "tip": "Tin trong Đã lưu luôn có icon bookmark đỏ (🔖) — dễ nhận ra ngay trong danh sách.",
+          "guide": [
+            {
+              "title": "Vào Tab Đã lưu",
+              "body": "Tab thứ 3 trong thanh tab: Danh sách | Chi tiết | Đã lưu. Bấm Đã lưu để xem."
+            },
+            {
+              "title": "Nội dung hiển thị",
+              "body": "Chỉ hiển thị tin bạn đã bấm lưu (🔖). Tất cả có icon bookmark đỏ ở cột đầu tiên."
+            },
+            {
+              "title": "Ghi chú tin lưu",
+              "body": "Bấm vào icon G.Chú (🗒) của từng tin để thêm/sửa ghi chú riêng.",
+              "note": "Ghi chú giúp bạn nhớ lý do lưu tin — rất hữu ích khi manage nhiều tin cùng lúc."
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "name": "Tab Chi tiết (Feed)",
+          "desc": "Xem tin dạng feed cuộn",
+          "title": "Bước 8 — Tab Chi tiết",
+          "sub": "Xem tin đăng dạng feed — lướt từng tin đầy đủ ảnh, thông tin, giá như mạng xã hội",
+          "imgKey": "b07",
+          "scrollY": 70,
+          "hs": {
+            "x": 128,
+            "y": 150,
+            "w": 132,
+            "h": 43
+          },
+          "ttPos": "left",
+          "ttTitle": "Tab Chi tiết",
+          "ttText": "Xem tin dạng feed — lướt đầy đủ ảnh và thông tin từng căn",
+          "tip": "Tab Chi tiết hiển thị tin nổi bật nhất (nhiều tương tác, ảnh đẹp) lên đầu feed.",
+          "guide": [
+            {
+              "title": "Vào Tab Chi tiết",
+              "body": "Tab thứ 2: Chi tiết. Bấm để chuyển sang chế độ xem feed cuộn dọc."
+            },
+            {
+              "title": "Thông tin trong mỗi card",
+              "body": "Ảnh BĐS | Đầu chủ | Giá | Thông số | Mô tả | Mã số | Trạng thái pháp lý."
+            },
+            {
+              "title": "Thao tác trực tiếp trên card",
+              "body": "Thích ❤️ | Bình luận 💬 | Chia sẻ | Lưu 🔖 | Đặt lịch ⏰ | Báo cáo dẫn khách.",
+              "note": "Bấm vào ảnh hoặc tên đầu chủ để xem toàn bộ chi tiết tin đăng."
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "name": "Mở bộ lọc",
+          "desc": "Bấm Lọc để nhập tiêu chí",
+          "title": "Bước 9 — Mở bộ lọc kho",
+          "sub": "Bấm nút Lọc trong toolbar để mở panel nhập tiêu chí lọc tin đăng",
+          "imgKey": "b08",
+          "scrollY": 150,
+          "hs": {
+            "x": 4,
+            "y": 230,
+            "w": 59,
+            "h": 37
+          },
+          "ttPos": "right",
+          "ttTitle": "Nút Lọc",
+          "ttText": "Bấm để mở panel lọc — chọn tiêu chí tin muốn xem",
+          "tip": "Mặc định nếu không lọc: hệ thống hiển thị toàn bộ tin của toàn công ty (trừ giới hạn HV <35 tỷ).",
+          "guide": [
+            {
+              "title": "Vị trí nút Lọc",
+              "body": "Toolbar dưới 3 tab — nút đầu tiên bên trái, biểu tượng phễu lọc + text Lọc."
+            },
+            {
+              "title": "Panel lọc hiện ra",
+              "body": "Màn hình lọc mở ra với các tiêu chí: Hiện trạng | Loại hình | Tỉnh/TP | Quận | Đường/Phố | Giá | Đặc điểm BĐS | Dự án | Chi nhánh | Phòng ban | Tài khoản."
+            },
+            {
+              "title": "Không chọn = hiển thị tất cả",
+              "body": "Để trống tiêu chí nào = hệ thống không lọc theo tiêu chí đó, hiển thị toàn bộ.",
+              "note": "Lọc theo Chi nhánh/Phòng ban/Cá nhân để tập trung vào hàng của team mình."
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "name": "Nhập tiêu chí lọc BĐS",
+          "desc": "Hiện trạng, loại hình, địa chỉ, giá",
+          "title": "Bước 10 — Nhập tiêu chí lọc BĐS",
+          "sub": "Chọn Hiện trạng, Loại hình, Tỉnh/TP, Quận/Huyện, Đường, Giá tối thiểu/tối đa",
+          "imgKey": "b08",
+          "scrollY": 231,
+          "hs": {
+            "x": 40,
+            "y": 311,
+            "w": 309,
+            "h": 346
+          },
+          "ttPos": "left",
+          "ttTitle": "Tiêu chí BĐS",
+          "ttText": "Không chọn = hiển thị tất cả. Chọn từ trên xuống dưới",
+          "tip": "Nên lọc Tỉnh/TP trước → Quận → Đường. Không bỏ qua cấp trên rồi chọn cấp dưới.",
+          "guide": [
+            {
+              "title": "Hiện trạng & Loại hình",
+              "body": "Hiện trạng: Bán mạnh / Hạ chào / Tạm dừng. Loại hình: Thổ cư / Chung cư / Dự án."
+            },
+            {
+              "title": "Địa chỉ (chọn từ trên xuống)",
+              "body": "Tỉnh/Thành phố → Quận/Huyện → Đường/Phố. Dropdown tự lọc — chọn cấp trên trước."
+            },
+            {
+              "title": "Khoảng giá",
+              "body": "Giá tối thiểu + Giá tối đa (đơn vị Tỷ). Hoặc chọn Khoảng giá có sẵn.",
+              "note": "Chọn Đặc điểm BĐS để lọc theo Mặt phố, Trong ngõ, Lô góc... nếu khách có yêu cầu cụ thể."
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "name": "Lọc theo Chi nhánh",
+          "desc": "Mặc định theo chi nhánh của bạn",
+          "title": "Bước 11 — Lọc theo Chi nhánh",
+          "sub": "Hệ thống mặc định hiển thị theo Chi nhánh của bạn — có thể thay đổi tùy nhu cầu",
+          "imgKey": "b08",
+          "scrollY": 605,
+          "hs": {
+            "x": 37,
+            "y": 685,
+            "w": 305,
+            "h": 40
+          },
+          "ttPos": "left",
+          "ttTitle": "Mặc định Chi nhánh",
+          "ttText": "Hệ thống tự chọn chi nhánh bạn — có thể đổi sang All hoặc khác",
+          "tip": "Để trống Chi nhánh = xem toàn bộ hàng công ty. Chọn chi nhánh = chỉ xem hàng của chi nhánh đó.",
+          "guide": [
+            {
+              "title": "Mặc định Chi nhánh",
+              "body": "Hệ thống tự điền chi nhánh bạn đang thuộc vào — có thể giữ nguyên hoặc xóa để xem toàn bộ."
+            },
+            {
+              "title": "Thay đổi Chi nhánh",
+              "body": "Bấm vào dropdown Chi nhánh → chọn chi nhánh khác hoặc để trống để xem toàn công ty."
+            },
+            {
+              "title": "Kết hợp với Phòng ban",
+              "body": "Sau khi chọn Chi nhánh, có thể lọc tiếp theo Phòng ban hoặc cá nhân cụ thể.",
+              "note": "Xem hàng của chi nhánh khác giúp đối chiếu giá, tìm hàng phù hợp cho khách."
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "name": "Lọc theo Phòng ban & Cá nhân",
+          "desc": "Thu hẹp đến team hoặc đầu chủ cụ thể",
+          "title": "Bước 12 — Bấm Lọc để áp dụng",
+          "sub": "Chọn phòng ban hoặc tên tài khoản cụ thể → bấm nút Lọc màu xanh để áp dụng",
+          "imgKey": "b08",
+          "scrollY": 645,
+          "hs": {
+            "x": 40,
+            "y": 725,
+            "w": 303,
+            "h": 71
+          },
+          "ttPos": "left",
+          "ttTitle": "Phòng ban & Tài khoản",
+          "ttText": "Lọc đến từng phòng kinh doanh hoặc từng đầu chủ cụ thể",
+          "tip": "Sau khi lọc xong → bấm nút Lọc xanh ở cuối màn hình để áp dụng. Bấm Đặt lại để xóa toàn bộ tiêu chí.",
+          "guide": [
+            {
+              "title": "Chọn Phòng ban",
+              "body": "Dropdown Phòng ban → chọn phòng kinh doanh cụ thể trong chi nhánh đã chọn."
+            },
+            {
+              "title": "Chọn Tài khoản cá nhân",
+              "body": "Dropdown Nhập tên tài khoản → gõ tên đầu chủ/CV cụ thể để xem hàng của người đó."
+            },
+            {
+              "title": "Áp dụng & Đặt lại",
+              "body": "Bấm nút Lọc (xanh, cuối màn hình) để áp dụng tiêu chí. Bấm Đặt lại để xóa hết và về mặc định.",
+              "note": "Tiêu chí lọc bị mất khi chuyển tab — đây là hành vi đã được ghi nhận và fix (IS_12)."
+            }
+          ]
+        }
+      ],
+      "iconImg": "assets/icons/kho_tai_nguyen.png"
+    },
+    "bo_suu_tap": {
+      "name": "Bộ sưu tập",
+      "role": "Học viên / Chuyên viên",
+      "icon": "⭐",
+      "description": "Lưu tin, ghi chú, tạo và quản lý bộ sưu tập",
+      "images": {
+        "b01_list": "/images/bo_suu_tap/b01_list.jpg",
+        "b01_feed": "/images/bo_suu_tap/b01_feed.jpg",
+        "b02_bst": "/images/bo_suu_tap/b02_bst.jpg",
+        "b03_tao": "/images/bo_suu_tap/b03_tao.jpg",
+        "b04_menu": "/images/bo_suu_tap/b04_menu.jpg",
+        "b05_sua": "/images/bo_suu_tap/b05_sua.jpg",
+        "b06_tin": "/images/bo_suu_tap/b06_tin.jpg",
+        "b07_xoa": "/images/bo_suu_tap/b07_xoa.jpg",
+        "b08_ghi": "/images/bo_suu_tap/b08_ghi.jpg",
+        "b09_daluu": "/images/bo_suu_tap/b09_daluu.jpg"
+      },
+      "steps": [
+        {
+          "id": 1,
+          "name": "Lưu tin từ Danh sách",
+          "desc": "Bấm icon 🔖 trong cột Lưu",
+          "title": "Bước 1 — Lưu tin từ tab Danh sách",
+          "sub": "Trong tab Danh sách kho tài nguyên, bấm icon 🔖 ở cột đầu tiên để lưu tin quan tâm",
+          "imgKey": "b01_list",
+          "scrollY": 166,
+          "hs": {
+            "x": 2,
+            "y": 246,
+            "w": 31,
+            "h": 570
+          },
+          "ttPos": "right",
+          "ttTitle": "Icon Lưu tin",
+          "ttText": "Bấm icon 🔖 — sau khi lưu icon đổi sang màu đỏ nổi bật",
+          "tip": "Icon ghi chú (G.Chú) chỉ khả dụng với tin đã lưu (icon đỏ) — chưa lưu thì không ghi chú được.",
+          "guide": [
+            {
+              "title": "Cột Lưu trong Danh sách",
+              "body": "Cột đầu tiên bên trái — icon 🔖 xám. Bấm để lưu, icon chuyển đỏ ngay lập tức."
+            },
+            {
+              "title": "Sau khi lưu",
+              "body": "Icon đổi màu đỏ = đã lưu. Cột G.Chú bên cạnh trở nên khả dụng để thêm ghi chú."
+            },
+            {
+              "title": "Bỏ lưu",
+              "body": "Bấm lại icon đỏ để bỏ lưu — tin bị xóa khỏi tất cả bộ sưu tập.",
+              "note": "Tin đã lưu hiển thị trong tab Đã lưu và trong Bộ sưu tập (icon Bộ sưu tập trên bottom nav)."
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Ghi chú tin trong Danh sách",
+          "desc": "Bấm icon ghi chú cột G.Chú",
+          "title": "Bước 2 — Ghi chú tin từ Danh sách",
+          "sub": "Với tin đã lưu (icon đỏ), bấm icon 🗒 cột G.Chú để thêm ghi chú nhanh",
+          "imgKey": "b01_list",
+          "scrollY": 223,
+          "hs": {
+            "x": 63,
+            "y": 303,
+            "w": 64,
+            "h": 33
+          },
+          "ttPos": "right",
+          "ttTitle": "Icon Ghi chú",
+          "ttText": "Chỉ dùng được khi tin đã lưu. Có ghi chú thì icon đổi cam",
+          "tip": "Icon ghi chú màu cam = đã có ghi chú. Bấm vào để xem/sửa ghi chú đã nhập trước đó.",
+          "guide": [
+            {
+              "title": "Điều kiện dùng ghi chú",
+              "body": "Tin phải được lưu (icon đỏ) trước. Cột G.Chú chỉ active khi tin đã lưu."
+            },
+            {
+              "title": "Sau khi bấm ghi chú",
+              "body": "Màn hình Ghi chú mở ra — nhập nội dung text + tải ảnh (tối đa 6 ảnh). Bấm Lưu để xác nhận."
+            },
+            {
+              "title": "Icon cam = có ghi chú",
+              "body": "Sau khi lưu ghi chú, icon G.Chú chuyển sang màu cam đậm — dễ nhận biết tin nào đã ghi chú.",
+              "note": "Rất hữu ích khi đi khảo sát — chụp ảnh thực tế + ghi chú trực tiếp vào tin ngay tại chỗ."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Lưu tin từ tab Chi tiết",
+          "desc": "Bấm icon lưu khi đang xem feed",
+          "title": "Bước 3 — Lưu tin từ tab Chi tiết (Feed)",
+          "sub": "Khi đang lướt feed Chi tiết, bấm icon 🔖 trên card tin để lưu vào Bộ sưu tập",
+          "imgKey": "b01_feed",
+          "scrollY": 1230,
+          "hs": {
+            "x": 233,
+            "y": 1310,
+            "w": 120,
+            "h": 39
+          },
+          "ttPos": "left",
+          "ttTitle": "Icon Lưu trên feed",
+          "ttText": "Bấm icon 🔖 — chuyển màu đỏ và mở popup chọn BST",
+          "tip": "Lưu từ feed Chi tiết tiện hơn khi đang lướt xem ảnh — không cần thoát ra tab Danh sách.",
+          "guide": [
+            {
+              "title": "Vị trí icon Lưu trên feed",
+              "body": "Thanh action dưới mỗi card tin (cùng hàng với Thích, Bình luận, Chia sẻ). Icon 🔖 ở giữa."
+            },
+            {
+              "title": "Sau khi bấm lưu",
+              "body": "Popup 'Thêm vào bộ sưu tập' xuất hiện — chọn BST muốn lưu vào. Icon chuyển đỏ."
+            },
+            {
+              "title": "Ghi chú đi kèm",
+              "body": "Sau khi lưu, icon Ghi chú trên card cũng được kích hoạt — bấm để thêm ghi chú ngay.",
+              "note": "Tương tự lưu từ Danh sách — icon đỏ = đã lưu, có thể ghi chú đi kèm."
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Chọn Bộ sưu tập khi lưu",
+          "desc": "Popup chọn BST sau khi bấm lưu",
+          "title": "Bước 4 — Chọn Bộ sưu tập khi lưu tin",
+          "sub": "Sau khi bấm icon Lưu, popup xuất hiện để chọn BST — lưu Mặc định hoặc chọn BST cụ thể",
+          "imgKey": "b02_bst",
+          "scrollY": 296,
+          "hs": {
+            "x": 20,
+            "y": 376,
+            "w": 352,
+            "h": 69
+          },
+          "ttPos": "left",
+          "ttTitle": "Lưu Mặc định",
+          "ttText": "Không chọn BST nào = hệ thống tự lưu vào BST Mặc định",
+          "tip": "Luôn có ít nhất 1 BST Mặc định — không thể xóa BST Mặc định.",
+          "guide": [
+            {
+              "title": "BST Mặc định",
+              "body": "Hàng đầu tiên trong popup — không chọn BST nào cụ thể = tin lưu vào Mặc định."
+            },
+            {
+              "title": "Chọn BST cụ thể",
+              "body": "Tick vào 1 hoặc nhiều BST đã tạo. Tin có thể lưu vào nhiều BST cùng lúc."
+            },
+            {
+              "title": "Tạo nhanh BST mới",
+              "body": "Bấm '+ Tạo bộ sưu tập' → nhập tên → BST mới xuất hiện ngay trong popup.",
+              "note": "Bấm 'Xong' để hoàn tất. Tin lưu vào BST nào không chọn sẽ về Mặc định."
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Lưu vào BST đã có",
+          "desc": "Tick chọn một hoặc nhiều BST",
+          "title": "Bước 5 — Lưu tin vào BST cụ thể",
+          "sub": "Tick vào BST muốn lưu — có thể chọn nhiều BST cùng lúc — rồi bấm Xong",
+          "imgKey": "b02_bst",
+          "scrollY": 368,
+          "hs": {
+            "x": 20,
+            "y": 448,
+            "w": 348,
+            "h": 207
+          },
+          "ttPos": "left",
+          "ttTitle": "Chọn một hoặc nhiều BST",
+          "ttText": "Tick checkbox → bấm Xong để lưu vào BST đã chọn",
+          "tip": "Tin có thể lưu vào nhiều BST cùng lúc — rất hữu ích khi 1 căn phù hợp nhiều khách khác nhau.",
+          "guide": [
+            {
+              "title": "Tick chọn BST",
+              "body": "Mỗi BST có checkbox bên phải tên. Tick vào BST muốn lưu — chọn được nhiều BST."
+            },
+            {
+              "title": "Tạo nhanh BST mới",
+              "body": "Bấm '+ Tạo bộ sưu tập' ở cuối danh sách — nhập tên ngắn gọn — BST mới xuất hiện ngay."
+            },
+            {
+              "title": "Hoàn tất bấm Xong",
+              "body": "Bấm nút 'Xong' màu xanh góc phải dưới — tin được lưu vào tất cả BST đã tick.",
+              "note": "Bấm X để đóng popup mà không lưu. Tin sẽ không được lưu vào BST nào."
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Tạo Bộ sưu tập mới",
+          "desc": "Nhập tên và bấm Tạo",
+          "title": "Bước 6 — Tạo Bộ sưu tập mới",
+          "sub": "Vào màn hình Bộ sưu tập → bấm 'Tạo bộ sưu tập' → nhập tên → bấm Tạo",
+          "imgKey": "b03_tao",
+          "scrollY": 253,
+          "hs": {
+            "x": 9,
+            "y": 333,
+            "w": 375,
+            "h": 221
+          },
+          "ttPos": "left",
+          "ttTitle": "Tạo Bộ sưu tập",
+          "ttText": "Nhập tên ngắn gọn → bấm Tạo xanh hoặc Đóng để hủy",
+          "tip": "Đặt tên BST theo khu vực hoặc loại nhà — VD: 'Cầu Giấy 3-5 tỷ', 'Mặt phố kinh doanh'.",
+          "guide": [
+            {
+              "title": "Vào màn hình Bộ sưu tập",
+              "body": "Bottom nav → tab Bộ sưu tập (icon 🔖). Cuộn xuống cuối → bấm nút 'Tạo bộ sưu tập'."
+            },
+            {
+              "title": "Nhập tên BST",
+              "body": "Popup hiện ra — gõ tên BST vào ô nhập. Tên ngắn gọn, dễ nhớ, theo chủ đề cụ thể."
+            },
+            {
+              "title": "Bấm Tạo",
+              "body": "Bấm nút 'Tạo' màu xanh để tạo. Bấm 'Đóng' để hủy. BST mới xuất hiện ngay trong danh sách.",
+              "note": "Nên tạo BST theo chiến lược: theo khu vực, theo giá, theo khách cụ thể..."
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "name": "Sửa & Xóa Bộ sưu tập",
+          "desc": "Bấm giữ BST hoặc bấm 3 chấm",
+          "title": "Bước 7 — Sửa & Xóa Bộ sưu tập",
+          "sub": "Bấm giữ vào BST hoặc bấm nút 3 chấm (···) để xem tùy chọn Sửa và Xóa",
+          "imgKey": "b04_menu",
+          "scrollY": 339,
+          "hs": {
+            "x": 17,
+            "y": 419,
+            "w": 358,
+            "h": 116
+          },
+          "ttPos": "left",
+          "ttTitle": "Bấm giữ hoặc ···",
+          "ttText": "Popup hiện 2 tùy chọn: Sửa bộ sưu tập & Xóa bộ sưu tập",
+          "tip": "Xóa BST sẽ xóa BST đó nhưng KHÔNG xóa tin bên trong — tin vẫn còn trong BST Mặc định.",
+          "guide": [
+            {
+              "title": "Mở tùy chọn",
+              "body": "Bấm giữ vào tên BST ~1 giây HOẶC bấm nút 3 chấm (···) góc phải BST đó."
+            },
+            {
+              "title": "Tùy chọn hiện ra",
+              "body": "Bottom sheet xuất hiện với 2 lựa chọn: 'Sửa bộ sưu tập' và 'Xóa bộ sưu tập' (màu đỏ)."
+            },
+            {
+              "title": "Xóa BST",
+              "body": "Bấm 'Xóa bộ sưu tập' → xác nhận. BST bị xóa, tin vẫn còn trong BST Mặc định.",
+              "note": "BST Mặc định không thể xóa. Chỉ xóa được BST do người dùng tạo."
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "name": "Sửa tên & ảnh đại diện BST",
+          "desc": "Popup sửa BST — tên và ảnh",
+          "title": "Bước 8 — Sửa Bộ sưu tập",
+          "sub": "Màn hình Sửa BST: đổi ảnh đại diện, đổi tên, rồi bấm Lưu để cập nhật",
+          "imgKey": "b05_sua",
+          "scrollY": 275,
+          "hs": {
+            "x": 118,
+            "y": 355,
+            "w": 167,
+            "h": 156
+          },
+          "ttPos": "left",
+          "ttTitle": "Chọn ảnh đại diện",
+          "ttText": "Tải ảnh để BST dễ nhận biết — mỗi BST một ảnh riêng",
+          "tip": "Đặt ảnh đại diện theo chủ đề BST — VD: BST mặt phố thì chọn ảnh mặt tiền đẹp.",
+          "guide": [
+            {
+              "title": "Tải ảnh đại diện",
+              "body": "Bấm vào vùng ảnh tròn có dấu + → chọn ảnh từ thư viện. Ảnh đại diện giúp nhận ra BST nhanh hơn."
+            },
+            {
+              "title": "Đổi tên BST",
+              "body": "Xóa tên cũ trong ô nhập → gõ tên mới. Hoặc giữ nguyên tên nếu chỉ muốn đổi ảnh."
+            },
+            {
+              "title": "Lưu thay đổi",
+              "body": "Bấm nút 'Lưu' màu xanh để cập nhật. Bấm 'Đóng' để hủy toàn bộ thay đổi.",
+              "note": ""
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "name": "Xem tin trong BST",
+          "desc": "Lọc sắp xếp, xem tiêu đề, thao tác",
+          "title": "Bước 9 — Xem và quản lý tin trong BST",
+          "sub": "Trong BST: lọc sắp xếp, xem tiêu đề tin, ghi chú, và thao tác gỡ/thêm BST khác",
+          "imgKey": "b06_tin",
+          "scrollY": 41,
+          "hs": {
+            "x": 5,
+            "y": 121,
+            "w": 376,
+            "h": 63
+          },
+          "ttPos": "right",
+          "ttTitle": "Filter sắp xếp",
+          "ttText": "Sắp xếp theo: Mới nhất, Cũ nhất, Giá cao, Giá thấp nhất",
+          "tip": "Sắp xếp theo Giá thấp nhất để tìm nhanh căn phù hợp ngân sách của khách.",
+          "guide": [
+            {
+              "title": "Filter sắp xếp tin",
+              "body": "Dropdown phía trên danh sách — chọn: Tin mới nhất | Cũ nhất | Giá cao nhất | Giá thấp nhất."
+            },
+            {
+              "title": "Xem tiêu đề và thao tác",
+              "body": "Mỗi tin hiện: ảnh thumbnail + tiêu đề + hiện trạng. Bấm 3 chấm (···) hoặc bấm giữ để thao tác."
+            },
+            {
+              "title": "Nút Ghi chú",
+              "body": "Bấm nút 'Ghi chú' bên phải mỗi tin để xem/thêm ghi chú đi kèm.",
+              "note": "Ghi chú màu xanh = đã có ghi chú. Ghi chú xám = chưa có nội dung."
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "name": "Gỡ tin khỏi BST",
+          "desc": "Bấm giữ hoặc 3 chấm → Gỡ bỏ",
+          "title": "Bước 10 — Gỡ tin khỏi Bộ sưu tập",
+          "sub": "Bấm giữ vào tin hoặc bấm nút 3 chấm (···) → chọn 'Gỡ bỏ' để xóa tin khỏi BST này",
+          "imgKey": "b07_xoa",
+          "scrollY": 621,
+          "hs": {
+            "x": 18,
+            "y": 701,
+            "w": 354,
+            "h": 134
+          },
+          "ttPos": "left",
+          "ttTitle": "Bấm giữ hoặc ···",
+          "ttText": "3 tùy chọn: Xem chi tiết | Thêm vào BST khác | Gỡ bỏ (đỏ)",
+          "tip": "Gỡ bỏ chỉ xóa tin khỏi BST này — tin vẫn còn trong BST khác và trong tab Đã lưu.",
+          "guide": [
+            {
+              "title": "Mở tùy chọn tin",
+              "body": "Bấm giữ vào card tin ~1 giây HOẶC bấm nút 3 chấm (···) góc phải tin đó."
+            },
+            {
+              "title": "3 tùy chọn hiện ra",
+              "body": "① Xem bài viết (xem chi tiết tin)\n② Thêm vào bộ sưu tập (thêm vào BST khác)\n③ Gỡ bỏ (màu đỏ — xóa khỏi BST này)"
+            },
+            {
+              "title": "Gỡ bỏ tin",
+              "body": "Bấm 'Gỡ bỏ' màu đỏ → tin bị xóa khỏi BST hiện tại ngay lập tức.",
+              "note": "Gỡ bỏ KHÔNG bỏ lưu tin — tin vẫn trong BST Mặc định và các BST khác nếu có."
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "name": "Ghi chú tin trong BST",
+          "desc": "Nhập nội dung và tải ảnh kèm",
+          "title": "Bước 11 — Ghi chú và tải ảnh cho tin đã lưu",
+          "sub": "Màn hình Ghi chú: nhập text, tải tối đa 6 ảnh (rất hữu ích khi đi khảo sát), rồi bấm Lưu",
+          "imgKey": "b08_ghi",
+          "scrollY": 26,
+          "hs": {
+            "x": 3,
+            "y": 106,
+            "w": 382,
+            "h": 233
+          },
+          "ttPos": "right",
+          "ttTitle": "Ô nhập ghi chú",
+          "ttText": "Noted nhanh thông tin quan trọng — giá thực tế, tình trạng nhà, ghi nhớ",
+          "tip": "Khi đi khảo sát thực tế: chụp ảnh tại chỗ + ghi chú ngay → không quên thông tin sau khi về.",
+          "guide": [
+            {
+              "title": "Nhập nội dung ghi chú",
+              "body": "Ô text lớn phía trên — gõ bất kỳ thông tin cần nhớ: giá thực tế, tình trạng, điểm cộng/trừ."
+            },
+            {
+              "title": "Tải ảnh kèm ghi chú",
+              "body": "Bấm ô 'Tải lên' → chọn ảnh từ thư viện. Tối đa 6 ảnh mỗi ghi chú."
+            },
+            {
+              "title": "Bấm Lưu",
+              "body": "Bấm nút 'Lưu' màu xanh để lưu ghi chú + ảnh. Bấm 'Đóng' để hủy không lưu.",
+              "note": "Ảnh trong ghi chú rất hữu ích: chụp mặt ngõ, tình trạng thực tế, ảnh đo đạc..."
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "name": "Tab Đã lưu trong Kho",
+          "desc": "Xem toàn bộ tin đã lưu từ kho",
+          "title": "Bước 12 — Xem tab Đã lưu trong Kho tài nguyên",
+          "sub": "Tab Đã lưu trong Kho tài nguyên hiển thị tất cả tin đã bấm lưu — toàn bộ, không phân BST",
+          "imgKey": "b09_daluu",
+          "scrollY": 64,
+          "hs": {
+            "x": 232,
+            "y": 138,
+            "w": 138,
+            "h": 41
+          },
+          "ttPos": "left",
+          "ttTitle": "Tab Đã lưu",
+          "ttText": "Toàn bộ tin đã lưu — icon đỏ hết, G.Chú cam = có ghi chú",
+          "tip": "Tab Đã lưu trong Kho ≠ màn hình Bộ sưu tập. Đây là tổng hợp tất cả tin đã lưu, không phân BST.",
+          "guide": [
+            {
+              "title": "Vị trí Tab Đã lưu",
+              "body": "Kho tài nguyên → tab thứ 3 bên phải: 'Đã lưu'. Hiển thị tất cả tin đã bấm lưu (icon đỏ)."
+            },
+            {
+              "title": "Phân biệt với Bộ sưu tập",
+              "body": "Tab Đã lưu = TỔNG HỢP tất cả tin đã lưu (không phân BST). Bộ sưu tập = phân loại theo từng BST."
+            },
+            {
+              "title": "Thao tác trong Đã lưu",
+              "body": "Bấm icon G.Chú để ghi chú. Bấm icon lịch để đặt lịch. Bấm Xem để xem chi tiết.",
+              "note": "Tin có icon G.Chú màu cam = đã có ghi chú. Bấm vào để đọc lại nội dung đã ghi."
+            }
+          ]
+        }
+      ],
+      "iconImg": "assets/icons/bo_suu_tap.png"
+    }
+  }
+}
