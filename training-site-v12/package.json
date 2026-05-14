@@ -1,9 +1,0 @@
-{
-  "name": "nhapho-training",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Nhà Phố Training Site — static + Edge Function chat proxy",
-  "engines": {
-    "node": ">=18"
-  }
-}
