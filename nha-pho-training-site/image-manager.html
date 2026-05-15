@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Image Manager — Nhà Phố</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --g: #00A651; --gd: #007A3D; --gb: #E5EDE5;
+  --white: #fff; --text: #1A1A1A; --muted: #666;
+  --border: #E0E0E0; --err: #E53935; --warn: #F59E0B;
+  --font: 'Be Vietnam Pro', sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--gb);color:var(--text);min-height:100vh}
+button{font-family:var(--font);cursor:pointer;border:none;background:none}
+input{font-family:var(--font)}
+
+/* Header */
+.hdr{background:var(--white);border-bottom:1px solid var(--border);padding:0 24px;height:52px;
+  display:flex;align-items:center;justify-content:space-between;
+  box-shadow:0 1px 6px rgba(0,0,0,.06);position:sticky;top:0;z-index:50}
+.hdr h1{font-size:.95rem;font-weight:700;color:var(--g)}
+.hdr small{font-size:.75rem;color:var(--muted)}
+.btn-back{font-size:.8rem;color:var(--muted);padding:6px 10px;border-radius:8px}
+.btn-back:hover{background:var(--gb)}
+
+/* Layout */
+.wrap{display:grid;grid-template-columns:1fr 1fr;gap:0;height:calc(100vh - 52px)}
+@media(max-width:900px){.wrap{grid-template-columns:1fr;overflow-y:auto}}
+
+/* Left: Upload + List */
+.left-panel{background:var(--white);border-right:1px solid var(--border);
+  display:flex;flex-direction:column;overflow:hidden}
+.panel-title{font-size:.7rem;font-weight:700;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--muted);padding:16px 20px 10px}
+
+/* Drop zone */
+.drop-zone{margin:0 16px 12px;border:2px dashed var(--border);border-radius:12px;
+  padding:28px 20px;text-align:center;cursor:pointer;transition:all .2s}
+.drop-zone:hover,.drop-zone.drag{border-color:var(--g);background:rgba(0,166,81,.04)}
+.drop-zone .icon{font-size:2rem;margin-bottom:8px}
+.drop-zone p{font-size:.82rem;color:var(--muted)}
+.drop-zone strong{color:var(--g)}
+.drop-zone input{display:none}
+
+/* Upload progress */
+.upload-bar{margin:0 16px 8px;background:#f3f3f3;border-radius:6px;height:4px;overflow:hidden;display:none}
+.upload-bar-fill{height:100%;background:var(--g);transition:width .3s;width:0}
+
+/* Module filter */
+.filter-row{padding:0 16px 8px;display:flex;gap:6px;flex-wrap:wrap}
+.filter-btn{padding:4px 10px;border-radius:20px;font-size:.72rem;font-weight:600;
+  background:var(--gb);color:var(--muted);transition:all .15s}
+.filter-btn.active{background:var(--g);color:white}
+
+/* Image list */
+.img-list{flex:1;overflow-y:auto;padding:0 8px 16px}
+.img-item{display:flex;align-items:center;gap:10px;padding:8px 10px;
+  border-radius:10px;cursor:pointer;transition:background .15s;border:1.5px solid transparent}
+.img-item:hover{background:var(--gb)}
+.img-item.selected{background:rgba(0,166,81,.08);border-color:var(--g)}
+.img-thumb{width:52px;height:44px;object-fit:cover;border-radius:6px;
+  background:#eee;flex-shrink:0}
+.img-info{flex:1;min-width:0}
+.img-name{font-size:.78rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.img-meta{font-size:.68rem;color:var(--muted);margin-top:2px}
+.img-url-chip{font-size:.65rem;color:var(--g);background:rgba(0,166,81,.1);
+  padding:2px 7px;border-radius:8px;cursor:pointer;margin-top:3px;
+  display:inline-block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.img-url-chip:hover{background:rgba(0,166,81,.2)}
+.btn-del-img{font-size:.8rem;color:var(--err);padding:4px 6px;border-radius:6px;flex-shrink:0}
+.btn-del-img:hover{background:rgba(229,57,53,.08)}
+.empty-list{text-align:center;color:var(--muted);padding:40px 20px;font-size:.82rem}
+
+/* Right: Hotspot picker */
+.right-panel{display:flex;flex-direction:column;background:#1a1a1a;overflow:hidden}
+.picker-toolbar{background:#222;padding:10px 16px;display:flex;align-items:center;
+  gap:10px;flex-wrap:wrap;flex-shrink:0;border-bottom:1px solid #333}
+.picker-toolbar span{font-size:.75rem;color:#aaa}
+.tool-btn{padding:6px 12px;border-radius:8px;font-size:.75rem;font-weight:600;
+  background:#333;color:#ccc;transition:all .15s}
+.tool-btn:hover{background:#444;color:white}
+.tool-btn.active{background:var(--g);color:white}
+
+/* Canvas area */
+.canvas-wrap{flex:1;overflow:auto;display:flex;align-items:flex-start;
+  justify-content:flex-start;padding:20px;gap:20px}
+.phone-preview{
+  position:relative;
+  width:270px;flex-shrink:0;
+}
+.phone-frame-outer{
+  width:270px;background:#1A1A1A;border-radius:36px;padding:6px;
+  box-shadow:0 0 0 1px #444,0 20px 60px rgba(0,0,0,.6);
+}
+.phone-notch{height:22px;background:#1A1A1A;border-radius:10px 10px 0 0;
+  display:flex;align-items:center;justify-content:center}
+.notch-pill{width:70px;height:10px;background:#111;border-radius:6px}
+#picker-screen{
+  width:254px;height:560px;background:#2a2a2a;border-radius:4px;
+  overflow:hidden;position:relative;cursor:crosshair;user-select:none;
+}
+#picker-img{
+  width:390px;position:absolute;top:0;left:0;
+  transform-origin:top left;pointer-events:none;
+  display:block;
+}
+/* Hotspot box drawn on canvas */
+.hs-box{
+  position:absolute;border:2.5px solid var(--g);background:rgba(0,166,81,.2);
+  border-radius:4px;pointer-events:none;z-index:5;
+}
+.hs-box::after{
+  content:'';position:absolute;inset:-5px;border:2px solid var(--g);
+  border-radius:8px;opacity:.5;animation:hs-pulse 1.8s ease-out infinite;
+}
+@keyframes hs-pulse{0%{opacity:.6;transform:scale(1)}100%{opacity:0;transform:scale(1.2)}}
+
+/* Result panel */
+.result-panel{background:#1e1e1e;border-top:1px solid #333;
+  padding:14px 16px;flex-shrink:0;max-height:220px;overflow-y:auto}
+.result-title{font-size:.7rem;font-weight:700;color:#888;text-transform:uppercase;
+  letter-spacing:.06em;margin-bottom:10px}
+.result-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.result-field label{font-size:.65rem;color:#888;display:block;margin-bottom:3px}
+.result-field input{width:100%;background:#2a2a2a;border:1px solid #444;color:#eee;
+  padding:5px 8px;border-radius:6px;font-size:.8rem;font-family:var(--font);outline:none}
+.result-field input:focus{border-color:var(--g)}
+.scrolly-note{font-size:.68rem;color:#666;margin-bottom:10px}
+.result-json{background:#111;border-radius:8px;padding:10px;margin-bottom:10px}
+.result-json code{font-size:.72rem;color:#7ec8a3;font-family:monospace;white-space:pre}
+.result-actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn-copy{padding:8px 16px;border-radius:8px;font-size:.78rem;font-weight:600;
+  background:var(--g);color:white;transition:background .15s}
+.btn-copy:hover{background:var(--gd)}
+.btn-copy.copied{background:#444;color:#7ec8a3}
+.btn-clear{padding:8px 14px;border-radius:8px;font-size:.78rem;font-weight:600;
+  background:#333;color:#aaa}
+.btn-clear:hover{background:#444}
+.scrolly-auto{font-size:.7rem;color:var(--g);margin-left:auto;
+  padding:6px 10px;border-radius:6px;background:rgba(0,166,81,.1)}
+
+/* Toast */
+#toast{position:fixed;bottom:20px;right:20px;background:#333;color:white;
+  padding:9px 16px;border-radius:10px;font-size:.8rem;z-index:999;
+  opacity:0;transform:translateY(6px);transition:all .2s;pointer-events:none}
+#toast.show{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <h1>🖼️ Image Manager — Upload & Hotspot Picker</h1>
+  <small>Ảnh lưu Vercel Blob · Tọa độ 390px space</small>
+  <a href="index.html" class="btn-back">← Trang chủ</a>
+</div>
+
+<div class="wrap">
+
+  <!-- LEFT: Upload + List -->
+  <div class="left-panel">
+    <div class="panel-title">📁 Ảnh đã upload</div>
+
+    <!-- Drop zone -->
+    <div class="drop-zone" id="drop-zone" onclick="document.getElementById('file-input').click()">
+      <div class="icon">☁️</div>
+      <p>Kéo thả ảnh vào đây hoặc <strong>click để chọn file</strong></p>
+      <p style="margin-top:6px;font-size:.72rem">JPG, PNG, WebP · Tối đa 5MB mỗi file</p>
+      <input type="file" id="file-input" accept="image/*" multiple>
+    </div>
+    <div class="upload-bar" id="upload-bar">
+      <div class="upload-bar-fill" id="upload-fill"></div>
+    </div>
+
+    <!-- Filter -->
+    <div class="filter-row" id="filter-row">
+      <button class="filter-btn active" onclick="filterModule('all')">Tất cả</button>
+    </div>
+
+    <!-- List -->
+    <div class="img-list" id="img-list">
+      <div class="empty-list">Chưa có ảnh nào<br>Upload ảnh để bắt đầu</div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Hotspot picker -->
+  <div class="right-panel">
+    <div class="picker-toolbar">
+      <span>📱 Hotspot Picker</span>
+      <button class="tool-btn active" id="tool-draw" onclick="setTool('draw')">✏️ Vẽ hotspot</button>
+      <button class="tool-btn" id="tool-scroll" onclick="setTool('scroll')">↕️ Scroll</button>
+      <span id="tool-hint" style="margin-left:4px;font-size:.72rem;color:#666">
+        Click & kéo để vẽ vùng hotspot
+      </span>
+    </div>
+
+    <div class="canvas-wrap">
+      <div class="phone-preview">
+        <div class="phone-frame-outer">
+          <div class="phone-notch"><div class="notch-pill"></div></div>
+          <div id="picker-screen">
+            <img id="picker-img" src="" alt="" draggable="false"
+              style="display:none;transform:scale(0.6513) translateY(0px)">
+            <div id="hs-box" class="hs-box" style="display:none"></div>
+            <div id="empty-hint"
+              style="display:flex;align-items:center;justify-content:center;
+                height:100%;color:#555;font-size:.8rem;text-align:center;padding:20px">
+              Chọn ảnh bên trái<br>để bắt đầu vẽ hotspot
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /canvas-wrap -->
+
+    <!-- Result -->
+    <div class="result-panel">
+      <div class="result-title">📋 Tọa độ hotspot</div>
+      <div class="result-grid">
+        <div class="result-field"><label>X (390px)</label>
+          <input type="number" id="r-x" value="0" oninput="updateJson()"></div>
+        <div class="result-field"><label>Y (390px)</label>
+          <input type="number" id="r-y" value="0" oninput="updateJson();autoScrollY()"></div>
+        <div class="result-field"><label>W (rộng)</label>
+          <input type="number" id="r-w" value="0" oninput="updateJson()"></div>
+        <div class="result-field"><label>H (cao)</label>
+          <input type="number" id="r-h" value="0" oninput="updateJson()"></div>
+      </div>
+      <div class="result-grid" style="grid-template-columns:1fr 1fr;margin-top:-4px">
+        <div class="result-field"><label>scrollY (tự tính)</label>
+          <input type="number" id="r-scroll" value="0" oninput="updateJson()"></div>
+        <div class="result-field"><label>img key / URL</label>
+          <input type="text" id="r-img" value="" placeholder="home hoặc blob URL" oninput="updateJson()"></div>
+      </div>
+      <div class="scrolly-note">scrollY = Y − 80 (min 0) — tự tính khi vẽ xong</div>
+      <div class="result-json"><code id="r-json">{}</code></div>
+      <div class="result-actions">
+        <button class="btn-copy" id="btn-copy" onclick="copyJson()">📋 Copy JSON</button>
+        <button class="btn-clear" onclick="clearHs()">🗑 Xóa hotspot</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+<div id="toast"></div>
+
+<script>
+// ── State ─────────────────────────────────────────────────────────────
+const UPLOAD_ENDPOINT = '/api/upload';
+const ADMIN_TOKEN     = '';      // set nếu bạn bật ADMIN_UPLOAD_TOKEN env var
+const SCALE           = 254 / 390;  // phone screen / design space
+
+let images  = [];    // [{name, url, module, size}]
+let selImg  = null;  // currently selected image
+let tool    = 'draw';
+let drawing = false;
+let startX  = 0, startY = 0;
+let hsRect  = {x:0, y:0, w:0, h:0};
+let scrollOff = 0;   // current scroll offset in 390px units
+
+// Persist images to localStorage
+function saveImages() {
+  localStorage.setItem('np_images', JSON.stringify(images));
+}
+function loadImages() {
+  try {
+    const s = localStorage.getItem('np_images');
+    if (s) images = JSON.parse(s);
+  } catch { images = []; }
+  renderList();
+}
+
+// ── Upload ────────────────────────────────────────────────────────────
+const dropZone = document.getElementById('drop-zone');
+const fileInput = document.getElementById('file-input');
+
+dropZone.addEventListener('dragover',  e => { e.preventDefault(); dropZone.classList.add('drag'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag'));
+dropZone.addEventListener('drop',      e => { e.preventDefault(); dropZone.classList.remove('drag'); handleFiles(e.dataTransfer.files); });
+fileInput.addEventListener('change',   e => handleFiles(e.target.files));
+
+async function handleFiles(files) {
+  if (!files.length) return;
+  const bar  = document.getElementById('upload-bar');
+  const fill = document.getElementById('upload-fill');
+  bar.style.display = 'block';
+  fill.style.width  = '0';
+
+  let done = 0;
+  for (const file of files) {
+    fill.style.width = `${Math.round((done / files.length) * 80)}%`;
+    await uploadFile(file);
+    done++;
+  }
+  fill.style.width = '100%';
+  setTimeout(() => { bar.style.display = 'none'; fill.style.width = '0'; }, 600);
+  renderList();
+  toast(`✅ Đã upload ${files.length} ảnh`);
+}
+
+async function uploadFile(file) {
+  if (file.size > 5 * 1024 * 1024) {
+    toast(`❌ ${file.name} vượt 5MB`); return;
+  }
+  const filename = file.name.toLowerCase().replace(/[^a-z0-9_\-.]/gi, '_');
+  const headers  = { 'Content-Type': file.type };
+  if (ADMIN_TOKEN) headers['x-admin-token'] = ADMIN_TOKEN;
+
+  try {
+    const res  = await fetch(`${UPLOAD_ENDPOINT}?filename=${encodeURIComponent(filename)}`, {
+      method: 'POST', headers, body: file,
+    });
+    const data = await res.json();
+    if (!res.ok || data.error) throw new Error(data.message || data.error);
+
+    // Infer module from filename prefix
+    const parts  = filename.split('_');
+    const module = parts.length >= 2 ? `${parts[0]}_${parts[1]}` : parts[0];
+
+    // Avoid duplicate
+    images = images.filter(i => i.name !== filename);
+    images.unshift({ name: filename, url: data.url, module, size: file.size });
+    saveImages();
+  } catch (err) {
+    // Fallback: store as data URL for local preview (no blob available / local dev)
+    console.warn('Upload failed, using local preview:', err.message);
+    const dataUrl = await fileToDataUrl(file);
+    const parts   = filename.split('_');
+    const module  = parts.length >= 2 ? `${parts[0]}_${parts[1]}` : parts[0];
+    images = images.filter(i => i.name !== filename);
+    images.unshift({ name: filename, url: dataUrl, module, size: file.size, local: true });
+    saveImages();
+    toast(`⚠️ Upload API chưa sẵn sàng — dùng preview local`);
+  }
+}
+
+function fileToDataUrl(file) {
+  return new Promise(resolve => {
+    const r = new FileReader();
+    r.onload = e => resolve(e.target.result);
+    r.readAsDataURL(file);
+  });
+}
+
+// ── List ──────────────────────────────────────────────────────────────
+let activeFilter = 'all';
+function filterModule(mod) {
+  activeFilter = mod;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event?.target?.classList.add('active');
+  renderList();
+}
+
+function renderList() {
+  // Update filter buttons
+  const filterRow = document.getElementById('filter-row');
+  const modules   = [...new Set(images.map(i => i.module))].sort();
+  filterRow.innerHTML = `<button class="filter-btn ${activeFilter==='all'?'active':''}"
+    onclick="filterModule('all')">Tất cả (${images.length})</button>` +
+    modules.map(m => `<button class="filter-btn ${activeFilter===m?'active':''}"
+      onclick="filterModule('${m}')">${m.replace('_',' ')}</button>`).join('');
+
+  const filtered = activeFilter === 'all' ? images : images.filter(i => i.module === activeFilter);
+  const list     = document.getElementById('img-list');
+
+  if (!filtered.length) {
+    list.innerHTML = '<div class="empty-list">Không có ảnh nào</div>'; return;
+  }
+
+  list.innerHTML = filtered.map((img, idx) => `
+    <div class="img-item ${selImg?.name === img.name ? 'selected' : ''}"
+      onclick="selectImg('${img.name}')">
+      <img class="img-thumb" src="${img.url}" loading="lazy" onerror="this.src=''">
+      <div class="img-info">
+        <div class="img-name">${img.name}</div>
+        <div class="img-meta">${img.local ? '📱 local preview' : '☁️ Vercel Blob'} · ${(img.size/1024).toFixed(0)}KB</div>
+        <div class="img-url-chip" onclick="event.stopPropagation();copyText('${img.url}')"
+          title="${img.url}">📋 ${img.url.slice(0,40)}...</div>
+      </div>
+      <button class="btn-del-img" onclick="event.stopPropagation();delImg('${img.name}')" title="Xóa">✕</button>
+    </div>
+  `).join('');
+}
+
+function selectImg(name) {
+  selImg = images.find(i => i.name === name);
+  if (!selImg) return;
+  renderList();
+  loadInPicker(selImg);
+  document.getElementById('r-img').value = selImg.url;
+  updateJson();
+}
+
+function delImg(name) {
+  if (!confirm(`Xóa ảnh "${name}" khỏi danh sách?`)) return;
+  images = images.filter(i => i.name !== name);
+  saveImages();
+  if (selImg?.name === name) { selImg = null; clearPicker(); }
+  renderList();
+}
+
+// ── Picker ────────────────────────────────────────────────────────────
+function loadInPicker(img) {
+  const screen  = document.getElementById('picker-screen');
+  const picImg  = document.getElementById('picker-img');
+  const hint    = document.getElementById('empty-hint');
+
+  picImg.src   = img.url;
+  picImg.style.display = 'block';
+  hint.style.display   = 'none';
+
+  scrollOff = 0;
+  updateImgTransform();
+  clearHs();
+}
+
+function clearPicker() {
+  document.getElementById('picker-img').style.display = 'none';
+  document.getElementById('empty-hint').style.display = 'flex';
+  document.getElementById('hs-box').style.display     = 'none';
+}
+
+function updateImgTransform() {
+  const img = document.getElementById('picker-img');
+  img.style.transform = `scale(${SCALE}) translateY(${-scrollOff}px)`;
+}
+
+function setTool(t) {
+  tool = t;
+  document.getElementById('tool-draw').classList.toggle('active', t === 'draw');
+  document.getElementById('tool-scroll').classList.toggle('active', t === 'scroll');
+  document.getElementById('picker-screen').style.cursor = t === 'draw' ? 'crosshair' : 'ns-resize';
+  document.getElementById('tool-hint').textContent = t === 'draw'
+    ? 'Click & kéo để vẽ vùng hotspot'
+    : 'Kéo lên/xuống để scroll ảnh';
+}
+
+// Mouse events on picker screen
+const screen = document.getElementById('picker-screen');
+let lastY = 0;
+
+screen.addEventListener('mousedown', e => {
+  if (!selImg) return;
+  if (tool === 'scroll') { drawing = true; lastY = e.clientY; return; }
+  // draw
+  const r = screen.getBoundingClientRect();
+  startX  = e.clientX - r.left;
+  startY  = e.clientY - r.top;
+  drawing = true;
+  const box = document.getElementById('hs-box');
+  box.style.cssText = `display:block;left:${startX}px;top:${startY}px;width:0;height:0`;
+});
+
+screen.addEventListener('mousemove', e => {
+  if (!drawing) return;
+  if (tool === 'scroll') {
+    const dy = (lastY - e.clientY) / SCALE;
+    scrollOff = Math.max(0, scrollOff + dy);
+    lastY = e.clientY;
+    updateImgTransform();
+    return;
+  }
+  const r  = screen.getBoundingClientRect();
+  const cx = e.clientX - r.left;
+  const cy = e.clientY - r.top;
+  const x  = Math.min(startX, cx), y = Math.min(startY, cy);
+  const w  = Math.abs(cx - startX),   h = Math.abs(cy - startY);
+  const box = document.getElementById('hs-box');
+  box.style.cssText = `display:block;left:${x}px;top:${y}px;width:${w}px;height:${h}px`;
+});
+
+screen.addEventListener('mouseup', e => {
+  if (!drawing) return;
+  drawing = false;
+  if (tool === 'scroll') return;
+
+  const r  = screen.getBoundingClientRect();
+  const cx = e.clientX - r.left;
+  const cy = e.clientY - r.top;
+  const px  = Math.min(startX, cx), py = Math.min(startY, cy);
+  const pw  = Math.abs(cx - startX), ph = Math.abs(cy - startY);
+  if (pw < 5 || ph < 5) return;
+
+  // Convert screen coords → 390px space
+  hsRect.x = Math.round(px / SCALE);
+  hsRect.y = Math.round(py / SCALE + scrollOff);
+  hsRect.w = Math.round(pw / SCALE);
+  hsRect.h = Math.round(ph / SCALE);
+
+  document.getElementById('r-x').value = hsRect.x;
+  document.getElementById('r-y').value = hsRect.y;
+  document.getElementById('r-w').value = hsRect.w;
+  document.getElementById('r-h').value = hsRect.h;
+  autoScrollY();
+  updateJson();
+});
+
+// Touch support
+screen.addEventListener('touchstart', e => {
+  const t = e.touches[0];
+  screen.dispatchEvent(new MouseEvent('mousedown', {clientX:t.clientX,clientY:t.clientY}));
+});
+screen.addEventListener('touchmove', e => {
+  e.preventDefault();
+  const t = e.touches[0];
+  screen.dispatchEvent(new MouseEvent('mousemove', {clientX:t.clientX,clientY:t.clientY}));
+},{passive:false});
+screen.addEventListener('touchend', e => {
+  const t = e.changedTouches[0];
+  screen.dispatchEvent(new MouseEvent('mouseup', {clientX:t.clientX,clientY:t.clientY}));
+});
+
+function clearHs() {
+  document.getElementById('hs-box').style.display = 'none';
+  hsRect = {x:0,y:0,w:0,h:0};
+  ['r-x','r-y','r-w','r-h','r-scroll'].forEach(id => document.getElementById(id).value = 0);
+  updateJson();
+}
+
+function autoScrollY() {
+  const y  = parseInt(document.getElementById('r-y').value) || 0;
+  const sc = Math.max(0, y - 80);
+  document.getElementById('r-scroll').value = sc;
+}
+
+// ── JSON output ───────────────────────────────────────────────────────
+function updateJson() {
+  const x  = parseInt(document.getElementById('r-x').value)      || 0;
+  const y  = parseInt(document.getElementById('r-y').value)      || 0;
+  const w  = parseInt(document.getElementById('r-w').value)      || 0;
+  const h  = parseInt(document.getElementById('r-h').value)      || 0;
+  const sc = parseInt(document.getElementById('r-scroll').value) || 0;
+  const img = document.getElementById('r-img').value.trim();
+
+  const obj = {
+    img: img || 'TODO',
+    scrollY: sc,
+    hs: { x, y, w, h },
+  };
+  document.getElementById('r-json').textContent = JSON.stringify(obj, null, 2);
+}
+
+function copyJson() {
+  const text = document.getElementById('r-json').textContent;
+  copyText(text);
+  const btn = document.getElementById('btn-copy');
+  btn.textContent = '✅ Đã copy!';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = '📋 Copy JSON'; btn.classList.remove('copied'); }, 2000);
+}
+
+// ── Utils ─────────────────────────────────────────────────────────────
+function copyText(text) {
+  navigator.clipboard.writeText(text).then(() => toast('✅ Đã copy!'));
+}
+
+let _toastTimer;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(_toastTimer);
+  _toastTimer = setTimeout(() => el.classList.remove('show'), 2800);
+}
+
+// ── Init ──────────────────────────────────────────────────────────────
+loadImages();
+updateJson();
+</script>
+</body>
+</html>
