@@ -1,0 +1,207 @@
+{
+  "version": "1.0",
+  "description": "50 test cases từ KB_NhaPho_FULL — chatbot eval",
+  "pass_threshold": 3.5,
+  "judge_scale": "1-5 (1=sai hoàn toàn, 3=đúng một phần, 5=đúng chính xác)",
+  "cases": [
+    {"id":1,  "module":"dang_tin",  "category":"form_order",
+     "q":"Thứ tự điền form đăng tin như thế nào?",
+     "expected":"Nhân bản tin → Loại hình → Đặc điểm → Địa chỉ → Thông số nhà → Loại HĐ → Tiêu đề → Nội dung → Pháp lý → Serial → SĐT chủ → Ảnh → Video → Ảnh pháp lý → Audio → Đăng tin"},
+
+    {"id":2,  "module":"dang_tin",  "category":"lock_fields",
+     "q":"Sau khi tin được duyệt, những trường nào không sửa được?",
+     "expected":"Loại hình, Loại hợp đồng, Pháp lý, Serial số sổ, SĐT chủ nhà, Ảnh pháp lý/sổ/HĐ"},
+
+    {"id":3,  "module":"dang_tin",  "category":"lock_fields",
+     "q":"Sau khi duyệt, tôi có sửa được giá không?",
+     "expected":"Có — giá vẫn sửa được sau duyệt. Cập nhật giá phải chờ 6 tiếng; tăng/giảm ≥50 triệu mới hiển thị Tăng/Hạ chào"},
+
+    {"id":4,  "module":"dang_tin",  "category":"image_upload",
+     "q":"Tại sao ảnh upload xong lại bị mất?",
+     "expected":"Thoát trang trước khi ảnh có dấu ✓ — phải chờ upload hoàn tất mới được thoát"},
+
+    {"id":5,  "module":"dang_tin",  "category":"area_format",
+     "q":"Diện tích sổ 34m² nhưng thực tế 78m² thì điền thế nào?",
+     "expected":"Điền 34/78 — dùng dấu / để phân tách sổ/thực tế"},
+
+    {"id":6,  "module":"dang_tin",  "category":"floor_format",
+     "q":"Nhà cấp 4 nhập số tầng là bao nhiêu?",
+     "expected":"Nhập c4 hoặc 1"},
+
+    {"id":7,  "module":"dang_tin",  "category":"floor_format",
+     "q":"Đất trống nhập số tầng là gì?",
+     "expected":"Nhập d hoặc 0"},
+
+    {"id":8,  "module":"dang_tin",  "category":"approval_time",
+     "q":"Tin đăng bao lâu được duyệt?",
+     "expected":"24 giờ — quá thời gian liên hệ bộ phận hỗ trợ hoặc hotline 1900 0266"},
+
+    {"id":9,  "module":"dang_tin",  "category":"contract_type",
+     "q":"Cầu đối tác điền khi nào?",
+     "expected":"Chỉ áp dụng cho BĐS từ 20 tỷ trở lên"},
+
+    {"id":10, "module":"dang_tin",  "category":"clone",
+     "q":"Tính năng Nhân bản tin dùng để làm gì?",
+     "expected":"Copy toàn bộ thông tin từ tin cũ, chỉ sửa phần khác — tiết kiệm khoảng 80% thời gian điền form"},
+
+    {"id":11, "module":"dang_tin",  "category":"status",
+     "q":"Tin Dừng bán sẽ tự vào thùng rác sau bao lâu?",
+     "expected":"30 ngày sau khi chuyển sang Dừng bán hoặc Đã bán"},
+
+    {"id":12, "module":"dang_tin",  "category":"status",
+     "q":"Hệ thống nhắc xác nhận còn bán sau bao lâu không tương tác?",
+     "expected":"14 ngày — hệ thống tự gửi thông báo hỏi xác nhận"},
+
+    {"id":13, "module":"dang_tin",  "category":"price_update",
+     "q":"Cập nhật giá tối thiểu bao nhiêu mới hiển thị Hạ chào?",
+     "expected":"Tăng hoặc giảm ít nhất 50 triệu đồng"},
+
+    {"id":14, "module":"dang_tin",  "category":"media_limit",
+     "q":"Tối đa upload bao nhiêu ảnh thực tế và video?",
+     "expected":"Tối đa 12 ảnh thực tế và 4 video, mỗi video không quá 50MB"},
+
+    {"id":15, "module":"dang_tin",  "category":"rejected",
+     "q":"Tin bị từ chối duyệt thì nhận thông báo thế nào?",
+     "expected":"Nhận push notification kèm lý do từ chối — sửa lại rồi đăng lại"},
+
+    {"id":16, "module":"loc_kho",   "category":"navigation",
+     "q":"Có mấy tab trong Kho tài nguyên?",
+     "expected":"3 tab: Danh sách (bảng), Chi tiết, Đã lưu"},
+
+    {"id":17, "module":"loc_kho",   "category":"filter",
+     "q":"Lọc kho tài nguyên theo những tiêu chí nào?",
+     "expected":"Hiện trạng, Loại hình, Tỉnh/TP, Quận/Huyện, Đường/Phố"},
+
+    {"id":18, "module":"loc_kho",   "category":"filter_bug",
+     "q":"Tại sao bộ lọc bị mất khi chuyển tab?",
+     "expected":"Lỗi IS_12 — đã được sửa. Tiêu chí lọc hiện được giữ khi chuyển tab"},
+
+    {"id":19, "module":"loc_kho",   "category":"search",
+     "q":"Tìm nhà trong ngõ 107 Trần Khát Chân thì gõ gì?",
+     "expected":"Gõ: Ngõ 107 Trần Khát Chân — format Ngõ + số + Tên đường"},
+
+    {"id":20, "module":"loc_kho",   "category":"hv_limit",
+     "q":"Học viên xem được tin có giá tối đa bao nhiêu?",
+     "expected":"Chỉ xem tin dưới 35 tỷ đồng"},
+
+    {"id":21, "module":"loc_kho",   "category":"columns",
+     "q":"Tab Danh sách có những cột nào mặc định?",
+     "expected":"Lưu, Đặt lịch, Thời gian, Hiện trạng, Địa chỉ, Phố, Quận, Giá, Tr/m2, Đầu chủ, SĐT"},
+
+    {"id":22, "module":"loc_kho",   "category":"sort",
+     "q":"Kho tài nguyên sắp xếp theo thứ tự gì mặc định?",
+     "expected":"Mặc định theo Tin nổi bật — có thể thay đổi thứ tự sắp xếp"},
+
+    {"id":23, "module":"loc_kho",   "category":"input_validation",
+     "q":"Nhập chữ vào trường lọc giá thì xảy ra gì?",
+     "expected":"Hệ thống chỉ cho phép nhập ký tự số — ký tự chữ không được chấp nhận"},
+
+    {"id":24, "module":"loc_kho",   "category":"input_validation",
+     "q":"Nhập giá tối thiểu lớn hơn giá tối đa thì sao?",
+     "expected":"Hệ thống tự động đổi về 0"},
+
+    {"id":25, "module":"bo_suu_tap","category":"create",
+     "q":"Tạo bộ sưu tập cần điền những gì?",
+     "expected":"Đặt tên bộ sưu tập — có thể chọn màu và icon tùy thích. Không giới hạn số lượng bộ sưu tập"},
+
+    {"id":26, "module":"bo_suu_tap","category":"save",
+     "q":"Lưu tin vào bộ sưu tập bằng cách nào?",
+     "expected":"Vào Kho tài nguyên → nhấn icon lưu trên tin → chọn bộ sưu tập muốn lưu vào"},
+
+    {"id":27, "module":"bo_suu_tap","category":"remove",
+     "q":"Gỡ tin khỏi bộ sưu tập có xóa tin gốc không?",
+     "expected":"Không — gỡ tin chỉ xóa khỏi bộ sưu tập, tin gốc trong kho vẫn còn nguyên"},
+
+    {"id":28, "module":"bo_suu_tap","category":"note",
+     "q":"Có ghi chú riêng cho từng tin trong bộ sưu tập không?",
+     "expected":"Có — có thể thêm ghi chú riêng cho mỗi tin trong bộ sưu tập"},
+
+    {"id":29, "module":"bo_suu_tap","category":"limit_bug",
+     "q":"Trước đây bộ sưu tập chỉ hiển thị được bao nhiêu bộ?",
+     "expected":"Chỉ 20 bộ — lỗi IS_1, đã sửa, hiện không giới hạn số lượng bộ sưu tập hiển thị"},
+
+    {"id":30, "module":"bo_suu_tap","category":"features",
+     "q":"Trong bộ sưu tập có thể làm gì với danh sách tin?",
+     "expected":"Xem tin, ghi chú, gỡ tin, sắp xếp theo tiêu chí, tìm kiếm trong bộ sưu tập"},
+
+    {"id":31, "module":"account",   "category":"login",
+     "q":"Đăng nhập bằng gì?",
+     "expected":"SĐT hoặc CCCD kết hợp mật khẩu — hỗ trợ lưu mật khẩu và sinh trắc học"},
+
+    {"id":32, "module":"account",   "category":"two_device",
+     "q":"Đăng nhập 2 thiết bị cùng lúc được không?",
+     "expected":"Không — hệ thống hiển thị popup thông báo khi phát hiện đăng nhập trùng thiết bị"},
+
+    {"id":33, "module":"account",   "category":"password",
+     "q":"Mật khẩu mới yêu cầu gì?",
+     "expected":"Tối thiểu 12 ký tự gồm cả số và chữ, tối đa 32 ký tự, không có khoảng trắng. Sau khi đổi hệ thống tự đăng xuất"},
+
+    {"id":34, "module":"account",   "category":"biometric",
+     "q":"Sinh trắc học bị tắt sau khi đổi tài khoản thì làm sao?",
+     "expected":"Vào Cài đặt để bật lại sau lần đăng nhập đầu tiên với tài khoản mới"},
+
+    {"id":35, "module":"account",   "category":"register",
+     "q":"Một CCCD được đăng ký mấy tài khoản?",
+     "expected":"Chỉ 1 tài khoản — mỗi CCCD hoặc SĐT chỉ đăng ký được 1 tài khoản duy nhất"},
+
+    {"id":36, "module":"account",   "category":"register",
+     "q":"Mã giới thiệu dùng để làm gì?",
+     "expected":"Nhập sau khi đăng ký để được cấp chức danh Ứng viên. Mã hết hạn hệ thống sẽ thông báo — liên hệ Trưởng phòng để lấy mã mới"},
+
+    {"id":37, "module":"account",   "category":"forgot_pw",
+     "q":"Quên mật khẩu thì làm thế nào?",
+     "expected":"Nhập email đã đăng ký — hệ thống gửi link đặt lại mật khẩu về email"},
+
+    {"id":38, "module":"roles",     "category":"role_change",
+     "q":"Trưởng phòng có thể đổi chức danh thành viên thành chức danh nào?",
+     "expected":"Chỉ có thể đổi thành Học viên, Chuyên viên, hoặc Trợ lý — không thể đổi lên chức danh cao hơn"},
+
+    {"id":39, "module":"roles",     "category":"tp_features",
+     "q":"Trưởng phòng gia hạn tài khoản thành viên thêm bao nhiêu ngày?",
+     "expected":"+90 ngày mỗi lần gia hạn"},
+
+    {"id":40, "module":"roles",     "category":"tp_privacy",
+     "q":"Trưởng phòng xem khách của CV, CV có biết không?",
+     "expected":"Không — Trưởng phòng xem được tất cả khách của CV nhưng CV không nhận được thông báo"},
+
+    {"id":41, "module":"ql_khach",  "category":"add_customer",
+     "q":"Thêm khách hàng cần điền những thông tin gì?",
+     "expected":"Tên, SĐT và tiêu chí mua: khu vực, ngân sách tối đa, loại hình bất động sản"},
+
+    {"id":42, "module":"ql_khach",  "category":"auto_match",
+     "q":"Tự khớp hoạt động thế nào?",
+     "expected":"Hệ thống tự động tìm listing phù hợp với tiêu chí khách → gửi push notification cho CV khi có kết quả khớp"},
+
+    {"id":43, "module":"ql_khach",  "category":"report",
+     "q":"Báo cáo dẫn khách dùng để làm gì?",
+     "expected":"Ghi nhận lịch sử CV đã dẫn khách đi xem thực tế — bắt buộc để bảo vệ quyền lợi khi có tranh chấp"},
+
+    {"id":44, "module":"ql_khach",  "category":"status",
+     "q":"Trạng thái khách hàng có thể chuyển từ gì sang gì?",
+     "expected":"Từ Đang tìm mua → Đã mua sau khi khách hoàn tất giao dịch"},
+
+    {"id":45, "module":"chat",      "category":"group",
+     "q":"Nhóm chat mặc định của phòng có rời được không?",
+     "expected":"Không — nhóm chat mặc định không thể rời, chỉ có thể tắt thông báo tạm thời"},
+
+    {"id":46, "module":"chat",      "category":"notification",
+     "q":"Có tắt thông báo nhóm chat vĩnh viễn không?",
+     "expected":"Không — chỉ tắt tạm thời, không tắt được vĩnh viễn"},
+
+    {"id":47, "module":"chat",      "category":"features",
+     "q":"Chat hỗ trợ những loại nội dung nào?",
+     "expected":"Text, ảnh, video, file, sticker, GIF, ghi âm, reaction, ghim tin nhắn"},
+
+    {"id":48, "module":"navigation","category":"home",
+     "q":"Bottom navigation bar có những tab nào?",
+     "expected":"Trang chủ, Bộ sưu tập, Lịch hẹn, Thông báo, Avatar (menu)"},
+
+    {"id":49, "module":"navigation","category":"home",
+     "q":"Grid icon hàng đầu tiên trang chủ gồm những gì?",
+     "expected":"Kho tài nguyên, Khách cần mua gấp, Bộ sưu tập, Đăng tin, Kho cá nhân"},
+
+    {"id":50, "module":"system",    "category":"install",
+     "q":"Hotline hỗ trợ của Nhà Phố là gì?",
+     "expected":"1900 0266"}
+  ]
+}
