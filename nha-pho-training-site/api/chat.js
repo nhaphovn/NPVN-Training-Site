@@ -7,7 +7,7 @@
 //   DAILY_GLOBAL_CAP (optional, default 500)
 //   MODEL_NAME (optional, default 'claude-haiku-4-5')
 
-export const config = { runtime: 'edge' };
+export const config = { runtime: 'nodejs' };
 
 const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY;
 const UPSTASH_URL = process.env.UPSTASH_REDIS_REST_URL;
