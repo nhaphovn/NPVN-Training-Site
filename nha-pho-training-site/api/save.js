@@ -7,7 +7,6 @@
 //   GITHUB_BRANCH  — (optional, default: "main")
 //   ADMIN_SAVE_TOKEN — (optional) same token dùng để auth request từ admin
 
-export const config = { runtime: 'edge' };
 
 const CORS = {
   'Access-Control-Allow-Origin':  '*',

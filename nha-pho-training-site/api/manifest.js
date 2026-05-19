@@ -4,7 +4,6 @@
 
 import { list } from '@vercel/blob';
 
-export const config = { runtime: 'edge' };
 
 const CORS = {
   'Access-Control-Allow-Origin':  '*',
