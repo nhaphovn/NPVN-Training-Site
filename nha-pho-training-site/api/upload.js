@@ -38,13 +38,35 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: 'unauthorized' });
   }
 
-  const filename = req.query.filename;
-  if (!filename) {
-    return res.status(400).json({ error: 'filename_required', message: 'Thiếu ?filename= trong URL' });
+  // Accept either:
+  //   ?module=dat_lich_dau_khach&key=menu        → images/dat_lich_dau_khach/menu.jpg
+  //   ?filename=dat_lich_dau_khach_menu.jpg      → legacy, kept for compat
+  const moduleId = req.query.module;
+  const keyId    = req.query.key;
+
+  let blobPath, clean;
+  if (moduleId && keyId) {
+    const safeModule = moduleId.replace(/[^a-z0-9_]/gi, '_').toLowerCase();
+    const safeKey    = keyId.replace(/[^a-z0-9_\-\.]/gi, '_').toLowerCase();
+    const ext        = safeKey.match(/\.(jpg|jpeg|png|webp)$/i) ? '' : '.jpg';
+    clean    = safeKey + ext;
+    blobPath = `images/${safeModule}/${clean}`;
+  } else {
+    const filename = req.query.filename;
+    if (!filename) {
+      return res.status(400).json({ error: 'params_required', message: 'Cần ?module=&key= hoặc ?filename=' });
+    }
+    clean = String(filename).replace(/[^a-z0-9_\-\.\/]/gi, '_').toLowerCase();
+    if (clean.includes('/')) {
+      blobPath = clean.startsWith('images/') ? clean : `images/${clean}`;
+    } else {
+      // Legacy: parse module from underscore-separated filename
+      const parts   = clean.replace(/\.[^.]+$/, '').split('_');
+      const mod     = parts.slice(0, -1).join('_') || parts[0];
+      blobPath = `images/${mod}/${clean}`;
+    }
   }
 
-  // Sanitize
-  const clean = String(filename).replace(/[^a-z0-9_\-\.]/gi, '_').toLowerCase();
   if (!ALLOWED_EXT.test(clean)) {
     return res.status(400).json({ error: 'invalid_extension', message: 'Chỉ jpg, png, webp' });
   }
@@ -69,11 +91,6 @@ export default async function handler(req, res) {
   else if (buffer[0] === 0xFF && buffer[1] === 0xD8) contentType = 'image/jpeg';
   else if (buffer[0] === 0x52 && buffer[1] === 0x49) contentType = 'image/webp';
 
-  // Build blob path: images/{module}/{filename}
-  const parts    = clean.split('_');
-  const module   = parts.length >= 2 ? `${parts[0]}_${parts[1]}` : parts[0];
-  const blobPath = `images/${module}/${clean}`;
-
   try {
     const blob = await put(blobPath, buffer, {
       access:          'public',
@@ -81,13 +98,16 @@ export default async function handler(req, res) {
       addRandomSuffix: false,
     });
 
+    const proxyUrl = `/api/img?path=${blob.pathname}`;
     return res.status(200).json({
       ok:       true,
       url:      blob.url,
+      proxyUrl,
       pathname: blob.pathname,
       size:     buffer.length,
       filename: clean,
-      module:   module,
+      module:   moduleId || blobPath.split('/')[1],
+      key:      keyId    || clean.replace(/\.[^.]+$/, ''),
     });
   } catch (err) {
     console.error('[upload] error:', err);
