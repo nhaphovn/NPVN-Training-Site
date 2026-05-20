@@ -92,10 +92,10 @@
           "img": "form",
           "scrollY": 38,
           "hs": {
-            "x": 8,
-            "y": 118,
+            "x": 5,
+            "y": 98,
             "w": 374,
-            "h": 51
+            "h": 65
           },
           "ttPos": "bottom",
           "ttTitle": "Nhân bản tin đăng",
@@ -126,10 +126,10 @@
           "img": "form",
           "scrollY": 101,
           "hs": {
-            "x": 10,
-            "y": 181,
-            "w": 372,
-            "h": 92
+            "x": 4,
+            "y": 161,
+            "w": 366,
+            "h": 178
           },
           "ttPos": "bottom",
           "ttTitle": "Loại hình BĐS",
@@ -160,10 +160,10 @@
           "img": "form",
           "scrollY": 198,
           "hs": {
-            "x": 10,
-            "y": 278,
-            "w": 370,
-            "h": 432
+            "x": 7,
+            "y": 335,
+            "w": 367,
+            "h": 346
           },
           "ttPos": "right",
           "ttTitle": "Địa chỉ theo thứ tự",
@@ -192,12 +192,12 @@
           "title": "Bước 5 — Nhập địa chỉ chi tiết",
           "sub": "Điền ngõ, hẻm, số nhà, số phòng vào ô nhập tay — địa chỉ càng chính xác càng tốt",
           "img": "form",
-          "scrollY": 634,
+          "scrollY": 580,
           "hs": {
-            "x": 12,
-            "y": 714,
-            "w": 370,
-            "h": 88
+            "x": 10,
+            "y": 674,
+            "w": 359,
+            "h": 92
           },
           "ttPos": "bottom",
           "ttTitle": "Địa chỉ chi tiết",
@@ -229,9 +229,9 @@
           "scrollY": 810,
           "hs": {
             "x": 6,
-            "y": 890,
-            "w": 378,
-            "h": 514
+            "y": 845,
+            "w": 370,
+            "h": 508
           },
           "ttPos": "right",
           "ttTitle": "Thông số theo loại hình",
@@ -260,12 +260,12 @@
           "title": "Bước 6 — Nhập Hoa hồng & Loại hợp đồng",
           "sub": "Điền % hoa hồng, chọn loại hợp đồng ĐC1/ĐC2/ĐC1A, cấu đối tác nếu BĐS từ 20 tỷ",
           "img": "form",
-          "scrollY": 1323,
+          "scrollY": 1258,
           "hs": {
-            "x": 8,
-            "y": 1403,
-            "w": 374,
-            "h": 168
+            "x": 7,
+            "y": 1339,
+            "w": 365,
+            "h": 173
           },
           "ttPos": "right",
           "ttTitle": "Hoa hồng & Hợp đồng",
@@ -294,12 +294,12 @@
           "title": "Bước 7 — Nhập Tiêu đề & Nội dung",
           "sub": "Hệ thống tự điền tiêu đề — bạn chỉ cần nhập nội dung mô tả hấp dẫn",
           "img": "form",
-          "scrollY": 1498,
+          "scrollY": 1396,
           "hs": {
-            "x": 12,
-            "y": 1578,
-            "w": 369,
-            "h": 354
+            "x": 7,
+            "y": 1502,
+            "w": 363,
+            "h": 351
           },
           "ttPos": "right",
           "ttTitle": "Tiêu đề & Nội dung",
@@ -328,12 +328,12 @@
           "title": "Bước 8 — Nhập Pháp lý & Thông tin bảo mật",
           "sub": "Chọn loại pháp lý, nhập Serial sổ và SĐT chủ nhà — được công ty bảo mật hoàn toàn",
           "img": "form",
-          "scrollY": 1860,
+          "scrollY": 1800,
           "hs": {
-            "x": 14,
-            "y": 1940,
-            "w": 370,
-            "h": 254
+            "x": 6,
+            "y": 1854,
+            "w": 368,
+            "h": 252
           },
           "ttPos": "right",
           "ttTitle": "Pháp lý bắt buộc",
@@ -362,12 +362,12 @@
           "title": "Bước 9 — Upload ảnh & Tài liệu",
           "sub": "Upload ảnh thực tế (≤12), video (≤4, mỗi file ≤50MB), ảnh pháp lý (≤20), audio (≤4)",
           "img": "form",
-          "scrollY": 2122,
+          "scrollY": 1866,
           "hs": {
-            "x": 8,
-            "y": 2202,
-            "w": 370,
-            "h": 536
+            "x": 6,
+            "y": 2102,
+            "w": 360,
+            "h": 525
           },
           "ttPos": "right",
           "ttTitle": "Upload đúng thứ tự",
@@ -396,12 +396,12 @@
           "title": "Bước 10 — Bấm Đăng tin",
           "sub": "Kiểm tra lại toàn bộ, rồi bấm nút \"Đăng tin\" màu xanh cuối form",
           "img": "form",
-          "scrollY": 2672,
+          "scrollY": 1866,
           "hs": {
-            "x": 12,
-            "y": 2752,
-            "w": 370,
-            "h": 62
+            "x": 5,
+            "y": 2632,
+            "w": 364,
+            "h": 64
           },
           "ttPos": "top",
           "ttTitle": "Bấm Đăng tin",
