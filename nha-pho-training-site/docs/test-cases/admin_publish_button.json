@@ -1,0 +1,154 @@
+{
+  "feature": "admin_publish_button",
+  "createdAt": "2026-05-20T00:00:00Z",
+  "createdBy": "qa-reviewer",
+  "spec": "docs/specs/admin_publish_button.md",
+  "cases": [
+    {
+      "id": "PUB-001",
+      "title": "Hien thi badge DRAFT va nut Publish khi load module co status=draft",
+      "type": "functional",
+      "priority": "P0",
+      "preconditions": "Module trong data/modules.json co truong status='draft'. Admin dang o man hinh chinh hoac da navigate vao module do.",
+      "steps": [
+        "Mo admin-x7q9.html tren browser",
+        "Chon hoac navigate den module co status='draft'",
+        "Quan sat module meta bar (dong hien thi ten module ngay tren danh sach steps)"
+      ],
+      "expected": "Meta bar hien thi: (1) badge 'DRAFT' voi nen mau cam #F59E0B chu trang, (2) nut [Publish] hien va click duoc, (3) khong co badge LIVE nao xuat hien cung luc."
+    },
+    {
+      "id": "PUB-002",
+      "title": "Hien thi badge LIVE, khong co nut Publish khi load module co status=live",
+      "type": "functional",
+      "priority": "P0",
+      "preconditions": "Co it nhat 1 module trong data/modules.json co truong status='live'.",
+      "steps": [
+        "Mo admin-x7q9.html tren browser",
+        "Navigate den module co status='live'",
+        "Quan sat module meta bar"
+      ],
+      "expected": "Meta bar hien thi: (1) badge '● LIVE' voi nen mau xanh #00A651 chu trang, (2) khong co nut [Publish] nao xuat hien, (3) khong co badge DRAFT nao."
+    },
+    {
+      "id": "PUB-003",
+      "title": "Happy path: click Publish -> confirm OK -> status doi thanh live, saveToGitHub duoc goi",
+      "type": "functional",
+      "priority": "P0",
+      "preconditions": "Module co status='draft' dang duoc mo trong admin. saveToGitHub duoc spy (hoac mock tra ve Promise.resolve()) de kiem tra co bi goi hay khong ma khong commit that.",
+      "steps": [
+        "Spy window.saveToGitHub hoac saveToGithub: window._saveCalled = false; const orig = window.saveToGithub; window.saveToGithub = async (...a) => { window._saveCalled = true; return orig(...a); }",
+        "Click nut [Publish] trong meta bar",
+        "Confirm dialog xuat hien voi noi dung chua ten module va thong bao 'Status se doi tu draft -> live va tu luu len site'",
+        "Click OK trong confirm dialog",
+        "Kiem tra STATE.data.modules[moduleId].status trong console"
+      ],
+      "expected": "STATE.data.modules[moduleId].status === 'live'. window._saveCalled === true (saveToGitHub da duoc goi dung 1 lan). Khong co loi nao trong console."
+    },
+    {
+      "id": "PUB-004",
+      "title": "Sau save thanh cong: badge doi thanh LIVE, nut Publish bien mat",
+      "type": "functional",
+      "priority": "P0",
+      "preconditions": "Tiep noi PUB-003 hoac: module vua duoc publish (status da doi thanh live trong STATE, saveToGitHub da tra ve thanh cong).",
+      "steps": [
+        "Thuc hien lai luong PUB-003 (hoac quan sat sau khi PUB-003 pass)",
+        "Sau khi saveToGitHub hoan thanh (Promise resolved), quan sat module meta bar",
+        "Kiem tra badge",
+        "Kiem tra nut Publish"
+      ],
+      "expected": "(1) Badge doi tu 'DRAFT' (cam) sang '● LIVE' (xanh #00A651). (2) Nut [Publish] khong con xuat hien trong meta bar. (3) Khong can reload trang — UI cap nhat ngay lap tuc."
+    },
+    {
+      "id": "PUB-005",
+      "title": "Cancel flow: click Publish -> confirm Cancel -> state va UI khong thay doi",
+      "type": "negative",
+      "priority": "P0",
+      "preconditions": "Module co status='draft' dang duoc mo trong admin.",
+      "steps": [
+        "Ghi lai STATE.data.modules[moduleId].status truoc khi bam (gia tri = 'draft')",
+        "Click nut [Publish]",
+        "Confirm dialog xuat hien",
+        "Click Cancel (hoac bam Esc) trong confirm dialog",
+        "Kiem tra STATE.data.modules[moduleId].status",
+        "Quan sat meta bar"
+      ],
+      "expected": "STATE.data.modules[moduleId].status van === 'draft'. Badge van hien thi 'DRAFT' mau cam. Nut [Publish] van hien. Khong co bat ky thay doi nao trong STATE hay UI."
+    },
+    {
+      "id": "PUB-006",
+      "title": "saveToGitHub khong duoc goi khi nguoi dung bam Cancel trong confirm dialog",
+      "type": "negative",
+      "priority": "P1",
+      "preconditions": "Module co status='draft'. saveToGitHub duoc spy: window._saveCalled = false; window.saveToGithub = async () => { window._saveCalled = true; }",
+      "steps": [
+        "Gan spy cho saveToGithub nhu mo ta trong preconditions",
+        "Click nut [Publish]",
+        "Click Cancel trong confirm dialog",
+        "Kiem tra window._saveCalled trong console"
+      ],
+      "expected": "window._saveCalled === false. saveToGitHub khong duoc invoke khi luong bi huy boi nguoi dung."
+    },
+    {
+      "id": "PUB-007",
+      "title": "Badge mau dung voi brand tokens: draft=cam #F59E0B, live=xanh #00A651",
+      "type": "functional",
+      "priority": "P1",
+      "preconditions": "Co 2 module khac nhau: 1 draft, 1 live. Hoac sau khi thuc hien PUB-003 co the so sanh badge truoc va sau.",
+      "steps": [
+        "Navigate den module co status='draft', mo DevTools -> Inspector",
+        "Chon phan tu badge DRAFT, kiem tra computed style: background-color",
+        "Navigate den module co status='live' (hoac sau publish)",
+        "Chon phan tu badge LIVE, kiem tra computed style: background-color",
+        "Kiem tra color chu (color) cua ca 2 badge"
+      ],
+      "expected": "Badge DRAFT: background = #F59E0B (hoac rgb(245, 158, 11)), color = #fff. Badge LIVE: background = #00A651 (hoac rgb(0, 166, 81)), color = #fff. Nut [Publish] (neu hien): background = #00A651."
+    },
+    {
+      "id": "PUB-008",
+      "title": "Regression: upload panel van hoat dong sau khi them Publish feature",
+      "type": "regression",
+      "priority": "P1",
+      "preconditions": "admin-patch.js voi Publish feature da duoc inject. Upload panel (#patch-upload-panel) xuat hien goc phai man hinh.",
+      "steps": [
+        "Mo admin-x7q9.html voi admin-patch.js moi",
+        "Click tieu de 'Upload anh len Blob' de mo panel",
+        "Nhap module ID vao o 'pup-module-input'",
+        "Keo tha 1 file anh vao vung drag-drop",
+        "Kiem tra file xuat hien trong queue voi nut 'Upload tat ca' duoc kich hoat",
+        "Bam 'Upload tat ca' (neu co endpoint that, kiem tra toast thanh cong hoac loi mang ro rang)"
+      ],
+      "expected": "Upload panel mo/dong binh thuong. File duoc them vao queue. Nut Upload duoc kich hoat. Khong co JS error nao trong console lien quan den panel. Luong nay khong bi anh huong boi code Publish."
+    },
+    {
+      "id": "PUB-009",
+      "title": "Regression: nut 'Luu len site' thu cong (saveToGithub) van hoat dong doc lap voi Publish",
+      "type": "regression",
+      "priority": "P1",
+      "preconditions": "admin-patch.js voi Publish feature da duoc inject. Nut #btn-save-live hien tren trang.",
+      "steps": [
+        "Tim nut '🚀 Luu len site' (id='btn-save-live') tren trang admin",
+        "Click nut do",
+        "Confirm dialog 'Commit modules.json len GitHub va deploy len site?' xuat hien",
+        "Click Cancel",
+        "Kiem tra nut van o trang thai binh thuong (khong bi disable, text dung)"
+      ],
+      "expected": "Nut 'Luu len site' hien va click duoc. Confirm dialog xuat hien dung noi dung. Sau khi Cancel: nut van active, khong co side effect. Khong co conflict nao voi Publish button handler."
+    },
+    {
+      "id": "PUB-010",
+      "title": "Regression: chinh sua step (edit step) va luu van hoat dong sau khi them Publish feature",
+      "type": "regression",
+      "priority": "P1",
+      "preconditions": "Module co it nhat 1 step. Admin dang o man hinh edit step.",
+      "steps": [
+        "Chon 1 step bat ky cua module dang o trang thai draft",
+        "Sua truong ttText hoac guide body (thay doi nho)",
+        "Luu step (click Save step hoac tuong duong)",
+        "Kiem tra STATE.data.modules[moduleId].steps[i] voi gia tri vua nhap",
+        "Kiem tra 'dirty' indicator neu co (e.g. dirty-dot hien)"
+      ],
+      "expected": "Step luu dung gia tri vua nhap vao STATE. Dirty indicator hien (neu co). Khong co JS error. Luong nay hoan toan doc lap voi Publish button — status van la 'draft', khong bi doi do chinh sua step."
+    }
+  ]
+}

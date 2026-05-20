@@ -91,6 +91,7 @@ window.renderPreview = function() {
       if (ph) ph.hidden = true;
     }
   } catch(e) {}
+  updatePublishBadge();
 };
 
 function patchImages(moduleId, key, url) {
@@ -344,10 +345,89 @@ async function saveToGithub() {
   }
 }
 
+// ── 5. Publish badge + button ────────────────────────────────────────
+function updatePublishBadge() {
+  const badge = document.getElementById('module-status-badge');
+  const btn   = document.getElementById('btn-publish');
+  if (!badge || !btn) return;
+  const STATE  = window.STATE;
+  const mod    = STATE?.data?.modules?.[STATE?.moduleId];
+  const status = mod?.status || '';
+  badge.className = `status-badge status-${status}`;
+  badge.textContent = status === 'live' ? '● LIVE' : status === 'draft' ? 'DRAFT' : status.toUpperCase();
+  badge.hidden = !status;
+  btn.hidden = status !== 'draft';
+}
+
+function injectPublishBadge() {
+  if (document.getElementById('module-status-badge')) return;
+  const editBtn = document.getElementById('btn-edit-module');
+  if (!editBtn) { setTimeout(injectPublishBadge, 500); return; }
+
+  // Inject CSS
+  const style = document.createElement('style');
+  style.textContent = `
+    .status-badge {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 10px;
+      font-weight: 700;
+      vertical-align: middle;
+      margin-left: 6px;
+    }
+    .status-badge.status-draft { background: #F59E0B; color: #fff; }
+    .status-badge.status-live  { background: #00A651; color: #fff; }
+    #btn-publish {
+      background: #00A651;
+      color: #fff;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    #btn-publish:hover { background: #007A3D; }
+  `;
+  document.head.appendChild(style);
+
+  // Badge element
+  const badge = document.createElement('span');
+  badge.id = 'module-status-badge';
+  badge.className = 'status-badge';
+  badge.hidden = true;
+  editBtn.after(badge);
+
+  // Publish button element
+  const btn = document.createElement('button');
+  btn.id = 'btn-publish';
+  btn.textContent = '▶ Publish';
+  btn.hidden = true;
+  badge.after(btn);
+
+  btn.addEventListener('click', async () => {
+    const STATE = window.STATE;
+    const moduleId = STATE?.moduleId;
+    const mod = STATE?.data?.modules?.[moduleId];
+    if (!mod) return;
+    const name = mod.name || moduleId;
+    if (!confirm(`Publish «${name}»?\nStatus sẽ đổi từ draft → live và tự lưu lên site.`)) return;
+    mod.status = 'live';
+    updatePublishBadge();
+    await saveToGithub();
+  });
+
+  updatePublishBadge();
+}
+
 // ── Boot ─────────────────────────────────────────────────────────────
 function boot() {
   injectSaveButton();
   injectUploadPanel();
+  injectPublishBadge();
 }
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
