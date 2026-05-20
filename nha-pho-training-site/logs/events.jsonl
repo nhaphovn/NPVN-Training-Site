@@ -1,0 +1,4 @@
+{"ts":"2026-05-20T09:52:18.313Z","type":"content.tour_drafted","actor":"tech-lead","target":{"sprint":"1","day":"1"},"payload":{"milestone":"vocabulary_patch_applied","adr_count":2,"team_version":"v3"},"attributes":{"tenant":"nhapho"}}
+{"ts":"2026-05-20T09:52:34.092Z","type":"adr.created","actor":"tech-lead","target":{"id":"ADR-001","title":"Auth via App Nhà Phố OAuth"},"payload":{"status":"proposed","sprint_target":2},"attributes":{"tenant":"nhapho"}}
+{"ts":"2026-05-20T09:52:34.094Z","type":"adr.created","actor":"tech-lead","target":{"id":"ADR-002","title":"Admin CMS v2 — Content Pipeline"},"payload":{"status":"proposed","sprint_target":2},"attributes":{"tenant":"nhapho"}}
+{"ts":"2026-05-20T09:52:34.094Z","type":"content.tour_drafted","actor":"tech-lead","target":{"milestone":"sprint_1_day_1_complete"},"payload":{"vocabulary_verified":true,"team_version":"v3","patches_applied":["vocabulary","tech-lead"]},"attributes":{"tenant":"nhapho"}}
