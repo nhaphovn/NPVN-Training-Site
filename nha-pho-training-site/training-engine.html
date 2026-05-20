@@ -1,0 +1,1998 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="icon" href="assets/logo-small.png">
+<title>Nhà Phố Training — Engine</title>
+<style>
+/* ============================================================
+   NHÀ PHỐ TRAINING ENGINE — v6.0
+   SF Pro Display + brand colors update
+   ============================================================ */
+
+/* SF Pro Display — local woff2 (Latin + Vietnamese subset) */
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('fonts/SFProDisplay-Light.woff2') format('woff2');
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('fonts/SFProDisplay-Regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('fonts/SFProDisplay-Medium.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('fonts/SFProDisplay-Semibold.woff2') format('woff2');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('fonts/SFProDisplay-Bold.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('fonts/SFProDisplay-Heavy.woff2') format('woff2');
+  font-weight: 800; font-style: normal; font-display: swap;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+:root {
+  /* Brand greens v2 — Nhà Phố Việt Nam logo palette */
+  --green: #007B48;            /* primary */
+  --green-dark: #006941;       /* hover, accent */
+  --green-darker: #004D2E;     /* deep emphasis */
+  --green-bright: #85C441;     /* highlight / accent (logo lighter green) */
+  --green-soft: #E0EEE3;       /* badges, subtle fills */
+  --green-light: #EAF4EC;      /* hover row, tip box */
+  --green-tint: #F4FAF5;       /* page background */
+  --gold: #FFD600;             /* accent vàng cho hotspot (legacy) */
+  --gold-soft: #FFF4B8;
+
+  /* Neutrals */
+  --text: #0F1F14;
+  --text-2: #4A5A4F;
+  --text-3: #88958C;
+  --border: #DCE7DE;
+  --border-strong: #B0C2B4;
+  --bg: var(--green-tint);
+  --white: #fff;
+
+  /* Status */
+  --warn: #f59e0b;
+  --warn-bg: #FFF7E0;
+
+  /* Shadows — green-tinted */
+  --shadow-sm: 0 2px 8px rgba(0, 105, 65, .06);
+  --shadow-md: 0 4px 16px rgba(0, 105, 65, .10);
+  --shadow-lg: 0 12px 40px rgba(0, 105, 65, .15);
+
+  /* Phone scale */
+  --phone-w: 358px;
+  --screen-w: 340px;
+  --screen-h: 750px;
+  --scale: 0.8718;
+}
+html, body {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+input, textarea { font-family: inherit; font-size: inherit; }
+
+/* ============================================================
+   LOADING / ERROR / PICKER STATES
+   ============================================================ */
+.state-screen {
+  position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+  background: var(--bg); z-index: 100; padding: 24px;
+}
+/* Override class display khi attribute hidden được set */
+.state-screen[hidden] { display: none; }
+[hidden] { display: none !important; }
+.state-card {
+  background: var(--white); border-radius: 16px; padding: 32px; max-width: 480px; width: 100%;
+  box-shadow: var(--shadow-md); text-align: center;
+}
+.state-card .icon { font-size: 56px; margin-bottom: 12px; }
+.state-card h2 { font-size: 22px; margin-bottom: 8px; }
+.state-card p { color: var(--text-2); margin-bottom: 16px; }
+.state-card .err-detail { background: #fee; color: #c00; padding: 10px; border-radius: 8px;
+  font-family: monospace; font-size: 12px; text-align: left; margin: 12px 0; word-break: break-all; }
+.spinner {
+  width: 40px; height: 40px; margin: 0 auto 16px;
+  border: 3px solid var(--green-soft); border-top-color: var(--green);
+  border-radius: 50%; animation: spin 0.9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Module picker (khi không có ?module=xxx) */
+.picker-list { display: grid; gap: 12px; margin-top: 16px; }
+.picker-item {
+  display: flex; align-items: center; gap: 12px; padding: 14px;
+  border: 2px solid var(--border); border-radius: 12px;
+  background: var(--white); text-align: left; transition: all .2s; width: 100%;
+}
+.picker-item:hover { border-color: var(--green); background: var(--green-light); transform: translateY(-2px); }
+.picker-item .pi-icon { font-size: 28px; }
+.picker-item .pi-info { flex: 1; min-width: 0; }
+.picker-item .pi-name { font-weight: 600; }
+.picker-item .pi-desc { font-size: 13px; color: var(--text-2); }
+.picker-item .pi-arrow { color: var(--green); font-weight: 700; }
+
+/* ============================================================
+   APP LAYOUT — DESKTOP 3-COL
+   ============================================================ */
+.app { display: none; min-height: 100vh; }
+.app.active { display: block; }
+
+header.top-bar {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 20px; display: flex; align-items: center; gap: 16px;
+  box-shadow: 0 1px 0 rgba(0, 77, 46, .04);
+}
+/* Subtle green gradient strip on top bar bottom edge */
+header.top-bar::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -3px; height: 3px;
+  background: linear-gradient(90deg, var(--green) 0%, var(--green-dark) 50%, var(--green) 100%);
+  opacity: .85;
+}
+.logo {
+  display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--green-darker);
+  font-size: 15px; white-space: nowrap; letter-spacing: -0.01em;
+}
+.logo-dot {
+  width: 36px; height: 36px;
+  background: #fff;
+  border-radius: 9px;
+  display: grid; place-items: center;
+  box-shadow: 0 2px 6px rgba(0, 105, 65, .15);
+  padding: 4px; flex-shrink: 0;
+  border: 1px solid var(--green-soft);
+}
+.logo-dot img {
+  width: 100%; height: 100%; object-fit: contain; display: block;
+}
+.logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+.logo-text strong { font-weight: 700; color: var(--green-darker); font-size: 14px; }
+.logo-text small { font-size: 10px; font-weight: 500; color: var(--text-3); letter-spacing: .06em; text-transform: uppercase; }
+.module-title {
+  font-size: 15px; font-weight: 600; flex: 1; min-width: 0;
+  padding-left: 16px; border-left: 1px solid var(--border);
+  margin-left: 4px;
+}
+.module-title small { display: block; font-size: 11px; color: var(--text-3); font-weight: 500; letter-spacing: .02em; }
+.progress-pill {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--green-soft);
+  padding: 7px 14px; border-radius: 20px;
+  font-size: 13px; font-weight: 700; color: var(--green-dark); white-space: nowrap;
+  border: 1px solid rgba(0, 105, 65, .12);
+}
+.progress-bar {
+  width: 64px; height: 6px; background: var(--white);
+  border-radius: 3px; overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 77, 46, .15);
+}
+.progress-bar > span {
+  display: block; height: 100%;
+  background: linear-gradient(90deg, var(--green) 0%, var(--green-dark) 100%);
+  border-radius: 3px; transition: width .4s;
+}
+.btn-back {
+  display: inline-flex; align-items: center; gap: 4px; padding: 7px 12px;
+  border-radius: 8px; font-size: 13px; color: var(--text-2);
+  font-weight: 500;
+}
+.btn-back:hover { background: var(--green-soft); color: var(--green-dark); }
+
+main.grid {
+  display: grid; grid-template-columns: 280px 1fr 380px; gap: 20px;
+  max-width: 1400px; margin: 0 auto; padding: 20px;
+  align-items: start;
+}
+/* Grid items mặc định có min-width: auto → bị grow theo content (mobile-pills nhiều).
+   Force min-width: 0 để clamp về cột grid. */
+main.grid > * { min-width: 0; }
+
+/* ----- SIDEBAR (steps list) ----- */
+aside.sidebar {
+  background: var(--white); border-radius: 14px; padding: 18px;
+  position: sticky; top: 76px; max-height: calc(100vh - 96px); overflow-y: auto;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+.sidebar h3 {
+  font-size: 12px; color: var(--green-dark); text-transform: uppercase; letter-spacing: .08em;
+  margin-bottom: 12px; font-weight: 700;
+}
+.step-list { display: flex; flex-direction: column; gap: 4px; }
+.step-item {
+  display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+  border-radius: 10px; transition: all .15s; text-align: left; width: 100%;
+  border-left: 3px solid transparent;
+}
+.step-item:hover { background: var(--green-light); }
+.step-item.active {
+  background: var(--green-soft); border-left-color: var(--green); font-weight: 600;
+  box-shadow: inset 0 0 0 1px rgba(0, 105, 65, .08);
+}
+.step-item.done .step-num { background: var(--green); color: var(--white); }
+.step-num {
+  width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--white); font-size: 12px; font-weight: 700; flex-shrink: 0;
+  border: 1.5px solid var(--border-strong); color: var(--text-2);
+  transition: all .15s;
+}
+.step-item.active .step-num { background: var(--green); color: var(--white); border-color: var(--green); }
+.step-info { flex: 1; min-width: 0; }
+.step-info .si-name { font-size: 13px; line-height: 1.3; }
+.step-info .si-desc { font-size: 11px; color: var(--text-3); margin-top: 2px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ----- PHONE DEMO ----- */
+.demo-wrap {
+  display: flex; flex-direction: column; align-items: center;
+  background: var(--white); border-radius: 14px; padding: 20px;
+  box-shadow: var(--shadow-sm);
+  position: sticky; top: 70px;
+}
+.phone-container {
+  position: relative;
+  width: var(--phone-w); /* + tooltip space sẽ overflow visible */
+}
+.phone-frame {
+  width: var(--phone-w); height: 770px;
+  background: #1a1a1a; border-radius: 46px; padding: 9px;
+  box-shadow: 0 16px 50px rgba(0, 77, 46, .25);
+  position: relative;
+}
+.phone-notch {
+  position: absolute; top: 7px; left: 50%; transform: translateX(-50%);
+  width: 130px; height: 28px; background: #000; border-radius: 0 0 18px 18px; z-index: 5;
+}
+.phone-screen {
+  width: var(--screen-w); height: var(--screen-h);
+  background: var(--white); border-radius: 36px; overflow: hidden;
+  position: relative;
+}
+.phone-screen img.bg {
+  width: var(--screen-w); display: block; position: absolute; top: 0; left: 0;
+  transition: top .3s ease;
+  user-select: none; pointer-events: none;
+  -webkit-user-drag: none;
+}
+/* Video media — fills phone screen, takes precedence khi mediaType=video */
+.phone-screen video.bg-video {
+  width: var(--screen-w); height: var(--screen-h);
+  display: block; position: absolute; top: 0; left: 0;
+  object-fit: cover; background: #000;
+  border-radius: inherit;
+}
+/* Video play/pause overlay — center of screen */
+.video-controls {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px; height: 64px;
+  background: rgba(0, 0, 0, .55);
+  border: 2px solid rgba(255, 255, 255, .8);
+  color: #fff;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  cursor: pointer;
+  z-index: 5;
+  backdrop-filter: blur(4px);
+  transition: all .2s;
+  opacity: 1;
+}
+.video-controls .vc-icon {
+  font-size: 26px; line-height: 1;
+  margin-left: 4px; /* visual offset for play triangle */
+}
+.video-controls:hover {
+  background: rgba(0, 0, 0, .7);
+  transform: translate(-50%, -50%) scale(1.05);
+}
+.video-controls.playing .vc-icon { margin-left: 0; }
+.video-controls.hidden-fade {
+  opacity: 0; pointer-events: none;
+}
+/* Video progress bar — bottom of phone screen */
+.video-progress {
+  position: absolute; left: 12px; right: 12px; bottom: 12px;
+  height: 22px;
+  background: rgba(0, 0, 0, .55);
+  border-radius: 11px;
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 10px;
+  z-index: 5;
+  font-size: 10px; color: #fff;
+  backdrop-filter: blur(4px);
+}
+.video-progress .vp-bar {
+  flex: 1; height: 3px; background: rgba(255, 255, 255, .3);
+  border-radius: 2px; position: relative; overflow: hidden;
+}
+.video-progress .vp-bar::after {
+  content: ''; position: absolute; top: 0; left: 0; bottom: 0;
+  background: var(--green-bright);
+  width: var(--progress, 0%);
+  transition: width .15s linear;
+  border-radius: 2px;
+}
+.video-progress .vp-time {
+  font-variant-numeric: tabular-nums; font-weight: 500;
+  white-space: nowrap;
+}
+.dim-overlay {
+  /* z-index thấp hơn hotspot để hotspot nổi bật trên overlay */
+  position: absolute; inset: 0; background: rgba(0,0,0,.55);
+  pointer-events: none; transition: opacity .3s;
+  z-index: 1;
+}
+/* Hotspot — viền xanh brand thay vì vàng đậm, glow nhẹ hơn */
+.hotspot {
+  position: absolute;
+  border: 2.5px solid var(--green);
+  border-radius: 8px;
+  background: rgba(0, 123, 72, 0.08);
+  box-shadow:
+    0 0 0 3px rgba(0, 123, 72, 0.25),
+    0 0 16px 2px rgba(0, 123, 72, 0.55);
+  pointer-events: none;
+  animation: pulse 1.8s ease-in-out infinite;
+  z-index: 4;
+}
+/* 4 dim rects xung quanh hotspot tạo spotlight. Vị trí set bởi JS. */
+.dim-rect {
+  position: absolute;
+  background: rgba(20, 20, 30, 0.55);   /* sáng hơn 15% so với 0.65 */
+  pointer-events: none;
+  z-index: 3;
+}
+@keyframes pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 3px rgba(0, 123, 72, 0.25),
+      0 0 16px 2px rgba(0, 123, 72, 0.55);
+  }
+  50% {
+    box-shadow:
+      0 0 0 6px rgba(0, 123, 72, 0.15),
+      0 0 24px 5px rgba(0, 123, 72, 0.75);
+  }
+}
+/* Tooltip — NGOÀI phone frame */
+.tooltip {
+  position: absolute; z-index: 20;
+  background: var(--white); border: 2px solid var(--green); border-radius: 10px;
+  padding: 10px 12px; min-width: 160px; max-width: 220px;
+  box-shadow: var(--shadow-md);
+  font-size: 12px;
+}
+.tooltip .tt-title { font-weight: 700; color: var(--green-dark); margin-bottom: 4px; font-size: 13px; }
+.tooltip .tt-text { color: var(--text-2); line-height: 1.4; }
+.tooltip::after {
+  content: ''; position: absolute; width: 0; height: 0;
+}
+.tooltip.tt-left  { right: calc(100% + 12px); top: 50%; transform: translateY(-50%); }
+.tooltip.tt-right { left: calc(100% + 12px);  top: 50%; transform: translateY(-50%); }
+.tooltip.tt-top   { bottom: calc(100% + 12px); left: 50%; transform: translateX(-50%); }
+.tooltip.tt-bottom{ top: calc(100% + 12px);    left: 50%; transform: translateX(-50%); }
+.tooltip.tt-left::after  { left: 100%; top: 50%; transform: translateY(-50%);
+  border: 8px solid transparent; border-left-color: var(--green); }
+.tooltip.tt-right::after { right: 100%; top: 50%; transform: translateY(-50%);
+  border: 8px solid transparent; border-right-color: var(--green); }
+.tooltip.tt-top::after   { top: 100%; left: 50%; transform: translateX(-50%);
+  border: 8px solid transparent; border-top-color: var(--green); }
+.tooltip.tt-bottom::after{ bottom: 100%; left: 50%; transform: translateX(-50%);
+  border: 8px solid transparent; border-bottom-color: var(--green); }
+
+/* Phone navigation buttons */
+.phone-nav {
+  display: flex; gap: 8px; margin-top: 16px;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 6px; padding: 11px 18px;
+  border-radius: 10px; font-weight: 600; font-size: 14px; transition: all .15s;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+  color: var(--white);
+  box-shadow: 0 2px 8px rgba(0, 105, 65, .25);
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-darker) 100%);
+  box-shadow: 0 4px 12px rgba(0, 105, 65, .35);
+  transform: translateY(-1px);
+}
+.btn-primary:disabled {
+  background: #d4d8d4; color: #888; cursor: not-allowed;
+  box-shadow: none; transform: none;
+}
+.btn-ghost {
+  background: var(--white); border: 1.5px solid var(--border-strong); color: var(--text);
+  font-weight: 600;
+}
+.btn-ghost:hover { border-color: var(--green); color: var(--green-dark); background: var(--green-light); }
+.btn-ghost:disabled { opacity: .4; cursor: not-allowed; }
+
+/* ----- GUIDE PANEL (right) ----- */
+.right-panel {
+  display: flex; flex-direction: column; gap: 16px;
+  position: sticky; top: 70px;
+  height: calc(100vh - 90px); /* fixed height — split between guide + chat */
+  min-height: 0;
+}
+.guide-card, .chat-card {
+  background: var(--white); border-radius: 14px; padding: 20px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  position: relative;
+}
+.guide-card {
+  flex: 0 1 auto;        /* shrink if needed, don't grow */
+  max-height: 50%;       /* cap at half right-panel */
+  overflow-y: auto;      /* scroll inside guide card if long */
+  min-height: 0;
+}
+.guide-card::before {
+  content: ''; position: absolute; left: 0; top: 20px; bottom: 20px; width: 3px;
+  background: linear-gradient(180deg, var(--green) 0%, var(--green-dark) 100%);
+  border-radius: 0 3px 3px 0;
+}
+.guide-card h2 {
+  font-size: 17px; color: var(--green-darker); margin-bottom: 4px;
+  letter-spacing: -0.01em; font-weight: 700;
+}
+.guide-card .sub { color: var(--text-2); font-size: 13px; margin-bottom: 16px; line-height: 1.5; }
+.guide-list { display: flex; flex-direction: column; gap: 14px; }
+.guide-item {
+  border-left: 3px solid var(--green); padding-left: 14px;
+  padding-top: 2px; padding-bottom: 2px;
+}
+.guide-item h4 { font-size: 14px; margin-bottom: 4px; color: var(--green-darker); font-weight: 700; }
+.guide-item p { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+.guide-item .note {
+  margin-top: 10px; padding: 10px 12px 10px 36px;
+  background: var(--warn-bg); border-radius: 8px;
+  font-size: 12px; color: #7c2d12; border-left: 3px solid var(--warn);
+  position: relative; line-height: 1.55;
+}
+.guide-item .note::before {
+  content: '⚠️'; position: absolute; left: 12px; top: 10px;
+  font-size: 14px; line-height: 1;
+}
+
+/* Tip box at bottom of guide card */
+.tip-box {
+  margin-top: 18px; padding: 14px 14px 14px 44px;
+  background: var(--green-light); border-radius: 10px;
+  font-size: 13px; color: var(--green-darker);
+  border: 1px solid var(--green-soft);
+  line-height: 1.55; position: relative;
+}
+.tip-box::before {
+  content: '💡'; position: absolute; left: 14px; top: 13px;
+  font-size: 18px; line-height: 1;
+}
+.tip-box strong {
+  display: block; margin-bottom: 4px; color: var(--green-dark);
+  font-size: 11px; text-transform: uppercase; letter-spacing: .06em;
+  font-weight: 700;
+}
+
+/* ----- CHAT PANEL — redesigned ----- */
+.chat-card {
+  display: flex; flex-direction: column;
+  flex: 1 1 auto;       /* fill remaining vertical space in right-panel */
+  min-height: 280px;    /* lowered from 380 so it fits short screens */
+  padding: 0;           /* override guide-card padding */
+  overflow: hidden;     /* contain inner scroll */
+}
+/* Override the gradient stripe inheritance from guide-card */
+.chat-card::before { display: none; }
+.chat-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--green-tint) 0%, transparent 100%);
+}
+.chat-header .ch-icon {
+  width: 32px; height: 32px;
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+  border-radius: 9px;
+  display: grid; place-items: center;
+  color: #fff; font-size: 16px;
+  box-shadow: 0 2px 6px rgba(0, 105, 65, .25);
+  position: relative;
+}
+.chat-header .ch-icon::after {
+  /* online indicator dot */
+  content: ''; position: absolute; bottom: -2px; right: -2px;
+  width: 10px; height: 10px; background: #22c55e; border-radius: 50%;
+  border: 2px solid var(--white);
+  animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot { 50% { opacity: .55; } }
+.chat-header .ch-meta { flex: 1; min-width: 0; }
+.chat-header .ch-meta h3 {
+  font-size: 14px; font-weight: 700; color: var(--green-darker);
+  letter-spacing: -0.01em; margin: 0;
+}
+.chat-header .ch-meta .ch-status {
+  font-size: 11px; color: var(--text-3); font-weight: 500;
+  display: flex; align-items: center; gap: 4px;
+}
+.chat-header .ch-clear {
+  font-size: 12px; color: var(--text-3); padding: 5px 9px;
+  border-radius: 6px; transition: all .15s;
+}
+.chat-header .ch-clear:hover { background: var(--green-soft); color: var(--green-dark); }
+
+/* Empty state — shown when no API key + no messages */
+.chat-empty {
+  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 28px 24px; text-align: center;
+  background: linear-gradient(180deg, transparent 0%, var(--green-tint) 100%);
+  min-height: 0;        /* allow shrink in flex parent */
+  overflow-y: auto;     /* scroll content if longer than space */
+}
+.chat-empty .empty-icon {
+  width: 56px; height: 56px;
+  background: linear-gradient(135deg, var(--green-light) 0%, var(--green-soft) 100%);
+  border-radius: 16px;
+  display: grid; place-items: center;
+  font-size: 28px; margin-bottom: 14px;
+  border: 1px solid rgba(0, 105, 65, .12);
+}
+.chat-empty h4 {
+  font-size: 15px; font-weight: 700; color: var(--green-darker);
+  margin-bottom: 6px;
+}
+.chat-empty p {
+  font-size: 12.5px; color: var(--text-2); line-height: 1.55;
+  margin-bottom: 16px; max-width: 300px;
+}
+.chat-empty .empty-features {
+  margin-top: 18px; padding-top: 14px;
+  border-top: 1px dashed var(--border); width: 100%; max-width: 280px;
+  display: flex; flex-direction: column; gap: 6px;
+  font-size: 11.5px; color: var(--text-2); text-align: left;
+}
+.chat-empty .empty-features div {
+  display: flex; align-items: center; gap: 8px;
+}
+.chat-empty .empty-features .check { color: var(--green); font-weight: 700; flex-shrink: 0; }
+.chat-empty .empty-hint {
+  margin-top: 14px;
+  background: var(--green-light);
+  color: var(--green-darker);
+  padding: 8px 14px; border-radius: 14px;
+  font-size: 12px; font-weight: 500;
+  border: 1px solid var(--green-soft);
+}
+
+/* Messages area */
+.chat-messages {
+  flex: 1; overflow-y: auto; padding: 14px 18px;
+  display: flex; flex-direction: column; gap: 10px;
+  min-height: 0; /* let flex child shrink */
+}
+.chat-messages::-webkit-scrollbar { width: 6px; }
+.chat-messages::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+.msg {
+  padding: 9px 13px; border-radius: 14px; max-width: 88%; font-size: 13px; line-height: 1.5;
+  word-wrap: break-word; word-break: break-word;
+  animation: msgIn .25s ease-out;
+}
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.msg.bot {
+  background: var(--green-light); color: var(--text);
+  align-self: flex-start; border-bottom-left-radius: 4px;
+  border: 1px solid rgba(0, 123, 72, .08);
+}
+.msg.user {
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+  color: var(--white); align-self: flex-end;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0, 105, 65, .2);
+}
+.msg.err {
+  background: #fef2f2; color: #b91c1c; align-self: stretch;
+  border: 1px solid #fecaca; font-size: 12px;
+}
+.msg.bot.typing {
+  color: var(--text-3); font-style: italic; padding: 6px 12px;
+}
+.msg.bot.typing::before {
+  content: '●●●'; letter-spacing: 2px; font-size: 10px;
+  animation: typingDots 1.2s infinite;
+}
+@keyframes typingDots { 50% { opacity: .35; } }
+
+/* Suggestion chips */
+.chat-suggest {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  padding: 0 18px 10px;
+}
+.chat-suggest button {
+  padding: 6px 12px; background: var(--white);
+  border: 1px solid var(--border-strong); border-radius: 16px;
+  font-size: 12px; color: var(--text-2); transition: all .15s;
+  font-weight: 500;
+}
+.chat-suggest button:hover {
+  border-color: var(--green); color: var(--green-dark); background: var(--green-light);
+  transform: translateY(-1px);
+}
+
+/* Input bar */
+.chat-form {
+  display: flex; gap: 8px; padding: 12px 16px 16px;
+  border-top: 1px solid var(--border);
+  background: var(--white);
+  flex-shrink: 0;  /* never compress — input must stay visible */
+}
+.chat-form input {
+  flex: 1; padding: 11px 14px;
+  border: 1.5px solid var(--border-strong); border-radius: 12px;
+  outline: none; transition: all .15s;
+  font-size: 13px;
+  background: var(--green-tint);
+}
+.chat-form input:focus {
+  border-color: var(--green); background: var(--white);
+  box-shadow: 0 0 0 3px rgba(0, 123, 72, .08);
+}
+.chat-form input::placeholder { color: var(--text-3); }
+.chat-form input:disabled {
+  background: #f5f5f5; cursor: not-allowed; color: var(--text-3);
+}
+.chat-form button[type="submit"] {
+  padding: 0; width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+  color: var(--white); border-radius: 12px;
+  font-size: 16px; font-weight: 700;
+  display: grid; place-items: center;
+  box-shadow: 0 2px 6px rgba(0, 105, 65, .25);
+  transition: all .15s;
+  flex-shrink: 0;
+}
+.chat-form button[type="submit"]:hover:not(:disabled) {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 4px 10px rgba(0, 105, 65, .35);
+}
+.chat-form button[type="submit"]:disabled {
+  background: var(--border-strong); box-shadow: none; cursor: not-allowed;
+  transform: none;
+}
+
+/* API key entered hint at top of message area */
+.api-key-hint {
+  font-size: 11px; color: var(--text-3);
+  padding: 8px 18px; border-bottom: 1px solid var(--border);
+  background: var(--green-tint); display: flex; align-items: center; gap: 6px;
+}
+.api-key-hint button {
+  margin-left: auto; font-size: 11px; color: var(--text-2);
+  text-decoration: underline; cursor: pointer;
+}
+.api-key-hint button:hover { color: var(--green-dark); }
+.api-key-hint .key-dot { color: var(--green); }
+
+/* ============================================================
+   TABLET (768-1023): hide sidebar
+   ============================================================ */
+@media (max-width: 1023px) {
+  main.grid { grid-template-columns: 1fr 360px; }
+  aside.sidebar { display: none; }
+}
+
+/* ============================================================
+   MOBILE (<768): bottom sheet + FAB chat
+   ============================================================ */
+@media (max-width: 767px) {
+  :root {
+    --phone-w: 230px;
+    --screen-w: 216px;
+    --screen-h: 480px;
+    --scale: 0.5538; /* 216/390 */
+  }
+  body { font-size: 14px; }
+  header.top-bar { padding: 8px 12px; gap: 8px; }
+  .logo span { display: none; }
+  .module-title { font-size: 13px; }
+  .module-title small { font-size: 10px; }
+  .progress-pill { padding: 4px 8px; font-size: 11px; }
+  .progress-bar { width: 40px; }
+
+  main.grid {
+    grid-template-columns: 1fr;
+    padding: 12px; gap: 12px;
+    padding-bottom: 90px; /* room for fixed nav */
+  }
+  .demo-wrap { padding: 12px; position: static; }
+  .phone-frame { height: 500px; border-radius: 32px; padding: 6px; }
+  .phone-notch { width: 80px; height: 18px; }
+  .phone-screen { border-radius: 26px; }
+  .right-panel { position: static; max-height: none; overflow: visible; }
+
+  /* Mobile bottom sheet */
+  .mobile-pills {
+    display: flex; gap: 6px; overflow-x: auto; padding: 4px 0; margin-bottom: 8px;
+    scrollbar-width: none;
+    /* Mobile-pills is flex item của .demo-wrap (cũng flex column).
+       Force width 100% + min-width 0 để clamp vào width của demo-wrap (đã được min-width:0 grid),
+       và scroll-x nội bộ thay vì grow theo nội dung. */
+    width: 100%; min-width: 0; max-width: 100%;
+    align-self: stretch;
+  }
+  .mobile-pills::-webkit-scrollbar { display: none; }
+  .pill {
+    flex-shrink: 0; padding: 6px 12px; background: var(--white);
+    border: 1.5px solid var(--border); border-radius: 14px;
+    font-size: 12px; font-weight: 600; white-space: nowrap;
+  }
+  .pill.active { background: var(--green); color: var(--white); border-color: var(--green); }
+  .pill.done { border-color: var(--green); color: var(--green); }
+
+  /* Mobile: tooltip render inline dưới phone, không absolute */
+  .tooltip {
+    position: static !important;
+    transform: none !important;
+    top: auto !important; left: auto !important; right: auto !important; bottom: auto !important;
+    margin: 14px 0 0; max-width: 100%; min-width: 0;
+  }
+  .tooltip::after { display: none; }
+
+  /* Chat fullscreen on mobile */
+  .chat-card { display: none; }
+  .chat-card.show-mobile {
+    display: flex; position: fixed; inset: 0; z-index: 200;
+    border-radius: 0; padding: 16px; padding-top: 60px;
+  }
+  .chat-card.show-mobile .chat-messages { max-height: none; flex: 1; }
+  .chat-close-mobile {
+    position: absolute; top: 12px; right: 12px; width: 36px; height: 36px;
+    border-radius: 50%; background: var(--bg); display: grid; place-items: center;
+    font-size: 20px;
+  }
+
+  /* FAB chat */
+  .fab-chat {
+    position: fixed; bottom: 80px; right: 16px; z-index: 30;
+    width: 52px; height: 52px; border-radius: 50%; background: var(--green);
+    color: var(--white); font-size: 22px; box-shadow: var(--shadow-lg);
+    display: grid; place-items: center;
+  }
+
+  /* Fixed bottom nav */
+  .bottom-nav {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 40;
+    background: var(--white); border-top: 1px solid var(--border);
+    padding: 10px 12px; display: flex; gap: 8px;
+    box-shadow: 0 -2px 12px rgba(0,0,0,.08);
+  }
+  .bottom-nav .btn { flex: 1; justify-content: center; padding: 12px; }
+}
+
+/* Hide mobile-only on desktop */
+.mobile-pills, .fab-chat, .bottom-nav, .chat-close-mobile { display: none; }
+@media (max-width: 767px) {
+  .mobile-pills, .fab-chat, .bottom-nav { display: flex; }
+}
+
+/* Hide phone-nav on mobile (use bottom-nav instead) */
+@media (max-width: 767px) {
+  .phone-nav { display: none; }
+}
+
+/* ============================================================
+   COMPLETION OVERLAY
+   ============================================================ */
+.completion-overlay {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(15, 31, 20, 0.65);
+  backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  animation: overlayIn .3s ease-out;
+}
+@keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+
+.completion-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 36px 32px 28px;
+  max-width: 520px; width: 100%;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  position: relative;
+  animation: cardIn .4s cubic-bezier(.34, 1.56, .64, 1);
+}
+@keyframes cardIn {
+  from { opacity: 0; transform: scale(.85) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.completion-close {
+  position: absolute; top: 12px; right: 12px;
+  width: 32px; height: 32px; padding: 0;
+  background: transparent; border: none;
+  font-size: 16px; color: var(--text-3); cursor: pointer;
+  border-radius: 8px; transition: all .15s;
+}
+.completion-close:hover { background: var(--green-light); color: var(--text); }
+
+.completion-icon {
+  font-size: 64px; margin-bottom: 8px;
+  animation: bounce 0.8s ease;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.completion-card h2 {
+  font-size: 28px; font-weight: 800; color: var(--green-darker);
+  letter-spacing: -0.02em; margin-bottom: 6px;
+}
+.completion-sub {
+  color: var(--text-2); font-size: 15px; margin-bottom: 24px;
+}
+
+.completion-stats {
+  display: flex; align-items: center; justify-content: center;
+  gap: 24px; margin-bottom: 24px;
+  padding: 18px;
+  background: linear-gradient(135deg, var(--green-tint) 0%, var(--green-light) 100%);
+  border-radius: 14px;
+  border: 1px solid var(--green-soft);
+}
+.completion-stats .stat-item {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.completion-stats .stat-value {
+  font-size: 26px; font-weight: 800; color: var(--green-darker);
+  letter-spacing: -0.02em; line-height: 1;
+}
+.completion-stats .stat-label {
+  font-size: 12px; color: var(--text-2); font-weight: 500;
+}
+.completion-stats .stat-divider {
+  width: 1px; height: 36px; background: var(--green-soft);
+}
+
+.next-module-card {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px;
+  background: var(--white);
+  border: 1.5px solid var(--green-soft);
+  border-radius: 12px;
+  margin-bottom: 24px;
+  text-align: left;
+  transition: all .15s;
+}
+.next-module-card:hover {
+  border-color: var(--green); box-shadow: var(--shadow-md);
+}
+.next-module-icon {
+  font-size: 32px; line-height: 1; flex-shrink: 0;
+  width: 48px; height: 48px;
+  background: var(--green-light); border-radius: 12px;
+  display: grid; place-items: center;
+}
+.next-module-info { flex: 1; min-width: 0; }
+.next-module-label {
+  font-size: 11px; font-weight: 700; color: var(--green-dark);
+  text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px;
+}
+.next-module-name {
+  font-size: 16px; font-weight: 700; color: var(--text);
+  margin-bottom: 2px; line-height: 1.2;
+}
+.next-module-meta {
+  font-size: 12px; color: var(--text-3);
+}
+.next-module-empty {
+  padding: 18px; background: var(--green-light); border-radius: 12px;
+  margin-bottom: 24px; color: var(--green-darker); font-weight: 500;
+}
+
+.completion-actions {
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+}
+.completion-actions .btn { font-size: 13px; padding: 10px 16px; }
+.completion-actions .btn-primary { padding: 10px 22px; }
+
+@media (max-width: 480px) {
+  .completion-card { padding: 28px 22px 22px; }
+  .completion-card h2 { font-size: 22px; }
+  .completion-icon { font-size: 52px; }
+  .completion-stats { gap: 18px; padding: 14px; }
+  .completion-stats .stat-value { font-size: 22px; }
+  .completion-actions { flex-direction: column; }
+  .completion-actions .btn { width: 100%; }
+}
+
+/* Confetti */
+.confetti {
+  position: fixed; inset: 0; pointer-events: none; overflow: hidden;
+  z-index: 1;
+}
+.confetti-piece {
+  position: absolute;
+  top: -10px;
+  width: 10px; height: 14px;
+  border-radius: 2px;
+  animation: confettiFall linear forwards;
+}
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     STATE: LOADING
+     ============================================================ -->
+<div id="state-loading" class="state-screen">
+  <div class="state-card">
+    <div class="spinner"></div>
+    <h2>Đang tải module…</h2>
+    <p>Đọc dữ liệu từ <code>data/modules.json</code></p>
+  </div>
+</div>
+
+<!-- ============================================================
+     STATE: ERROR
+     ============================================================ -->
+<div id="state-error" class="state-screen" hidden>
+  <div class="state-card">
+    <div class="icon">⚠️</div>
+    <h2 id="err-title">Không tải được dữ liệu</h2>
+    <p id="err-msg">Kiểm tra file modules.json hoặc đường dẫn module.</p>
+    <div id="err-detail" class="err-detail" hidden></div>
+    <button class="btn btn-primary" onclick="location.reload()">🔄 Thử lại</button>
+    <button class="btn btn-ghost" onclick="location.href='index.html'" style="margin-left:8px">🏠 Về trang chủ</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     STATE: MODULE PICKER (no ?module param)
+     ============================================================ -->
+<div id="state-picker" class="state-screen" hidden>
+  <div class="state-card">
+    <div class="icon">📚</div>
+    <h2>Chọn module để học</h2>
+    <p>Hệ thống đào tạo App Nhà Phố</p>
+    <div id="picker-list" class="picker-list"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     APP — main UI
+     ============================================================ -->
+<div id="app" class="app">
+  <header class="top-bar">
+    <a href="index.html" class="btn-back" title="Về trang chủ">← Về</a>
+    <div class="logo">
+      <span class="logo-dot"><img src="assets/logo-small.png" alt="Nhà Phố"></span>
+      <span class="logo-text">
+        <strong>Nhà Phố</strong>
+        <small>Training Center</small>
+      </span>
+    </div>
+    <div class="module-title" id="module-title">
+      Module<small id="module-sub">—</small>
+    </div>
+    <div class="progress-pill">
+      <span id="progress-text">1/12</span>
+      <div class="progress-bar"><span id="progress-fill" style="width:8%"></span></div>
+    </div>
+  </header>
+
+  <main class="grid">
+    <!-- SIDEBAR (desktop only) -->
+    <aside class="sidebar">
+      <h3>📋 Các bước</h3>
+      <div class="step-list" id="step-list"></div>
+    </aside>
+
+    <!-- PHONE DEMO (center) -->
+    <div class="demo-wrap">
+      <!-- Mobile pills (hidden desktop) -->
+      <div class="mobile-pills" id="mobile-pills"></div>
+
+      <div class="phone-container">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen" id="phone-screen">
+            <img class="bg" id="phone-bg" alt="">
+            <video class="bg-video" id="phone-video" playsinline preload="metadata" hidden></video>
+            <div class="dim-rect" id="dim-top"></div>
+            <div class="dim-rect" id="dim-bottom"></div>
+            <div class="dim-rect" id="dim-left"></div>
+            <div class="dim-rect" id="dim-right"></div>
+            <div class="hotspot" id="hotspot"></div>
+            <button class="video-controls" id="video-controls" hidden type="button" aria-label="Phát/Tạm dừng">
+              <span class="vc-icon" id="vc-icon">▶</span>
+            </button>
+            <div class="video-progress" id="video-progress" hidden>
+              <div class="vp-bar" id="vp-bar"></div>
+              <span class="vp-time" id="vp-time">0:00 / 0:00</span>
+            </div>
+          </div>
+        </div>
+        <div class="tooltip" id="tooltip">
+          <div class="tt-title" id="tt-title">—</div>
+          <div class="tt-text" id="tt-text">—</div>
+        </div>
+      </div>
+
+      <div class="phone-nav">
+        <button class="btn btn-ghost" id="btn-prev">← Trước</button>
+        <button class="btn btn-primary" id="btn-next">Tiếp →</button>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL: GUIDE + CHAT -->
+    <div class="right-panel">
+      <div class="guide-card">
+        <h2 id="guide-title">—</h2>
+        <div class="sub" id="guide-sub">—</div>
+        <div class="guide-list" id="guide-list"></div>
+        <div class="tip-box" id="tip-box" hidden>
+          <strong>Lưu ý</strong>
+          <span id="tip-text">—</span>
+        </div>
+      </div>
+
+      <div class="chat-card" id="chat-card">
+        <button class="chat-close-mobile" onclick="toggleMobileChat(false)">✕</button>
+        <div class="chat-header">
+          <div class="ch-icon">💬</div>
+          <div class="ch-meta">
+            <h3>Trợ lý AI</h3>
+            <div class="ch-status" id="ch-status">Sẵn sàng giải đáp</div>
+          </div>
+          <button class="ch-clear" onclick="clearChat()" title="Xóa cuộc trò chuyện" hidden id="ch-clear">Xóa</button>
+        </div>
+
+        <!-- Empty state — direct free chat, no API key needed -->
+        <div class="chat-empty" id="chat-empty">
+          <div class="empty-icon">🤖</div>
+          <h4>Hỏi AI về bước này</h4>
+          <p>Trợ lý hiểu rõ từng bước, có thể giải thích, đưa ra ví dụ thực tế hoặc trả lời thắc mắc.</p>
+          <div class="empty-features">
+            <div><span class="check">✓</span> Giải thích chi tiết từng bước</div>
+            <div><span class="check">✓</span> Trả lời câu hỏi cụ thể</div>
+            <div><span class="check">✓</span> Đưa ra tip + shortcut</div>
+          </div>
+          <div class="empty-hint" id="empty-hint">💬 Free — 10 câu/giờ · 30 câu/ngày</div>
+        </div>
+
+        <!-- Remaining quota indicator (shown after first chat) -->
+        <div class="api-key-hint" id="api-key-hint" hidden>
+          <span class="key-dot">●</span>
+          <span id="quota-info">Còn 10 câu</span>
+        </div>
+
+        <!-- Messages — hidden khi empty state shown -->
+        <div class="chat-messages" id="chat-messages" hidden></div>
+
+        <!-- Suggestion chips -->
+        <div class="chat-suggest" id="chat-suggest" hidden></div>
+
+        <!-- Input — always enabled -->
+        <form class="chat-form" id="chat-form" onsubmit="event.preventDefault(); sendChat();">
+          <input type="text" id="chat-input" placeholder="Hỏi gì về bước này?" autocomplete="off" maxlength="500">
+          <button type="submit" id="chat-send" title="Gửi">↑</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Mobile bottom nav -->
+  <nav class="bottom-nav">
+    <button class="btn btn-ghost" id="btn-prev-m">← Trước</button>
+    <button class="btn btn-primary" id="btn-next-m">Tiếp →</button>
+  </nav>
+  <button class="fab-chat" onclick="toggleMobileChat(true)" title="Hỏi AI">💬</button>
+</div>
+
+<!-- COMPLETION OVERLAY — shown when user finishes all steps -->
+<div class="completion-overlay" id="completion-overlay" hidden>
+  <div class="confetti" id="confetti"></div>
+  <div class="completion-card">
+    <button class="completion-close" onclick="hideCompletion()" title="Đóng">✕</button>
+    <div class="completion-icon">🎉</div>
+    <h2>Chúc mừng!</h2>
+    <p class="completion-sub">Bạn đã hoàn thành module này</p>
+    <div class="completion-stats" id="completion-stats"></div>
+    <div id="completion-next-module"></div>
+    <div class="completion-actions">
+      <button class="btn btn-ghost" onclick="restartModule()">🔄 Học lại từ đầu</button>
+      <button class="btn btn-ghost" onclick="backToHome()">← Về trang chủ</button>
+      <button class="btn btn-primary" id="completion-next-btn">Module tiếp theo →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   ENGINE STATE
+   ============================================================ */
+const STATE = {
+  data: null,        // toàn bộ modules.json
+  module: null,      // module hiện tại
+  moduleId: null,
+  steps: [],
+  currentStep: 0,    // 0-indexed
+  apiKey: null,
+  history: [],       // chat history
+};
+
+/* ============================================================
+   BOOTSTRAP — đọc query param + fetch JSON
+   ============================================================ */
+window.addEventListener('DOMContentLoaded', boot);
+
+async function boot() {
+  // Lấy module từ ?module=xxx
+  const params = new URLSearchParams(location.search);
+  const moduleId = params.get('module');
+
+  // Cleanup legacy apiKey from localStorage (no longer needed - chat is server-proxied)
+  localStorage.removeItem('np_api_key');
+
+  try {
+    const data = await fetchModulesJson();
+    STATE.data = data;
+
+    if (!moduleId) {
+      // Không có param → hiện picker
+      renderPicker(data);
+      return;
+    }
+
+    const mod = data.modules?.[moduleId];
+    if (!mod) {
+      showError('Module không tồn tại',
+        `Không tìm thấy module "${moduleId}" trong modules.json.`,
+        `Các module có sẵn: ${Object.keys(data.modules || {}).join(', ')}`);
+      return;
+    }
+
+    STATE.module = mod;
+    STATE.moduleId = moduleId;
+    STATE.steps = mod.steps || [];
+    if (STATE.steps.length === 0) {
+      showError('Module rỗng', 'Module này chưa có bước nào.');
+      return;
+    }
+
+    initApp();
+  } catch (err) {
+    console.error(err);
+    showError('Không tải được modules.json',
+      'Kiểm tra đường dẫn file hoặc chạy qua HTTP server (không mở trực tiếp).',
+      err.message);
+  }
+}
+
+async function fetchModulesJson() {
+  // Thử các path phổ biến
+  const candidates = ['data/modules.json', './data/modules.json', '../data/modules.json'];
+  let lastErr;
+  for (const url of candidates) {
+    try {
+      const res = await fetch(url, { cache: 'no-cache' });
+      if (res.ok) return await res.json();
+      lastErr = new Error(`HTTP ${res.status} từ ${url}`);
+    } catch (e) {
+      lastErr = e;
+    }
+  }
+  throw lastErr || new Error('Không tìm thấy modules.json');
+}
+
+/* ============================================================
+   STATE SCREENS
+   ============================================================ */
+function showError(title, msg, detail) {
+  hideAll();
+  document.getElementById('err-title').textContent = title;
+  document.getElementById('err-msg').textContent = msg;
+  const d = document.getElementById('err-detail');
+  if (detail) { d.textContent = detail; d.hidden = false; }
+  document.getElementById('state-error').hidden = false;
+}
+function hideAll() {
+  document.getElementById('state-loading').hidden = true;
+  document.getElementById('state-error').hidden = true;
+  document.getElementById('state-picker').hidden = true;
+  document.getElementById('app').classList.remove('active');
+}
+
+function renderPicker(data) {
+  hideAll();
+  const list = document.getElementById('picker-list');
+  list.innerHTML = '';
+  for (const [id, mod] of Object.entries(data.modules || {})) {
+    const btn = document.createElement('a');
+    btn.className = 'picker-item';
+    btn.href = `?module=${id}`;
+    btn.innerHTML = `
+      <div class="pi-icon">${mod.icon || '📘'}</div>
+      <div class="pi-info">
+        <div class="pi-name">${escapeHtml(mod.name)}</div>
+        <div class="pi-desc">${escapeHtml(mod.role || '')} · ${mod.steps?.length || 0} bước</div>
+      </div>
+      <div class="pi-arrow">→</div>
+    `;
+    list.appendChild(btn);
+  }
+  document.getElementById('state-picker').hidden = false;
+}
+
+/* ============================================================
+   INIT APP
+   ============================================================ */
+function initApp() {
+  hideAll();
+  document.getElementById('app').classList.add('active');
+
+  // Header
+  document.getElementById('module-title').innerHTML =
+    `${STATE.module.icon || ''} ${escapeHtml(STATE.module.name)}<small>${escapeHtml(STATE.module.role || '')}</small>`;
+
+  // Render sidebar steps + mobile pills
+  renderStepList();
+
+  // Bind nav buttons
+  document.getElementById('btn-prev').onclick = prevStep;
+  document.getElementById('btn-next').onclick = nextStep;
+  document.getElementById('btn-prev-m').onclick = prevStep;
+  document.getElementById('btn-next-m').onclick = nextStep;
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'ArrowRight') nextStep();
+    else if (e.key === 'ArrowLeft') prevStep();
+  });
+
+  // Initialize chat UI based on auth state
+  updateChatState();
+
+  goToStep(0);
+}
+
+/* Update chat panel visibility based on whether user has chatted yet */
+function updateChatState() {
+  const hasMessages = !!document.querySelector('#chat-messages .msg');
+  const empty = document.getElementById('chat-empty');
+  const messages = document.getElementById('chat-messages');
+  const suggest = document.getElementById('chat-suggest');
+  const keyHint = document.getElementById('api-key-hint');
+  const input = document.getElementById('chat-input');
+  const send = document.getElementById('chat-send');
+  const clear = document.getElementById('ch-clear');
+  const status = document.getElementById('ch-status');
+
+  // Always enabled (free chat)
+  status.textContent = 'Sẵn sàng giải đáp';
+  status.style.color = '';
+  input.disabled = false;
+  input.placeholder = 'Hỏi gì về bước này?';
+  send.disabled = false;
+
+  if (hasMessages) {
+    empty.hidden = true;
+    messages.hidden = false;
+    suggest.hidden = true;
+    keyHint.hidden = false;
+    clear.hidden = false;
+  } else {
+    // No messages yet → show empty state with suggestions
+    empty.hidden = false;
+    messages.hidden = true;
+    suggest.hidden = false;
+    keyHint.hidden = true;
+    clear.hidden = true;
+  }
+}
+
+function renderStepList() {
+  const sb = document.getElementById('step-list');
+  const pills = document.getElementById('mobile-pills');
+  sb.innerHTML = '';
+  pills.innerHTML = '';
+  STATE.steps.forEach((s, i) => {
+    // Sidebar item
+    const btn = document.createElement('button');
+    btn.className = 'step-item';
+    btn.dataset.idx = i;
+    btn.innerHTML = `
+      <span class="step-num">${i + 1}</span>
+      <div class="step-info">
+        <div class="si-name">${escapeHtml(s.name || `Bước ${i+1}`)}</div>
+        <div class="si-desc">${escapeHtml(s.desc || '')}</div>
+      </div>
+    `;
+    btn.onclick = () => goToStep(i);
+    sb.appendChild(btn);
+
+    // Mobile pill
+    const pill = document.createElement('button');
+    pill.className = 'pill';
+    pill.dataset.idx = i;
+    pill.textContent = `${i + 1}`;
+    pill.title = s.name || `Bước ${i+1}`;
+    pill.onclick = () => goToStep(i);
+    pills.appendChild(pill);
+  });
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+function goToStep(idx) {
+  if (idx < 0 || idx >= STATE.steps.length) return;
+  STATE.currentStep = idx;
+  renderStep();
+}
+function nextStep() {
+  if (STATE.currentStep < STATE.steps.length - 1) {
+    goToStep(STATE.currentStep + 1);
+  } else {
+    // Already at last step → show completion
+    showCompletion();
+  }
+}
+function prevStep() { if (STATE.currentStep > 0) goToStep(STATE.currentStep - 1); }
+
+/* ============================================================
+   VIDEO MEDIA — resolve src + controls + auto-advance
+   ============================================================ */
+
+/* In-memory cache of media blob URLs created during this session */
+const _mediaBlobCache = {};
+
+/**
+ * Resolve a media path to a usable src.
+ * 1. If user uploaded via admin (IndexedDB), prefer that blob URL
+ * 2. Otherwise return the path as-is (file in /images or /videos)
+ */
+async function resolveMediaSrc(path, moduleId, mediaKey, isVideo) {
+  const cacheKey = `${moduleId}/${mediaKey}`;
+  if (_mediaBlobCache[cacheKey]) return _mediaBlobCache[cacheKey];
+  // Try to load from IndexedDB media store (set by admin)
+  try {
+    const blob = await loadMediaFromIDB(cacheKey);
+    if (blob) {
+      const url = URL.createObjectURL(blob);
+      _mediaBlobCache[cacheKey] = url;
+      return url;
+    }
+  } catch (e) { /* fallthrough */ }
+  return path;
+}
+
+function loadMediaFromIDB(key) {
+  return new Promise((resolve) => {
+    if (!window.indexedDB) return resolve(null);
+    const req = indexedDB.open('np_admin_media', 1);
+    req.onupgradeneeded = (e) => {
+      const db = e.target.result;
+      if (!db.objectStoreNames.contains('media')) db.createObjectStore('media');
+    };
+    req.onsuccess = (e) => {
+      const db = e.target.result;
+      if (!db.objectStoreNames.contains('media')) { db.close(); return resolve(null); }
+      try {
+        const tx = db.transaction(['media'], 'readonly');
+        const store = tx.objectStore('media');
+        const getReq = store.get(key);
+        getReq.onsuccess = () => { db.close(); resolve(getReq.result || null); };
+        getReq.onerror = () => { db.close(); resolve(null); };
+      } catch (err) { db.close(); resolve(null); }
+    };
+    req.onerror = () => resolve(null);
+  });
+}
+
+function cleanupVideo() {
+  const v = document.getElementById('phone-video');
+  if (!v) return;
+  try {
+    v.pause();
+    v.removeAttribute('src');
+    v.load();
+  } catch (e) { /* noop */ }
+  // Reset controls state
+  const vc = document.getElementById('video-controls');
+  if (vc) {
+    vc.classList.remove('playing', 'hidden-fade');
+    const vci = document.getElementById('vc-icon');
+    if (vci) vci.textContent = '▶';
+  }
+  const vp = document.getElementById('video-progress');
+  if (vp) {
+    const bar = document.getElementById('vp-bar');
+    const time = document.getElementById('vp-time');
+    if (bar) bar.style.setProperty('--progress', '0%');
+    if (time) time.textContent = '0:00 / 0:00';
+  }
+  // Clear any pending interval
+  if (STATE._videoTickerId) {
+    clearInterval(STATE._videoTickerId);
+    STATE._videoTickerId = null;
+  }
+}
+
+function setupVideoControls(step) {
+  const v = document.getElementById('phone-video');
+  const ctrl = document.getElementById('video-controls');
+  const icon = document.getElementById('vc-icon');
+  const bar = document.getElementById('vp-bar');
+  const time = document.getElementById('vp-time');
+  if (!v || !ctrl) return;
+
+  // Auto-advance flag (default true)
+  const autoNext = step.videoAutoNext !== false;
+
+  // Click control toggles play/pause
+  ctrl.onclick = () => {
+    if (v.paused) v.play(); else v.pause();
+  };
+  // Click on video itself also toggles
+  v.onclick = () => {
+    if (v.paused) v.play(); else v.pause();
+  };
+
+  v.onplay = () => {
+    icon.textContent = '⏸';
+    ctrl.classList.add('playing');
+    // Fade controls after 1.5s while playing
+    setTimeout(() => {
+      if (!v.paused) ctrl.classList.add('hidden-fade');
+    }, 1500);
+  };
+  v.onpause = () => {
+    icon.textContent = '▶';
+    ctrl.classList.remove('playing', 'hidden-fade');
+  };
+  v.onended = () => {
+    icon.textContent = '▶';
+    ctrl.classList.remove('playing', 'hidden-fade');
+    if (autoNext) {
+      // Auto next after small delay
+      setTimeout(() => nextStep(), 600);
+    }
+  };
+  // Show controls on hover
+  v.parentElement.onmousemove = () => {
+    ctrl.classList.remove('hidden-fade');
+    clearTimeout(STATE._vcHideTimer);
+    STATE._vcHideTimer = setTimeout(() => {
+      if (!v.paused) ctrl.classList.add('hidden-fade');
+    }, 1500);
+  };
+  // Time / progress ticker
+  if (STATE._videoTickerId) clearInterval(STATE._videoTickerId);
+  STATE._videoTickerId = setInterval(() => {
+    if (!v.duration || isNaN(v.duration)) return;
+    const pct = (v.currentTime / v.duration) * 100;
+    bar.style.setProperty('--progress', `${pct}%`);
+    time.textContent = `${formatTime(v.currentTime)} / ${formatTime(v.duration)}`;
+  }, 250);
+}
+
+function formatTime(s) {
+  if (!s || isNaN(s)) return '0:00';
+  const m = Math.floor(s / 60);
+  const sec = Math.floor(s % 60);
+  return `${m}:${sec.toString().padStart(2, '0')}`;
+}
+
+/* ============================================================
+   COMPLETION CELEBRATION
+   ============================================================ */
+function showCompletion() {
+  const overlay = document.getElementById('completion-overlay');
+  if (!overlay) return;
+
+  // Show stats
+  const totalSteps = STATE.steps.length;
+  const moduleName = STATE.module?.name || 'Module';
+  document.getElementById('completion-stats').innerHTML = `
+    <div class="stat-item">
+      <div class="stat-value">${totalSteps}</div>
+      <div class="stat-label">bước đã học</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-value">✓</div>
+      <div class="stat-label">${escapeHtml(moduleName)}</div>
+    </div>
+  `;
+
+  // Find next module recommendation
+  const allModules = STATE.data?.modules || {};
+  const moduleIds = Object.keys(allModules);
+  const currentIdx = moduleIds.indexOf(STATE.moduleId);
+  const nextId = moduleIds[currentIdx + 1] || null;
+
+  const nextModuleEl = document.getElementById('completion-next-module');
+  const nextBtn = document.getElementById('completion-next-btn');
+
+  if (nextId) {
+    const next = allModules[nextId];
+    nextModuleEl.innerHTML = `
+      <div class="next-module-card">
+        <div class="next-module-icon">${next.icon || '📘'}</div>
+        <div class="next-module-info">
+          <div class="next-module-label">Module tiếp theo</div>
+          <div class="next-module-name">${escapeHtml(next.name)}</div>
+          <div class="next-module-meta">${next.steps.length} bước · ${escapeHtml(next.role || '')}</div>
+        </div>
+      </div>
+    `;
+    nextBtn.style.display = '';
+    nextBtn.onclick = () => {
+      window.location.href = `?module=${encodeURIComponent(nextId)}`;
+    };
+  } else {
+    nextModuleEl.innerHTML = `
+      <div class="next-module-empty">
+        🎓 Bạn đã hoàn thành tất cả modules có sẵn!
+      </div>
+    `;
+    nextBtn.style.display = 'none';
+  }
+
+  overlay.hidden = false;
+  // Trigger confetti animation
+  triggerConfetti();
+}
+
+function hideCompletion() {
+  document.getElementById('completion-overlay').hidden = true;
+}
+
+function restartModule() {
+  hideCompletion();
+  goToStep(0);
+}
+
+function backToHome() {
+  window.location.href = './';
+}
+
+function triggerConfetti() {
+  const wrap = document.getElementById('confetti');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  const colors = ['#007B48', '#FFD600', '#FF6B6B', '#4DABF7', '#A78BFA'];
+  for (let i = 0; i < 60; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti-piece';
+    c.style.left = Math.random() * 100 + '%';
+    c.style.background = colors[Math.floor(Math.random() * colors.length)];
+    c.style.animationDelay = (Math.random() * 0.5) + 's';
+    c.style.animationDuration = (2 + Math.random() * 1.5) + 's';
+    wrap.appendChild(c);
+  }
+  // Cleanup after animation
+  setTimeout(() => { wrap.innerHTML = ''; }, 4000);
+}
+
+/* ============================================================
+   RENDER STEP
+   ============================================================ */
+function renderStep() {
+  const idx = STATE.currentStep;
+  const s = STATE.steps[idx];
+  const total = STATE.steps.length;
+
+  // Progress
+  document.getElementById('progress-text').textContent = `${idx + 1}/${total}`;
+  document.getElementById('progress-fill').style.width = `${((idx + 1) / total) * 100}%`;
+
+  // Sidebar active
+  document.querySelectorAll('.step-item').forEach((el, i) => {
+    el.classList.toggle('active', i === idx);
+    el.classList.toggle('done', i < idx);
+  });
+  // Mobile pills
+  document.querySelectorAll('.pill').forEach((el, i) => {
+    el.classList.toggle('active', i === idx);
+    el.classList.toggle('done', i < idx);
+    if (i === idx) el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  });
+
+  // Phone media — image OR video
+  const mediaType = s.mediaType || 'image';
+  const phoneBg = document.getElementById('phone-bg');
+  const phoneVid = document.getElementById('phone-video');
+  const vidControls = document.getElementById('video-controls');
+  const vidProgress = document.getElementById('video-progress');
+  const hotEl = document.getElementById('hotspot');
+
+  // Always cleanup any previous video state
+  cleanupVideo();
+
+  if (mediaType === 'video') {
+    // Video mode — load video from images map (videos stored in same images object)
+    const videoKey = s.video || s.videoKey || s.img || s.imgKey;
+    const videoPath = STATE.module.images?.[videoKey];
+    phoneBg.hidden = true;
+    phoneVid.hidden = false;
+    vidControls.hidden = false;
+    vidProgress.hidden = false;
+    hotEl.hidden = true; // no hotspot overlay for videos by default
+    // Hide spotlight dims
+    ['dim-top','dim-bottom','dim-left','dim-right'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) { el.style.width = '0'; el.style.height = '0'; }
+    });
+    if (videoPath) {
+      // Resolve video src — could be URL/path or IndexedDB blob URL
+      resolveMediaSrc(videoPath, STATE.moduleId, videoKey, true).then(src => {
+        if (phoneVid.src !== src) phoneVid.src = src;
+      });
+    }
+    // Bind controls (idempotent — re-binding is fine)
+    setupVideoControls(s);
+    return; // skip hotspot rendering for video
+  }
+
+  // Image mode (default)
+  phoneBg.hidden = false;
+  phoneVid.hidden = true;
+  vidControls.hidden = true;
+  vidProgress.hidden = true;
+  hotEl.hidden = false;
+
+  // Hỗ trợ cả `img` (dang_tin) và `imgKey` (loc_kho, bo_suu_tap)
+  const imgKey = s.img || s.imgKey;
+  const imgPath = STATE.module.images?.[imgKey];
+  if (imgPath) {
+    resolveMediaSrc(imgPath, STATE.moduleId, imgKey, false).then(src => {
+      if (phoneBg.src.indexOf(src) === -1 && !phoneBg.src.endsWith(src)) phoneBg.src = src;
+      phoneBg.alt = s.name || '';
+    });
+  }
+
+  // ScrollY in 390 space → translate by SCALE
+  const scrollY = Math.max(0, s.scrollY || 0);
+  const scale = getScale();
+  phoneBg.style.top = `${-scrollY * scale}px`;
+
+  // Hotspot
+  const hs = s.hs || { x: 0, y: 0, w: 0, h: 0 };
+  const hotL = hs.x * scale;
+  const hotT = (hs.y - scrollY) * scale;
+  const hotW = hs.w * scale;
+  const hotH = hs.h * scale;
+  hotEl.style.left   = `${hotL}px`;
+  hotEl.style.top    = `${hotT}px`;
+  hotEl.style.width  = `${hotW}px`;
+  hotEl.style.height = `${hotH}px`;
+
+  // Spotlight: 4 dim rectangles xung quanh hotspot (top/bottom/left/right)
+  // Chắc chắn render đúng vì là 4 div riêng biệt, không phụ thuộc box-shadow/clip-path quirks.
+  const screen = document.getElementById('phone-screen');
+  const sw = screen.clientWidth;
+  const sh = screen.clientHeight;
+  const dimTop = document.getElementById('dim-top');
+  const dimBot = document.getElementById('dim-bottom');
+  const dimL   = document.getElementById('dim-left');
+  const dimR   = document.getElementById('dim-right');
+  if (dimTop && hotW > 0 && hotH > 0) {
+    // Clamp values để 4 rect không bao giờ âm
+    const topH = Math.max(0, hotT);
+    const botY = hotT + hotH;
+    const botH = Math.max(0, sh - botY);
+    const sideY = Math.max(0, hotT);
+    const sideH = Math.min(sh, hotH);
+
+    dimTop.style.left   = '0';
+    dimTop.style.top    = '0';
+    dimTop.style.width  = `${sw}px`;
+    dimTop.style.height = `${topH}px`;
+
+    dimBot.style.left   = '0';
+    dimBot.style.top    = `${botY}px`;
+    dimBot.style.width  = `${sw}px`;
+    dimBot.style.height = `${botH}px`;
+
+    dimL.style.left   = '0';
+    dimL.style.top    = `${sideY}px`;
+    dimL.style.width  = `${Math.max(0, hotL)}px`;
+    dimL.style.height = `${sideH}px`;
+
+    dimR.style.left   = `${hotL + hotW}px`;
+    dimR.style.top    = `${sideY}px`;
+    dimR.style.width  = `${Math.max(0, sw - hotL - hotW)}px`;
+    dimR.style.height = `${sideH}px`;
+  } else if (dimTop) {
+    // Hotspot trống: ẩn dim
+    [dimTop, dimBot, dimL, dimR].forEach(el => el.style.width = '0');
+  }
+
+  // Tooltip — position OUTSIDE phone frame, align với hotspot
+  const tt = document.getElementById('tooltip');
+  document.getElementById('tt-title').textContent = s.ttTitle || '';
+  document.getElementById('tt-text').textContent = s.ttText || '';
+  let pos = s.ttPos || 'right';
+  // Dưới desktop (< 1024px) phone không có đủ space 2 bên → force bottom
+  if (window.innerWidth < 1024 && (pos === 'left' || pos === 'right')) pos = 'bottom';
+
+  // Tọa độ trung tâm hotspot trong phone-container (frame có padding 8px)
+  const hsCx = (hs.x + hs.w / 2) * scale + 8;
+  const hsCy = (hs.y - scrollY + hs.h / 2) * scale + 8;
+
+  // SMART AUTO-FLIP — measure tooltip height, flip nếu sẽ overflow phone frame
+  // Bước 1: render tạm ẩn để đo height
+  tt.removeAttribute('style');
+  tt.style.visibility = 'hidden';
+  tt.className = `tooltip tt-${pos}`;
+  // Force layout
+  const ttH = tt.getBoundingClientRect().height || 80;
+
+  // Vị trí pixels của hotspot trong phone-container (frame padding 8 đã cộng)
+  const hsTopPx = (hs.y - scrollY) * scale + 8;
+  const hsBottomPx = (hs.y + hs.h - scrollY) * scale + 8;
+  // Phone frame height match CSS .phone-frame: 770px desktop, 500px mobile
+  const phoneFrameH = window.innerWidth < 768 ? 500 : 770;
+  const safeMargin = 12; // khoảng cách giữa hotspot và tooltip
+
+  // Flip 'bottom' → 'top' nếu sẽ tràn xuống dưới phone
+  if (pos === 'bottom' && hsBottomPx + safeMargin + ttH > phoneFrameH - 4) {
+    pos = 'top';
+  }
+  // Flip 'top' → 'bottom' nếu sẽ tràn lên trên
+  else if (pos === 'top' && hsTopPx - safeMargin - ttH < 4) {
+    pos = 'bottom';
+  }
+
+  // Bước 2: reset + apply final position
+  tt.removeAttribute('style');
+  tt.className = `tooltip tt-${pos}`;
+  if (pos === 'left') {
+    // Outside phone left
+    tt.style.right = 'calc(100% + 12px)';
+    tt.style.top = `${hsCy}px`;
+    tt.style.transform = 'translateY(-50%)';
+  } else if (pos === 'right') {
+    // Outside phone right
+    tt.style.left = 'calc(100% + 12px)';
+    tt.style.top = `${hsCy}px`;
+    tt.style.transform = 'translateY(-50%)';
+  } else if (pos === 'top') {
+    // Above hotspot, INSIDE phone area
+    tt.style.bottom = `calc(100% - ${hsTopPx}px + 12px)`;
+    tt.style.left = `${hsCx}px`;
+    tt.style.transform = 'translateX(-50%)';
+  } else { // bottom — below hotspot, INSIDE phone area
+    tt.style.top = `${hsBottomPx + 12}px`;
+    tt.style.left = `${hsCx}px`;
+    tt.style.transform = 'translateX(-50%)';
+  }
+
+  // Guide panel
+  document.getElementById('guide-title').textContent = s.title || s.name || `Bước ${idx + 1}`;
+  document.getElementById('guide-sub').textContent = s.sub || '';
+  const list = document.getElementById('guide-list');
+  list.innerHTML = '';
+  (s.guide || []).forEach(g => {
+    const div = document.createElement('div');
+    div.className = 'guide-item';
+    div.innerHTML = `
+      <h4>${escapeHtml(g.title || '')}</h4>
+      <p>${escapeHtml(g.body || '')}</p>
+      ${g.note ? `<div class="note">${escapeHtml(g.note)}</div>` : ''}
+    `;
+    list.appendChild(div);
+  });
+  // Tip
+  const tipBox = document.getElementById('tip-box');
+  if (s.tip) {
+    document.getElementById('tip-text').textContent = s.tip;
+    tipBox.hidden = false;
+  } else {
+    tipBox.hidden = true;
+  }
+
+  // Nav button states
+  document.getElementById('btn-prev').disabled = (idx === 0);
+  document.getElementById('btn-prev-m').disabled = (idx === 0);
+  // Last step: don't disable — clicking triggers showCompletion
+  document.getElementById('btn-next').disabled = false;
+  document.getElementById('btn-next-m').disabled = false;
+  document.getElementById('btn-next').textContent = (idx === total - 1) ? '✓ Hoàn thành' : 'Tiếp →';
+  document.getElementById('btn-next-m').textContent = (idx === total - 1) ? '✓ Hoàn thành' : 'Tiếp →';
+
+  // Suggest chips
+  renderChatSuggest(s);
+}
+
+function getScale() {
+  // Đọc CSS variable để khớp breakpoint
+  const v = getComputedStyle(document.documentElement).getPropertyValue('--scale').trim();
+  return parseFloat(v) || 0.6513;
+}
+window.addEventListener('resize', () => { if (STATE.module) renderStep(); });
+
+/* ============================================================
+   CHAT — Claude API client-side
+   ============================================================ */
+function renderChatSuggest(step) {
+  const wrap = document.getElementById('chat-suggest');
+  wrap.innerHTML = '';
+  const suggests = [
+    `Giải thích bước này`,
+    `Có cách nào khác không?`,
+    `Lỗi thường gặp?`,
+  ];
+  suggests.forEach(q => {
+    const b = document.createElement('button');
+    b.textContent = q;
+    b.onclick = () => { document.getElementById('chat-input').value = q; sendChat(); };
+    wrap.appendChild(b);
+  });
+}
+
+function clearChat() {
+  STATE.history = [];
+  document.getElementById('chat-messages').innerHTML = '';
+  updateChatState();
+}
+
+function addBotMsg(text, cls = '') {
+  const div = document.createElement('div');
+  div.className = `msg bot ${cls}`;
+  div.textContent = text;
+  const box = document.getElementById('chat-messages');
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+  return div;
+}
+function addUserMsg(text) {
+  const div = document.createElement('div');
+  div.className = 'msg user';
+  div.textContent = text;
+  const box = document.getElementById('chat-messages');
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+}
+function addErrMsg(text) {
+  const div = document.createElement('div');
+  div.className = 'msg err';
+  div.textContent = text;
+  document.getElementById('chat-messages').appendChild(div);
+}
+
+async function sendChat() {
+  const input = document.getElementById('chat-input');
+  const q = input.value.trim();
+  if (!q) return;
+  if (q.length > 500) {
+    addErrMsg('Câu hỏi dài quá 500 ký tự, viết ngắn lại nhé!');
+    return;
+  }
+
+  // Hide suggestions once user sends first message
+  document.getElementById('chat-suggest').hidden = true;
+
+  addUserMsg(q);
+  input.value = '';
+  STATE.history.push({ role: 'user', content: q });
+  updateChatState();
+
+  const sendBtn = document.getElementById('chat-send');
+  sendBtn.disabled = true;
+  const typing = addBotMsg('', 'typing');
+
+  // Build context from current step
+  const s = STATE.steps[STATE.currentStep] || {};
+  const payload = {
+    messages: STATE.history.slice(-8),
+    moduleId: STATE.moduleId,
+    moduleName: STATE.module?.name || '',
+    role: STATE.module?.role || '',
+    step: STATE.currentStep + 1,
+    stepName: s.name || '',
+    stepTitle: s.title || s.ttTitle || '',
+    stepGuide: s.guide || [],
+  };
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    typing.remove();
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok) {
+      // Use server's friendly message if provided
+      const msg = data?.message || `Lỗi: HTTP ${res.status}`;
+      addErrMsg(msg);
+      STATE.history.pop();
+      return;
+    }
+
+    const text = data.message || '(không có phản hồi)';
+    addBotMsg(text);
+    STATE.history.push({ role: 'assistant', content: text });
+
+    // Show remaining quota
+    if (data.remaining) {
+      const info = document.getElementById('quota-info');
+      if (info) {
+        const r = data.remaining;
+        info.textContent = `Còn ${r.hour}/giờ · ${r.day}/ngày`;
+      }
+    }
+  } catch (err) {
+    typing.remove();
+    addErrMsg('Lỗi mạng — kiểm tra kết nối rồi thử lại nhé!');
+    STATE.history.pop();
+  } finally {
+    sendBtn.disabled = false;
+    input.focus();
+  }
+}
+
+function toggleMobileChat(show) {
+  document.getElementById('chat-card').classList.toggle('show-mobile', show);
+}
+
+/* ============================================================
+   UTIL
+   ============================================================ */
+function escapeHtml(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+</script>
+</body>
+</html>
