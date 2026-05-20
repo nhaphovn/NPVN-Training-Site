@@ -48,6 +48,11 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'invalid_json', message: 'JSON không hợp lệ: ' + e.message });
   }
 
+  // Dry-run: validate only, do not commit
+  if (req.query.dry_run === '1') {
+    return res.status(200).json({ ok: true, dry_run: true, message: 'Dry run OK — JSON hợp lệ, env vars đầy đủ, không có commit nào được tạo.' });
+  }
+
   const GITHUB_FILE = process.env.GITHUB_FILE_PATH || 'nha-pho-training-site/data/modules.json';
   const GH_API  = `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
   const headers = {
