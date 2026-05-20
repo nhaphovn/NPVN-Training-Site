@@ -1,6 +1,6 @@
 {
-  "version": "v9",
-  "lastUpdated": "2026-05-12",
+  "version": "v10",
+  "lastUpdated": "2026-05-20",
   "brand": {
     "name": "Nhà Phố Việt Nam",
     "app": "App Nhà Phố",
@@ -45,8 +45,8 @@
       "icon": "📝",
       "description": "Toàn bộ quy trình đăng tin từ trang chủ đến gửi duyệt",
       "images": {
-        "home": "/images/dang_tin/home.jpg",
-        "form": "/images/dang_tin/form.jpg"
+        "home": "/api/img?path=images/dang_tin/home.jpg",
+        "form": "/api/img?path=images/dang_tin/form.jpg"
       },
       "steps": [
         {
@@ -424,7 +424,27 @@
           ]
         }
       ],
-      "iconImg": "assets/icons/dang_tin.png"
+      "iconImg": "assets/icons/dang_tin.png",
+      "status": "live",
+      "attributes": {
+        "industry": "real_estate",
+        "tenant": "nhapho",
+        "role": [
+          "dau_chu"
+        ],
+        "level": "beginner",
+        "language": "vi",
+        "tags": [
+          "dang_tin",
+          "dang_tin_bds",
+          "form"
+        ]
+      },
+      "quality": {
+        "errors": 0,
+        "warnings": 0,
+        "lastReviewed": null
+      }
     },
     "loc_kho": {
       "name": "Lọc Kho tài nguyên",
@@ -432,13 +452,13 @@
       "icon": "🏗",
       "description": "Tìm kiếm, lọc, ẩn cột và xem chi tiết tin đăng",
       "images": {
-        "home": "/images/loc_kho/home.jpg",
-        "b02": "/images/loc_kho/b02.jpg",
-        "b04": "/images/loc_kho/b04.jpg",
-        "b06a": "/images/loc_kho/b06a.jpg",
-        "b06s": "/images/loc_kho/b06s.jpg",
-        "b07": "/images/loc_kho/b07.jpg",
-        "b08": "/images/loc_kho/b08.jpg"
+        "home": "/api/img?path=images/loc_kho/home.jpg",
+        "b02": "/api/img?path=images/loc_kho/b02.jpg",
+        "b04": "/api/img?path=images/loc_kho/b04.jpg",
+        "b06a": "/api/img?path=images/loc_kho/b06a.jpg",
+        "b06s": "/api/img?path=images/loc_kho/b06s.jpg",
+        "b07": "/api/img?path=images/loc_kho/b07.jpg",
+        "b08": "/api/img?path=images/loc_kho/b08.jpg"
       },
       "steps": [
         {
@@ -850,7 +870,28 @@
           ]
         }
       ],
-      "iconImg": "assets/icons/kho_tai_nguyen.png"
+      "iconImg": "assets/icons/kho_tai_nguyen.png",
+      "status": "live",
+      "attributes": {
+        "industry": "real_estate",
+        "tenant": "nhapho",
+        "role": [
+          "chuyen_vien",
+          "hocvien"
+        ],
+        "level": "beginner",
+        "language": "vi",
+        "tags": [
+          "loc_kho",
+          "kho_tai_nguyen",
+          "filter"
+        ]
+      },
+      "quality": {
+        "errors": 0,
+        "warnings": 0,
+        "lastReviewed": null
+      }
     },
     "bo_suu_tap": {
       "name": "Bộ sưu tập",
@@ -858,16 +899,16 @@
       "icon": "⭐",
       "description": "Lưu tin, ghi chú, tạo và quản lý bộ sưu tập",
       "images": {
-        "b01_list": "/images/bo_suu_tap/b01_list.jpg",
-        "b01_feed": "/images/bo_suu_tap/b01_feed.jpg",
-        "b02_bst": "/images/bo_suu_tap/b02_bst.jpg",
-        "b03_tao": "/images/bo_suu_tap/b03_tao.jpg",
-        "b04_menu": "/images/bo_suu_tap/b04_menu.jpg",
-        "b05_sua": "/images/bo_suu_tap/b05_sua.jpg",
-        "b06_tin": "/images/bo_suu_tap/b06_tin.jpg",
-        "b07_xoa": "/images/bo_suu_tap/b07_xoa.jpg",
-        "b08_ghi": "/images/bo_suu_tap/b08_ghi.jpg",
-        "b09_daluu": "/images/bo_suu_tap/b09_daluu.jpg"
+        "b01_list": "/api/img?path=images/bo_suu_tap/b01_list.jpg",
+        "b01_feed": "/api/img?path=images/bo_suu_tap/b01_feed.jpg",
+        "b02_bst": "/api/img?path=images/bo_suu_tap/b02_bst.jpg",
+        "b03_tao": "/api/img?path=images/bo_suu_tap/b03_tao.jpg",
+        "b04_menu": "/api/img?path=images/bo_suu_tap/b04_menu.jpg",
+        "b05_sua": "/api/img?path=images/bo_suu_tap/b05_sua.jpg",
+        "b06_tin": "/api/img?path=images/bo_suu_tap/b06_tin.jpg",
+        "b07_xoa": "/api/img?path=images/bo_suu_tap/b07_xoa.jpg",
+        "b08_ghi": "/api/img?path=images/bo_suu_tap/b08_ghi.jpg",
+        "b09_daluu": "/api/img?path=images/bo_suu_tap/b09_daluu.jpg"
       },
       "steps": [
         {
@@ -1279,7 +1320,28 @@
           ]
         }
       ],
-      "iconImg": "assets/icons/bo_suu_tap.png"
+      "iconImg": "assets/icons/bo_suu_tap.png",
+      "status": "live",
+      "attributes": {
+        "industry": "real_estate",
+        "tenant": "nhapho",
+        "role": [
+          "chuyen_vien",
+          "hocvien"
+        ],
+        "level": "intermediate",
+        "language": "vi",
+        "tags": [
+          "bo_suu_tap",
+          "collection",
+          "portfolio"
+        ]
+      },
+      "quality": {
+        "errors": 0,
+        "warnings": 0,
+        "lastReviewed": null
+      }
     },
     "dat_lich_dau_khach": {
       "name": "Đặt lịch dẫn khách",
