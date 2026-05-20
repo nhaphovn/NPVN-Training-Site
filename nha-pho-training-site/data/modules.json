@@ -1,5 +1,5 @@
 {
-  "version": "v10",
+  "version": "v11",
   "lastUpdated": "2026-05-20",
   "brand": {
     "name": "Nhà Phố Việt Nam",
@@ -1350,13 +1350,13 @@
       "iconImg": "assets/icons/khach_can_mua_gap.png",
       "description": "Đặt lịch hẹn dẫn khách xem nhà — từ chọn tin tới quản lý lịch hẹn",
       "images": {
-        "list": "/images/dat_lich_dau_khach/list.jpg",
-        "xem": "/images/dat_lich_dau_khach/xem.jpg",
-        "dat": "/images/dat_lich_dau_khach/dat.jpg",
-        "chon": "/images/dat_lich_dau_khach/chon.jpg",
-        "lich_dk": "/images/dat_lich_dau_khach/lich_dk.jpg",
-        "thu": "/images/dat_lich_dau_khach/thu.jpg",
-        "history": "/images/dat_lich_dau_khach/history.jpg"
+        "list": "/api/img?path=images/dat_lich_dau_khach/list.jpg",
+        "xem": "/api/img?path=images/dat_lich_dau_khach/xem.jpg",
+        "dat": "/api/img?path=images/dat_lich_dau_khach/dat.jpg",
+        "chon": "/api/img?path=images/dat_lich_dau_khach/chon.jpg",
+        "lich_dk": "/api/img?path=images/dat_lich_dau_khach/lich_dk.jpg",
+        "thu": "/api/img?path=images/dat_lich_dau_khach/thu.jpg",
+        "history": "/api/img?path=images/dat_lich_dau_khach/history.jpg"
       },
       "steps": [
         {
@@ -1548,7 +1548,28 @@
             }
           ]
         }
-      ]
+      ],
+      "status": "draft",
+      "attributes": {
+        "industry": "real_estate",
+        "tenant": "nhapho",
+        "role": [
+          "chuyen_vien",
+          "dau_khach"
+        ],
+        "level": "beginner",
+        "tags": [
+          "dat_lich",
+          "lich_hen",
+          "dau_khach"
+        ],
+        "language": "vi"
+      },
+      "quality": {
+        "errors": 0,
+        "warnings": 0,
+        "lastReviewed": null
+      }
     },
     "lich_hen_dau_chu": {
       "name": "Lịch hẹn dẫn khách",
@@ -1557,11 +1578,11 @@
       "iconImg": "assets/icons/quan_ly_phong.png",
       "description": "Quản lý lịch hẹn dẫn khách — xác nhận, từ chối, thu hồi",
       "images": {
-        "home": "/images/lich_hen_dau_chu/home.jpg",
-        "lich": "/images/lich_hen_dau_chu/lich.jpg",
-        "accept": "/images/lich_hen_dau_chu/accept.jpg",
-        "reject": "/images/lich_hen_dau_chu/reject.jpg",
-        "thu": "/images/lich_hen_dau_chu/thu.jpg"
+        "home": "/api/img?path=images/lich_hen_dau_chu/home.jpg",
+        "lich": "/api/img?path=images/lich_hen_dau_chu/lich.jpg",
+        "accept": "/api/img?path=images/lich_hen_dau_chu/accept.jpg",
+        "reject": "/api/img?path=images/lich_hen_dau_chu/reject.jpg",
+        "thu": "/api/img?path=images/lich_hen_dau_chu/thu.jpg"
       },
       "steps": [
         {
@@ -1699,7 +1720,26 @@
             }
           ]
         }
-      ]
+      ],
+      "status": "draft",
+      "attributes": {
+        "industry": "real_estate",
+        "tenant": "nhapho",
+        "role": [
+          "dau_chu"
+        ],
+        "level": "beginner",
+        "tags": [
+          "lich_hen",
+          "dau_chu"
+        ],
+        "language": "vi"
+      },
+      "quality": {
+        "errors": 0,
+        "warnings": 0,
+        "lastReviewed": null
+      }
     },
     "khach_can_mua_gap": {
       "name": "Khách cần mua gấp",
@@ -1708,13 +1748,13 @@
       "iconImg": "assets/icons/khach_can_mua_gap.png",
       "description": "Quản lý danh sách khách cần mua gấp — tạo, sửa, ghim, hold",
       "images": {
-        "home": "/images/khach_can_mua_gap/home.jpg",
-        "xem": "/images/khach_can_mua_gap/xem.jpg",
-        "tao": "/images/khach_can_mua_gap/tao.jpg",
-        "sua": "/images/khach_can_mua_gap/sua.jpg",
-        "xoa": "/images/khach_can_mua_gap/xoa.jpg",
-        "ghim": "/images/khach_can_mua_gap/ghim.jpg",
-        "hold": "/images/khach_can_mua_gap/hold.jpg"
+        "home": "/api/img?path=images/khach_can_mua_gap/home.jpg",
+        "xem": "/api/img?path=images/khach_can_mua_gap/xem.jpg",
+        "tao": "/api/img?path=images/khach_can_mua_gap/tao.jpg",
+        "sua": "/api/img?path=images/khach_can_mua_gap/sua.jpg",
+        "xoa": "/api/img?path=images/khach_can_mua_gap/xoa.jpg",
+        "ghim": "/api/img?path=images/khach_can_mua_gap/ghim.jpg",
+        "hold": "/api/img?path=images/khach_can_mua_gap/hold.jpg"
       },
       "steps": [
         {
@@ -1906,7 +1946,26 @@
             }
           ]
         }
-      ]
+      ],
+      "status": "draft",
+      "attributes": {
+        "industry": "real_estate",
+        "tenant": "nhapho",
+        "role": [
+          "chuyen_vien"
+        ],
+        "level": "intermediate",
+        "tags": [
+          "khach_hot",
+          "mua_gap"
+        ],
+        "language": "vi"
+      },
+      "quality": {
+        "errors": 0,
+        "warnings": 0,
+        "lastReviewed": null
+      }
     },
     "kho_ca_nhan": {
       "name": "Kho cá nhân",
@@ -1915,15 +1974,15 @@
       "iconImg": "assets/icons/kho_da_ban.png",
       "description": "Quản lý kho tin đăng cá nhân — duyệt, từ chối, thùng rác",
       "images": {
-        "menu": "/images/kho_ca_nhan/menu.jpg",
-        "menu_list_quan_ly_kho": "/images/kho_ca_nhan/menu_list_quan_ly_kho.jpg",
-        "trang_thai": "/images/kho_ca_nhan/trang_thai.jpg",
-        "xem_cho_duyet": "/images/kho_ca_nhan/xem_cho_duyet.jpg",
-        "xem_thung_rac": "/images/kho_ca_nhan/xem_thung_rac.jpg",
-        "xem_da_duyet": "/images/kho_ca_nhan/xem_da_duyet.jpg",
-        "xem_tu_choi": "/images/kho_ca_nhan/xem_tu_choi.jpg",
-        "loc": "/images/kho_ca_nhan/loc.jpg",
-        "xem_tin_chi_tiet": "/images/kho_ca_nhan/xem_tin_chi_tiet.jpg"
+        "menu": "/api/img?path=images/kho_ca_nhan/menu.jpg",
+        "menu_list_quan_ly_kho": "/api/img?path=images/kho_ca_nhan/menu_list_quan_ly_kho.jpg",
+        "trang_thai": "/api/img?path=images/kho_ca_nhan/trang_thai.jpg",
+        "xem_cho_duyet": "/api/img?path=images/kho_ca_nhan/xem_cho_duyet.jpg",
+        "xem_thung_rac": "/api/img?path=images/kho_ca_nhan/xem_thung_rac.jpg",
+        "xem_da_duyet": "/api/img?path=images/kho_ca_nhan/xem_da_duyet.jpg",
+        "xem_tu_choi": "/api/img?path=images/kho_ca_nhan/xem_tu_choi.jpg",
+        "loc": "/api/img?path=images/kho_ca_nhan/loc.jpg",
+        "xem_tin_chi_tiet": "/api/img?path=images/kho_ca_nhan/xem_tin_chi_tiet.jpg"
       },
       "steps": [
         {
@@ -2169,7 +2228,27 @@
             }
           ]
         }
-      ]
+      ],
+      "status": "draft",
+      "attributes": {
+        "industry": "real_estate",
+        "tenant": "nhapho",
+        "role": [
+          "chuyen_vien",
+          "dau_chu"
+        ],
+        "level": "beginner",
+        "tags": [
+          "kho",
+          "quan_ly_tin"
+        ],
+        "language": "vi"
+      },
+      "quality": {
+        "errors": 0,
+        "warnings": 0,
+        "lastReviewed": null
+      }
     },
     "kho_hang_tu_do": {
       "name": "Kho hàng tự do",
@@ -2178,12 +2257,12 @@
       "iconImg": "assets/icons/kho_hang_tu_do.png",
       "description": "Browse kho hàng công khai — list, filter, ẩn cột, chi tiết",
       "images": {
-        "home": "/images/kho_hang_tu_do/home.jpg",
-        "list": "/images/kho_hang_tu_do/list.jpg",
-        "filter": "/images/kho_hang_tu_do/filter.jpg",
-        "an_cot": "/images/kho_hang_tu_do/an_cot.jpg",
-        "chi_tiet": "/images/kho_hang_tu_do/chi_tiet.jpg",
-        "tin_chi_tiet": "/images/kho_hang_tu_do/tin_chi_tiet.jpg"
+        "home": "/api/img?path=images/kho_hang_tu_do/home.jpg",
+        "list": "/api/img?path=images/kho_hang_tu_do/list.jpg",
+        "filter": "/api/img?path=images/kho_hang_tu_do/filter.jpg",
+        "an_cot": "/api/img?path=images/kho_hang_tu_do/an_cot.jpg",
+        "chi_tiet": "/api/img?path=images/kho_hang_tu_do/chi_tiet.jpg",
+        "tin_chi_tiet": "/api/img?path=images/kho_hang_tu_do/tin_chi_tiet.jpg"
       },
       "steps": [
         {
@@ -2348,7 +2427,26 @@
             }
           ]
         }
-      ]
+      ],
+      "status": "draft",
+      "attributes": {
+        "industry": "real_estate",
+        "tenant": "nhapho",
+        "role": [
+          "chuyen_vien"
+        ],
+        "level": "beginner",
+        "tags": [
+          "kho",
+          "hang_tu_do"
+        ],
+        "language": "vi"
+      },
+      "quality": {
+        "errors": 0,
+        "warnings": 0,
+        "lastReviewed": null
+      }
     },
     "ma_gioi_thieu": {
       "name": "Mã giới thiệu",
@@ -2357,11 +2455,11 @@
       "iconImg": "assets/icons/ma_gioi_thieu.png",
       "description": "Tạo và quản lý mã giới thiệu — quản lý phòng, tin hoạt động",
       "images": {
-        "menu": "/images/ma_gioi_thieu/menu.jpg",
-        "menu_list_quan_ly_phong": "/images/ma_gioi_thieu/menu_list_quan_ly_phong.jpg",
-        "menu_list_tin_hoat_dong": "/images/ma_gioi_thieu/menu_list_tin_hoat_dong.jpg",
-        "xem": "/images/ma_gioi_thieu/xem.jpg",
-        "them": "/images/ma_gioi_thieu/them.jpg"
+        "menu": "/api/img?path=images/ma_gioi_thieu/menu.jpg",
+        "menu_list_quan_ly_phong": "/api/img?path=images/ma_gioi_thieu/menu_list_quan_ly_phong.jpg",
+        "menu_list_tin_hoat_dong": "/api/img?path=images/ma_gioi_thieu/menu_list_tin_hoat_dong.jpg",
+        "xem": "/api/img?path=images/ma_gioi_thieu/xem.jpg",
+        "them": "/api/img?path=images/ma_gioi_thieu/them.jpg"
       },
       "steps": [
         {
@@ -2499,7 +2597,27 @@
             }
           ]
         }
-      ]
+      ],
+      "status": "draft",
+      "attributes": {
+        "industry": "real_estate",
+        "tenant": "nhapho",
+        "role": [
+          "chuyen_vien",
+          "dau_chu"
+        ],
+        "level": "beginner",
+        "tags": [
+          "ma_gioi_thieu",
+          "referral"
+        ],
+        "language": "vi"
+      },
+      "quality": {
+        "errors": 0,
+        "warnings": 0,
+        "lastReviewed": null
+      }
     },
     "quan_ly_khach": {
       "name": "Quản lý khách",
@@ -2508,19 +2626,19 @@
       "iconImg": "assets/icons/quan_ly_khach.png",
       "description": "Quản lý khách hàng — đang tìm, đã mua, hàng phù hợp, ghi chú",
       "images": {
-        "menu": "/images/quan_ly_khach/menu.jpg",
-        "menu_list_tai_khoan_ca_nhan": "/images/quan_ly_khach/menu_list_tai_khoan_ca_nhan.jpg",
-        "xem_khach_dang_tim": "/images/quan_ly_khach/xem_khach_dang_tim.jpg",
-        "xem_khach_da_mua": "/images/quan_ly_khach/xem_khach_da_mua.jpg",
-        "giu_thao_tac_da_mua": "/images/quan_ly_khach/giu_thao_tac_da_mua.jpg",
-        "giu_thao_tac_dang_tim": "/images/quan_ly_khach/giu_thao_tac_dang_tim.jpg",
-        "sua_thong_tin": "/images/quan_ly_khach/sua_thong_tin.jpg",
-        "xem_hang_phu_hop": "/images/quan_ly_khach/xem_hang_phu_hop.jpg",
-        "loc_hang_phu_hop": "/images/quan_ly_khach/loc_hang_phu_hop.jpg",
-        "can_da_xem": "/images/quan_ly_khach/can_da_xem.jpg",
-        "ghi_chu": "/images/quan_ly_khach/ghi_chu.jpg",
-        "them_moi_khach": "/images/quan_ly_khach/them_moi_khach.jpg",
-        "truy_van": "/images/quan_ly_khach/truy_van.jpg"
+        "menu": "/api/img?path=images/quan_ly_khach/menu.jpg",
+        "menu_list_tai_khoan_ca_nhan": "/api/img?path=images/quan_ly_khach/menu_list_tai_khoan_ca_nhan.jpg",
+        "xem_khach_dang_tim": "/api/img?path=images/quan_ly_khach/xem_khach_dang_tim.jpg",
+        "xem_khach_da_mua": "/api/img?path=images/quan_ly_khach/xem_khach_da_mua.jpg",
+        "giu_thao_tac_da_mua": "/api/img?path=images/quan_ly_khach/giu_thao_tac_da_mua.jpg",
+        "giu_thao_tac_dang_tim": "/api/img?path=images/quan_ly_khach/giu_thao_tac_dang_tim.jpg",
+        "sua_thong_tin": "/api/img?path=images/quan_ly_khach/sua_thong_tin.jpg",
+        "xem_hang_phu_hop": "/api/img?path=images/quan_ly_khach/xem_hang_phu_hop.jpg",
+        "loc_hang_phu_hop": "/api/img?path=images/quan_ly_khach/loc_hang_phu_hop.jpg",
+        "can_da_xem": "/api/img?path=images/quan_ly_khach/can_da_xem.jpg",
+        "ghi_chu": "/api/img?path=images/quan_ly_khach/ghi_chu.jpg",
+        "them_moi_khach": "/api/img?path=images/quan_ly_khach/them_moi_khach.jpg",
+        "truy_van": "/api/img?path=images/quan_ly_khach/truy_van.jpg"
       },
       "steps": [
         {
@@ -2874,7 +2992,26 @@
             }
           ]
         }
-      ]
+      ],
+      "status": "draft",
+      "attributes": {
+        "industry": "real_estate",
+        "tenant": "nhapho",
+        "role": [
+          "chuyen_vien"
+        ],
+        "level": "intermediate",
+        "tags": [
+          "quan_ly_khach",
+          "crm"
+        ],
+        "language": "vi"
+      },
+      "quality": {
+        "errors": 0,
+        "warnings": 0,
+        "lastReviewed": null
+      }
     },
     "thong_bao_vu_chot": {
       "name": "Thông báo vụ chốt",
@@ -2883,9 +3020,9 @@
       "iconImg": "assets/icons/thong_bao_vu_chot.png",
       "description": "Tạo và xem thông báo vụ chốt — báo deal hoàn thành",
       "images": {
-        "menu": "/images/thong_bao_vu_chot/menu.jpg",
-        "xem": "/images/thong_bao_vu_chot/xem.jpg",
-        "tao": "/images/thong_bao_vu_chot/tao.jpg"
+        "menu": "/api/img?path=images/thong_bao_vu_chot/menu.jpg",
+        "xem": "/api/img?path=images/thong_bao_vu_chot/xem.jpg",
+        "tao": "/api/img?path=images/thong_bao_vu_chot/tao.jpg"
       },
       "steps": [
         {
@@ -2969,7 +3106,27 @@
             }
           ]
         }
-      ]
+      ],
+      "status": "draft",
+      "attributes": {
+        "industry": "real_estate",
+        "tenant": "nhapho",
+        "role": [
+          "chuyen_vien",
+          "truong_phong"
+        ],
+        "level": "beginner",
+        "tags": [
+          "thong_bao",
+          "vu_chot"
+        ],
+        "language": "vi"
+      },
+      "quality": {
+        "errors": 0,
+        "warnings": 0,
+        "lastReviewed": null
+      }
     },
     "tin_chinh_chu": {
       "name": "Tin chính chủ",
@@ -2978,15 +3135,15 @@
       "iconImg": "assets/icons/tin_chinh_chu.png",
       "description": "Quản lý tin chính chủ — xem, lưu, ghi chú, lọc, tin nhanh, phản hồi",
       "images": {
-        "menu": "/images/tin_chinh_chu/menu.jpg",
-        "menu_list_quan_ly_kho": "/images/tin_chinh_chu/menu_list_quan_ly_kho.jpg",
-        "xem": "/images/tin_chinh_chu/xem.jpg",
-        "da_luu": "/images/tin_chinh_chu/da_luu.jpg",
-        "ghi_chu": "/images/tin_chinh_chu/ghi_chu.jpg",
-        "loc": "/images/tin_chinh_chu/loc.jpg",
-        "tin_nhanh": "/images/tin_chinh_chu/tin_nhanh.jpg",
-        "phan_hoi": "/images/tin_chinh_chu/phan_hoi.jpg",
-        "phan_hoi_2": "/images/tin_chinh_chu/phan_hoi_2.jpg"
+        "menu": "/api/img?path=images/tin_chinh_chu/menu.jpg",
+        "menu_list_quan_ly_kho": "/api/img?path=images/tin_chinh_chu/menu_list_quan_ly_kho.jpg",
+        "xem": "/api/img?path=images/tin_chinh_chu/xem.jpg",
+        "da_luu": "/api/img?path=images/tin_chinh_chu/da_luu.jpg",
+        "ghi_chu": "/api/img?path=images/tin_chinh_chu/ghi_chu.jpg",
+        "loc": "/api/img?path=images/tin_chinh_chu/loc.jpg",
+        "tin_nhanh": "/api/img?path=images/tin_chinh_chu/tin_nhanh.jpg",
+        "phan_hoi": "/api/img?path=images/tin_chinh_chu/phan_hoi.jpg",
+        "phan_hoi_2": "/api/img?path=images/tin_chinh_chu/phan_hoi_2.jpg"
       },
       "steps": [
         {
@@ -3232,7 +3389,26 @@
             }
           ]
         }
-      ]
+      ],
+      "status": "draft",
+      "attributes": {
+        "industry": "real_estate",
+        "tenant": "nhapho",
+        "role": [
+          "dau_chu"
+        ],
+        "level": "beginner",
+        "tags": [
+          "tin_chinh_chu",
+          "dang_tin"
+        ],
+        "language": "vi"
+      },
+      "quality": {
+        "errors": 0,
+        "warnings": 0,
+        "lastReviewed": null
+      }
     }
   }
 }
