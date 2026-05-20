@@ -282,11 +282,50 @@ footer p:last-child { font-size: 15px !important; }
   font-size: 12px; margin-top: 12px;
 }
 
+/* ============ FEATURED — Tính năng thường dùng ============ */
+.featured-section {
+  margin: 36px 0 0;
+}
+.featured-label {
+  font-size: 14px; font-weight: 700; color: var(--text-3);
+  text-transform: uppercase; letter-spacing: .1em;
+  margin-bottom: 16px;
+}
+.featured-row {
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+.featured-chip {
+  display: flex; align-items: center; gap: 10px;
+  padding: 13px 22px 13px 16px;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 50px;
+  text-decoration: none; color: var(--text);
+  font-size: 17px; font-weight: 600; white-space: nowrap;
+  transition: border-color .15s, background .15s, box-shadow .15s;
+  box-shadow: var(--shadow-sm);
+}
+.featured-chip:hover {
+  border-color: var(--green-bright);
+  background: var(--green-light);
+  color: var(--green-dark);
+  box-shadow: 0 4px 14px rgba(0, 105, 65, .12);
+}
+.featured-chip .chip-emoji { font-size: 22px; line-height: 1; }
+.featured-chip .chip-name { font-weight: 600; }
+.featured-chip .chip-steps {
+  font-size: 13px; color: var(--text-3); font-weight: 500;
+  background: var(--green-soft); color: var(--green-darker);
+  padding: 2px 9px; border-radius: 10px; margin-left: 2px;
+}
+
 /* ============ RESPONSIVE ============ */
 @media (max-width: 600px) {
   .hero { padding: 40px 20px 60px; }
   main { padding: 0 16px; }
   .modules-grid { grid-template-columns: 1fr; }
+  .featured-row { gap: 8px; }
+  .featured-chip { font-size: 15px; padding: 10px 16px 10px 12px; }
 }
 </style>
 </head>
@@ -312,6 +351,12 @@ footer p:last-child { font-size: 15px !important; }
 </section>
 
 <main>
+  <!-- Tính năng thường dùng -->
+  <div class="featured-section" id="featured-section" hidden>
+    <div class="featured-label">Tính năng thường dùng</div>
+    <div class="featured-row" id="featured-row"></div>
+  </div>
+
   <div class="role-tabs" id="role-tabs">
     <button class="role-tab active" data-role="all">
       Tất cả <span class="badge" id="badge-all">—</span>
@@ -460,6 +505,29 @@ function updateStats() {
     <div class="hero-stat"><strong>${Object.keys(STATE.data.roles || {}).length}</strong><span>Vai trò</span></div>`;
 }
 
+function renderFeatured() {
+  const featuredIds = STATE.data.featured || [];
+  const modules = STATE.data.modules || {};
+  const section = $('featured-section');
+  const row = $('featured-row');
+  const live = featuredIds.filter(id => modules[id] && (modules[id].steps?.length || 0) > 0);
+  if (live.length === 0) { section.hidden = true; return; }
+  row.innerHTML = '';
+  for (const id of live) {
+    const m = modules[id];
+    const steps = m.steps?.length || 0;
+    const chip = document.createElement('a');
+    chip.className = 'featured-chip';
+    chip.href = `training-engine.html?module=${id}`;
+    chip.innerHTML = `
+      <span class="chip-emoji">${escapeHtml(m.icon || '📘')}</span>
+      <span class="chip-name">${escapeHtml(m.name || id)}</span>
+      <span class="chip-steps">${steps} bước</span>`;
+    row.appendChild(chip);
+  }
+  section.hidden = false;
+}
+
 async function boot() {
   $('year').textContent = new Date().getFullYear();
   try {
@@ -469,6 +537,7 @@ async function boot() {
     if (data.version) $('ver').textContent = data.version;
     if (data.lastUpdated) $('last-updated').textContent = data.lastUpdated;
     updateStats();
+    renderFeatured();
     renderRoleTabs();
     renderModules();
   } catch (e) {

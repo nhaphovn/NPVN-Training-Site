@@ -1,5 +1,5 @@
 {
-  "version": "v11",
+  "version": "v12",
   "lastUpdated": "2026-05-20",
   "brand": {
     "name": "Nhà Phố Việt Nam",
@@ -12,30 +12,35 @@
     "font": "Be Vietnam Pro"
   },
   "roles": {
-    "daucchu": {
+    "dau_chu": {
       "name": "Đầu chủ",
       "icon": "🏠",
       "modules": [
-        "dang_tin"
+        "dang_tin",
+        "lich_hen_dau_chu",
+        "kho_ca_nhan",
+        "tin_chinh_chu"
       ]
     },
-    "hocvien": {
+    "hoc_vien": {
       "name": "Học viên / Chuyên viên",
       "icon": "📋",
       "modules": [
         "loc_kho",
-        "bo_suu_tap"
+        "bo_suu_tap",
+        "dat_lich_dau_khach",
+        "khach_can_mua_gap",
+        "kho_hang_tu_do",
+        "ma_gioi_thieu"
       ]
     },
-    "truongphong": {
-      "name": "Trưởng phòng",
+    "quan_ly_phong": {
+      "name": "Quản lý phòng",
       "icon": "👔",
-      "modules": []
-    },
-    "Đầu khách": {
-      "name": "Đầu khách",
-      "icon": "🤝",
-      "description": "Chuyên viên đại diện khách hàng"
+      "modules": [
+        "quan_ly_khach",
+        "thong_bao_vu_chot"
+      ]
     }
   },
   "modules": {
@@ -876,8 +881,7 @@
         "industry": "real_estate",
         "tenant": "nhapho",
         "role": [
-          "chuyen_vien",
-          "hocvien"
+          "hoc_vien"
         ],
         "level": "beginner",
         "language": "vi",
@@ -1326,8 +1330,7 @@
         "industry": "real_estate",
         "tenant": "nhapho",
         "role": [
-          "chuyen_vien",
-          "hocvien"
+          "hoc_vien"
         ],
         "level": "intermediate",
         "language": "vi",
@@ -1345,7 +1348,7 @@
     },
     "dat_lich_dau_khach": {
       "name": "Đặt lịch dẫn khách",
-      "role": "Đầu khách",
+      "role": "Học viên / Chuyên viên",
       "icon": "📅",
       "iconImg": "assets/icons/khach_can_mua_gap.png",
       "description": "Đặt lịch hẹn dẫn khách xem nhà — từ chọn tin tới quản lý lịch hẹn",
@@ -1554,8 +1557,7 @@
         "industry": "real_estate",
         "tenant": "nhapho",
         "role": [
-          "chuyen_vien",
-          "dau_khach"
+          "hoc_vien"
         ],
         "level": "beginner",
         "tags": [
@@ -1743,7 +1745,7 @@
     },
     "khach_can_mua_gap": {
       "name": "Khách cần mua gấp",
-      "role": "Đầu khách",
+      "role": "Học viên / Chuyên viên",
       "icon": "🛒",
       "iconImg": "assets/icons/khach_can_mua_gap.png",
       "description": "Quản lý danh sách khách cần mua gấp — tạo, sửa, ghim, hold",
@@ -1952,7 +1954,7 @@
         "industry": "real_estate",
         "tenant": "nhapho",
         "role": [
-          "chuyen_vien"
+          "hoc_vien"
         ],
         "level": "intermediate",
         "tags": [
@@ -2234,7 +2236,6 @@
         "industry": "real_estate",
         "tenant": "nhapho",
         "role": [
-          "chuyen_vien",
           "dau_chu"
         ],
         "level": "beginner",
@@ -2433,7 +2434,7 @@
         "industry": "real_estate",
         "tenant": "nhapho",
         "role": [
-          "chuyen_vien"
+          "hoc_vien"
         ],
         "level": "beginner",
         "tags": [
@@ -2450,7 +2451,7 @@
     },
     "ma_gioi_thieu": {
       "name": "Mã giới thiệu",
-      "role": "Trưởng phòng",
+      "role": "Học viên / Chuyên viên",
       "icon": "🔗",
       "iconImg": "assets/icons/ma_gioi_thieu.png",
       "description": "Tạo và quản lý mã giới thiệu — quản lý phòng, tin hoạt động",
@@ -2603,8 +2604,7 @@
         "industry": "real_estate",
         "tenant": "nhapho",
         "role": [
-          "chuyen_vien",
-          "dau_chu"
+          "hoc_vien"
         ],
         "level": "beginner",
         "tags": [
@@ -2621,7 +2621,7 @@
     },
     "quan_ly_khach": {
       "name": "Quản lý khách",
-      "role": "Đầu khách",
+      "role": "Quản lý phòng",
       "icon": "👥",
       "iconImg": "assets/icons/quan_ly_khach.png",
       "description": "Quản lý khách hàng — đang tìm, đã mua, hàng phù hợp, ghi chú",
@@ -2998,7 +2998,7 @@
         "industry": "real_estate",
         "tenant": "nhapho",
         "role": [
-          "chuyen_vien"
+          "quan_ly_phong"
         ],
         "level": "intermediate",
         "tags": [
@@ -3015,7 +3015,7 @@
     },
     "thong_bao_vu_chot": {
       "name": "Thông báo vụ chốt",
-      "role": "Đầu khách",
+      "role": "Quản lý phòng",
       "icon": "🌹",
       "iconImg": "assets/icons/thong_bao_vu_chot.png",
       "description": "Tạo và xem thông báo vụ chốt — báo deal hoàn thành",
@@ -3112,8 +3112,7 @@
         "industry": "real_estate",
         "tenant": "nhapho",
         "role": [
-          "chuyen_vien",
-          "truong_phong"
+          "quan_ly_phong"
         ],
         "level": "beginner",
         "tags": [
@@ -3410,5 +3409,10 @@
         "lastReviewed": null
       }
     }
-  }
+  },
+  "featured": [
+    "dang_tin",
+    "loc_kho",
+    "bo_suu_tap"
+  ]
 }

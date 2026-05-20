@@ -963,8 +963,13 @@ button, input, textarea, select { font-family: inherit; font-size: inherit; }
       </div>
       <div class="form-grid-2">
         <div class="form-row">
-          <label>Role (vd: Học viên / Đầu chủ)</label>
-          <input type="text" id="mm-role">
+          <label>Vai trò</label>
+          <select id="mm-role" style="width:100%;padding:6px 8px;border:1px solid #ddd;border-radius:6px;font-size:13px;font-family:inherit;background:#fff">
+            <option value="">-- Chọn vai trò --</option>
+            <option value="Đầu chủ">Đầu chủ</option>
+            <option value="Học viên / Chuyên viên">Học viên / Chuyên viên</option>
+            <option value="Quản lý phòng">Quản lý phòng</option>
+          </select>
         </div>
         <div class="form-row">
           <label>Icon (emoji)</label>
