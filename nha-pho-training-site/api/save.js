@@ -48,7 +48,8 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'invalid_json', message: 'JSON không hợp lệ: ' + e.message });
   }
 
-  const GH_API  = `https://api.github.com/repos/${GITHUB_REPO}/contents/data/modules.json`;
+  const GITHUB_FILE = process.env.GITHUB_FILE_PATH || 'nha-pho-training-site/data/modules.json';
+  const GH_API  = `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
   const headers = {
     'Authorization': `Bearer ${GITHUB_TOKEN}`,
     'Accept':        'application/vnd.github+json',
