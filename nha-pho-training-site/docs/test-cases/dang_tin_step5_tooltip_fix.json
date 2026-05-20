@@ -1,0 +1,124 @@
+{
+  "feature": "dang_tin_step5_tooltip_fix",
+  "createdAt": "2026-05-20T00:00:00Z",
+  "createdBy": "qa-reviewer",
+  "spec": "docs/specs/dang_tin_step5_tooltip_fix.md",
+  "cases": [
+    {
+      "id": "TC-001",
+      "category": "data",
+      "severity": "critical",
+      "title": "ttText of step 5 matches target value exactly",
+      "preconditions": ["data/modules.json has been updated per spec"],
+      "steps": [
+        "Open data/modules.json",
+        "Navigate to modules.dang_tin.steps where id=5",
+        "Read the value of ttText"
+      ],
+      "expected": "ttText equals exactly: \"Nhà trong ngõ: nhập Ngõ 107 Trần Khát Chân — không nhập số nhà\" (including the em dash, no trailing spaces, no quote marks around the example)",
+      "type": "data"
+    },
+    {
+      "id": "TC-002",
+      "category": "data",
+      "severity": "critical",
+      "title": "New ttText word count is within the 15-word limit",
+      "preconditions": ["data/modules.json has been updated per spec"],
+      "steps": [
+        "Read ttText of step id=5 in dang_tin",
+        "Split on whitespace, excluding punctuation-only tokens",
+        "Count: Nhà(1) trong(2) ngõ(3) nhập(4) Ngõ(5) 107(6) Trần(7) Khát(8) Chân(9) không(10) nhập(11) số(12) nhà(13)",
+        "Verify count <= 15"
+      ],
+      "expected": "Word count is 13, which is <= 15. Rule 2 (ttText <= 15 words) passes with no error.",
+      "type": "data"
+    },
+    {
+      "id": "TC-003",
+      "category": "data",
+      "severity": "critical",
+      "title": "No other field of step 5 was changed",
+      "preconditions": ["data/modules.json has been updated per spec"],
+      "steps": [
+        "Read modules.dang_tin.steps[id=5] from updated file",
+        "Compare each field against the baseline recorded in the spec:",
+        "  ttTitle = \"Địa chỉ chi tiết\"",
+        "  ttPos = \"bottom\"",
+        "  img = \"form\"",
+        "  scrollY = 634",
+        "  hs = { x:12, y:714, w:370, h:88 }",
+        "  tip = \"Nhà trong ngõ dùng cú pháp: Ngõ + số ngõ + Tên đường. VD: Ngõ 107 Trần Khát Chân.\"",
+        "  guide length = 3 items with unchanged titles and bodies"
+      ],
+      "expected": "All fields listed above are bit-for-bit identical to the pre-change values. Only ttText differs.",
+      "type": "data"
+    },
+    {
+      "id": "TC-004",
+      "category": "regression",
+      "severity": "critical",
+      "title": "All other steps of dang_tin are unchanged",
+      "preconditions": ["data/modules.json has been updated per spec"],
+      "steps": [
+        "Read modules.dang_tin.steps from updated modules.json",
+        "For each step with id != 5 (steps 1-4, 6-10), verify ttText and ttTitle have not changed",
+        "Spot-check step 1 ttText = \"Hàng 1, vị trí 4 — bấm để mở form đăng tin BĐS\"",
+        "Spot-check step 4 ttText = \"Dropdown tự lọc — chọn cấp trên trước, cấp dưới tự cập nhật\"",
+        "Spot-check step 6 ttText = \"Diện tích sổ ≠ thực tế: dùng / (VD: 34/78). Nhà cấp 4: c4\"",
+        "Spot-check step 10 ttText = \"Tin vào Chờ duyệt ngay — kiểm duyệt 24h, nhận thông báo kết quả\""
+      ],
+      "expected": "All spot-checked ttText values are unchanged. Step count in dang_tin remains the same (10 steps in live data, excluding the duplicate id=6 Thong so step).",
+      "type": "regression"
+    },
+    {
+      "id": "TC-005",
+      "category": "data",
+      "severity": "high",
+      "title": "No TODO strings introduced or left in dang_tin step 5",
+      "preconditions": ["data/modules.json has been updated per spec"],
+      "steps": [
+        "Search modules.dang_tin.steps[id=5] for the substring \"TODO:\"",
+        "Check ttText, ttTitle, tip, and all guide items"
+      ],
+      "expected": "Zero occurrences of \"TODO:\" anywhere in step 5. Rule 3 (no TODO in live status) passes.",
+      "type": "data"
+    },
+    {
+      "id": "TC-006",
+      "category": "render",
+      "severity": "high",
+      "title": "Tooltip text for step 5 renders correctly in desktop view",
+      "preconditions": [
+        "training-engine.html is served at the production or staging URL",
+        "Query parameter ?module=dang_tin is set"
+      ],
+      "steps": [
+        "Open training-engine.html?module=dang_tin in a Chromium browser at viewport >= 1024px",
+        "Navigate to Step 5 using the step sidebar or Next button",
+        "Verify the hotspot overlay appears on the 'form' screenshot at the correct position",
+        "Hover over or tap the hotspot to trigger the tooltip",
+        "Read the tooltip body text"
+      ],
+      "expected": "Tooltip body displays: \"Nhà trong ngõ: nhập Ngõ 107 Trần Khát Chân — không nhập số nhà\". Text is fully readable, not truncated, and does not overlap the phone frame. ttPos=\"bottom\" means the tooltip appears below the hotspot.",
+      "type": "render"
+    },
+    {
+      "id": "TC-007",
+      "category": "render",
+      "severity": "high",
+      "title": "Tooltip text for step 5 renders correctly in mobile view",
+      "preconditions": [
+        "training-engine.html is served at the production or staging URL",
+        "Query parameter ?module=dang_tin is set"
+      ],
+      "steps": [
+        "Open training-engine.html?module=dang_tin in a browser with viewport < 768px (or DevTools mobile emulation)",
+        "Navigate to Step 5",
+        "Trigger the tooltip on the hotspot",
+        "Verify full text is displayed and legible"
+      ],
+      "expected": "Tooltip shows the full new ttText without truncation or overflow. Tooltip does not overlap the phone screen content area. At mobile breakpoint phone-w is 230px, scale factor ~0.55 — hotspot and tooltip both scale accordingly.",
+      "type": "render"
+    }
+  ]
+}

@@ -201,7 +201,7 @@
           },
           "ttPos": "bottom",
           "ttTitle": "Địa chỉ chi tiết",
-          "ttText": "Nhà trong ngõ: \"Ngõ + số + Tên đường\" VD: Ngõ 107 Trần Khát Chân",
+          "ttText": "Nhà trong ngõ: nhập Ngõ 107 Trần Khát Chân — không nhập số nhà",
           "tip": "Nhà trong ngõ dùng cú pháp: Ngõ + số ngõ + Tên đường. VD: Ngõ 107 Trần Khát Chân.",
           "guide": [
             {
