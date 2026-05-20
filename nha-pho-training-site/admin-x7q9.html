@@ -786,6 +786,8 @@ button, input, textarea, select { font-family: inherit; font-size: inherit; }
 }
 .login-remember input { width: 14px; height: 14px; cursor: pointer; }
 
+#phone-screen.draw-mode { cursor: crosshair; }
+
 </style>
 </head>
 <body>
@@ -908,6 +910,7 @@ button, input, textarea, select { font-family: inherit; font-size: inherit; }
             <div class="hs-handle bl" data-handle="bl"></div>
             <div class="hs-handle br" data-handle="br"></div>
           </div>
+          <div id="hs-draw-box" style="display:none;position:absolute;border:2px dashed #00A651;background:rgba(0,166,81,0.15);pointer-events:none;z-index:20;box-sizing:border-box;"></div>
           <div class="tooltip" id="tooltip" hidden>
             <div class="tt-title" id="tt-title">—</div>
             <div class="tt-text" id="tt-text">—</div>
@@ -2988,5 +2991,200 @@ window.bulkDuplicate = bulkDuplicate;
 window.bulkMove = bulkMove;
 window.setSearchQuery = setSearchQuery;
 </script>
-<script src="admin-patch.js"></script></body>
+<script src="admin-patch.js"></script>
+<script>
+/* ============================================================
+   HOTSPOT DRAW-BOX — interactive rectangle drawing on phone preview
+   Added as isolated block; does NOT redefine any existing function.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var drawBox = document.getElementById('hs-draw-box');
+  var screen  = document.getElementById('phone-screen');
+
+  // Drawing state
+  var drawing = false;
+  var drawStart = null; // { x, y } in screen-relative px
+
+  /* ---------- helpers ---------- */
+
+  function isOnHotspotOrHandle(target) {
+    var hot = document.getElementById('hotspot');
+    if (!hot) return false;
+    return target === hot || hot.contains(target);
+  }
+
+  function clampToScreen(val, max) {
+    return Math.max(0, Math.min(val, max));
+  }
+
+  function getClientXY(e) {
+    if (e.touches && e.touches.length > 0) {
+      return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    }
+    if (e.changedTouches && e.changedTouches.length > 0) {
+      return { x: e.changedTouches[0].clientX, y: e.changedTouches[0].clientY };
+    }
+    return { x: e.clientX, y: e.clientY };
+  }
+
+  function screenRect() {
+    return screen.getBoundingClientRect();
+  }
+
+  function showDrawBox(x, y, w, h) {
+    drawBox.style.display = 'block';
+    drawBox.style.left    = x + 'px';
+    drawBox.style.top     = y + 'px';
+    drawBox.style.width   = w + 'px';
+    drawBox.style.height  = h + 'px';
+  }
+
+  function hideDrawBox() {
+    drawBox.style.display = 'none';
+    drawing = false;
+    drawStart = null;
+  }
+
+  /* ---------- event handlers ---------- */
+
+  function onDrawMouseDown(e) {
+    // Only draw when hotspot mode + a step is loaded
+    if (!window.STATE || window.STATE.mode !== 'hotspot' || !window.STATE.step) return;
+    // Let existing code handle hotspot/handle interactions (move + resize)
+    if (isOnHotspotOrHandle(e.target)) return;
+
+    var rect = screenRect();
+    var client = getClientXY(e);
+    var sx = clampToScreen(client.x - rect.left, rect.width);
+    var sy = clampToScreen(client.y - rect.top,  rect.height);
+
+    drawing   = true;
+    drawStart = { x: sx, y: sy };
+
+    showDrawBox(sx, sy, 0, 0);
+
+    // Stop propagation so the existing setupHotspotInteraction onDown
+    // (click-to-place-center behaviour) does NOT also fire.
+    e.stopPropagation();
+    e.preventDefault();
+  }
+
+  function onDrawMouseMove(e) {
+    if (!drawing || !drawStart) return;
+    var rect = screenRect();
+    var client = getClientXY(e);
+    var cx = clampToScreen(client.x - rect.left, rect.width);
+    var cy = clampToScreen(client.y - rect.top,  rect.height);
+
+    var bx = Math.min(drawStart.x, cx);
+    var by = Math.min(drawStart.y, cy);
+    var bw = Math.abs(cx - drawStart.x);
+    var bh = Math.abs(cy - drawStart.y);
+
+    showDrawBox(bx, by, bw, bh);
+    e.preventDefault();
+  }
+
+  function onDrawMouseUp(e) {
+    if (!drawing || !drawStart) return;
+
+    var rect = screenRect();
+    var client = getClientXY(e);
+    var cx = clampToScreen(client.x - rect.left, rect.width);
+    var cy = clampToScreen(client.y - rect.top,  rect.height);
+
+    var bx = Math.min(drawStart.x, cx);
+    var by = Math.min(drawStart.y, cy);
+    var bw = Math.abs(cx - drawStart.x);
+    var bh = Math.abs(cy - drawStart.y);
+
+    hideDrawBox();
+
+    // Reject tiny rectangles (likely accidental click)
+    if (bw < 8 || bh < 8) return;
+    if (!window.STATE || !window.STATE.step) return;
+
+    var SCALE = window.SCALE || 0.6513;
+    var scrollY = window.STATE.step.scrollY || 0;
+
+    // Convert screen coords → 390px design space
+    var hsX = Math.round(bx / SCALE);
+    var hsY = Math.round(by / SCALE) + scrollY;
+    var hsW = Math.max(8, Math.round(bw / SCALE));
+    var hsH = Math.max(8, Math.round(bh / SCALE));
+
+    // Update STATE
+    if (!window.STATE.step.hs) window.STATE.step.hs = {};
+    window.STATE.step.hs.x = hsX;
+    window.STATE.step.hs.y = hsY;
+    window.STATE.step.hs.w = hsW;
+    window.STATE.step.hs.h = hsH;
+
+    // Sync the input fields and trigger their input events
+    // so the existing debounce/dirty/history logic runs
+    document.querySelectorAll('[data-hs]').forEach(function (el) {
+      var key = el.getAttribute('data-hs');
+      if (key === 'x') el.value = hsX;
+      else if (key === 'y') el.value = hsY;
+      else if (key === 'w') el.value = hsW;
+      else if (key === 'h') el.value = hsH;
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+
+    // Auto-set scrollY (click existing button so its own logic fires)
+    var autoBtn = document.getElementById('btn-auto-scroll');
+    if (autoBtn) autoBtn.click();
+  }
+
+  /* ---------- touch forwarding ---------- */
+  // touchstart / touchmove / touchend forward to the mouse handlers above
+  // so draw-box works on tablets as well.
+
+  function onTouchStart(e) {
+    if (!window.STATE || window.STATE.mode !== 'hotspot' || !window.STATE.step) return;
+    if (isOnHotspotOrHandle(e.target)) return;
+    onDrawMouseDown(e);
+  }
+
+  function onTouchMove(e) {
+    onDrawMouseMove(e);
+  }
+
+  function onTouchEnd(e) {
+    onDrawMouseUp(e);
+  }
+
+  /* ---------- draw-mode CSS class management ---------- */
+  // Patch window.renderPreview: store original, call it, then sync the class.
+
+  var _origRenderPreview = window.renderPreview;
+  window.renderPreview = function () {
+    if (typeof _origRenderPreview === 'function') _origRenderPreview.apply(this, arguments);
+
+    var isDrawMode = window.STATE && window.STATE.mode === 'hotspot' && !!window.STATE.step;
+    if (isDrawMode) {
+      screen.classList.add('draw-mode');
+    } else {
+      screen.classList.remove('draw-mode');
+      hideDrawBox(); // always hide draw-box when not in draw mode
+    }
+  };
+
+  /* ---------- attach listeners ---------- */
+  // Use capture phase on mousedown so we intercept before the existing
+  // setupHotspotInteraction listener (which is registered without capture).
+
+  screen.addEventListener('mousedown', onDrawMouseDown, true);
+  window.addEventListener('mousemove', onDrawMouseMove, { passive: false });
+  window.addEventListener('mouseup',   onDrawMouseUp);
+
+  screen.addEventListener('touchstart', onTouchStart, { passive: false, capture: true });
+  window.addEventListener('touchmove',  onTouchMove,  { passive: false });
+  window.addEventListener('touchend',   onTouchEnd);
+
+}());
+</script>
+</body>
 </html>
