@@ -12,8 +12,10 @@
 | **Tên** | Nhà Phố Training Site — Hệ thống đào tạo nội bộ |
 | **App** | Kho Nhà Phố / App Nhà Phố Việt Nam (khonhapho.com) |
 | **Mục đích** | Training nhân viên dùng app — interactive tour hotspot + chatbot AI |
-| **Phiên bản** | v13 |
+| **Phiên bản** | v14 |
 | **Deploy** | Vercel static hosting (free) |
+| **Production URLs** | `https://npvn-training-site.vercel.app` (primary) · `https://nha-pho-training-site.vercel.app` (alias) — **2 projects riêng, cùng GitHub repo, phải set env vars trên cả 2** |
+| **GitHub Repo** | `nhaphovn/NPVN-Training-Site` — `nha-pho-training-site/` là subdirectory, không phải root |
 | **Owner** | PM tại Nhà Phố |
 
 ---

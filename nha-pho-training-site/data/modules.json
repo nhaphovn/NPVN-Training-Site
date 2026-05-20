@@ -254,7 +254,7 @@
           ]
         },
         {
-          "id": 6,
+          "id": 7,
           "name": "Hoa hồng & Loại HĐ",
           "desc": "% hoa hồng, loại hợp đồng, cầu đối tác",
           "title": "Bước 6 — Nhập Hoa hồng & Loại hợp đồng",
@@ -288,7 +288,7 @@
           ]
         },
         {
-          "id": 7,
+          "id": 8,
           "name": "Tiêu đề & Nội dung",
           "desc": "Mô tả chi tiết thu hút khách",
           "title": "Bước 7 — Nhập Tiêu đề & Nội dung",
@@ -322,7 +322,7 @@
           ]
         },
         {
-          "id": 8,
+          "id": 9,
           "name": "Pháp lý & Serial sổ",
           "desc": "Bắt buộc, được công ty bảo mật",
           "title": "Bước 8 — Nhập Pháp lý & Thông tin bảo mật",
@@ -356,7 +356,7 @@
           ]
         },
         {
-          "id": 9,
+          "id": 10,
           "name": "Upload ảnh & File",
           "desc": "Ảnh thực tế, video, pháp lý, audio",
           "title": "Bước 9 — Upload ảnh & Tài liệu",
@@ -390,7 +390,7 @@
           ]
         },
         {
-          "id": 10,
+          "id": 11,
           "name": "Hoàn tất & Đăng tin",
           "desc": "Bấm nút Đăng tin cuối form",
           "title": "Bước 10 — Bấm Đăng tin",
