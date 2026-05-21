@@ -1,6 +1,6 @@
 {
   "version": "v12",
-  "lastUpdated": "2026-05-20",
+  "lastUpdated": "2026-05-21",
   "brand": {
     "name": "Nhà Phố Việt Nam",
     "app": "App Nhà Phố",
@@ -1365,18 +1365,18 @@
         {
           "id": 1,
           "name": "Vào Kho tài nguyên",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "desc": "Bấm icon đặt lịch",
           "imgKey": "list",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 23,
+            "y": 243,
+            "w": 62,
+            "h": 120
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Bấm icon đặt lịch",
+          "ttText": "Bấm icon đặt lịch cho BĐS muốn dẫn khách xem",
           "tip": "",
           "guide": [
             {
@@ -1392,18 +1392,18 @@
         {
           "id": 2,
           "name": "Xem chi tiết tin",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "desc": "Đặt lịch ở xem chi tiết",
           "imgKey": "xem",
-          "scrollY": 0,
+          "scrollY": 229,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 267,
+            "y": 904,
+            "w": 46,
+            "h": 52
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "left",
+          "ttTitle": "Bấm Icon đặt lịch",
+          "ttText": "Bấm icon đặt lịch ở góc dưới bên phải mỗi tin đăng",
           "tip": "",
           "guide": [
             {
@@ -1419,18 +1419,18 @@
         {
           "id": 3,
           "name": "Mở form đặt lịch",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "desc": "Trong form đặt lịch bấm chọn thời gian",
           "imgKey": "dat",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 10,
+            "y": 101,
+            "w": 367,
+            "h": 89
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "bottom",
+          "ttTitle": "Chọn thời gian đặt lịch",
+          "ttText": "Trong form đặt lịch chọn thời gian đặt lịch dẫn khách xem nhà",
           "tip": "",
           "guide": [
             {
@@ -1441,23 +1441,25 @@
               "title": "TODO mục 2",
               "body": "TODO: nội dung mục 2"
             }
-          ]
+          ],
+          "title": "Thời gian mặc định",
+          "sub": "Thời gian mặc định là thời gian ngay lúc thao tác, hãy chọn thời gian hẹn khách xem nhà theo lịch với khách"
         },
         {
           "id": 4,
           "name": "Chọn ngày giờ",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "desc": "Chọn ngày giờ hẹn khách",
           "imgKey": "chon",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 71,
+            "y": 375,
+            "w": 231,
+            "h": 86
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Chọn thời gian",
+          "ttText": "Chọn ngày giờ hẹn khách xem nhà",
           "tip": "",
           "guide": [
             {
@@ -1468,50 +1470,54 @@
               "title": "TODO mục 2",
               "body": "TODO: nội dung mục 2"
             }
-          ]
+          ],
+          "title": "Cột ngày giờ phủt",
+          "sub": "3 cột chọn gồm ngày, giờ rồi tới phút. Chọn bằng cách bấm vào rồi kéo lên hoặc xuống tới đúng ngày giờ phút muốn hẹn"
         },
         {
           "id": 5,
           "name": "Xem lịch hẹn dẫn khách",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "desc": "Xem lịch hẹn đã đặt ở \"Lịch hẹn\"",
           "imgKey": "lich_dk",
-          "scrollY": 0,
+          "scrollY": 40,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 3,
+            "y": 102,
+            "w": 378,
+            "h": 121
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttPos": "left",
+          "ttTitle": "Xem lịch hẹn vừa đặt",
+          "ttText": "Thông tin về thời gian lịch hẹn đã đặt",
+          "tip": "Nút \"thu hồi\" chỉ tồn tại 15 phút sau khi đặt lịch.  Sau 15 phút, lịch hẹn không thể thu hồi, sẽ ở trạng thái \"chờ xác nhận\" , \"xác nhận\" hoặc \"từ chối\" bởi đầu chủ của tin đăng đã đặt lịch",
           "guide": [
             {
-              "title": "TODO mục 1",
-              "body": "TODO: nội dung mục 1"
+              "title": "Thu hồi",
+              "body": "Nút thu hồi màu đỏ - Có thể thu hồi lịch hẹn sau khi đặt"
             },
             {
               "title": "TODO mục 2",
               "body": "TODO: nội dung mục 2"
             }
-          ]
+          ],
+          "title": "Thông tin lịch hẹn",
+          "sub": "Thông tin đầy đủ về lịch hẹn đã đặt gồm thời gian, ngày và địa chỉ căn nhà đã đặt lịch xem"
         },
         {
           "id": 6,
           "name": "Thu hồi lịch hẹn",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "desc": "Xác nhận thu hồi lịch hẹn",
           "imgKey": "thu",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 6,
+            "y": 301,
+            "w": 373,
+            "h": 126
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Bấm thu hồi hoặc đóng",
+          "ttText": "Bấm thu hồi nếu muốn hủy lịch hẹn",
           "tip": "",
           "guide": [
             {
@@ -1527,18 +1533,18 @@
         {
           "id": 7,
           "name": "Xem lịch sử",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "desc": "Xem lịch sử đặt lich",
           "imgKey": "history",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 6,
+            "y": 102,
+            "w": 378,
+            "h": 520
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "bottom",
+          "ttTitle": "Xem",
+          "ttText": "Lịch sử và trạng thái các lịch hẹn đã đặt",
           "tip": "",
           "guide": [
             {
@@ -1552,7 +1558,7 @@
           ]
         }
       ],
-      "status": "draft",
+      "status": "live",
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
