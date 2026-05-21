@@ -2116,8 +2116,8 @@
         },
         {
           "id": 4,
-          "name": "Bước 4 — Xem chờ duyệt",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Bước 4 — Xem đã duyệt",
+          "desc": "Chọn tab đã duyệt để xem hàng đã được duyệt lên kho",
           "imgKey": "xem_da_duyet",
           "scrollY": 0,
           "hs": {
@@ -2127,8 +2127,8 @@
             "h": 49
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Chọn tab đã duyệt",
+          "ttText": "Chọn để xem hàng đã được duyệt lên kho",
           "tip": "",
           "guide": [
             {
@@ -2144,7 +2144,7 @@
         {
           "id": 5,
           "name": "Bước 5 — Xem thùng rác",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "desc": "Chọn tab thùng rác để xem lại hàng đã được duyệt lên kho",
           "imgKey": "xem_thung_rac",
           "scrollY": 0,
           "hs": {
@@ -2154,8 +2154,8 @@
             "h": 59
           },
           "ttPos": "left",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Chọn tab Thùng rác",
+          "ttText": "Chọn để xem hàng đã bị đầu chủ xóa đi",
           "tip": "",
           "guide": [
             {
@@ -2170,8 +2170,8 @@
         },
         {
           "id": 6,
-          "name": "Bước 6 — Xem đã duyệt",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Bước 6 — Xem từ chối",
+          "desc": "Chọn tab Từ chối để xem hàng đã bị Thư ký từ chối",
           "imgKey": "xem_tu_choi",
           "scrollY": 0,
           "hs": {
@@ -2181,8 +2181,8 @@
             "h": 54
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Chọn tab Từ chối",
+          "ttText": "Chọn tab Từ chối để xem hàng và lý do bị từ chối",
           "tip": "",
           "guide": [
             {
@@ -2197,8 +2197,8 @@
         },
         {
           "id": 7,
-          "name": "Bước 7 — Xem từ chối",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Bước 7 — Bộ lọc",
+          "desc": "Lọc kho cá nhân",
           "imgKey": "xem_cho_duyet",
           "scrollY": 0,
           "hs": {
@@ -2208,8 +2208,8 @@
             "h": 57
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Lọc kho cá nhân",
+          "ttText": "Chọn để mở form lọc tìm hàng của mình",
           "tip": "",
           "guide": [
             {
@@ -2224,8 +2224,8 @@
         },
         {
           "id": 8,
-          "name": "Bước 8 — Lọc",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Bước 8 — Lọc kho cá nhân",
+          "desc": "Điền form lọc kho cá nhân và lọc",
           "imgKey": "loc",
           "scrollY": 44,
           "hs": {
@@ -2235,8 +2235,8 @@
             "h": 117
           },
           "ttPos": "top",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Điền và bấm Lọc",
+          "ttText": "Điền thông tin lọc cần và bấm Lọc hoặc Đặt lại",
           "tip": "",
           "guide": [
             {
@@ -2251,20 +2251,20 @@
         },
         {
           "id": 9,
-          "name": "Bước 9 — Xem tin chi tiết",
-          "desc": "TODO: mô tả ngắn cho sidebar",
-          "imgKey": "xem_tin_chi_tiet",
-          "scrollY": 0,
+          "name": "Bước 9 — Xem sửa xóa tin đăng Kho cá nhân",
+          "desc": "Chọn xem sửa xóa tin đăng, tin đăng đã duyệt không thể xóa",
+          "imgKey": "xem_tu_choi",
+          "scrollY": 237,
           "hs": {
             "x": 5,
-            "y": 45,
+            "y": 945,
             "w": 378,
-            "h": 750
+            "h": 68
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttPos": "top",
+          "ttTitle": "Chọn ",
+          "ttText": "Xem chi tiết hoặc sửa xóa tin đăng",
+          "tip": "Thông tin pháp lý là bảo mật, Đầu chủ có thể xem và truy xuất ảnh pháp lý khi chọn \"Sửa\" tin đăng ",
           "guide": [
             {
               "title": "TODO 1",
@@ -2275,6 +2275,26 @@
               "body": "TODO mục 2"
             }
           ]
+        },
+        {
+          "id": 10,
+          "name": "Bước 10 - Xem thông tin chi tiết tin đăng",
+          "desc": "Chọn xem chi tiết Tin đăng để xem hiển thị của tin đăng trên Kho tài nguyên",
+          "title": "Bước 10 — ",
+          "sub": "",
+          "imgKey": "xem_tin_chi_tiet",
+          "scrollY": 0,
+          "hs": {
+            "x": 3,
+            "y": 80,
+            "w": 382,
+            "h": 714
+          },
+          "ttPos": "bottom",
+          "ttTitle": "Xem",
+          "ttText": "Thông tin và thao tác trên tin đăng",
+          "tip": "",
+          "guide": []
         }
       ],
       "status": "live",
