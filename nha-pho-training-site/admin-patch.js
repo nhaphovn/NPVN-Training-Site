@@ -117,6 +117,22 @@ function patchImages(moduleId, key, url) {
 }
 
 // ── 3. Nút "🚀 Lưu lên site" ────────────────────────────────────────
+function syncSaveButton() {
+  const btn = document.getElementById('btn-save-live');
+  if (!btn) return;
+  const dirty = window.STATE?.dirty === true;
+  btn.disabled = !dirty;
+  if (dirty) {
+    btn.style.background = '#00A651';
+    btn.style.color      = 'white';
+    btn.style.cursor     = 'pointer';
+  } else {
+    btn.style.background = '#D5D5D5';
+    btn.style.color      = '#707070';
+    btn.style.cursor     = 'not-allowed';
+  }
+}
+
 function injectSaveButton() {
   const exportBtn = document.getElementById('btn-export-zip') ||
                     document.querySelector('[id*="export"]') ||
@@ -129,9 +145,10 @@ function injectSaveButton() {
   btn.className = exportBtn.className;
   btn.title = 'Commit modules.json lên GitHub → Vercel auto-deploy';
   btn.innerHTML = '🚀 Lưu lên site';
-  btn.style.cssText = 'background:#00A651;color:white;border:none;margin-left:6px;padding:6px 14px;border-radius:8px;font-weight:600;font-size:.82rem;cursor:pointer';
-  btn.addEventListener('mouseenter', () => btn.style.background = '#007A3D');
-  btn.addEventListener('mouseleave', () => btn.style.background = '#00A651');
+  btn.style.cssText = 'background:#D5D5D5;color:#707070;border:none;margin-left:6px;padding:6px 14px;border-radius:8px;font-weight:600;font-size:.82rem;cursor:not-allowed';
+  btn.disabled = true;
+  btn.addEventListener('mouseenter', () => { if (!btn.disabled) btn.style.background = '#007A3D'; });
+  btn.addEventListener('mouseleave', () => { if (!btn.disabled) btn.style.background = '#00A651'; });
   exportBtn.parentNode.insertBefore(btn, exportBtn.nextSibling);
   btn.addEventListener('click', saveToGithub);
 }
@@ -157,9 +174,10 @@ async function saveToGithub() {
     });
     btn.innerHTML = '✅ Đã lưu!';
     btn.style.background = '#2e7d32';
+    if (window.STATE) window.STATE.dirty = false;
     if (window.toast) window.toast('🚀 Commit OK — Vercel deploy ~1 phút', 'success');
     if (data.commit) console.log('[patch] commit:', data.commit);
-    setTimeout(() => { btn.innerHTML = origText; btn.style.background = '#00A651'; btn.disabled = false; }, 4000);
+    setTimeout(() => { btn.innerHTML = origText; syncSaveButton(); }, 4000);
   } catch (err) {
     btn.innerHTML = origText; btn.style.background = '#00A651'; btn.disabled = false;
     const msg = err.message || String(err);
@@ -196,7 +214,7 @@ async function handleStepImgFile(file) {
 
     const dirtyDot = document.getElementById('dirty-dot');
     if (dirtyDot) dirtyDot.style.display = 'block';
-    if (STATE.dirty !== undefined) STATE.dirty = true;
+    STATE.dirty = true;
 
     if (window.renderForm)    window.renderForm();
     if (window.renderPreview) window.renderPreview();
@@ -308,9 +326,12 @@ function injectPublishBadge() {
 }
 
 // ── Boot ─────────────────────────────────────────────────────────────
+let _syncInterval = null;
 function boot() {
   injectSaveButton();
   injectPublishBadge();
+  if (_syncInterval) clearInterval(_syncInterval);
+  _syncInterval = setInterval(syncSaveButton, 600);
 }
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

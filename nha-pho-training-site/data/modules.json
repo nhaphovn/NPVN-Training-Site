@@ -1364,8 +1364,8 @@
       "steps": [
         {
           "id": 1,
-          "name": "Vào Kho tài nguyên",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Tìm nút Đặt lịch",
+          "desc": "Icon Đặt lịch trên trang chủ",
           "imgKey": "list",
           "scrollY": 0,
           "hs": {
@@ -1375,24 +1375,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Icon Đặt lịch",
+          "ttText": "Bấm icon Đặt lịch để mở danh sách lịch hẹn dẫn khách",
+          "tip": "Cũng vào được qua menu cá nhân — avatar góc phải trang chủ.",
           "guide": [
             {
-              "title": "TODO mục 1",
-              "body": "TODO: nội dung mục 1"
+              "title": "Mở App Nhà Phố",
+              "body": "Đăng nhập, đợi màn hình trang chủ hiện đầy đủ."
             },
             {
-              "title": "TODO mục 2",
-              "body": "TODO: nội dung mục 2"
+              "title": "Tìm icon Đặt lịch",
+              "body": "Hàng icon tính năng trên trang chủ — tìm icon lịch có label 'Đặt lịch'."
+            },
+            {
+              "title": "Bấm để vào danh sách",
+              "body": "Màn hình danh sách lịch hẹn hiện ra với các tab trạng thái khác nhau."
             }
           ]
         },
         {
           "id": 2,
-          "name": "Xem chi tiết tin",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Xem danh sách lịch hẹn",
+          "desc": "Danh sách lịch đã đặt theo trạng thái",
           "imgKey": "xem",
           "scrollY": 0,
           "hs": {
@@ -1402,24 +1406,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Danh sách lịch hẹn",
+          "ttText": "Xem tất cả lịch theo tab: Chờ duyệt, Đã xác nhận, Đã hủy",
+          "tip": "Tab Chờ duyệt hiện lịch chưa được đầu chủ xác nhận — theo dõi thường xuyên.",
           "guide": [
             {
-              "title": "TODO mục 1",
-              "body": "TODO: nội dung mục 1"
+              "title": "Các tab trạng thái",
+              "body": "Chờ duyệt | Đã xác nhận | Đã hủy. Bấm vào tab để lọc lịch theo trạng thái."
             },
             {
-              "title": "TODO mục 2",
-              "body": "TODO: nội dung mục 2"
+              "title": "Thông tin mỗi lịch hẹn",
+              "body": "Tên BĐS, địa chỉ, ngày giờ hẹn, tên đầu chủ và trạng thái xác nhận."
+            },
+            {
+              "title": "Bấm vào lịch để xem chi tiết",
+              "body": "Chọn bất kỳ lịch hẹn nào để xem đầy đủ thông tin và các tùy chọn thao tác."
             }
           ]
         },
         {
           "id": 3,
-          "name": "Mở form đặt lịch",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Mở form đặt lịch mới",
+          "desc": "Nút tạo lịch hẹn mới từ tin BĐS",
           "imgKey": "dat",
           "scrollY": 0,
           "hs": {
@@ -1429,24 +1437,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Nút Đặt lịch",
+          "ttText": "Bấm Đặt lịch trên card tin để mở form hẹn xem nhà",
+          "tip": "Đặt lịch trực tiếp từ card tin trong Kho tài nguyên — không cần vào màn hình Đặt lịch riêng.",
           "guide": [
             {
-              "title": "TODO mục 1",
-              "body": "TODO: nội dung mục 1"
+              "title": "Từ Kho tài nguyên",
+              "body": "Trong danh sách kho, bấm icon lịch (⏰) ở cột Đặt lịch của tin muốn hẹn xem."
             },
             {
-              "title": "TODO mục 2",
-              "body": "TODO: nội dung mục 2"
+              "title": "Từ tab Chi tiết (feed)",
+              "body": "Trên card tin trong feed, bấm nút 'Đặt lịch' để mở form đặt lịch trực tiếp."
+            },
+            {
+              "title": "Form đặt lịch mở ra",
+              "body": "Thông tin BĐS đã được điền sẵn — chỉ cần chọn ngày giờ và ghi chú nếu cần."
             }
           ]
         },
         {
           "id": 4,
-          "name": "Chọn ngày giờ",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Chọn ngày và giờ hẹn",
+          "desc": "Bộ chọn ngày giờ dẫn khách xem nhà",
           "imgKey": "chon",
           "scrollY": 0,
           "hs": {
@@ -1456,24 +1468,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Chọn ngày giờ hẹn",
+          "ttText": "Chọn ngày trên lịch, rồi chọn khung giờ phù hợp",
+          "tip": "Nên chọn giờ hành chính (8h–17h) — tăng khả năng đầu chủ xác nhận nhanh.",
           "guide": [
             {
-              "title": "TODO mục 1",
-              "body": "TODO: nội dung mục 1"
+              "title": "Chọn ngày trên lịch",
+              "body": "Bấm vào ngày muốn dẫn khách — ngày hiện tại và tương lai mới được chọn."
             },
             {
-              "title": "TODO mục 2",
-              "body": "TODO: nội dung mục 2"
+              "title": "Chọn khung giờ",
+              "body": "Các khung giờ hiện ra bên dưới — bấm chọn giờ phù hợp với lịch của bạn và khách."
+            },
+            {
+              "title": "Thêm ghi chú và gửi",
+              "body": "Ghi chú thêm yêu cầu nếu cần, rồi bấm 'Gửi yêu cầu' để đặt lịch chờ đầu chủ xác nhận."
             }
           ]
         },
         {
           "id": 5,
-          "name": "Xem lịch hẹn dẫn khách",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Xem lịch đã xác nhận",
+          "desc": "Lịch hẹn đã được đầu chủ duyệt",
           "imgKey": "lich_dk",
           "scrollY": 0,
           "hs": {
@@ -1483,24 +1499,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Tab Đã xác nhận",
+          "ttText": "Lịch xanh = đầu chủ đã đồng ý, sẵn sàng dẫn khách",
+          "tip": "Nhận thông báo push khi đầu chủ xác nhận — bật thông báo App để không bỏ lỡ.",
           "guide": [
             {
-              "title": "TODO mục 1",
-              "body": "TODO: nội dung mục 1"
+              "title": "Tab Đã xác nhận",
+              "body": "Bấm tab 'Đã xác nhận' để xem toàn bộ lịch hẹn đầu chủ đã đồng ý."
             },
             {
-              "title": "TODO mục 2",
-              "body": "TODO: nội dung mục 2"
+              "title": "Thông tin lịch đã duyệt",
+              "body": "Hiển thị: tên BĐS, địa chỉ, ngày giờ cụ thể, tên và SĐT đầu chủ để liên hệ."
+            },
+            {
+              "title": "Chuẩn bị trước khi dẫn khách",
+              "body": "Liên hệ đầu chủ trước 1–2 tiếng để xác nhận lại — tránh tình huống đầu chủ vắng nhà."
             }
           ]
         },
         {
           "id": 6,
           "name": "Thu hồi lịch hẹn",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "desc": "Hủy lịch đã đặt khi không dẫn được",
           "imgKey": "thu",
           "scrollY": 0,
           "hs": {
@@ -1510,24 +1530,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Nút Thu hồi lịch",
+          "ttText": "Bấm Thu hồi để hủy — đầu chủ nhận thông báo ngay",
+          "tip": "Thu hồi trước ít nhất 2 tiếng so với giờ hẹn — thể hiện sự chuyên nghiệp với đầu chủ.",
           "guide": [
             {
-              "title": "TODO mục 1",
-              "body": "TODO: nội dung mục 1"
+              "title": "Mở chi tiết lịch hẹn",
+              "body": "Bấm vào lịch hẹn cần hủy trong danh sách — màn hình chi tiết mở ra."
             },
             {
-              "title": "TODO mục 2",
-              "body": "TODO: nội dung mục 2"
+              "title": "Bấm Thu hồi",
+              "body": "Bấm nút 'Thu hồi lịch' — hệ thống yêu cầu xác nhận trước khi hủy."
+            },
+            {
+              "title": "Xác nhận hủy",
+              "body": "Bấm Xác nhận — lịch chuyển sang trạng thái Đã hủy và đầu chủ nhận thông báo ngay."
             }
           ]
         },
         {
           "id": 7,
-          "name": "Xem lịch sử",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Xem lịch sử lịch hẹn",
+          "desc": "Toàn bộ lịch sử đặt và hủy lịch",
           "imgKey": "history",
           "scrollY": 0,
           "hs": {
@@ -1537,17 +1561,21 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Lịch sử lịch hẹn",
+          "ttText": "Xem lại tất cả lịch đã đặt, đã hủy theo thời gian",
           "tip": "",
           "guide": [
             {
-              "title": "TODO mục 1",
-              "body": "TODO: nội dung mục 1"
+              "title": "Tab Lịch sử",
+              "body": "Hiển thị toàn bộ lịch hẹn từ trước đến nay kèm trạng thái: Đã xem, Đã hủy, Không xem được."
             },
             {
-              "title": "TODO mục 2",
-              "body": "TODO: nội dung mục 2"
+              "title": "Lọc theo thời gian",
+              "body": "Dùng bộ lọc ngày để thu hẹp khoảng thời gian cần xem lại."
+            },
+            {
+              "title": "Dùng để báo cáo hoạt động",
+              "body": "Lịch sử giúp tổng hợp số lần dẫn khách trong tháng — hữu ích cho báo cáo với quản lý."
             }
           ]
         }
@@ -1589,8 +1617,8 @@
       "steps": [
         {
           "id": 1,
-          "name": "Vào trang chủ",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Thông báo yêu cầu hẹn",
+          "desc": "Chuông thông báo có lịch hẹn mới",
           "imgKey": "home",
           "scrollY": 0,
           "hs": {
@@ -1600,24 +1628,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Chuông thông báo",
+          "ttText": "Bấm chuông để xem yêu cầu đặt lịch từ chuyên viên",
+          "tip": "Bật thông báo push cho App Nhà Phố để nhận ngay khi có yêu cầu hẹn mới.",
           "guide": [
             {
-              "title": "TODO mục 1",
-              "body": "TODO: nội dung mục 1"
+              "title": "Nhận thông báo lịch hẹn",
+              "body": "App gửi push notification khi chuyên viên đặt lịch dẫn khách xem nhà của bạn."
             },
             {
-              "title": "TODO mục 2",
-              "body": "TODO: nội dung mục 2"
+              "title": "Bấm chuông để xem",
+              "body": "Icon chuông góc trên phải trang chủ — số đỏ cho biết có bao nhiêu thông báo chưa đọc."
+            },
+            {
+              "title": "Vào danh sách lịch hẹn",
+              "body": "Bấm vào thông báo lịch hẹn để chuyển thẳng sang màn hình quản lý lịch hẹn."
             }
           ]
         },
         {
           "id": 2,
-          "name": "Xem lịch hẹn dẫn khách",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Xem danh sách yêu cầu",
+          "desc": "Danh sách lịch hẹn chờ xác nhận",
           "imgKey": "lich",
           "scrollY": 0,
           "hs": {
@@ -1627,24 +1659,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Danh sách lịch hẹn",
+          "ttText": "Tab Chờ xác nhận hiện toàn bộ yêu cầu đang chờ",
+          "tip": "Phản hồi yêu cầu trong vòng 24h — chuyên viên sẽ chủ động dẫn khách tốt hơn.",
           "guide": [
             {
-              "title": "TODO mục 1",
-              "body": "TODO: nội dung mục 1"
+              "title": "Tab Chờ xác nhận",
+              "body": "Mặc định hiển thị tab Chờ xác nhận — toàn bộ yêu cầu chưa được duyệt."
             },
             {
-              "title": "TODO mục 2",
-              "body": "TODO: nội dung mục 2"
+              "title": "Thông tin mỗi yêu cầu",
+              "body": "Tên chuyên viên, tên tin BĐS liên quan, ngày giờ muốn dẫn khách."
+            },
+            {
+              "title": "Bấm vào để xem chi tiết",
+              "body": "Chọn yêu cầu bất kỳ để xem đầy đủ và thực hiện Xác nhận hoặc Từ chối."
             }
           ]
         },
         {
           "id": 3,
           "name": "Xác nhận lịch hẹn",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "desc": "Đồng ý cho chuyên viên dẫn khách",
           "imgKey": "accept",
           "scrollY": 0,
           "hs": {
@@ -1654,24 +1690,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Nút Xác nhận",
+          "ttText": "Bấm Xác nhận — chuyên viên nhận thông báo ngay lập tức",
+          "tip": "Sau khi xác nhận, liên hệ chuyên viên để trao đổi thêm nếu cần chuẩn bị gì thêm.",
           "guide": [
             {
-              "title": "TODO mục 1",
-              "body": "TODO: nội dung mục 1"
+              "title": "Xem chi tiết lịch hẹn",
+              "body": "Kiểm tra kỹ ngày giờ, tên chuyên viên và tin BĐS được yêu cầu dẫn khách."
             },
             {
-              "title": "TODO mục 2",
-              "body": "TODO: nội dung mục 2"
+              "title": "Bấm Xác nhận",
+              "body": "Bấm nút 'Xác nhận' màu xanh — lịch hẹn chuyển sang trạng thái Đã xác nhận ngay."
+            },
+            {
+              "title": "Chuyên viên nhận thông báo",
+              "body": "Hệ thống tự gửi push notification cho chuyên viên biết lịch đã được duyệt."
             }
           ]
         },
         {
           "id": 4,
           "name": "Từ chối lịch hẹn",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "desc": "Từ chối và nhập lý do cụ thể",
           "imgKey": "reject",
           "scrollY": 0,
           "hs": {
@@ -1681,24 +1721,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Nút Từ chối",
+          "ttText": "Bấm Từ chối, nhập lý do để chuyên viên hiểu và đặt lại",
+          "tip": "Nhập lý do cụ thể giúp chuyên viên đặt lại lịch phù hợp — tránh mất khách tiềm năng.",
           "guide": [
             {
-              "title": "TODO mục 1",
-              "body": "TODO: nội dung mục 1"
+              "title": "Bấm Từ chối",
+              "body": "Bấm nút 'Từ chối' màu đỏ — hộp thoại nhập lý do xuất hiện."
             },
             {
-              "title": "TODO mục 2",
-              "body": "TODO: nội dung mục 2"
+              "title": "Nhập lý do từ chối",
+              "body": "Ghi rõ lý do: bận, nhà đang sửa, chưa phù hợp thời gian... Lý do rõ ràng giúp chuyên viên đặt lại."
+            },
+            {
+              "title": "Xác nhận từ chối",
+              "body": "Bấm Gửi để hoàn tất — chuyên viên nhận thông báo kèm lý do và có thể đặt lịch khác."
             }
           ]
         },
         {
           "id": 5,
-          "name": "Thu hồi lịch hẹn (bên ĐC)",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Thu hồi lịch đã xác nhận",
+          "desc": "Đầu chủ hủy lịch đã đồng ý trước đó",
           "imgKey": "thu",
           "scrollY": 0,
           "hs": {
@@ -1708,17 +1752,21 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Nút Thu hồi",
+          "ttText": "Thu hồi lịch đã xác nhận khi có sự cố bất ngờ",
+          "tip": "Thu hồi sớm nhất có thể — chuyên viên cần thời gian thông báo lại cho khách.",
           "guide": [
             {
-              "title": "TODO mục 1",
-              "body": "TODO: nội dung mục 1"
+              "title": "Vào tab Đã xác nhận",
+              "body": "Chuyển sang tab Đã xác nhận trong danh sách lịch hẹn — tìm lịch cần hủy."
             },
             {
-              "title": "TODO mục 2",
-              "body": "TODO: nội dung mục 2"
+              "title": "Bấm Thu hồi",
+              "body": "Mở chi tiết lịch hẹn → bấm nút 'Thu hồi' → xác nhận hủy trong hộp thoại."
+            },
+            {
+              "title": "Chuyên viên nhận thông báo hủy",
+              "body": "Hệ thống tự gửi thông báo ngay cho chuyên viên — họ sẽ thông báo lại cho khách."
             }
           ]
         }
@@ -1761,8 +1809,8 @@
       "steps": [
         {
           "id": 1,
-          "name": "Bước 1 — Trang chủ",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Tìm tính năng Khách gấp",
+          "desc": "Icon Khách cần mua gấp trên trang chủ",
           "imgKey": "home",
           "scrollY": 0,
           "hs": {
@@ -1772,24 +1820,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Icon Khách cần mua gấp",
+          "ttText": "Bấm icon để vào danh sách khách đang cần mua gấp",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Tìm icon trên trang chủ",
+              "body": "Trong lưới tính năng trang chủ, tìm icon 'Khách cần mua gấp' — thường ở hàng thứ 2."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Bấm để vào danh sách",
+              "body": "Màn hình danh sách khách cần mua gấp hiện ra — bao gồm cả khách của bạn và khách đã ghim."
+            },
+            {
+              "title": "Danh sách mặc định",
+              "body": "Mặc định hiển thị khách đang active — khách hold ẩn xuống dưới hoặc sang tab riêng."
             }
           ]
         },
         {
           "id": 2,
-          "name": "Bước 2 — Xem chi tiết",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Xem chi tiết khách gấp",
+          "desc": "Thông tin nhu cầu của một khách hot",
           "imgKey": "xem",
           "scrollY": 0,
           "hs": {
@@ -1799,24 +1851,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Chi tiết khách hot",
+          "ttText": "Bấm vào khách để xem nhu cầu, ngân sách, khu vực muốn mua",
+          "tip": "Ghi nhớ nhu cầu khách — khi tìm được hàng phù hợp, liên hệ ngay để tăng tỷ lệ chốt.",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Thông tin khách gấp",
+              "body": "Tên khách, SĐT, khu vực muốn mua, loại hình, ngân sách và mức độ ưu tiên."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Nhu cầu chi tiết",
+              "body": "Cuộn xuống để xem thêm: diện tích tối thiểu, số phòng ngủ, yêu cầu pháp lý, ghi chú thêm."
+            },
+            {
+              "title": "Liên hệ nhanh",
+              "body": "Bấm SĐT để gọi trực tiếp hoặc nhắn tin — không cần lưu số thủ công."
             }
           ]
         },
         {
           "id": 3,
-          "name": "Bước 3 — Tạo mới",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Tạo khách cần mua gấp",
+          "desc": "Form nhập thông tin khách hot mới",
           "imgKey": "tao",
           "scrollY": 0,
           "hs": {
@@ -1826,24 +1882,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Nút Tạo mới",
+          "ttText": "Bấm dấu + để mở form nhập thông tin khách cần mua gấp",
+          "tip": "Điền đầy đủ nhu cầu ngay khi nói chuyện với khách — tránh quên sau khi cúp máy.",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Bấm nút Tạo mới",
+              "body": "Nút + hoặc 'Tạo mới' góc trên phải màn hình — form nhập thông tin khách mở ra."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Điền thông tin bắt buộc",
+              "body": "Tên khách, SĐT, khu vực mua, loại hình BĐS, ngân sách tối đa."
+            },
+            {
+              "title": "Lưu và thêm vào danh sách",
+              "body": "Bấm Lưu — khách xuất hiện ngay trong danh sách và có thể ghim để ưu tiên xử lý."
             }
           ]
         },
         {
           "id": 4,
-          "name": "Bước 4 — Sửa thông tin",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Sửa thông tin khách",
+          "desc": "Cập nhật nhu cầu khách thay đổi",
           "imgKey": "sua",
           "scrollY": 0,
           "hs": {
@@ -1853,24 +1913,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Nút Sửa",
+          "ttText": "Bấm Sửa để cập nhật khi nhu cầu khách thay đổi",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Mở chi tiết khách",
+              "body": "Bấm vào khách cần sửa — màn hình chi tiết mở ra với đầy đủ thông tin."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Bấm Sửa",
+              "body": "Nút 'Sửa' hoặc icon bút chì — form nhập thông tin mở lại để chỉnh sửa."
+            },
+            {
+              "title": "Lưu thay đổi",
+              "body": "Cập nhật các trường cần đổi rồi bấm Lưu — thông tin được cập nhật ngay lập tức."
             }
           ]
         },
         {
           "id": 5,
-          "name": "Bước 5 — Xóa",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Xóa khách cần mua gấp",
+          "desc": "Xóa hồ sơ khách không còn nhu cầu",
           "imgKey": "xoa",
           "scrollY": 0,
           "hs": {
@@ -1880,24 +1944,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Nút Xóa",
+          "ttText": "Xóa khách đã mua được nhà hoặc không còn nhu cầu",
+          "tip": "Xóa không khôi phục được — chắc chắn trước khi xác nhận.",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Mở chi tiết hoặc bấm giữ",
+              "body": "Vào chi tiết khách → bấm Xóa. Hoặc bấm giữ vào tên khách trong danh sách → chọn Xóa."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Xác nhận xóa",
+              "body": "Hộp thoại xác nhận xuất hiện — bấm Xác nhận để xóa hoặc Hủy để quay lại."
+            },
+            {
+              "title": "Khách bị xóa khỏi danh sách",
+              "body": "Sau khi xóa, hồ sơ khách biến mất hoàn toàn và không thể khôi phục."
             }
           ]
         },
         {
           "id": 6,
-          "name": "Bước 6 — Ghim",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Ghim khách ưu tiên",
+          "desc": "Ghim khách hot lên đầu danh sách",
           "imgKey": "ghim",
           "scrollY": 0,
           "hs": {
@@ -1907,24 +1975,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Nút Ghim",
+          "ttText": "Ghim khách để giữ trên đầu danh sách ưu tiên xử lý",
+          "tip": "Chỉ ghim khách thực sự gấp — ghim quá nhiều làm mất tác dụng ưu tiên.",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Bấm giữ hoặc bấm menu",
+              "body": "Bấm giữ vào khách ~1 giây HOẶC bấm 3 chấm (···) → chọn 'Ghim'."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Khách ghim lên đầu",
+              "body": "Khách được ghim xuất hiện ở đầu danh sách với icon ghim (📌) — dễ nhận biết và truy cập nhanh."
+            },
+            {
+              "title": "Bỏ ghim khi không cần",
+              "body": "Thực hiện lại thao tác ghim → chọn 'Bỏ ghim' — khách trở về vị trí bình thường trong danh sách."
             }
           ]
         },
         {
           "id": 7,
-          "name": "Bước 7 — Hold tạm",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Hold tạm khách",
+          "desc": "Tạm dừng khách chưa mua ngay",
           "imgKey": "hold",
           "scrollY": 0,
           "hs": {
@@ -1934,17 +2006,21 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Nút Hold",
+          "ttText": "Hold khách đang chờ ngân sách hoặc tạm dừng tìm kiếm",
+          "tip": "Hold giúp danh sách gọn hơn — chỉ để lại khách đang tích cực tìm nhà.",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Bấm menu → chọn Hold",
+              "body": "Bấm 3 chấm (···) hoặc bấm giữ vào khách → chọn 'Hold' — khách chuyển sang trạng thái Hold."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Khách hold ẩn khỏi danh sách chính",
+              "body": "Khách hold không hiện trong danh sách active — chuyển sang tab Hold riêng để xem."
+            },
+            {
+              "title": "Kích hoạt lại khi khách sẵn sàng",
+              "body": "Khi khách liên hệ lại, vào tab Hold → bấm menu → chọn 'Kích hoạt' để đưa về danh sách chính."
             }
           ]
         }
@@ -1989,8 +2065,8 @@
       "steps": [
         {
           "id": 1,
-          "name": "Bước 1 — Menu cá nhân",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Mở menu cá nhân",
+          "desc": "Avatar góc phải mở menu cá nhân",
           "imgKey": "menu",
           "scrollY": 0,
           "hs": {
@@ -2000,24 +2076,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Avatar cá nhân",
+          "ttText": "Bấm avatar góc phải trên trang chủ để mở menu",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Vào trang chủ App",
+              "body": "Đăng nhập với tài khoản Đầu chủ — đợi màn hình trang chủ hiện đầy đủ."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Bấm avatar góc phải",
+              "body": "Icon avatar (ảnh đại diện hoặc chữ cái đầu tên) ở góc trên phải màn hình — bấm để mở menu."
+            },
+            {
+              "title": "Menu cá nhân mở ra",
+              "body": "Danh sách tính năng và quản lý tài khoản hiện ra — cuộn xuống để tìm mục Quản lý kho."
             }
           ]
         },
         {
           "id": 2,
-          "name": "Bước 2 — Menu quản lý kho",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Chọn Quản lý kho",
+          "desc": "Mục Quản lý kho trong menu",
           "imgKey": "menu_list_quan_ly_kho",
           "scrollY": 0,
           "hs": {
@@ -2027,24 +2107,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Mục Quản lý kho",
+          "ttText": "Bấm Quản lý kho để vào màn hình kho tin cá nhân",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Tìm mục Quản lý kho",
+              "body": "Cuộn xuống trong menu cá nhân — tìm mục 'Quản lý kho' có icon nhà hoặc kho hàng."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Bấm để vào kho",
+              "body": "Bấm vào mục Quản lý kho — màn hình kho tin cá nhân mở ra với 4 tab trạng thái."
+            },
+            {
+              "title": "Màn hình kho cá nhân",
+              "body": "Hiển thị toàn bộ tin đăng của bạn phân theo trạng thái: Chờ duyệt, Đã duyệt, Từ chối, Thùng rác."
             }
           ]
         },
         {
           "id": 3,
-          "name": "Bước 3 — Trạng thái",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Xem 4 tab trạng thái",
+          "desc": "Tab Chờ duyệt, Đã duyệt, Từ chối, Thùng rác",
           "imgKey": "trang_thai",
           "scrollY": 0,
           "hs": {
@@ -2054,24 +2138,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "4 tab trạng thái tin",
+          "ttText": "Chờ duyệt | Đã duyệt | Từ chối | Thùng rác — bấm để lọc",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Tab Chờ duyệt",
+              "body": "Tin vừa đăng, chờ bộ phận kiểm duyệt xử lý trong 24h — theo dõi ở đây."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Tab Đã duyệt & Từ chối",
+              "body": "Đã duyệt: tin đang live trên kho. Từ chối: tin bị trả về kèm lý do cụ thể để sửa và nộp lại."
+            },
+            {
+              "title": "Tab Thùng rác",
+              "body": "Tin đã xóa — có thể khôi phục hoặc xóa vĩnh viễn từ đây."
             }
           ]
         },
         {
           "id": 4,
-          "name": "Bước 4 — Xem chờ duyệt",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Xem tin chờ duyệt",
+          "desc": "Tin đang chờ kiểm duyệt trong 24h",
           "imgKey": "xem_cho_duyet",
           "scrollY": 0,
           "hs": {
@@ -2081,24 +2169,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Tab Chờ duyệt",
+          "ttText": "Tin đã gửi, đang chờ kiểm duyệt — xem trạng thái tại đây",
+          "tip": "Kiểm duyệt trong 24h — quá thời gian liên hệ bộ phận hỗ trợ duyệt hàng.",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Bấm tab Chờ duyệt",
+              "body": "Tab đầu tiên trong kho cá nhân — liệt kê tất cả tin đang trong hàng đợi kiểm duyệt."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Thông tin hiển thị",
+              "body": "Tiêu đề tin, địa chỉ, ngày gửi, số thứ tự trong hàng đợi — theo dõi được tiến độ duyệt."
+            },
+            {
+              "title": "Thao tác được phép",
+              "body": "Tin đang chờ duyệt có thể xem lại chi tiết nhưng KHÔNG sửa được — phải chờ kết quả duyệt."
             }
           ]
         },
         {
           "id": 5,
-          "name": "Bước 5 — Xem thùng rác",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Xem thùng rác",
+          "desc": "Tin đã xóa, có thể khôi phục",
           "imgKey": "xem_thung_rac",
           "scrollY": 0,
           "hs": {
@@ -2108,24 +2200,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Tab Thùng rác",
+          "ttText": "Tin đã xóa — khôi phục hoặc xóa vĩnh viễn tại đây",
+          "tip": "Khôi phục tin từ thùng rác đưa tin về trạng thái Chờ duyệt — cần duyệt lại.",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Vào tab Thùng rác",
+              "body": "Tab cuối cùng trong kho cá nhân — danh sách tin đã bị xóa."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Khôi phục tin",
+              "body": "Bấm vào tin → chọn 'Khôi phục' — tin chuyển về tab Chờ duyệt và cần được duyệt lại."
+            },
+            {
+              "title": "Xóa vĩnh viễn",
+              "body": "Bấm 'Xóa vĩnh viễn' để xóa hoàn toàn — thao tác này không thể hoàn tác."
             }
           ]
         },
         {
           "id": 6,
-          "name": "Bước 6 — Xem đã duyệt",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Xem tin đã duyệt",
+          "desc": "Tin đang live trên kho tài nguyên",
           "imgKey": "xem_da_duyet",
           "scrollY": 0,
           "hs": {
@@ -2135,24 +2231,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Tab Đã duyệt",
+          "ttText": "Tin đang live — chuyên viên thấy và có thể đặt lịch",
+          "tip": "Tin đã duyệt có thể chỉnh sửa một số trường — loại hình, pháp lý và SĐT không sửa được.",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Tab Đã duyệt",
+              "body": "Liệt kê tất cả tin đang active trên kho — chuyên viên đang thấy và có thể đặt lịch dẫn khách."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Trạng thái từng tin",
+              "body": "Bán mạnh (xanh) | Hạ chào (vàng) | Tạm dừng (đỏ) — phản ánh mức độ hoạt động của tin."
+            },
+            {
+              "title": "Thao tác trên tin đã duyệt",
+              "body": "Có thể Sửa một số trường, Tạm dừng hoặc Xóa tin. Không thể đổi Loại hình hay Pháp lý."
             }
           ]
         },
         {
           "id": 7,
-          "name": "Bước 7 — Xem từ chối",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Xem tin bị từ chối",
+          "desc": "Tin bị trả về kèm lý do, cần sửa",
           "imgKey": "xem_tu_choi",
           "scrollY": 0,
           "hs": {
@@ -2162,24 +2262,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Tab Từ chối",
+          "ttText": "Đọc lý do từ chối, sửa đúng chỗ rồi nộp lại",
+          "tip": "Đọc kỹ lý do từ chối trước khi sửa — sửa đúng điểm bị trả mới được duyệt lần sau.",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Bấm vào tin bị từ chối",
+              "body": "Mỗi tin từ chối có nút 'Xem lý do' — bấm để đọc lý do cụ thể từ bộ phận kiểm duyệt."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Sửa theo lý do",
+              "body": "Bấm 'Sửa' để mở form — chỉnh đúng trường bị phản hồi, không cần nhập lại toàn bộ."
+            },
+            {
+              "title": "Nộp lại để duyệt",
+              "body": "Sau khi sửa, bấm 'Nộp lại' — tin quay về tab Chờ duyệt và vào hàng đợi kiểm duyệt lại."
             }
           ]
         },
         {
           "id": 8,
-          "name": "Bước 8 — Lọc",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Lọc tin trong kho",
+          "desc": "Bộ lọc tìm nhanh tin trong kho",
           "imgKey": "loc",
           "scrollY": 0,
           "hs": {
@@ -2189,24 +2293,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Nút Lọc",
+          "ttText": "Lọc theo loại hình, địa chỉ, giá để tìm tin nhanh",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Bấm nút Lọc",
+              "body": "Icon phễu hoặc nút Lọc trong kho cá nhân — bảng tiêu chí lọc mở ra."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Chọn tiêu chí lọc",
+              "body": "Lọc theo: Loại hình (thổ cư/chung cư), Địa chỉ (tỉnh/quận/đường), Khoảng giá, Ngày đăng."
+            },
+            {
+              "title": "Áp dụng và xem kết quả",
+              "body": "Bấm Lọc để áp dụng — danh sách cập nhật ngay. Bấm Đặt lại để xóa toàn bộ tiêu chí."
             }
           ]
         },
         {
           "id": 9,
-          "name": "Bước 9 — Xem tin chi tiết",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Xem chi tiết một tin",
+          "desc": "Toàn bộ nội dung tin đăng của bạn",
           "imgKey": "xem_tin_chi_tiet",
           "scrollY": 0,
           "hs": {
@@ -2216,17 +2324,21 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Chi tiết tin đăng",
+          "ttText": "Bấm vào tin để xem toàn bộ nội dung và thao tác",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Bấm vào tin trong danh sách",
+              "body": "Màn hình chi tiết tin mở ra — hiển thị toàn bộ thông tin: địa chỉ, thông số, giá, ảnh, pháp lý."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Xem thống kê lượt xem",
+              "body": "Số lượt xem, lượt lưu và số lịch hẹn đã đặt — theo dõi mức độ quan tâm của chuyên viên."
+            },
+            {
+              "title": "Thao tác từ trang chi tiết",
+              "body": "Sửa tin, Tạm dừng, Xóa — tất cả thao tác có thể thực hiện trực tiếp từ màn hình chi tiết."
             }
           ]
         }
@@ -2268,8 +2380,8 @@
       "steps": [
         {
           "id": 1,
-          "name": "Bước 1 — Trang chủ",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Tìm Kho hàng tự do",
+          "desc": "Icon Kho hàng tự do trên trang chủ",
           "imgKey": "home",
           "scrollY": 0,
           "hs": {
@@ -2279,24 +2391,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Icon Kho hàng tự do",
+          "ttText": "Bấm icon để vào kho hàng công khai toàn công ty",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Vào trang chủ App",
+              "body": "Đăng nhập với tài khoản HV/CV — đợi màn hình trang chủ hiện đầy đủ."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Tìm icon Kho hàng tự do",
+              "body": "Trong lưới tính năng — tìm icon có label 'Kho hàng tự do' hoặc 'Kho tự do'."
+            },
+            {
+              "title": "Bấm để vào kho",
+              "body": "Màn hình kho hàng tự do mở ra — hiển thị toàn bộ BĐS công khai trong hệ thống."
             }
           ]
         },
         {
           "id": 2,
-          "name": "Bước 2 — Danh sách",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Xem danh sách BĐS",
+          "desc": "Bảng BĐS công khai dạng hàng ngang",
           "imgKey": "list",
           "scrollY": 0,
           "hs": {
@@ -2306,24 +2422,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Danh sách BĐS",
+          "ttText": "Bảng dữ liệu ngang — vuốt phải để thấy thêm cột",
+          "tip": "Vuốt ngang để thấy cột Giá và Thông số — hai cột quan trọng nhất khi đánh giá nhanh.",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Bảng danh sách BĐS",
+              "body": "Mỗi hàng là một BĐS — hiển thị địa chỉ, loại hình, thông số, giá, trạng thái."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Vuốt ngang để xem thêm cột",
+              "body": "Đặt ngón tay lên bảng → kéo sang phải để thấy thêm cột Giá, Tr/m², Đầu chủ, SĐT."
+            },
+            {
+              "title": "Bấm vào hàng để xem chi tiết",
+              "body": "Chọn bất kỳ BĐS nào trong danh sách để mở panel hoặc trang chi tiết đầy đủ."
             }
           ]
         },
         {
           "id": 3,
-          "name": "Bước 3 — Lọc",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Lọc theo tiêu chí",
+          "desc": "Bộ lọc loại hình, giá, khu vực",
           "imgKey": "filter",
           "scrollY": 0,
           "hs": {
@@ -2333,24 +2453,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Nút Lọc",
+          "ttText": "Bấm Lọc để chọn loại hình, khu vực và khoảng giá",
+          "tip": "Lọc từ Tỉnh/TP xuống Quận rồi Đường — không chọn cấp dưới trước khi chọn cấp trên.",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Bấm nút Lọc",
+              "body": "Nút Lọc (icon phễu) trong toolbar — bảng tiêu chí lọc mở ra phía dưới."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Chọn tiêu chí BĐS",
+              "body": "Loại hình (Thổ cư/Chung cư/Dự án), Tỉnh/TP, Quận/Huyện, Đường, Khoảng giá."
+            },
+            {
+              "title": "Bấm Lọc để áp dụng",
+              "body": "Nút Lọc màu xanh cuối bảng — bấm để áp dụng. Bấm Đặt lại để xóa toàn bộ tiêu chí."
             }
           ]
         },
         {
           "id": 4,
-          "name": "Bước 4 — Ẩn cột",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Tùy chỉnh Ẩn cột",
+          "desc": "Toggle bật tắt cột trong bảng",
           "imgKey": "an_cot",
           "scrollY": 0,
           "hs": {
@@ -2360,24 +2484,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Nút Ẩn cột",
+          "ttText": "Bấm Ẩn cột để chọn cột nào hiển thị trong bảng",
+          "tip": "Tắt cột G.Chú và B.Cáo nếu không dùng — bảng gọn hơn, đọc nhanh hơn.",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Bấm nút Ẩn cột",
+              "body": "Nút thứ 2 trong toolbar (icon mắt gạch chéo) — panel toggle cột xuất hiện bên dưới."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Toggle bật tắt từng cột",
+              "body": "Toggle xanh = hiện cột đó trong bảng. Toggle xám = ẩn. Thay đổi áp dụng ngay lập tức."
+            },
+            {
+              "title": "Đặt lại về mặc định",
+              "body": "Bấm nút 'Đặt lại' cuối panel để khôi phục cấu hình cột mặc định ban đầu."
             }
           ]
         },
         {
           "id": 5,
-          "name": "Bước 5 — Chi tiết",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Mở panel chi tiết",
+          "desc": "Panel thông tin nhanh bên cạnh danh sách",
           "imgKey": "chi_tiet",
           "scrollY": 0,
           "hs": {
@@ -2387,24 +2515,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Panel chi tiết",
+          "ttText": "Bấm vào tin để mở panel thông tin nhanh bên cạnh",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Bấm vào tin trong danh sách",
+              "body": "Chọn bất kỳ hàng nào — panel chi tiết trượt ra bên phải (hoặc bên dưới trên mobile)."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Thông tin trong panel",
+              "body": "Ảnh BĐS, địa chỉ đầy đủ, thông số nhà, giá, trạng thái pháp lý, SĐT đầu chủ."
+            },
+            {
+              "title": "Thao tác nhanh từ panel",
+              "body": "Lưu vào bộ sưu tập, đặt lịch xem nhà, xem tin đầy đủ — không cần thoát ra danh sách."
             }
           ]
         },
         {
           "id": 6,
-          "name": "Bước 6 — Tin chi tiết",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Xem trang tin đầy đủ",
+          "desc": "Trang chi tiết BĐS với ảnh và thông tin",
           "imgKey": "tin_chi_tiet",
           "scrollY": 0,
           "hs": {
@@ -2414,17 +2546,21 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Trang tin đầy đủ",
+          "ttText": "Bấm Xem chi tiết để mở trang BĐS với ảnh và mô tả đầy đủ",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Mở trang tin đầy đủ",
+              "body": "Từ panel chi tiết → bấm 'Xem chi tiết' hoặc 'Xem toàn bộ' để vào trang tin riêng."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Nội dung trang tin",
+              "body": "Album ảnh, mô tả đầy đủ, bản đồ vị trí, thông số nhà, giá, hoa hồng, thông tin đầu chủ."
+            },
+            {
+              "title": "Đặt lịch từ trang tin",
+              "body": "Nút 'Đặt lịch' ở cuối trang — bấm để mở form hẹn xem nhà với đầu chủ ngay lập tức."
             }
           ]
         }
@@ -2465,8 +2601,8 @@
       "steps": [
         {
           "id": 1,
-          "name": "Bước 1 — Menu cá nhân",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Mở menu cá nhân",
+          "desc": "Avatar góc phải mở menu cá nhân",
           "imgKey": "menu",
           "scrollY": 0,
           "hs": {
@@ -2476,24 +2612,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Avatar cá nhân",
+          "ttText": "Bấm avatar góc phải để mở menu cá nhân",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Vào trang chủ App",
+              "body": "Đăng nhập với tài khoản HV/CV — đợi màn hình trang chủ hiện đầy đủ."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Bấm avatar góc phải",
+              "body": "Icon ảnh đại diện hoặc chữ cái tên ở góc trên phải — bấm để mở menu cá nhân."
+            },
+            {
+              "title": "Menu cá nhân mở ra",
+              "body": "Danh sách tính năng và tài khoản — cuộn để tìm mục Quản lý phòng."
             }
           ]
         },
         {
           "id": 2,
-          "name": "Bước 2 — Menu quản lý phòng",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Chọn Quản lý phòng",
+          "desc": "Mục Quản lý phòng trong menu",
           "imgKey": "menu_list_quan_ly_phong",
           "scrollY": 0,
           "hs": {
@@ -2503,24 +2643,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Mục Quản lý phòng",
+          "ttText": "Bấm Quản lý phòng để xem các tính năng quản lý",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Cuộn tìm Quản lý phòng",
+              "body": "Trong menu cá nhân, cuộn xuống để tìm mục 'Quản lý phòng' — thường ở giữa danh sách."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Bấm để mở rộng",
+              "body": "Bấm 'Quản lý phòng' — menu con mở rộng hoặc chuyển sang màn hình mới với các mục con."
+            },
+            {
+              "title": "Các mục con",
+              "body": "Trong Quản lý phòng có: Tin hoạt động, Mã giới thiệu và các tính năng quản lý khác."
             }
           ]
         },
         {
           "id": 3,
-          "name": "Bước 3 — Menu tin hoạt động",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Vào Tin hoạt động",
+          "desc": "Mục Tin hoạt động chứa mã giới thiệu",
           "imgKey": "menu_list_tin_hoat_dong",
           "scrollY": 0,
           "hs": {
@@ -2530,24 +2674,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Tin hoạt động",
+          "ttText": "Bấm Tin hoạt động để vào mục quản lý mã giới thiệu",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Tìm mục Tin hoạt động",
+              "body": "Trong danh sách con của Quản lý phòng — tìm mục 'Tin hoạt động'."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Bấm để vào",
+              "body": "Màn hình Tin hoạt động mở ra — bao gồm danh sách mã giới thiệu và thống kê."
+            },
+            {
+              "title": "Nội dung màn hình",
+              "body": "Danh sách các mã giới thiệu đã tạo, số lần được dùng và trạng thái active/inactive."
             }
           ]
         },
         {
           "id": 4,
-          "name": "Bước 4 — Xem chi tiết",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Xem mã giới thiệu hiện có",
+          "desc": "Danh sách mã và thống kê sử dụng",
           "imgKey": "xem",
           "scrollY": 0,
           "hs": {
@@ -2557,24 +2705,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Danh sách mã giới thiệu",
+          "ttText": "Xem mã, số lần dùng và trạng thái từng mã",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Danh sách mã giới thiệu",
+              "body": "Mỗi mã hiển thị: chuỗi mã, số lần đã dùng, ngày tạo và trạng thái (active/inactive)."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Thống kê từng mã",
+              "body": "Bấm vào mã để xem chi tiết: ai đã dùng mã, thời gian đăng ký, hoa hồng liên quan."
+            },
+            {
+              "title": "Chia sẻ mã nhanh",
+              "body": "Bấm icon chia sẻ bên cạnh mã để copy hoặc gửi trực tiếp qua Zalo/Viber."
             }
           ]
         },
         {
           "id": 5,
-          "name": "Bước 5 — Thêm mới",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Tạo mã giới thiệu mới",
+          "desc": "Form tạo mã mới với tên và mô tả",
           "imgKey": "them",
           "scrollY": 0,
           "hs": {
@@ -2584,17 +2736,21 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Nút Thêm mã mới",
+          "ttText": "Bấm dấu + để tạo mã giới thiệu mới cho khách hàng",
+          "tip": "Đặt tên mã có ý nghĩa (VD: tên đợt, tên khu vực) — dễ theo dõi sau này.",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Bấm nút Thêm mới",
+              "body": "Nút + hoặc 'Tạo mã mới' góc trên phải — form tạo mã giới thiệu mở ra."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Điền thông tin mã",
+              "body": "Nhập tên mã (để nhớ mục đích), mô tả nếu cần — hệ thống tự sinh chuỗi mã duy nhất."
+            },
+            {
+              "title": "Lưu và chia sẻ",
+              "body": "Bấm Lưu — mã xuất hiện ngay trong danh sách và sẵn sàng để chia sẻ cho khách hàng."
             }
           ]
         }
@@ -2643,8 +2799,8 @@
       "steps": [
         {
           "id": 1,
-          "name": "Bước 1 — Menu cá nhân",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Mở menu cá nhân",
+          "desc": "Avatar góc phải mở menu quản lý",
           "imgKey": "menu",
           "scrollY": 0,
           "hs": {
@@ -2654,24 +2810,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Avatar cá nhân",
+          "ttText": "Bấm avatar để mở menu và vào Quản lý khách",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Vào trang chủ App",
+              "body": "Đăng nhập với tài khoản Quản lý phòng — chờ màn hình trang chủ hiện đầy đủ."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Bấm avatar góc phải",
+              "body": "Icon ảnh đại diện hoặc chữ cái tên — bấm để mở menu cá nhân với đầy đủ tính năng QL."
+            },
+            {
+              "title": "Cuộn tìm mục Quản lý khách",
+              "body": "Menu cá nhân mở ra — cuộn xuống để tìm mục Tài khoản cá nhân hoặc Quản lý khách."
             }
           ]
         },
         {
           "id": 2,
-          "name": "Bước 2 — Menu tài khoản cá nhân",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Chọn Tài khoản cá nhân",
+          "desc": "Mục Tài khoản cá nhân trong menu",
           "imgKey": "menu_list_tai_khoan_ca_nhan",
           "scrollY": 0,
           "hs": {
@@ -2681,24 +2841,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Tài khoản cá nhân",
+          "ttText": "Bấm Tài khoản cá nhân để xem mục Quản lý khách",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Tìm mục Tài khoản cá nhân",
+              "body": "Trong menu cá nhân — bấm 'Tài khoản cá nhân' để mở rộng danh sách tính năng."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Tìm Quản lý khách",
+              "body": "Trong mục con của Tài khoản cá nhân — tìm và bấm 'Quản lý khách'."
+            },
+            {
+              "title": "Màn hình Quản lý khách",
+              "body": "Màn hình danh sách khách mở ra với 2 tab: Đang tìm nhà và Đã mua."
             }
           ]
         },
         {
           "id": 3,
-          "name": "Bước 3 — Xem khách đang tìm",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Xem khách đang tìm nhà",
+          "desc": "Danh sách khách còn đang tìm mua",
           "imgKey": "xem_khach_dang_tim",
           "scrollY": 0,
           "hs": {
@@ -2708,24 +2872,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Tab Đang tìm nhà",
+          "ttText": "Danh sách khách chưa mua — xem nhu cầu và hàng phù hợp",
+          "tip": "Sắp xếp theo Ngày cập nhật để thấy khách nào đang hoạt động gần nhất.",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Tab Đang tìm nhà",
+              "body": "Tab đầu tiên — liệt kê toàn bộ khách trong team đang có nhu cầu mua BĐS."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Thông tin mỗi khách",
+              "body": "Tên khách, khu vực muốn mua, ngân sách, ngày cập nhật và tên CV phụ trách."
+            },
+            {
+              "title": "Bấm vào khách để xem chi tiết",
+              "body": "Chọn bất kỳ khách để xem đầy đủ nhu cầu, lịch sử tương tác và hàng phù hợp."
             }
           ]
         },
         {
           "id": 4,
-          "name": "Bước 4 — Xem khách đã mua",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Xem khách đã mua",
+          "desc": "Danh sách khách đã chốt giao dịch",
           "imgKey": "xem_khach_da_mua",
           "scrollY": 0,
           "hs": {
@@ -2735,24 +2903,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Tab Đã mua",
+          "ttText": "Khách đã chốt — lưu lại để chăm sóc sau và referral",
+          "tip": "Khách đã mua là nguồn referral tiềm năng — duy trì liên hệ để nhận giới thiệu.",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Tab Đã mua",
+              "body": "Chuyển sang tab 'Đã mua' — danh sách khách đã hoàn thành giao dịch mua BĐS."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Thông tin lưu lại",
+              "body": "Tên khách, BĐS đã mua, ngày chốt, CV phụ trách — lưu lại để theo dõi và chăm sóc."
+            },
+            {
+              "title": "Chăm sóc sau mua",
+              "body": "Duy trì liên hệ với khách đã mua — họ có thể giới thiệu khách mới hoặc mua thêm trong tương lai."
             }
           ]
         },
         {
           "id": 5,
-          "name": "Bước 5 — Giữ thao tác đã mua",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Menu thao tác khách đã mua",
+          "desc": "Bấm giữ để mở menu thao tác nhanh",
           "imgKey": "giu_thao_tac_da_mua",
           "scrollY": 0,
           "hs": {
@@ -2762,24 +2934,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Bấm giữ để mở menu",
+          "ttText": "Bấm giữ vào khách đã mua để xem các thao tác nhanh",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Bấm giữ vào khách đã mua",
+              "body": "Bấm giữ ~1 giây vào tên khách trong tab Đã mua — menu thao tác nhanh xuất hiện."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Các thao tác có thể làm",
+              "body": "Xem chi tiết, Sửa thông tin, Ghi chú, Chuyển sang Đang tìm (nếu có nhu cầu mới)."
+            },
+            {
+              "title": "Thao tác Chuyển trạng thái",
+              "body": "Nếu khách đã mua có nhu cầu mua thêm — chọn 'Chuyển sang Đang tìm' để theo dõi lại."
             }
           ]
         },
         {
           "id": 6,
-          "name": "Bước 6 — Giữ thao tác đang tìm",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Menu thao tác khách đang tìm",
+          "desc": "Bấm giữ để mở menu thao tác nhanh",
           "imgKey": "giu_thao_tac_dang_tim",
           "scrollY": 0,
           "hs": {
@@ -2789,24 +2965,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Bấm giữ để mở menu",
+          "ttText": "Bấm giữ khách đang tìm để xem thao tác: sửa, ghi chú, đánh dấu đã mua",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Bấm giữ vào khách đang tìm",
+              "body": "Bấm giữ ~1 giây vào tên khách trong tab Đang tìm nhà — menu thao tác xuất hiện."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Các thao tác có thể làm",
+              "body": "Xem chi tiết, Sửa thông tin, Ghi chú, Xem hàng phù hợp, Đánh dấu Đã mua."
+            },
+            {
+              "title": "Đánh dấu Đã mua",
+              "body": "Khi khách chốt giao dịch — chọn 'Đánh dấu Đã mua' để chuyển khách sang tab Đã mua."
             }
           ]
         },
         {
           "id": 7,
-          "name": "Bước 7 — Sửa thông tin",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Sửa thông tin khách",
+          "desc": "Cập nhật nhu cầu và thông tin liên hệ",
           "imgKey": "sua_thong_tin",
           "scrollY": 0,
           "hs": {
@@ -2816,24 +2996,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Form sửa thông tin",
+          "ttText": "Cập nhật SĐT, khu vực, ngân sách khi khách thay đổi nhu cầu",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Mở form sửa",
+              "body": "Từ menu thao tác → chọn 'Sửa thông tin' — form nhập liệu mở ra với thông tin hiện tại."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Cập nhật trường cần đổi",
+              "body": "Sửa SĐT, địa chỉ, khu vực muốn mua, ngân sách, loại hình — chỉ sửa trường có thay đổi."
+            },
+            {
+              "title": "Lưu cập nhật",
+              "body": "Bấm 'Lưu' — thông tin khách được cập nhật ngay. Lịch sử thay đổi được ghi lại tự động."
             }
           ]
         },
         {
           "id": 8,
-          "name": "Bước 8 — Xem hàng phù hợp",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Xem hàng phù hợp",
+          "desc": "BĐS khớp nhu cầu của khách này",
           "imgKey": "xem_hang_phu_hop",
           "scrollY": 0,
           "hs": {
@@ -2843,24 +3027,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Hàng phù hợp",
+          "ttText": "Hệ thống tự khớp BĐS theo nhu cầu và ngân sách khách",
+          "tip": "Hệ thống khớp theo khu vực, loại hình và khoảng giá — lọc thêm nếu muốn thu hẹp kết quả.",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Mở danh sách hàng phù hợp",
+              "body": "Từ chi tiết khách → bấm 'Xem hàng phù hợp' — hệ thống tự tìm BĐS khớp nhu cầu."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Kết quả khớp tự động",
+              "body": "Danh sách BĐS được lọc theo khu vực, loại hình, khoảng giá và thông số đã nhập cho khách."
+            },
+            {
+              "title": "Đặt lịch xem nhà từ đây",
+              "body": "Bấm vào BĐS phù hợp → chọn 'Đặt lịch' để hẹn xem nhà ngay từ màn hình này."
             }
           ]
         },
         {
           "id": 9,
-          "name": "Bước 9 — Lọc hàng phù hợp",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Lọc hàng phù hợp",
+          "desc": "Thu hẹp kết quả khớp theo tiêu chí",
           "imgKey": "loc_hang_phu_hop",
           "scrollY": 0,
           "hs": {
@@ -2870,24 +3058,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Lọc hàng phù hợp",
+          "ttText": "Thêm tiêu chí để thu hẹp danh sách hàng phù hợp",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Bấm nút Lọc",
+              "body": "Trong màn hình hàng phù hợp — bấm Lọc để mở thêm tiêu chí thu hẹp kết quả."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Tiêu chí lọc thêm",
+              "body": "Lọc thêm theo: Hiện trạng, Đặc điểm (mặt phố/trong ngõ/lô góc), Số phòng ngủ cụ thể."
+            },
+            {
+              "title": "Áp dụng và xem kết quả",
+              "body": "Bấm Lọc để áp dụng — danh sách BĐS cập nhật ngay theo tiêu chí đã chọn thêm."
             }
           ]
         },
         {
           "id": 10,
-          "name": "Bước 10 — Căn đã xem",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Đánh dấu căn đã xem",
+          "desc": "Ghi lại BĐS khách đã được dẫn xem",
           "imgKey": "can_da_xem",
           "scrollY": 0,
           "hs": {
@@ -2897,24 +3089,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Căn đã xem",
+          "ttText": "Đánh dấu BĐS đã dẫn khách xem để tránh dẫn lại",
+          "tip": "Đánh dấu đã xem giúp tránh dẫn khách xem lại căn họ đã từ chối — tiết kiệm thời gian.",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Vào danh sách hàng phù hợp",
+              "body": "Trong màn hình hàng phù hợp — mỗi BĐS có checkbox hoặc nút 'Đã xem'."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Đánh dấu BĐS đã dẫn xem",
+              "body": "Bấm 'Đã xem' trên BĐS đó — icon xác nhận xuất hiện, BĐS được ghi lại vào lịch sử."
+            },
+            {
+              "title": "Xem lại lịch sử căn đã xem",
+              "body": "Tab hoặc bộ lọc 'Đã xem' trong màn hình hàng phù hợp — liệt kê tất cả căn khách đã được dẫn."
             }
           ]
         },
         {
           "id": 11,
-          "name": "Bước 11 — Ghi chú",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Ghi chú về khách",
+          "desc": "Nhập ghi chú nội bộ về khách hàng",
           "imgKey": "ghi_chu",
           "scrollY": 0,
           "hs": {
@@ -2924,24 +3120,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Ô ghi chú khách",
+          "ttText": "Ghi chú tính cách, yêu cầu đặc biệt, lịch sử trao đổi",
+          "tip": "Ghi chú chi tiết giúp CV xử lý khách chính xác hơn — đặc biệt khi bàn giao khách cho người khác.",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Vào màn hình ghi chú",
+              "body": "Từ chi tiết khách → bấm 'Ghi chú' — màn hình nhập ghi chú mở ra."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Nhập nội dung ghi chú",
+              "body": "Ghi chú tính cách khách, yêu cầu đặc biệt, lý do từ chối các căn trước, kế hoạch tiếp theo."
+            },
+            {
+              "title": "Lưu ghi chú",
+              "body": "Bấm Lưu — ghi chú được lưu kèm thời gian và tên người nhập, hiển thị trong lịch sử khách."
             }
           ]
         },
         {
           "id": 12,
-          "name": "Bước 12 — Thêm mới khách",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Thêm khách hàng mới",
+          "desc": "Form nhập thông tin khách hàng mới",
           "imgKey": "them_moi_khach",
           "scrollY": 0,
           "hs": {
@@ -2951,24 +3151,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Nút Thêm khách mới",
+          "ttText": "Bấm + để tạo hồ sơ khách hàng mới trong hệ thống",
+          "tip": "Nhập đủ nhu cầu ngay khi tiếp nhận khách — hệ thống tự khớp hàng phù hợp ngay sau đó.",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Bấm nút Thêm mới",
+              "body": "Nút + góc trên phải màn hình Quản lý khách — form nhập thông tin khách mở ra."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Điền thông tin bắt buộc",
+              "body": "Tên, SĐT, khu vực muốn mua, loại hình BĐS, ngân sách tối đa — đây là 5 trường quan trọng nhất."
+            },
+            {
+              "title": "Lưu và phân công CV",
+              "body": "Bấm Lưu — hồ sơ khách tạo xong. Phân công CV phụ trách nếu cần ngay trên màn hình này."
             }
           ]
         },
         {
           "id": 13,
-          "name": "Bước 13 — Truy vấn",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Truy vấn tìm kiếm khách",
+          "desc": "Tìm kiếm khách theo tên, SĐT, khu vực",
           "imgKey": "truy_van",
           "scrollY": 0,
           "hs": {
@@ -2978,17 +3182,21 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Ô tìm kiếm khách",
+          "ttText": "Gõ tên hoặc SĐT để tìm nhanh khách trong hệ thống",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Bấm ô tìm kiếm",
+              "body": "Icon kính lúp hoặc ô search phía trên danh sách — bấm để mở bàn phím nhập liệu."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Tìm theo tên hoặc SĐT",
+              "body": "Gõ một phần tên hoặc SĐT — hệ thống lọc ngay danh sách khách khớp với từ khóa."
+            },
+            {
+              "title": "Tìm theo tiêu chí nâng cao",
+              "body": "Bấm 'Lọc nâng cao' để tìm theo khu vực, ngân sách, CV phụ trách hoặc trạng thái khách."
             }
           ]
         }
@@ -3027,8 +3235,8 @@
       "steps": [
         {
           "id": 1,
-          "name": "Bước 1 — Menu cá nhân",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Mở menu cá nhân",
+          "desc": "Avatar mở menu đến Thông báo vụ chốt",
           "imgKey": "menu",
           "scrollY": 0,
           "hs": {
@@ -3038,24 +3246,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Avatar cá nhân",
+          "ttText": "Bấm avatar để mở menu và tìm Thông báo vụ chốt",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Vào trang chủ App",
+              "body": "Đăng nhập với tài khoản Quản lý phòng — chờ màn hình trang chủ hiện đầy đủ."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Bấm avatar góc phải",
+              "body": "Icon ảnh đại diện hoặc chữ cái tên — bấm để mở menu cá nhân."
+            },
+            {
+              "title": "Tìm mục Thông báo vụ chốt",
+              "body": "Cuộn trong menu cá nhân — tìm mục 'Thông báo vụ chốt' hoặc 'Vụ chốt' rồi bấm vào."
             }
           ]
         },
         {
           "id": 2,
-          "name": "Bước 2 — Xem chi tiết",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Xem thông báo vụ chốt",
+          "desc": "Danh sách deal đã chốt trong team",
           "imgKey": "xem",
           "scrollY": 0,
           "hs": {
@@ -3065,24 +3277,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Danh sách vụ chốt",
+          "ttText": "Xem tất cả deal thành công của team theo thời gian",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Danh sách thông báo vụ chốt",
+              "body": "Liệt kê các deal thành công trong team — sắp xếp theo thời gian mới nhất."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Thông tin mỗi vụ chốt",
+              "body": "Tên CV, tên BĐS, địa chỉ, giá chốt, ngày chốt và hoa hồng — đầy đủ thông tin giao dịch."
+            },
+            {
+              "title": "Bấm để xem chi tiết",
+              "body": "Chọn bất kỳ vụ chốt để xem đầy đủ thông tin, ảnh minh chứng và ghi chú đi kèm."
             }
           ]
         },
         {
           "id": 3,
-          "name": "Bước 3 — Tạo mới",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Tạo thông báo vụ chốt",
+          "desc": "Form nhập thông tin deal mới thành công",
           "imgKey": "tao",
           "scrollY": 0,
           "hs": {
@@ -3092,17 +3308,21 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Nút Tạo vụ chốt",
+          "ttText": "Bấm + để nhập thông tin deal mới thành công của team",
+          "tip": "Tạo thông báo sớm sau khi chốt — tạo động lực và cập nhật kết quả cho toàn team.",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Bấm nút Tạo mới",
+              "body": "Nút + hoặc 'Tạo thông báo' góc trên phải — form nhập thông tin vụ chốt mở ra."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Điền thông tin vụ chốt",
+              "body": "Tên CV, BĐS đã bán (chọn từ kho), giá chốt thực tế, ngày chốt, ghi chú về giao dịch."
+            },
+            {
+              "title": "Gửi thông báo cho team",
+              "body": "Bấm 'Đăng thông báo' — toàn bộ team nhận thông báo về vụ chốt thành công."
             }
           ]
         }
@@ -3147,8 +3367,8 @@
       "steps": [
         {
           "id": 1,
-          "name": "Bước 1 — Menu cá nhân",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Mở menu cá nhân",
+          "desc": "Avatar góc phải mở menu cá nhân",
           "imgKey": "menu",
           "scrollY": 0,
           "hs": {
@@ -3158,24 +3378,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Avatar cá nhân",
+          "ttText": "Bấm avatar góc phải để mở menu cá nhân",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Vào trang chủ App",
+              "body": "Đăng nhập với tài khoản Đầu chủ — đợi màn hình trang chủ hiện đầy đủ."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Bấm avatar góc phải",
+              "body": "Icon ảnh đại diện hoặc chữ cái tên ở góc trên phải — bấm để mở menu cá nhân."
+            },
+            {
+              "title": "Menu cá nhân mở ra",
+              "body": "Danh sách tính năng và tài khoản hiện ra — cuộn để tìm mục Quản lý kho / Tin chính chủ."
             }
           ]
         },
         {
           "id": 2,
-          "name": "Bước 2 — Menu quản lý kho",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Chọn Tin chính chủ",
+          "desc": "Mục Tin chính chủ trong menu Quản lý kho",
           "imgKey": "menu_list_quan_ly_kho",
           "scrollY": 0,
           "hs": {
@@ -3185,24 +3409,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Tin chính chủ",
+          "ttText": "Bấm Tin chính chủ để xem BĐS chính chủ từ các nền tảng",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Tìm mục Quản lý kho",
+              "body": "Trong menu cá nhân — bấm 'Quản lý kho' để mở rộng danh sách mục con."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Chọn Tin chính chủ",
+              "body": "Trong mục con — bấm 'Tin chính chủ' để vào màn hình tin BĐS từ chủ nhà trực tiếp."
+            },
+            {
+              "title": "Về Tin chính chủ",
+              "body": "Đây là các tin BĐS đăng trực tiếp bởi chủ nhà từ các nền tảng khác — không qua môi giới."
             }
           ]
         },
         {
           "id": 3,
-          "name": "Bước 3 — Xem chi tiết",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Xem danh sách tin chính chủ",
+          "desc": "Tin BĐS chính chủ từ các nền tảng",
           "imgKey": "xem",
           "scrollY": 0,
           "hs": {
@@ -3212,24 +3440,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Danh sách tin chính chủ",
+          "ttText": "Xem BĐS chính chủ — bấm để xem chi tiết từng tin",
+          "tip": "Tin chính chủ thường có giá tốt hơn vì không qua môi giới — theo dõi thường xuyên.",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Danh sách tin chính chủ",
+              "body": "Hiển thị các BĐS đăng trực tiếp bởi chủ nhà — ảnh thumbnail, địa chỉ, giá và loại hình."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Sắp xếp và làm mới",
+              "body": "Mặc định sắp theo Mới nhất. Vuốt xuống để làm mới danh sách và lấy tin mới nhất."
+            },
+            {
+              "title": "Bấm để xem chi tiết",
+              "body": "Chọn bất kỳ tin nào để xem đầy đủ thông tin, ảnh và thông tin liên hệ chủ nhà."
             }
           ]
         },
         {
           "id": 4,
-          "name": "Bước 4 — Đã lưu",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Xem tin đã lưu",
+          "desc": "Tab tin chính chủ đã bookmark",
           "imgKey": "da_luu",
           "scrollY": 0,
           "hs": {
@@ -3239,24 +3471,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Tab Đã lưu",
+          "ttText": "Tin chính chủ đã bookmark — truy cập nhanh để theo dõi",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Bấm tab Đã lưu",
+              "body": "Tab Đã lưu trong màn hình Tin chính chủ — hiển thị tất cả tin đã bấm lưu."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Tin lưu để theo dõi",
+              "body": "Lưu tin quan tâm để dễ tìm lại — không cần cuộn tìm trong danh sách dài."
+            },
+            {
+              "title": "Bỏ lưu nếu không cần",
+              "body": "Bấm lại icon lưu trên tin đã lưu — tin bị xóa khỏi tab Đã lưu ngay lập tức."
             }
           ]
         },
         {
           "id": 5,
-          "name": "Bước 5 — Ghi chú",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Ghi chú tin chính chủ",
+          "desc": "Nhập ghi chú cho tin đã lưu",
           "imgKey": "ghi_chu",
           "scrollY": 0,
           "hs": {
@@ -3266,24 +3502,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Ô ghi chú",
+          "ttText": "Ghi chú thông tin khảo sát, thỏa thuận sơ bộ với chủ nhà",
+          "tip": "Ghi chú ngay sau khi liên hệ chủ nhà — tránh quên thông tin quan trọng khi đàm phán.",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Bấm Ghi chú trên tin",
+              "body": "Trong chi tiết tin đã lưu — bấm nút 'Ghi chú' hoặc icon bút để mở ô nhập ghi chú."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Nhập nội dung ghi chú",
+              "body": "Ghi lại thông tin từ cuộc gọi với chủ nhà: giá có thể thỏa thuận, tình trạng nhà, lịch xem."
+            },
+            {
+              "title": "Lưu ghi chú",
+              "body": "Bấm Lưu — ghi chú gắn với tin đó và hiện lại mỗi khi mở tin này."
             }
           ]
         },
         {
           "id": 6,
-          "name": "Bước 6 — Lọc",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Lọc tin chính chủ",
+          "desc": "Bộ lọc khu vực, giá, loại hình",
           "imgKey": "loc",
           "scrollY": 0,
           "hs": {
@@ -3293,24 +3533,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Nút Lọc",
+          "ttText": "Bấm Lọc để tìm tin chính chủ theo khu vực và giá",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Bấm nút Lọc",
+              "body": "Icon phễu hoặc nút Lọc phía trên danh sách — bảng tiêu chí lọc mở ra."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Chọn tiêu chí lọc",
+              "body": "Tỉnh/TP, Quận/Huyện, Loại hình (thổ cư/chung cư/dự án), Khoảng giá, Diện tích."
+            },
+            {
+              "title": "Áp dụng và xem kết quả",
+              "body": "Bấm Lọc để áp dụng — danh sách cập nhật ngay. Bấm Đặt lại để xóa tiêu chí."
             }
           ]
         },
         {
           "id": 7,
-          "name": "Bước 7 — Tin nhanh",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Xem tin nhanh",
+          "desc": "Card tóm tắt nhanh thông tin BĐS",
           "imgKey": "tin_nhanh",
           "scrollY": 0,
           "hs": {
@@ -3320,24 +3564,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Card tin nhanh",
+          "ttText": "Bấm để xem tóm tắt BĐS mà không cần mở trang đầy đủ",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Tin nhanh là gì",
+              "body": "Card tóm tắt xuất hiện khi bấm vào tin — hiển thị nhanh ảnh chính, giá, địa chỉ, thông số."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Thao tác từ tin nhanh",
+              "body": "Lưu tin, gọi điện chủ nhà, xem phản hồi — tất cả không cần mở trang chi tiết."
+            },
+            {
+              "title": "Mở trang đầy đủ",
+              "body": "Bấm 'Xem đầy đủ' hoặc tiêu đề tin để mở trang chi tiết với album ảnh và mô tả đầy đủ."
             }
           ]
         },
         {
           "id": 8,
-          "name": "Bước 8 — Phản hồi",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Gửi phản hồi cho chủ nhà",
+          "desc": "Form gửi yêu cầu tư vấn tới chủ nhà",
           "imgKey": "phan_hoi",
           "scrollY": 0,
           "hs": {
@@ -3347,24 +3595,28 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttTitle": "Form Phản hồi",
+          "ttText": "Gửi câu hỏi hoặc yêu cầu xem nhà cho chủ nhà",
+          "tip": "Phản hồi ngắn gọn và rõ mục đích — chủ nhà trả lời nhanh hơn khi câu hỏi cụ thể.",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Bấm Phản hồi hoặc Liên hệ",
+              "body": "Nút 'Phản hồi' hoặc 'Liên hệ chủ nhà' trong trang chi tiết — form gửi tin nhắn mở ra."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Nhập nội dung phản hồi",
+              "body": "Nhập câu hỏi về BĐS: giá có thể thỏa thuận không, tình trạng pháp lý, lịch xem nhà."
+            },
+            {
+              "title": "Gửi phản hồi",
+              "body": "Bấm Gửi — chủ nhà nhận thông báo và có thể trả lời trong App hoặc qua SĐT liên hệ."
             }
           ]
         },
         {
           "id": 9,
-          "name": "Bước 9 — Phản hồi",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Xem phản hồi của chủ nhà",
+          "desc": "Phản hồi chủ nhà gửi lại sau yêu cầu",
           "imgKey": "phan_hoi_2",
           "scrollY": 0,
           "hs": {
@@ -3374,17 +3626,21 @@
             "h": 80
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Phản hồi từ chủ nhà",
+          "ttText": "Xem câu trả lời của chủ nhà về BĐS đã hỏi",
           "tip": "",
           "guide": [
             {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
+              "title": "Nhận thông báo phản hồi",
+              "body": "App gửi push notification khi chủ nhà trả lời — bấm để vào xem trực tiếp."
             },
             {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
+              "title": "Xem nội dung phản hồi",
+              "body": "Màn hình hội thoại hiển thị toàn bộ trao đổi — phản hồi của chủ nhà hiện ở cuối."
+            },
+            {
+              "title": "Tiếp tục trao đổi",
+              "body": "Gõ tin nhắn tiếp theo vào ô nhập phía dưới — có thể trao đổi qua lại trực tiếp trong App."
             }
           ]
         }

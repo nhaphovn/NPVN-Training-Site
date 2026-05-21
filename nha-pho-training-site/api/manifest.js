@@ -43,12 +43,16 @@ export default async function handler(req, res) {
         return {
           key:        p?.key || b.pathname,
           url:        b.url,
+          proxyUrl:   `/api/img?path=${encodeURIComponent(b.pathname)}`,
           pathname:   b.pathname,
           size:       b.size,
           uploadedAt: b.uploadedAt,
         };
       })
       .sort((a, b) => a.key.localeCompare(b.key));
+
+    const blobToken = process.env.BLOB_READ_WRITE_TOKEN;
+    const fetchOpts = blobToken ? { headers: { Authorization: `Bearer ${blobToken}` } } : {};
 
     const specs = {};
     for (const b of specRes.blobs) {
@@ -59,7 +63,7 @@ export default async function handler(req, res) {
         continue;
       }
       try {
-        const r = await fetch(b.url);
+        const r = await fetch(b.url, fetchOpts);
         const text = await r.text();
         const parsed = JSON.parse(text);
         specs[p.key] = { content: parsed, url: b.url, size: b.size, uploadedAt: b.uploadedAt };

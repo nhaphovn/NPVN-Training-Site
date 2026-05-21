@@ -29,15 +29,19 @@ export default async function handler(req, res) {
   const cleanModule = String(moduleId).replace(/[^a-z0-9_]/gi, '_').toLowerCase();
   const path = `specs/${cleanModule}/${kind}.json`;
 
+  const blobToken = process.env.BLOB_READ_WRITE_TOKEN;
+  if (!blobToken) return res.status(500).json({ error: 'not_configured', message: 'BLOB_READ_WRITE_TOKEN chưa set' });
+
   // ── GET ─────────────────────────────────────────
   if (req.method === 'GET') {
     try {
-      const r = await list({ prefix: path, limit: 1 });
-      const blob = r.blobs[0];
+      const r = await list({ prefix: path, limit: 10 });
+      const sorted = r.blobs.sort((a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt));
+      const blob = sorted[0];
       if (!blob) {
         return res.status(404).json({ error: 'not_found', message: `Spec '${kind}' chưa tồn tại cho module '${cleanModule}'` });
       }
-      const fr   = await fetch(blob.url);
+      const fr   = await fetch(blob.url, { headers: { Authorization: `Bearer ${blobToken}` } });
       const text = await fr.text();
       try {
         return res.status(200).json({ ok: true, module: cleanModule, kind, content: JSON.parse(text), url: blob.url, uploadedAt: blob.uploadedAt });
@@ -72,7 +76,7 @@ export default async function handler(req, res) {
 
     try {
       const blob = await put(path, content, {
-        access:          'public',
+        access:          'private',
         contentType:     'application/json',
         addRandomSuffix: false,
       });
