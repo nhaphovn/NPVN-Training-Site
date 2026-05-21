@@ -96,16 +96,17 @@ export default async function handler(req, res) {
   else if (buffer[0] === 0x52 && buffer[1] === 0x49) contentType = 'image/webp';
 
   try {
-    // Bypass @vercel/blob SDK: SDK only accepts access:'public' in its type system,
-    // but private stores reject that value. Direct REST API call avoids the conflict.
-    const uploadRes = await fetch('https://blob.vercel-storage.com', {
+    // Bypass @vercel/blob SDK: SDK throws "access must be public" client-side for
+    // any access !== 'public', before the HTTP call even fires. Private stores need
+    // no x-access header — just omit it. REST API v8: pathname goes in URL path.
+    const uploadRes = await fetch(`https://blob.vercel-storage.com/${blobPath}`, {
       method: 'PUT',
       headers: {
         'authorization':       `Bearer ${blobToken}`,
-        'x-api-version':       '7',
-        'x-pathname':          blobPath,
+        'x-api-version':       '8',
         'x-add-random-suffix': '0',
         'content-type':        contentType,
+        'x-content-length':    String(buffer.length),
       },
       body: buffer,
     });
