@@ -3040,18 +3040,18 @@
         {
           "id": 1,
           "name": "Bước 1 — Menu cá nhân",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "desc": "Chọn tài khoản cá nhân",
           "imgKey": "menu",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 192,
+            "y": 461,
+            "w": 189,
+            "h": 82
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "left",
+          "ttTitle": "Chọn tab",
+          "ttText": "Tài khoản cá nhân để xem feed",
           "tip": "",
           "guide": [
             {
@@ -3066,19 +3066,19 @@
         },
         {
           "id": 2,
-          "name": "Bước 2 — Xem chi tiết",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Bước 2 — Xem chi tiết - Tạo bài viết",
+          "desc": "Xem feed các bài viết Thông báo vụ chốt",
           "imgKey": "xem",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 2,
+            "y": 96,
+            "w": 384,
+            "h": 283
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "bottom",
+          "ttTitle": "Xem và Tạo",
+          "ttText": "Feed thông báo vụ chốt - Nút tạo bài viết góc trái phía trên",
           "tip": "",
           "guide": [
             {
@@ -3094,18 +3094,18 @@
         {
           "id": 3,
           "name": "Bước 3 — Tạo mới",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "desc": "Tạo bài viết thông báo vụ chốt",
           "imgKey": "tao",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 0,
+            "y": 93,
+            "w": 386,
+            "h": 507
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "bottom",
+          "ttTitle": "Viết bài và upload ảnh",
+          "ttText": "Viết mới, hoặc copy-paste nội dung, upload ảnh liên quan bài viết",
           "tip": "",
           "guide": [
             {
@@ -3119,7 +3119,7 @@
           ]
         }
       ],
-      "status": "draft",
+      "status": "live",
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
