@@ -104,6 +104,7 @@ export default async function handler(req, res) {
       headers: {
         'authorization':       `Bearer ${blobToken}`,
         'x-api-version':       '8',
+        'x-access':            'private',
         'x-add-random-suffix': '0',
         'content-type':        contentType,
         'x-content-length':    String(buffer.length),
