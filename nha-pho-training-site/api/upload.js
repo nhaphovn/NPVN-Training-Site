@@ -3,7 +3,6 @@
 // Body: raw image bytes
 // Response: { url, pathname, size }
 
-import { put } from '@vercel/blob';
 import { Buffer } from 'buffer';
 
 const ALLOWED_EXT = /\.(jpg|jpeg|png|webp)$/i;
@@ -36,6 +35,11 @@ export default async function handler(req, res) {
   const adminToken = process.env.ADMIN_UPLOAD_TOKEN;
   if (adminToken && req.headers['x-admin-token'] !== adminToken) {
     return res.status(401).json({ error: 'unauthorized' });
+  }
+
+  const blobToken = process.env.BLOB_READ_WRITE_TOKEN;
+  if (!blobToken) {
+    return res.status(500).json({ error: 'not_configured', message: 'BLOB_READ_WRITE_TOKEN chưa set trên Vercel' });
   }
 
   // Accept either:
@@ -92,11 +96,26 @@ export default async function handler(req, res) {
   else if (buffer[0] === 0x52 && buffer[1] === 0x49) contentType = 'image/webp';
 
   try {
-    const blob = await put(blobPath, buffer, {
-      access:          'private',
-      contentType:     contentType,
-      addRandomSuffix: false,
+    // Bypass @vercel/blob SDK: SDK only accepts access:'public' in its type system,
+    // but private stores reject that value. Direct REST API call avoids the conflict.
+    const uploadRes = await fetch('https://blob.vercel-storage.com', {
+      method: 'PUT',
+      headers: {
+        'authorization':       `Bearer ${blobToken}`,
+        'x-api-version':       '7',
+        'x-pathname':          blobPath,
+        'x-add-random-suffix': '0',
+        'content-type':        contentType,
+      },
+      body: buffer,
     });
+
+    if (!uploadRes.ok) {
+      const errText = await uploadRes.text();
+      throw new Error(`Blob API ${uploadRes.status}: ${errText.slice(0, 300)}`);
+    }
+
+    const blob = await uploadRes.json();
 
     const proxyUrl = `/api/img?path=${blob.pathname}`;
     return res.status(200).json({
@@ -111,12 +130,9 @@ export default async function handler(req, res) {
     });
   } catch (err) {
     console.error('[upload] error:', err);
-    const isToken = err.message?.includes('token') || err.message?.includes('401');
     return res.status(500).json({
-      error: 'upload_failed',
-      message: isToken
-        ? 'BLOB_READ_WRITE_TOKEN chưa đúng — check Vercel env'
-        : err.message,
+      error:   'upload_failed',
+      message: err.message,
     });
   }
 }
