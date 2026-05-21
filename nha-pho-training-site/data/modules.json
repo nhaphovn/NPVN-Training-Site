@@ -1768,18 +1768,18 @@
         {
           "id": 1,
           "name": "Bước 1 — Trang chủ",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "desc": "Chọn icon \"Khách cần mua gấp\" ở menu nhanh",
           "imgKey": "home",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 77,
+            "y": 108,
+            "w": 88,
+            "h": 103
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Bấm chọn icon",
+          "ttText": "Chọn xem các feed thông tin khách cần mua gấp",
           "tip": "",
           "guide": [
             {
@@ -1795,18 +1795,18 @@
         {
           "id": 2,
           "name": "Bước 2 — Xem chi tiết",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "desc": "Xem các thông tin nhu cầu được up lên",
           "imgKey": "xem",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 3,
+            "y": 94,
+            "w": 386,
+            "h": 387
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "bottom",
+          "ttTitle": "Xem",
+          "ttText": "Thông tin khách của ai đang có nhu cầu như thế nào",
           "tip": "",
           "guide": [
             {
@@ -1822,18 +1822,18 @@
         {
           "id": 3,
           "name": "Bước 3 — Tạo mới",
-          "desc": "TODO: mô tả ngắn cho sidebar",
-          "imgKey": "tao",
+          "desc": "Tạo feed khách cần mua gấp",
+          "imgKey": "xem",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 6,
+            "y": 93,
+            "w": 137,
+            "h": 56
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "bottom",
+          "ttTitle": "Bấm nút Tạo bài viết",
+          "ttText": "Mở form điền thông tin khách cần mua gấp ",
           "tip": "",
           "guide": [
             {
@@ -1848,19 +1848,19 @@
         },
         {
           "id": 4,
-          "name": "Bước 4 — Sửa thông tin",
-          "desc": "TODO: mô tả ngắn cho sidebar",
-          "imgKey": "sua",
+          "name": "Bước 4 — Tạo, Sửa thông tin",
+          "desc": "form thông tin khách cần mua gấp",
+          "imgKey": "tao",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 3,
+            "y": 97,
+            "w": 379,
+            "h": 622
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "bottom",
+          "ttTitle": "Điền thông tin",
+          "ttText": "Điền đầy đủ thông tin form yêu cầu ",
           "tip": "",
           "guide": [
             {
@@ -1875,19 +1875,19 @@
         },
         {
           "id": 5,
-          "name": "Bước 5 — Xóa",
-          "desc": "TODO: mô tả ngắn cho sidebar",
-          "imgKey": "xoa",
-          "scrollY": 0,
+          "name": "Bước 5 — Đăng",
+          "desc": "Hoàn thành điền form và đăng thông tin",
+          "imgKey": "tao",
+          "scrollY": 21,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 7,
+            "y": 794,
+            "w": 370,
+            "h": 61
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "top",
+          "ttTitle": "Đăng bài",
+          "ttText": "Bấm nút đăng sau khi hoàn thành điền đầy đủ thông tin",
           "tip": "",
           "guide": [
             {
@@ -1902,19 +1902,19 @@
         },
         {
           "id": 6,
-          "name": "Bước 6 — Ghim",
-          "desc": "TODO: mô tả ngắn cho sidebar",
-          "imgKey": "ghim",
-          "scrollY": 0,
+          "name": "Bước 6 — Hold",
+          "desc": "Giữ bài viết khách cần mua gấp để thao tác thêm",
+          "imgKey": "hold",
+          "scrollY": 53,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 9,
+            "y": 538,
+            "w": 366,
+            "h": 352
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "top",
+          "ttTitle": "Giữ và chọn",
+          "ttText": "Giữ bài viết khách cần mua gấp của mình để chọn thao tác",
           "tip": "",
           "guide": [
             {
@@ -1929,19 +1929,19 @@
         },
         {
           "id": 7,
-          "name": "Bước 7 — Hold tạm",
-          "desc": "TODO: mô tả ngắn cho sidebar",
-          "imgKey": "hold",
-          "scrollY": 0,
+          "name": "Bước 7 — Sửa bài viết",
+          "desc": "Sửa trong form bài đăng",
+          "imgKey": "sua",
+          "scrollY": 27,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 6,
+            "y": 820,
+            "w": 373,
+            "h": 62
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "top",
+          "ttTitle": "Sửa và Lưu",
+          "ttText": "Sửa thông tin trong form đăng bài và bấm lưu sau khi xong",
           "tip": "",
           "guide": [
             {
@@ -1953,9 +1953,49 @@
               "body": "TODO mục 2"
             }
           ]
+        },
+        {
+          "id": 8,
+          "name": "Bước 8 - Xóa",
+          "desc": "Xóa thông tin khách cần mua gấp",
+          "title": "Bước 8 — ",
+          "sub": "",
+          "imgKey": "xoa",
+          "scrollY": 0,
+          "hs": {
+            "x": 9,
+            "y": 398,
+            "w": 369,
+            "h": 115
+          },
+          "ttPos": "top",
+          "ttTitle": "Chọn Có để xóa",
+          "ttText": "Chọn xóa và bấm có để xóa bài đăng Khách cần mua gấp",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 9,
+          "name": "Bước 9 - Ghim",
+          "desc": "Chọn Ghim bài viết",
+          "title": "Bước 9 — ",
+          "sub": "",
+          "imgKey": "ghim",
+          "scrollY": 0,
+          "hs": {
+            "x": 88,
+            "y": 143,
+            "w": 209,
+            "h": 48
+          },
+          "ttPos": "bottom",
+          "ttTitle": "Thông báo đã ghim",
+          "ttText": "Sau khi chọn ghim bài hệ thống sẽ thông báo bài đã được ghim",
+          "tip": "Một số thao tác được phân quyền riêng theo vai trò, không phải cho tất cả đều có thể thao tác giống nhau",
+          "guide": []
         }
       ],
-      "status": "draft",
+      "status": "live",
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
