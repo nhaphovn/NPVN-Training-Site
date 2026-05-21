@@ -683,6 +683,17 @@ button, input, textarea, select { font-family: inherit; font-size: inherit; }
 .img-status-hint.uploaded { color: var(--green-dark); }
 .img-status-hint.missing { color: var(--orange); }
 
+/* Per-step upload drop zone */
+.step-img-drop {
+  border: 2px dashed var(--green); border-radius: 8px;
+  padding: 12px; text-align: center; cursor: pointer;
+  color: var(--text-2); font-size: 12px; background: #f9fdf9;
+  transition: background .15s, border-color .15s; margin-top: 6px;
+}
+.step-img-drop:hover, .step-img-drop.over { background: #e6f7ee; border-color: var(--green-dark); }
+.step-img-hint { font-size: 11px; color: var(--text-3); margin-top: 4px; }
+.step-img-hint code { font-size: 10px; background: #f0f4f1; padding: 1px 4px; border-radius: 3px; }
+
 /* Drag-over highlight */
 .modal-bg .img-upload-row.dragover .img-thumb {
   border-color: var(--green); background: var(--green-light);
@@ -984,6 +995,12 @@ button, input, textarea, select { font-family: inherit; font-size: inherit; }
         <label>Images (key → path)</label>
         <div class="img-map-editor" id="mm-images"></div>
         <button class="add-img-btn" id="mm-add-img">+ Thêm ảnh</button>
+      </div>
+      <div class="form-row">
+        <label style="display:flex;align-items:center;gap:8px;text-transform:none;letter-spacing:0;font-weight:500">
+          <input type="checkbox" id="mm-featured" style="width:16px;height:16px;accent-color:#00A651">
+          Hiển thị trong "Tính năng thường dùng" trên trang chủ
+        </label>
       </div>
     </div>
     <div class="actions">
@@ -2026,6 +2043,15 @@ function renderForm() {
       </select>
       <div class="img-status-hint" id="step-img-status"></div>
     </div>
+    ${s.mediaType !== 'video' ? `
+    <div class="form-row" data-image-only>
+      <label>Upload ảnh bước này</label>
+      <div class="step-img-drop" id="step-img-drop">
+        📷 Kéo ảnh vào đây hoặc <u>click</u> để chọn
+        <input type="file" id="step-img-file" accept="image/*" hidden>
+      </div>
+      <div class="step-img-hint">Tên tự động: <code>${escapeHtml(STATE.moduleId || 'module')}_b${String((STATE.stepIdx||0)+1).padStart(2,'0')}_[tên file]</code></div>
+    </div>` : ''}
     <div class="form-row" data-video-only ${s.mediaType !== 'video' ? 'hidden' : ''}>
       <label>
         <input type="checkbox" data-field="videoAutoNext" ${s.videoAutoNext !== false ? 'checked' : ''}>
@@ -2538,6 +2564,7 @@ function openModuleModal(editing) {
   $('mm-role').value = m.role || '';
   $('mm-icon').value = m.icon || '';
   $('mm-desc').value = m.description || '';
+  $('mm-featured').checked = editing ? (STATE.data.featured || []).includes(STATE.moduleId) : false;
   $('mm-delete').hidden = !editing;
   renderImagesEditor(m.images || {});
   $('modal-module').hidden = false;
@@ -2765,6 +2792,12 @@ function saveModuleModal() {
     STATE.stepIdx = 0;
     STATE.step = null;
   }
+  // Sync featured array
+  const featured = STATE.data.featured || [];
+  const featIdx = featured.indexOf(id);
+  if ($('mm-featured').checked && featIdx === -1) featured.push(id);
+  else if (!$('mm-featured').checked && featIdx !== -1) featured.splice(featIdx, 1);
+  STATE.data.featured = featured;
   setDirty(true);
   pushHistory(mmEditingId ? `Sửa module ${id}` : `Thêm module ${id}`);
   $('modal-module').hidden = true;
@@ -2987,6 +3020,7 @@ window.addStep = addStep;
 window.deleteStep = deleteStep;
 window.renderAll = renderAll;
 window.renderPreview = renderPreview;
+window.renderForm = renderForm;
 window.undo = undo;
 window.redo = redo;
 window.pushHistory = pushHistory;

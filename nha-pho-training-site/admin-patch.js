@@ -73,6 +73,17 @@ window.handleMediaUpload = window.handleImageUpload = async function(file, row, 
 };
 
 // ── 2. renderPreview — hiện proxy URL (bắt đầu bằng /api/) ─────────
+
+// MutationObserver: wire step upload zone whenever #step-img-drop appears in DOM
+const _stepDropObserver = new MutationObserver(() => injectStepUpload());
+// start observing after DOM is ready
+function _startStepObserver() {
+  const target = document.getElementById('form-panel') || document.body;
+  _stepDropObserver.observe(target, { childList: true, subtree: true });
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', _startStepObserver);
+else _startStepObserver();
+
 const _origRenderPreview = window.renderPreview;
 window.renderPreview = function() {
   if (_origRenderPreview) _origRenderPreview.call(this);
@@ -345,7 +356,65 @@ async function saveToGithub() {
   }
 }
 
-// ── 5. Publish badge + button ────────────────────────────────────────
+// ── 5. Per-step image upload ─────────────────────────────────────────
+
+async function handleStepImgFile(file) {
+  const STATE = window.STATE;
+  const moduleId = STATE?.moduleId;
+  const stepIdx  = STATE?.stepIdx;
+  if (!moduleId || stepIdx == null || !file) return;
+
+  // Auto-name: {module}_b{NN}_{basename}
+  const stepNum  = String(stepIdx + 1).padStart(2, '0');
+  const baseName = file.name.replace(/\.[^.]+$/, '').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+  const key      = `b${stepNum}_${baseName}`;
+
+  const drop = document.getElementById('step-img-drop');
+  if (drop) { drop.textContent = '⏳ Đang upload...'; drop.classList.remove('over'); }
+
+  try {
+    const proxyUrl = await uploadToBlob(file, moduleId, key);
+
+    if (!STATE.module.images) STATE.module.images = {};
+    STATE.module.images[key] = proxyUrl;
+    if (STATE.step) { STATE.step.img = key; STATE.step.imgKey = key; }
+
+    const dirtyDot = document.getElementById('dirty-dot');
+    if (dirtyDot) dirtyDot.style.display = 'block';
+    if (STATE.dirty !== undefined) STATE.dirty = true;
+
+    if (window.renderForm)    window.renderForm();
+    if (window.renderPreview) window.renderPreview();
+    if (window.toast) window.toast(`☁️ ${key}`, 'success');
+  } catch (err) {
+    const d = document.getElementById('step-img-drop');
+    if (d) d.innerHTML = `❌ ${err.message}<input type="file" id="step-img-file" accept="image/*" hidden>`;
+    if (window.toast) window.toast(`⚠️ Upload thất bại: ${err.message}`, 'warning');
+  }
+}
+
+function injectStepUpload() {
+  const drop      = document.getElementById('step-img-drop');
+  const fileInput = document.getElementById('step-img-file');
+  if (!drop || !fileInput || drop.dataset.wired) return;
+  drop.dataset.wired = '1';
+
+  drop.addEventListener('click', e => { if (e.target !== fileInput) fileInput.click(); });
+  drop.addEventListener('dragover',  e => { e.preventDefault(); drop.classList.add('over'); });
+  drop.addEventListener('dragleave', () => drop.classList.remove('over'));
+  drop.addEventListener('drop', e => {
+    e.preventDefault(); drop.classList.remove('over');
+    const f = e.dataTransfer.files[0];
+    if (f && f.type.startsWith('image/')) handleStepImgFile(f);
+  });
+  fileInput.addEventListener('change', e => {
+    const f = e.target.files[0];
+    if (f) handleStepImgFile(f);
+    fileInput.value = '';
+  });
+}
+
+// ── 6. Publish badge + button ─────────────────────────────────────────
 function updatePublishBadge() {
   const badge = document.getElementById('module-status-badge');
   const btn   = document.getElementById('btn-publish');
