@@ -2036,18 +2036,18 @@
         {
           "id": 1,
           "name": "Bước 1 — Menu cá nhân",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "desc": "Mở menu cá nhân ở avatar góc phải phía dưới",
           "imgKey": "menu",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 7,
+            "y": 540,
+            "w": 180,
+            "h": 96
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Bấm Quản lý kho hàng",
+          "ttText": "Chọn bấm quản lý kho hàng để vào kho cá nhân",
           "tip": "",
           "guide": [
             {
@@ -2062,19 +2062,19 @@
         },
         {
           "id": 2,
-          "name": "Bước 2 — Menu quản lý kho",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Bước 2 — Vào Kho cá nhân",
+          "desc": "Trong quản lý kho hàng chọn vào kho cá nhân",
           "imgKey": "menu_list_quan_ly_kho",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 3,
+            "y": 97,
+            "w": 378,
+            "h": 53
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "bottom",
+          "ttTitle": "Chọn Kho cá nhân",
+          "ttText": "Bâm chọn kho cá nhân để vào quản lý kho hàng của mình",
           "tip": "",
           "guide": [
             {
@@ -2090,18 +2090,18 @@
         {
           "id": 3,
           "name": "Bước 3 — Trạng thái",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "desc": "mặc định khi vào kho sẽ xem các tin đăng đang chờ duyệt",
           "imgKey": "trang_thai",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 3,
+            "y": 94,
+            "w": 384,
+            "h": 138
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "bottom",
+          "ttTitle": "Mặc định xem chờ duyệt",
+          "ttText": "Lựa chọn thao tác ở cụm tính năng sẵn có",
           "tip": "",
           "guide": [
             {
@@ -2121,10 +2121,10 @@
           "imgKey": "xem_cho_duyet",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 0,
+            "y": 178,
+            "w": 66,
+            "h": 57
           },
           "ttPos": "right",
           "ttTitle": "TODO",
@@ -2148,12 +2148,12 @@
           "imgKey": "xem_thung_rac",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 246,
+            "y": 142,
+            "w": 135,
+            "h": 59
           },
-          "ttPos": "right",
+          "ttPos": "left",
           "ttTitle": "TODO",
           "ttText": "TODO: ≤15 từ",
           "tip": "",
@@ -2175,10 +2175,10 @@
           "imgKey": "xem_da_duyet",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 100,
+            "y": 145,
+            "w": 98,
+            "h": 54
           },
           "ttPos": "right",
           "ttTitle": "TODO",
@@ -2202,12 +2202,12 @@
           "imgKey": "xem_tu_choi",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 190,
+            "y": 147,
+            "w": 103,
+            "h": 51
           },
-          "ttPos": "right",
+          "ttPos": "left",
           "ttTitle": "TODO",
           "ttText": "TODO: ≤15 từ",
           "tip": "",
@@ -2227,14 +2227,14 @@
           "name": "Bước 8 — Lọc",
           "desc": "TODO: mô tả ngắn cho sidebar",
           "imgKey": "loc",
-          "scrollY": 0,
+          "scrollY": 44,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 8,
+            "y": 768,
+            "w": 367,
+            "h": 117
           },
-          "ttPos": "right",
+          "ttPos": "top",
           "ttTitle": "TODO",
           "ttText": "TODO: ≤15 từ",
           "tip": "",
@@ -2256,10 +2256,10 @@
           "imgKey": "xem_tin_chi_tiet",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 5,
+            "y": 45,
+            "w": 378,
+            "h": 756
           },
           "ttPos": "right",
           "ttTitle": "TODO",
@@ -2277,7 +2277,7 @@
           ]
         }
       ],
-      "status": "draft",
+      "status": "live",
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
