@@ -19,7 +19,9 @@
         "dang_tin",
         "lich_hen_dau_chu",
         "kho_ca_nhan",
-        "tin_chinh_chu"
+        "tin_chinh_chu",
+        "tai_khoan_ca_nhan",
+        "bang_tin"
       ]
     },
     "hoc_vien": {
@@ -31,7 +33,11 @@
         "dat_lich_dau_khach",
         "khach_can_mua_gap",
         "kho_hang_tu_do",
-        "ma_gioi_thieu"
+        "ma_gioi_thieu",
+        "chat_nha_pho",
+        "qr_code",
+        "kho_quan_tam",
+        "tin_hoat_dong"
       ]
     },
     "quan_ly_phong": {
@@ -39,7 +45,9 @@
       "icon": "👔",
       "modules": [
         "quan_ly_khach",
-        "thong_bao_vu_chot"
+        "thong_bao_vu_chot",
+        "quan_ly_phong_nhom",
+        "quan_ly_kho_hang"
       ]
     }
   },
@@ -3664,6 +3672,1798 @@
         "warnings": 0,
         "lastReviewed": null
       }
+    },
+    "chat_nha_pho": {
+      "name": "Chat Nhà Phố",
+      "role": "Học viên / Chuyên viên",
+      "icon": "💬",
+      "iconImg": "assets/icons/chat_nha_pho.png",
+      "description": "Nhắn tin trực tiếp, chat nhóm và kênh thông báo mặc định",
+      "status": "draft",
+      "attributes": {
+        "industry": "real_estate",
+        "tenant": "nhapho",
+        "role": ["hoc_vien", "dau_chu", "quan_ly_phong"],
+        "level": "beginner",
+        "tags": ["chat", "nhan_tin", "nhom"],
+        "language": "vi"
+      },
+      "images": {
+        "home_icon": "/api/img?path=images/chat_nha_pho/home_icon.jpg",
+        "danh_sach": "/api/img?path=images/chat_nha_pho/danh_sach.jpg",
+        "nhan_tin_ca_nhan": "/api/img?path=images/chat_nha_pho/nhan_tin_ca_nhan.jpg",
+        "gui_tin": "/api/img?path=images/chat_nha_pho/gui_tin.jpg",
+        "gui_anh": "/api/img?path=images/chat_nha_pho/gui_anh.jpg",
+        "chat_nhom_list": "/api/img?path=images/chat_nha_pho/chat_nhom_list.jpg",
+        "chat_nhom_tin_nhan": "/api/img?path=images/chat_nha_pho/chat_nhom_tin_nhan.jpg",
+        "chat_mac_dinh": "/api/img?path=images/chat_nha_pho/chat_mac_dinh.jpg",
+        "tim_kiem_chat": "/api/img?path=images/chat_nha_pho/tim_kiem_chat.jpg",
+        "them_ban": "/api/img?path=images/chat_nha_pho/them_ban.jpg"
+      },
+      "steps": [
+        {
+          "id": 1,
+          "name": "Tìm icon Chat",
+          "desc": "Icon chat ở hàng đầu trang chủ",
+          "title": "Bước 1 — Tìm icon Chat",
+          "sub": "Trên màn hình trang chủ, tìm icon Chat ở hàng icon tính năng",
+          "imgKey": "home_icon",
+          "scrollY": 0,
+          "hs": { "x": 290, "y": 140, "w": 55, "h": 55 },
+          "ttPos": "left",
+          "ttTitle": "Icon Chat Nhà Phố",
+          "ttText": "Bấm icon chat để mở danh sách hội thoại",
+          "tip": "Icon chat có badge đỏ khi có tin chưa đọc.",
+          "guide": [
+            {
+              "title": "Mở App Nhà Phố",
+              "body": "Đăng nhập và chờ màn hình trang chủ hiện ra."
+            },
+            {
+              "title": "Nhìn hàng icon trên cùng",
+              "body": "Icon chat hình bong bóng 💬 nằm ở hàng icon tính năng."
+            },
+            {
+              "title": "Bấm icon Chat",
+              "body": "Sau khi bấm, màn hình danh sách hội thoại mở ra ngay."
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Danh sách hội thoại",
+          "desc": "Tất cả cuộc trò chuyện đang có",
+          "title": "Bước 2 — Danh sách hội thoại",
+          "sub": "Xem toàn bộ cuộc trò chuyện sắp xếp theo tin nhắn mới nhất",
+          "imgKey": "danh_sach",
+          "scrollY": 0,
+          "hs": { "x": 16, "y": 200, "w": 358, "h": 70 },
+          "ttPos": "right",
+          "ttTitle": "Danh sách Chat",
+          "ttText": "Bấm vào tên để mở cuộc trò chuyện cụ thể",
+          "tip": "Tin nhắn chưa đọc hiển thị in đậm và badge số.",
+          "guide": [
+            {
+              "title": "Tìm cuộc trò chuyện",
+              "body": "Danh sách sắp xếp theo tin nhắn mới nhất — cuộc hội thoại mới nhất ở trên cùng."
+            },
+            {
+              "title": "Phân biệt loại chat",
+              "body": "Icon người = chat cá nhân. Icon nhiều người = nhóm chat. Icon loa = kênh thông báo."
+            },
+            {
+              "title": "Tìm kiếm nhanh",
+              "body": "Bấm vào ô tìm kiếm phía trên — nhập tên người hoặc nội dung để lọc."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Chat cá nhân",
+          "desc": "Màn hình nhắn tin trực tiếp với 1 người",
+          "title": "Bước 3 — Chat cá nhân",
+          "sub": "Mở cuộc trò chuyện 1-1 và xem lịch sử tin nhắn",
+          "imgKey": "nhan_tin_ca_nhan",
+          "scrollY": 650,
+          "hs": { "x": 16, "y": 700, "w": 310, "h": 50 },
+          "ttPos": "top",
+          "ttTitle": "Khung nhắn tin",
+          "ttText": "Gõ nội dung vào ô dưới cùng rồi bấm Gửi",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Mở cuộc trò chuyện",
+              "body": "Bấm vào tên đồng nghiệp trong danh sách để mở màn hình nhắn tin."
+            },
+            {
+              "title": "Xem lịch sử tin nhắn",
+              "body": "Cuộn lên để xem tin nhắn cũ — lịch sử được lưu toàn bộ."
+            },
+            {
+              "title": "Trả lời nhanh",
+              "body": "Giữ ngón tay vào một tin nhắn để Reply/React/Copy mà không cần gõ lại."
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Gửi tin nhắn",
+          "desc": "Nhập và gửi nội dung văn bản",
+          "title": "Bước 4 — Gửi tin nhắn",
+          "sub": "Nhập nội dung văn bản và gửi trong cuộc trò chuyện",
+          "imgKey": "gui_tin",
+          "scrollY": 670,
+          "hs": { "x": 16, "y": 720, "w": 310, "h": 48 },
+          "ttPos": "top",
+          "ttTitle": "Ô nhập tin nhắn",
+          "ttText": "Gõ nội dung → bấm mũi tên xanh để gửi",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Nhập nội dung",
+              "body": "Bấm vào ô text phía dưới → bàn phím mở ra. Gõ nội dung cần gửi."
+            },
+            {
+              "title": "Gửi tin nhắn",
+              "body": "Bấm nút gửi (mũi tên xanh) bên phải ô nhập để gửi tin ngay."
+            },
+            {
+              "title": "Emoji và sticker",
+              "body": "Bấm icon mặt cười bên trái ô nhập để chọn emoji hoặc sticker."
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Gửi ảnh",
+          "desc": "Đính kèm và gửi hình ảnh trong chat",
+          "title": "Bước 5 — Gửi ảnh",
+          "sub": "Chọn ảnh từ thư viện hoặc chụp mới để gửi trong chat",
+          "imgKey": "gui_anh",
+          "scrollY": 670,
+          "hs": { "x": 16, "y": 720, "w": 45, "h": 48 },
+          "ttPos": "top",
+          "ttTitle": "Nút đính kèm",
+          "ttText": "Bấm icon hình ảnh hoặc dấu + để chọn ảnh",
+          "tip": "Có thể chụp ảnh trực tiếp hoặc chọn từ thư viện.",
+          "guide": [
+            {
+              "title": "Mở tùy chọn đính kèm",
+              "body": "Bấm icon + hoặc icon ảnh bên trái ô nhập tin nhắn."
+            },
+            {
+              "title": "Chọn ảnh từ thư viện",
+              "body": "Chọn 'Thư viện ảnh' → chọn tối đa nhiều ảnh một lúc."
+            },
+            {
+              "title": "Chụp ảnh trực tiếp",
+              "body": "Chọn 'Máy ảnh' để chụp ngay và gửi trong cuộc trò chuyện."
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Danh sách nhóm chat",
+          "desc": "Tất cả nhóm chat đội nhóm đang tham gia",
+          "title": "Bước 6 — Danh sách nhóm chat",
+          "sub": "Chuyển sang tab Nhóm để xem danh sách nhóm đang tham gia",
+          "imgKey": "chat_nhom_list",
+          "scrollY": 0,
+          "hs": { "x": 130, "y": 110, "w": 130, "h": 40 },
+          "ttPos": "bottom",
+          "ttTitle": "Tab Nhóm Chat",
+          "ttText": "Chọn tab Nhóm để xem tất cả nhóm",
+          "tip": "Nhóm chat được tạo bởi quản lý phòng — thành viên không thể tự tạo nhóm.",
+          "guide": [
+            {
+              "title": "Chuyển sang tab Nhóm",
+              "body": "Trong màn hình danh sách chat, bấm tab 'Nhóm' ở trên cùng."
+            },
+            {
+              "title": "Xem danh sách nhóm",
+              "body": "Tất cả nhóm bạn là thành viên hiển thị theo thứ tự hoạt động."
+            },
+            {
+              "title": "Bấm vào nhóm",
+              "body": "Bấm vào tên nhóm để vào nhóm chat và xem tin nhắn."
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "name": "Chat trong nhóm",
+          "desc": "Gửi và xem tin nhắn trong nhóm chat",
+          "title": "Bước 7 — Chat trong nhóm",
+          "sub": "Nhắn tin trong nhóm — toàn bộ thành viên nhóm nhận được",
+          "imgKey": "chat_nhom_tin_nhan",
+          "scrollY": 650,
+          "hs": { "x": 16, "y": 700, "w": 310, "h": 50 },
+          "ttPos": "top",
+          "ttTitle": "Tin nhắn nhóm",
+          "ttText": "Nhắn tin bình thường — tất cả thành viên nhóm nhận được",
+          "tip": "@mention tên đồng nghiệp để tag người đó trong nhóm chat.",
+          "guide": [
+            {
+              "title": "Xem tin nhắn nhóm",
+              "body": "Tin nhắn từ các thành viên hiển thị theo thứ tự thời gian — avatar bên trái là tên người gửi."
+            },
+            {
+              "title": "Gửi tin nhắn nhóm",
+              "body": "Nhập nội dung và bấm Gửi giống chat cá nhân — toàn bộ thành viên đều nhận."
+            },
+            {
+              "title": "Tag đồng nghiệp",
+              "body": "Gõ @ rồi nhập tên đồng nghiệp để mention — người đó nhận thông báo riêng."
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "name": "Kênh thông báo",
+          "desc": "Kênh chính thức từ ban quản lý",
+          "title": "Bước 8 — Kênh thông báo",
+          "sub": "Xem thông báo chính thức từ công ty qua kênh mặc định",
+          "imgKey": "chat_mac_dinh",
+          "scrollY": 0,
+          "hs": { "x": 16, "y": 320, "w": 358, "h": 70 },
+          "ttPos": "right",
+          "ttTitle": "Kênh mặc định",
+          "ttText": "Xem thông báo chính thức từ công ty — chỉ đọc",
+          "tip": "Kênh mặc định chỉ admin mới gửi được — thành viên chỉ xem.",
+          "guide": [
+            {
+              "title": "Tìm kênh mặc định",
+              "body": "Trong danh sách chat, kênh có icon loa 📢 là kênh thông báo chính thức."
+            },
+            {
+              "title": "Xem thông báo",
+              "body": "Bấm vào để đọc nội dung — thông báo nội bộ, cập nhật chính sách, tin khẩn."
+            },
+            {
+              "title": "Không thể phản hồi",
+              "body": "Kênh mặc định là một chiều — bạn không thể gửi tin. Liên hệ quản lý nếu cần hỏi."
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "name": "Tìm kiếm chat",
+          "desc": "Tìm người, nhóm hoặc nội dung cũ",
+          "title": "Bước 9 — Tìm kiếm chat",
+          "sub": "Nhập tên hoặc từ khóa để tìm hội thoại và nội dung cũ",
+          "imgKey": "tim_kiem_chat",
+          "scrollY": 0,
+          "hs": { "x": 16, "y": 60, "w": 358, "h": 40 },
+          "ttPos": "bottom",
+          "ttTitle": "Ô tìm kiếm chat",
+          "ttText": "Nhập tên hoặc từ khóa để tìm hội thoại",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Mở tìm kiếm",
+              "body": "Bấm vào ô tìm kiếm ở đầu màn hình danh sách chat."
+            },
+            {
+              "title": "Tìm theo tên",
+              "body": "Nhập tên đồng nghiệp hoặc tên nhóm để lọc nhanh."
+            },
+            {
+              "title": "Tìm nội dung tin",
+              "body": "Nhập từ khóa để tìm trong lịch sử — kết quả hiển thị theo đoạn chat chứa từ đó."
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "name": "Bắt đầu chat mới",
+          "desc": "Tìm đồng nghiệp và mở hội thoại mới",
+          "title": "Bước 10 — Bắt đầu chat mới",
+          "sub": "Bấm nút tạo chat mới, tìm đồng nghiệp và mở hội thoại",
+          "imgKey": "them_ban",
+          "scrollY": 0,
+          "hs": { "x": 330, "y": 55, "w": 45, "h": 45 },
+          "ttPos": "left",
+          "ttTitle": "Nút chat mới",
+          "ttText": "Bấm + hoặc viết tin để bắt đầu hội thoại mới",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Bấm nút tạo chat mới",
+              "body": "Bấm icon bút hoặc + góc trên phải màn hình danh sách chat."
+            },
+            {
+              "title": "Tìm đồng nghiệp",
+              "body": "Nhập tên hoặc SĐT của người muốn nhắn tin — kết quả hiện ra ngay."
+            },
+            {
+              "title": "Bấm để chat",
+              "body": "Chọn tên người từ kết quả → màn hình chat mở ra sẵn sàng nhập nội dung."
+            }
+          ]
+        }
+      ],
+      "quality": { "errors": 0, "warnings": 0, "lastReviewed": null }
+    },
+    "qr_code": {
+      "name": "QR Code",
+      "role": "Học viên / Chuyên viên",
+      "icon": "📷",
+      "iconImg": "assets/icons/qr_code.png",
+      "description": "Xem QR cá nhân, quét QR đồng nghiệp, kết nối nhanh",
+      "status": "draft",
+      "attributes": {
+        "industry": "real_estate",
+        "tenant": "nhapho",
+        "role": ["hoc_vien", "dau_chu"],
+        "level": "beginner",
+        "tags": ["qr_code", "ket_noi"],
+        "language": "vi"
+      },
+      "images": {
+        "home_icon": "/api/img?path=images/qr_code/home_icon.jpg",
+        "qr_ca_nhan": "/api/img?path=images/qr_code/qr_ca_nhan.jpg",
+        "chia_se_qr": "/api/img?path=images/qr_code/chia_se_qr.jpg",
+        "quet_qr": "/api/img?path=images/qr_code/quet_qr.jpg",
+        "ket_qua_quet": "/api/img?path=images/qr_code/ket_qua_quet.jpg"
+      },
+      "steps": [
+        {
+          "id": 1,
+          "name": "Tìm icon QR Code",
+          "desc": "Icon QR nằm ở hàng icon trang chủ",
+          "title": "Bước 1 — Tìm icon QR Code",
+          "sub": "Trên màn hình trang chủ, tìm icon QR ở hàng icon tính năng",
+          "imgKey": "home_icon",
+          "scrollY": 0,
+          "hs": { "x": 240, "y": 140, "w": 55, "h": 55 },
+          "ttPos": "left",
+          "ttTitle": "Icon QR Code",
+          "ttText": "Bấm icon QR để xem mã của bạn hoặc quét",
+          "tip": "QR code là cách nhanh nhất để kết nối thông tin với đồng nghiệp mới.",
+          "guide": [
+            {
+              "title": "Mở App Nhà Phố",
+              "body": "Đăng nhập và chờ màn hình trang chủ."
+            },
+            {
+              "title": "Tìm icon QR",
+              "body": "Nhìn hàng icon tính năng — tìm icon QR (hình ô vuông kẻ sọc)."
+            },
+            {
+              "title": "Bấm icon QR",
+              "body": "Màn hình QR Code của bạn mở ra — vừa xem được vừa quét được."
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "QR cá nhân",
+          "desc": "Mã QR định danh tài khoản của bạn",
+          "title": "Bước 2 — QR cá nhân",
+          "sub": "Màn hình hiển thị mã QR lớn định danh tài khoản App của bạn",
+          "imgKey": "qr_ca_nhan",
+          "scrollY": 0,
+          "hs": { "x": 95, "y": 200, "w": 200, "h": 200 },
+          "ttPos": "bottom",
+          "ttTitle": "Mã QR cá nhân",
+          "ttText": "Cho người khác quét để kết nối với bạn nhanh",
+          "tip": "QR thay đổi định kỳ vì lý do bảo mật — dùng QR hiển thị trực tiếp trên màn hình.",
+          "guide": [
+            {
+              "title": "Xem QR cá nhân",
+              "body": "Màn hình hiển thị mã QR lớn — đây là mã định danh tài khoản App của bạn."
+            },
+            {
+              "title": "Cho người khác quét",
+              "body": "Đưa điện thoại để đồng nghiệp quét — họ được thêm thông tin liên lạc của bạn ngay."
+            },
+            {
+              "title": "Không chụp màn hình",
+              "body": "QR có hạn sử dụng — luôn dùng QR hiển thị trực tiếp thay vì ảnh chụp."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Chia sẻ QR Code",
+          "desc": "Xuất và chia sẻ QR qua các kênh khác",
+          "title": "Bước 3 — Chia sẻ QR Code",
+          "sub": "Bấm Chia sẻ để gửi QR qua Zalo, Messenger hoặc lưu vào máy",
+          "imgKey": "chia_se_qr",
+          "scrollY": 0,
+          "hs": { "x": 120, "y": 450, "w": 150, "h": 48 },
+          "ttPos": "top",
+          "ttTitle": "Nút chia sẻ QR",
+          "ttText": "Bấm Chia sẻ để gửi QR qua Zalo, Messenger hoặc lưu vào máy",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Bấm nút Chia sẻ",
+              "body": "Nút chia sẻ bên dưới mã QR — chọn kênh muốn gửi (Zalo, SMS, lưu ảnh...)."
+            },
+            {
+              "title": "Lưu vào thư viện",
+              "body": "Chọn 'Lưu ảnh' để tải QR về — có thể dùng cho profile Zalo hoặc card điện tử."
+            },
+            {
+              "title": "Gửi qua chat",
+              "body": "Chọn 'Nhắn tin' để gửi QR trực tiếp qua Chat Nhà Phố."
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Quét QR đồng nghiệp",
+          "desc": "Camera quét QR để kết nối nhanh",
+          "title": "Bước 4 — Quét QR đồng nghiệp",
+          "sub": "Bấm Quét → hướng camera vào QR của đồng nghiệp để kết nối",
+          "imgKey": "quet_qr",
+          "scrollY": 0,
+          "hs": { "x": 80, "y": 300, "w": 230, "h": 230 },
+          "ttPos": "right",
+          "ttTitle": "Nút Quét QR",
+          "ttText": "Bấm Quét → hướng camera vào QR của đồng nghiệp",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Bấm nút Quét QR",
+              "body": "Tab Quét QR phía trên màn hình hoặc nút chuyển giữa Xem/Quét."
+            },
+            {
+              "title": "Hướng camera vào QR",
+              "body": "Khung camera mở ra — hướng vào mã QR của đồng nghiệp, giữ thẳng và đủ sáng."
+            },
+            {
+              "title": "Kết quả tự động",
+              "body": "App nhận mã ngay — không cần bấm thêm. Màn hình kết quả hiện ra trong 1-2 giây."
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Kết quả quét QR",
+          "desc": "Thông tin đồng nghiệp sau khi quét mã",
+          "title": "Bước 5 — Kết quả quét QR",
+          "sub": "Xem profile đồng nghiệp và chọn Kết nối hoặc Nhắn tin",
+          "imgKey": "ket_qua_quet",
+          "scrollY": 0,
+          "hs": { "x": 16, "y": 200, "w": 358, "h": 150 },
+          "ttPos": "right",
+          "ttTitle": "Thông tin đồng nghiệp",
+          "ttText": "Xem profile và chọn Kết nối hoặc Nhắn tin ngay",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Xem thông tin",
+              "body": "Màn hình hiển thị tên, vai trò, chi nhánh của đồng nghiệp được quét."
+            },
+            {
+              "title": "Lưu liên hệ",
+              "body": "Bấm 'Kết nối' hoặc 'Thêm vào danh bạ' để lưu thông tin."
+            },
+            {
+              "title": "Nhắn tin ngay",
+              "body": "Bấm 'Nhắn tin' để mở Chat Nhà Phố với đồng nghiệp đó ngay lập tức."
+            }
+          ]
+        }
+      ],
+      "quality": { "errors": 0, "warnings": 0, "lastReviewed": null }
+    },
+    "bang_tin": {
+      "name": "Bảng tin",
+      "role": "Đầu chủ",
+      "icon": "📢",
+      "iconImg": "assets/icons/bang_tin.png",
+      "description": "Xem và tương tác bảng tin nội bộ — thông báo, tin tức, chia sẻ",
+      "status": "draft",
+      "attributes": {
+        "industry": "real_estate",
+        "tenant": "nhapho",
+        "role": ["dau_chu", "hoc_vien", "quan_ly_phong"],
+        "level": "beginner",
+        "tags": ["bang_tin", "feed", "tuong_tac"],
+        "language": "vi"
+      },
+      "images": {
+        "home_tab": "/api/img?path=images/bang_tin/home_tab.jpg",
+        "danh_sach_bai": "/api/img?path=images/bang_tin/danh_sach_bai.jpg",
+        "xem_bai_dang": "/api/img?path=images/bang_tin/xem_bai_dang.jpg",
+        "binh_luan": "/api/img?path=images/bang_tin/binh_luan.jpg",
+        "phan_ung": "/api/img?path=images/bang_tin/phan_ung.jpg",
+        "chia_se_bai": "/api/img?path=images/bang_tin/chia_se_bai.jpg",
+        "loc_bang_tin": "/api/img?path=images/bang_tin/loc_bang_tin.jpg"
+      },
+      "steps": [
+        {
+          "id": 1,
+          "name": "Chọn tab Bảng tin",
+          "desc": "Tab Bảng tin trên navigation trang chủ",
+          "title": "Bước 1 — Chọn tab Bảng tin",
+          "sub": "Bấm tab Bảng tin để xem tin thông báo và chia sẻ nội bộ",
+          "imgKey": "home_tab",
+          "scrollY": 0,
+          "hs": { "x": 200, "y": 830, "w": 80, "h": 50 },
+          "ttPos": "top",
+          "ttTitle": "Tab Bảng tin",
+          "ttText": "Bấm tab Bảng tin để xem tin nội bộ công ty",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Nhìn nav bar trang chủ",
+              "body": "Bottom navigation có các tab chính — tab Bảng tin thường có icon loa hoặc bài đăng."
+            },
+            {
+              "title": "Bấm tab Bảng tin",
+              "body": "Chuyển sang tab này để xem feed thông báo và chia sẻ nội bộ."
+            },
+            {
+              "title": "Phân biệt loại bài",
+              "body": "Bài thông báo chính thức có nhãn 'Thông báo' — bài chia sẻ cá nhân không có nhãn đặc biệt."
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Xem danh sách bài",
+          "desc": "Feed bài đăng mới nhất theo thứ tự",
+          "title": "Bước 2 — Xem danh sách bài",
+          "sub": "Cuộn xuống để xem tất cả bài đăng — mới nhất ở trên cùng",
+          "imgKey": "danh_sach_bai",
+          "scrollY": 0,
+          "hs": { "x": 16, "y": 200, "w": 358, "h": 300 },
+          "ttPos": "right",
+          "ttTitle": "Feed Bảng tin",
+          "ttText": "Cuộn xuống để xem tất cả bài — mới nhất ở trên",
+          "tip": "Bài đăng có chấm đỏ = chưa đọc.",
+          "guide": [
+            {
+              "title": "Đọc tiêu đề và preview",
+              "body": "Mỗi bài hiển thị tên người đăng, thời gian, tiêu đề và đoạn đầu nội dung."
+            },
+            {
+              "title": "Phân biệt bài mới",
+              "body": "Bài chưa đọc hiển thị in đậm hoặc có dấu chấm xanh bên cạnh."
+            },
+            {
+              "title": "Cuộn để tải thêm",
+              "body": "Cuộn xuống hết danh sách — app tự tải thêm bài cũ hơn."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Đọc chi tiết bài đăng",
+          "desc": "Nội dung đầy đủ bài thông báo hoặc chia sẻ",
+          "title": "Bước 3 — Đọc chi tiết bài đăng",
+          "sub": "Bấm vào bài để xem nội dung đầy đủ, ảnh và bình luận",
+          "imgKey": "xem_bai_dang",
+          "scrollY": 0,
+          "hs": { "x": 16, "y": 150, "w": 358, "h": 400 },
+          "ttPos": "right",
+          "ttTitle": "Nội dung bài đăng",
+          "ttText": "Cuộn để đọc toàn bộ nội dung và xem ảnh",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Mở bài chi tiết",
+              "body": "Bấm vào bài trong danh sách để xem nội dung đầy đủ."
+            },
+            {
+              "title": "Xem ảnh đính kèm",
+              "body": "Ảnh trong bài có thể bấm để phóng to — vuốt sang trái/phải để xem ảnh tiếp."
+            },
+            {
+              "title": "Cuộn đến bình luận",
+              "body": "Cuộn xuống cuối bài để xem phần bình luận và tham gia thảo luận."
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Bình luận bài",
+          "desc": "Thêm nhận xét vào bài đăng",
+          "title": "Bước 4 — Bình luận bài",
+          "sub": "Bấm vào ô bình luận, nhập nội dung và gửi",
+          "imgKey": "binh_luan",
+          "scrollY": 700,
+          "hs": { "x": 16, "y": 720, "w": 310, "h": 46 },
+          "ttPos": "top",
+          "ttTitle": "Ô bình luận",
+          "ttText": "Bấm vào ô bình luận → nhập → bấm Gửi",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Tìm ô bình luận",
+              "body": "Cuộn xuống cuối bài — ô nhập bình luận nằm ở đáy màn hình."
+            },
+            {
+              "title": "Nhập nội dung",
+              "body": "Bấm vào ô → bàn phím mở → gõ nội dung bình luận."
+            },
+            {
+              "title": "Bấm Gửi",
+              "body": "Bấm Gửi — bình luận xuất hiện ngay bên dưới và tác giả bài nhận thông báo."
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Phản ứng bài đăng",
+          "desc": "Like, tim hoặc các phản ứng emoji",
+          "title": "Bước 5 — Phản ứng bài đăng",
+          "sub": "Bấm icon like hoặc giữ để chọn phản ứng khác",
+          "imgKey": "phan_ung",
+          "scrollY": 500,
+          "hs": { "x": 20, "y": 550, "w": 60, "h": 40 },
+          "ttPos": "right",
+          "ttTitle": "Nút Like/Phản ứng",
+          "ttText": "Bấm icon tim hoặc giữ để chọn phản ứng khác",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Bấm icon tim/like",
+              "body": "Icon ❤️ hoặc 👍 bên dưới bài — bấm một lần để like ngay."
+            },
+            {
+              "title": "Chọn phản ứng khác",
+              "body": "Giữ ngón tay vào icon like — bảng phản ứng emoji mở ra để chọn."
+            },
+            {
+              "title": "Bỏ phản ứng",
+              "body": "Bấm lại icon đã chọn để bỏ phản ứng."
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Chia sẻ bài đăng",
+          "desc": "Gửi bài cho đồng nghiệp qua chat",
+          "title": "Bước 6 — Chia sẻ bài đăng",
+          "sub": "Bấm icon chia sẻ để gửi bài qua Chat Nhà Phố hoặc kênh ngoài",
+          "imgKey": "chia_se_bai",
+          "scrollY": 500,
+          "hs": { "x": 150, "y": 550, "w": 60, "h": 40 },
+          "ttPos": "top",
+          "ttTitle": "Nút Chia sẻ",
+          "ttText": "Bấm icon chia sẻ để gửi qua Chat Nhà Phố",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Bấm nút Chia sẻ",
+              "body": "Icon chia sẻ (→) bên dưới bài — bấm để mở tùy chọn."
+            },
+            {
+              "title": "Gửi qua Chat Nhà Phố",
+              "body": "Chọn 'Gửi tin nhắn' → tìm đồng nghiệp → bài được gửi kèm link preview."
+            },
+            {
+              "title": "Chia sẻ ra ngoài",
+              "body": "Chọn 'Chia sẻ khác' để gửi qua Zalo, copy link hoặc các kênh ngoài app."
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "name": "Lọc Bảng tin",
+          "desc": "Lọc theo loại bài — thông báo, chia sẻ",
+          "title": "Bước 7 — Lọc Bảng tin",
+          "sub": "Chọn tab hoặc bộ lọc để xem theo loại bài cụ thể",
+          "imgKey": "loc_bang_tin",
+          "scrollY": 0,
+          "hs": { "x": 16, "y": 110, "w": 358, "h": 40 },
+          "ttPos": "bottom",
+          "ttTitle": "Bộ lọc Bảng tin",
+          "ttText": "Chọn tab hoặc bộ lọc để xem theo loại bài",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Dùng tab phân loại",
+              "body": "Phía trên feed có các tab: Tất cả / Thông báo / Chia sẻ — bấm để lọc."
+            },
+            {
+              "title": "Lọc theo phòng ban",
+              "body": "Bấm icon lọc (phễu) để chọn xem bài từ chi nhánh hoặc phòng cụ thể."
+            },
+            {
+              "title": "Đánh dấu đã đọc",
+              "body": "Bấm 'Đánh dấu tất cả đã đọc' để xóa badge đỏ trên tab Bảng tin."
+            }
+          ]
+        }
+      ],
+      "quality": { "errors": 0, "warnings": 0, "lastReviewed": null }
+    },
+    "kho_quan_tam": {
+      "name": "Kho bạn quan tâm",
+      "role": "Học viên / Chuyên viên",
+      "icon": "❤️",
+      "iconImg": "assets/icons/kho_quan_tam.png",
+      "description": "Theo dõi kho hàng quan tâm — bookmark, cập nhật, thông báo",
+      "status": "draft",
+      "attributes": {
+        "industry": "real_estate",
+        "tenant": "nhapho",
+        "role": ["hoc_vien"],
+        "level": "beginner",
+        "tags": ["kho", "quan_tam", "bookmark"],
+        "language": "vi"
+      },
+      "images": {
+        "home_tab": "/api/img?path=images/kho_quan_tam/home_tab.jpg",
+        "danh_sach": "/api/img?path=images/kho_quan_tam/danh_sach.jpg",
+        "xem_chi_tiet": "/api/img?path=images/kho_quan_tam/xem_chi_tiet.jpg",
+        "them_quan_tam": "/api/img?path=images/kho_quan_tam/them_quan_tam.jpg",
+        "xoa_quan_tam": "/api/img?path=images/kho_quan_tam/xoa_quan_tam.jpg",
+        "thong_bao_cap_nhat": "/api/img?path=images/kho_quan_tam/thong_bao_cap_nhat.jpg"
+      },
+      "steps": [
+        {
+          "id": 1,
+          "name": "Chọn tab Quan tâm",
+          "desc": "Tab kho bạn quan tâm từ trang chủ",
+          "title": "Bước 1 — Chọn tab Quan tâm",
+          "sub": "Bấm tab Kho quan tâm để xem hàng đang theo dõi",
+          "imgKey": "home_tab",
+          "scrollY": 0,
+          "hs": { "x": 280, "y": 280, "w": 110, "h": 45 },
+          "ttPos": "left",
+          "ttTitle": "Tab Kho Quan tâm",
+          "ttText": "Bấm tab Kho quan tâm để xem hàng đang theo dõi",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Nhìn thanh tab trang chủ",
+              "body": "Trang chủ có các tab — tìm tab Kho bạn quan tâm (icon tim hoặc bookmark)."
+            },
+            {
+              "title": "Bấm vào tab",
+              "body": "Màn hình chuyển sang danh sách hàng bạn đã bookmark từ trước."
+            },
+            {
+              "title": "Cập nhật tự động",
+              "body": "Hàng trong danh sách tự cập nhật trạng thái — giá mới, bán xong, rút tin."
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Danh sách quan tâm",
+          "desc": "Tất cả tin bạn đã lưu vào quan tâm",
+          "title": "Bước 2 — Danh sách quan tâm",
+          "sub": "Xem toàn bộ hàng đang theo dõi với trạng thái mới nhất",
+          "imgKey": "danh_sach",
+          "scrollY": 0,
+          "hs": { "x": 16, "y": 160, "w": 358, "h": 300 },
+          "ttPos": "right",
+          "ttTitle": "Danh sách Kho QT",
+          "ttText": "Cuộn để xem tất cả hàng đang theo dõi",
+          "tip": "Tin đã bán/rút được đánh dấu — giúp biết nhanh tình trạng.",
+          "guide": [
+            {
+              "title": "Xem danh sách",
+              "body": "Mỗi card hiển thị địa chỉ, giá, diện tích và trạng thái hiện tại."
+            },
+            {
+              "title": "Trạng thái tin",
+              "body": "Nhãn màu cho biết: Đang rao / Chờ duyệt / Đã bán / Đã rút."
+            },
+            {
+              "title": "Sắp xếp danh sách",
+              "body": "Bấm icon sắp xếp để đổi thứ tự theo giá, thời gian thêm, hoặc trạng thái."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Xem chi tiết hàng",
+          "desc": "Thông tin đầy đủ tin BĐS quan tâm",
+          "title": "Bước 3 — Xem chi tiết hàng",
+          "sub": "Bấm vào card để xem đầy đủ thông tin và liên hệ đầu chủ",
+          "imgKey": "xem_chi_tiet",
+          "scrollY": 0,
+          "hs": { "x": 16, "y": 200, "w": 358, "h": 120 },
+          "ttPos": "right",
+          "ttTitle": "Chi tiết tin BĐS",
+          "ttText": "Bấm vào card để xem đầy đủ thông tin và ảnh",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Mở chi tiết",
+              "body": "Bấm vào card trong danh sách — trang chi tiết đầy đủ mở ra."
+            },
+            {
+              "title": "Xem ảnh và thông số",
+              "body": "Cuộn qua ảnh, xem diện tích, số tầng, pháp lý, giá và thông tin đầu chủ."
+            },
+            {
+              "title": "Liên hệ đầu chủ",
+              "body": "Bấm số điện thoại hoặc icon chat để liên hệ trực tiếp với đầu chủ."
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Thêm vào Quan tâm",
+          "desc": "Bookmark tin từ kho tài nguyên",
+          "title": "Bước 4 — Thêm vào Quan tâm",
+          "sub": "Bấm icon tim/bookmark trên card để thêm vào Kho Quan tâm",
+          "imgKey": "them_quan_tam",
+          "scrollY": 0,
+          "hs": { "x": 320, "y": 200, "w": 45, "h": 45 },
+          "ttPos": "left",
+          "ttTitle": "Icon Bookmark",
+          "ttText": "Bấm icon tim/bookmark trên card để thêm vào Quan tâm",
+          "tip": "Có thể thêm vào Quan tâm từ bất kỳ màn hình nào — kho tài nguyên, tìm kiếm, chi tiết tin.",
+          "guide": [
+            {
+              "title": "Tìm icon bookmark",
+              "body": "Icon tim ❤️ hoặc bookmark 🔖 góc card tin trong mọi màn hình danh sách."
+            },
+            {
+              "title": "Bấm để thêm",
+              "body": "Bấm một lần — icon chuyển màu xanh/đỏ = đã thêm vào Kho Quan tâm."
+            },
+            {
+              "title": "Xác nhận thành công",
+              "body": "Toast nhỏ 'Đã thêm vào Quan tâm' xuất hiện dưới màn hình trong 2 giây."
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Xóa khỏi Quan tâm",
+          "desc": "Bỏ theo dõi tin không còn phù hợp",
+          "title": "Bước 5 — Xóa khỏi Quan tâm",
+          "sub": "Giữ card hoặc bấm icon tim đỏ để bỏ theo dõi",
+          "imgKey": "xoa_quan_tam",
+          "scrollY": 0,
+          "hs": { "x": 320, "y": 200, "w": 45, "h": 45 },
+          "ttPos": "left",
+          "ttTitle": "Bỏ quan tâm",
+          "ttText": "Giữ card hoặc bấm icon tim đỏ để bỏ theo dõi",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Cách 1 — Bấm icon tim",
+              "body": "Bấm lại icon tim đỏ trên card — xác nhận bỏ → tin biến khỏi danh sách."
+            },
+            {
+              "title": "Cách 2 — Vuốt để xóa",
+              "body": "Vuốt card sang trái — nút Xóa màu đỏ hiện ra — bấm để xác nhận."
+            },
+            {
+              "title": "Xóa nhiều cùng lúc",
+              "body": "Bấm giữ một card → chọn chế độ đa chọn → tick nhiều tin → bấm Xóa."
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Thông báo cập nhật",
+          "desc": "Nhận thông báo khi giá hoặc trạng thái thay đổi",
+          "title": "Bước 6 — Thông báo cập nhật",
+          "sub": "Bật thông báo để được báo khi tin thay đổi giá hoặc trạng thái",
+          "imgKey": "thong_bao_cap_nhat",
+          "scrollY": 0,
+          "hs": { "x": 330, "y": 60, "w": 45, "h": 45 },
+          "ttPos": "left",
+          "ttTitle": "Cài thông báo",
+          "ttText": "Bật thông báo để được báo khi tin thay đổi giá",
+          "tip": "Thông báo tự động khi tin bán xong giúp cập nhật kho ngay.",
+          "guide": [
+            {
+              "title": "Mở cài đặt thông báo",
+              "body": "Vào chi tiết tin → icon chuông góc trên phải → bật Thông báo thay đổi."
+            },
+            {
+              "title": "Chọn loại thông báo",
+              "body": "Chọn: Thay đổi giá / Trạng thái (bán/rút) / Cả hai — tùy mức độ quan tâm."
+            },
+            {
+              "title": "Nhận thông báo push",
+              "body": "Khi tin thay đổi, thông báo đẩy xuất hiện — bấm vào để xem ngay chi tiết."
+            }
+          ]
+        }
+      ],
+      "quality": { "errors": 0, "warnings": 0, "lastReviewed": null }
+    },
+    "tin_hoat_dong": {
+      "name": "Tin hoạt động",
+      "role": "Học viên / Chuyên viên",
+      "icon": "📋",
+      "iconImg": "assets/icons/tin_hoat_dong.png",
+      "description": "Theo dõi hoạt động team — giao dịch mới, cập nhật kho, tin tức nhóm",
+      "status": "draft",
+      "attributes": {
+        "industry": "real_estate",
+        "tenant": "nhapho",
+        "role": ["hoc_vien", "dau_chu"],
+        "level": "beginner",
+        "tags": ["tin_hoat_dong", "feed_nhom", "hoat_dong"],
+        "language": "vi"
+      },
+      "images": {
+        "menu": "/api/img?path=images/tin_hoat_dong/menu.jpg",
+        "menu_tin_hoat_dong": "/api/img?path=images/tin_hoat_dong/menu_tin_hoat_dong.jpg",
+        "feed_hoat_dong": "/api/img?path=images/tin_hoat_dong/feed_hoat_dong.jpg",
+        "xem_hoat_dong": "/api/img?path=images/tin_hoat_dong/xem_hoat_dong.jpg",
+        "loc_hoat_dong": "/api/img?path=images/tin_hoat_dong/loc_hoat_dong.jpg",
+        "theo_doi_ca_nhan": "/api/img?path=images/tin_hoat_dong/theo_doi_ca_nhan.jpg"
+      },
+      "steps": [
+        {
+          "id": 1,
+          "name": "Vào Menu cá nhân",
+          "desc": "Avatar góc phải → mở menu cá nhân",
+          "title": "Bước 1 — Vào Menu cá nhân",
+          "sub": "Bấm avatar góc trên phải để mở menu cá nhân",
+          "imgKey": "menu",
+          "scrollY": 0,
+          "hs": { "x": 340, "y": 55, "w": 45, "h": 45 },
+          "ttPos": "left",
+          "ttTitle": "Avatar cá nhân",
+          "ttText": "Bấm avatar góc trên phải để mở menu cá nhân",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Tìm avatar trang chủ",
+              "body": "Avatar ảnh đại diện của bạn nằm góc trên phải màn hình trang chủ."
+            },
+            {
+              "title": "Bấm vào avatar",
+              "body": "Menu cá nhân mở ra với danh sách tính năng được nhóm theo chức năng."
+            },
+            {
+              "title": "Tìm nhóm Tin hoạt động",
+              "body": "Cuộn trong menu để tìm nhóm 'Tin hoạt động' — thường có icon 📋."
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Nhóm Tin hoạt động",
+          "desc": "Danh sách tính năng trong nhóm",
+          "title": "Bước 2 — Nhóm Tin hoạt động",
+          "sub": "Bấm vào mục để xem feed hoạt động của nhóm",
+          "imgKey": "menu_tin_hoat_dong",
+          "scrollY": 300,
+          "hs": { "x": 16, "y": 350, "w": 358, "h": 55 },
+          "ttPos": "right",
+          "ttTitle": "Nhóm Tin hoạt động",
+          "ttText": "Bấm vào mục để xem feed hoạt động của nhóm",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Xem nhóm tính năng",
+              "body": "Nhóm Tin hoạt động chứa các feed: Tất cả / Phòng ban / Cá nhân."
+            },
+            {
+              "title": "Bấm mục quan tâm",
+              "body": "Chọn feed phù hợp — thường dùng 'Tất cả' để xem toàn bộ hoạt động."
+            },
+            {
+              "title": "Biểu tượng phân biệt",
+              "body": "Mỗi mục trong nhóm có icon riêng giúp nhận biết nhanh loại feed."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Feed hoạt động nhóm",
+          "desc": "Dòng thời gian hoạt động toàn nhóm",
+          "title": "Bước 3 — Feed hoạt động nhóm",
+          "sub": "Cuộn để xem hoạt động mới nhất của cả nhóm theo thời gian",
+          "imgKey": "feed_hoat_dong",
+          "scrollY": 0,
+          "hs": { "x": 16, "y": 200, "w": 358, "h": 350 },
+          "ttPos": "right",
+          "ttTitle": "Feed hoạt động",
+          "ttText": "Cuộn để xem hoạt động mới nhất của cả nhóm",
+          "tip": "Mỗi hoạt động có dấu thời gian — giúp theo dõi nhịp làm việc của cả nhóm.",
+          "guide": [
+            {
+              "title": "Đọc dòng thời gian",
+              "body": "Mỗi card là 1 sự kiện: đăng tin mới, ký hợp đồng, lịch hẹn, phản hồi khách."
+            },
+            {
+              "title": "Xem theo người",
+              "body": "Bấm vào tên thành viên trong card để xem riêng hoạt động của người đó."
+            },
+            {
+              "title": "Cuộn để tải thêm",
+              "body": "Cuộn xuống cuối màn hình để tải thêm hoạt động cũ hơn."
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Chi tiết hoạt động",
+          "desc": "Thông tin đầy đủ một sự kiện cụ thể",
+          "title": "Bước 4 — Chi tiết hoạt động",
+          "sub": "Bấm vào card để xem chi tiết và tham gia trao đổi",
+          "imgKey": "xem_hoat_dong",
+          "scrollY": 0,
+          "hs": { "x": 16, "y": 200, "w": 358, "h": 120 },
+          "ttPos": "right",
+          "ttTitle": "Card hoạt động",
+          "ttText": "Bấm vào card để xem chi tiết và tham gia trao đổi",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Mở chi tiết",
+              "body": "Bấm vào card hoạt động → xem đầy đủ nội dung sự kiện, người liên quan."
+            },
+            {
+              "title": "Xem thông tin liên kết",
+              "body": "Nếu là tin đăng mới → bấm xem tin. Lịch hẹn → xem chi tiết lịch."
+            },
+            {
+              "title": "Bình luận hoạt động",
+              "body": "Cuộn xuống phần bình luận để nhận xét hoặc chúc mừng đồng nghiệp."
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Lọc hoạt động",
+          "desc": "Chọn loại hoạt động muốn xem",
+          "title": "Bước 5 — Lọc hoạt động",
+          "sub": "Chọn lọc theo loại — tin mới, hợp đồng, lịch hẹn",
+          "imgKey": "loc_hoat_dong",
+          "scrollY": 0,
+          "hs": { "x": 330, "y": 55, "w": 45, "h": 45 },
+          "ttPos": "left",
+          "ttTitle": "Bộ lọc hoạt động",
+          "ttText": "Chọn lọc theo loại — tin mới, hợp đồng, lịch hẹn",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Mở bộ lọc",
+              "body": "Bấm icon phễu lọc góc trên phải màn hình feed."
+            },
+            {
+              "title": "Chọn loại hoạt động",
+              "body": "Tick loại cần xem: Tin đăng / Hợp đồng / Lịch hẹn / Tất cả."
+            },
+            {
+              "title": "Áp dụng bộ lọc",
+              "body": "Bấm Áp dụng — feed cập nhật ngay chỉ hiện loại đã chọn."
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Theo dõi cá nhân",
+          "desc": "Xem riêng hoạt động của một thành viên",
+          "title": "Bước 6 — Theo dõi cá nhân",
+          "sub": "Bấm tên/avatar để xem feed riêng của thành viên đó",
+          "imgKey": "theo_doi_ca_nhan",
+          "scrollY": 0,
+          "hs": { "x": 16, "y": 215, "w": 45, "h": 45 },
+          "ttPos": "right",
+          "ttTitle": "Profile thành viên",
+          "ttText": "Bấm tên/avatar để xem feed riêng của thành viên đó",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Bấm vào avatar/tên",
+              "body": "Trong bất kỳ card nào, bấm avatar hoặc tên người dùng."
+            },
+            {
+              "title": "Xem profile hoạt động",
+              "body": "Trang cá nhân hiển thị lịch sử hoạt động, số tin đăng, số hợp đồng."
+            },
+            {
+              "title": "Theo dõi thành viên",
+              "body": "Bấm 'Theo dõi' để ưu tiên hoạt động của người này lên đầu feed của bạn."
+            }
+          ]
+        }
+      ],
+      "quality": { "errors": 0, "warnings": 0, "lastReviewed": null }
+    },
+    "quan_ly_phong_nhom": {
+      "name": "Quản lý phòng-nhóm",
+      "role": "Quản lý phòng",
+      "icon": "🏢",
+      "iconImg": "assets/icons/quan_ly_phong_nhom.png",
+      "description": "Quản lý thành viên, phân quyền, nhóm chat và chỉ tiêu phòng",
+      "status": "draft",
+      "attributes": {
+        "industry": "real_estate",
+        "tenant": "nhapho",
+        "role": ["quan_ly_phong"],
+        "level": "intermediate",
+        "tags": ["quan_ly_phong", "thanh_vien", "nhom"],
+        "language": "vi"
+      },
+      "images": {
+        "menu": "/api/img?path=images/quan_ly_phong_nhom/menu.jpg",
+        "danh_sach_phong": "/api/img?path=images/quan_ly_phong_nhom/danh_sach_phong.jpg",
+        "xem_thanh_vien": "/api/img?path=images/quan_ly_phong_nhom/xem_thanh_vien.jpg",
+        "them_thanh_vien": "/api/img?path=images/quan_ly_phong_nhom/them_thanh_vien.jpg",
+        "phan_quyen": "/api/img?path=images/quan_ly_phong_nhom/phan_quyen.jpg",
+        "nhom_chat_phong": "/api/img?path=images/quan_ly_phong_nhom/nhom_chat_phong.jpg",
+        "bao_cao_phong": "/api/img?path=images/quan_ly_phong_nhom/bao_cao_phong.jpg",
+        "chi_tieu_kpi": "/api/img?path=images/quan_ly_phong_nhom/chi_tieu_kpi.jpg"
+      },
+      "steps": [
+        {
+          "id": 1,
+          "name": "Vào Menu cá nhân",
+          "desc": "Avatar góc phải → menu quản lý",
+          "title": "Bước 1 — Vào Menu cá nhân",
+          "sub": "Bấm avatar để vào menu với quyền quản lý phòng",
+          "imgKey": "menu",
+          "scrollY": 0,
+          "hs": { "x": 340, "y": 55, "w": 45, "h": 45 },
+          "ttPos": "left",
+          "ttTitle": "Avatar quản lý",
+          "ttText": "Bấm avatar để vào menu với quyền quản lý phòng",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Mở menu cá nhân",
+              "body": "Bấm avatar góc trên phải trang chủ để mở menu."
+            },
+            {
+              "title": "Quyền quản lý phòng",
+              "body": "Tài khoản QL phòng có thêm nhóm tính năng Quản lý phòng-nhóm trong menu."
+            },
+            {
+              "title": "Tìm nhóm quản lý",
+              "body": "Cuộn trong menu để tìm nhóm 'Quản lý phòng' hoặc 'Quản lý nhóm'."
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Danh sách phòng",
+          "desc": "Các phòng và nhóm bạn đang quản lý",
+          "title": "Bước 2 — Danh sách phòng",
+          "sub": "Xem tất cả phòng và nhóm bạn có quyền quản lý",
+          "imgKey": "danh_sach_phong",
+          "scrollY": 0,
+          "hs": { "x": 16, "y": 200, "w": 358, "h": 200 },
+          "ttPos": "right",
+          "ttTitle": "Phòng quản lý",
+          "ttText": "Xem tất cả phòng và nhóm bạn có quyền quản lý",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Xem danh sách phòng",
+              "body": "Mỗi card là 1 phòng/nhóm — hiển thị tên, số thành viên, trưởng nhóm."
+            },
+            {
+              "title": "Bấm vào phòng",
+              "body": "Mở chi tiết phòng: danh sách thành viên, KPI, hoạt động gần đây."
+            },
+            {
+              "title": "Chỉ số tổng quan",
+              "body": "Header mỗi card có số tin đang rao, số deal tháng này của phòng đó."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Xem thành viên",
+          "desc": "Danh sách CV và ĐC trong phòng",
+          "title": "Bước 3 — Xem thành viên",
+          "sub": "Xem tất cả thành viên, vai trò và trạng thái hoạt động",
+          "imgKey": "xem_thanh_vien",
+          "scrollY": 0,
+          "hs": { "x": 16, "y": 200, "w": 358, "h": 300 },
+          "ttPos": "right",
+          "ttTitle": "Danh sách thành viên",
+          "ttText": "Xem tất cả thành viên, vai trò và trạng thái hoạt động",
+          "tip": "Badge xanh = đang online. Badge xám = offline.",
+          "guide": [
+            {
+              "title": "Xem danh sách thành viên",
+              "body": "Tab Thành viên trong màn hình phòng — avatar, tên, vai trò mỗi người."
+            },
+            {
+              "title": "Hoạt động gần đây",
+              "body": "Dưới tên mỗi thành viên có thông tin: tin đăng gần nhất, lịch hẹn, deal."
+            },
+            {
+              "title": "Bấm vào thành viên",
+              "body": "Mở profile riêng — xem lịch sử hoạt động chi tiết và thống kê cá nhân."
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Thêm thành viên",
+          "desc": "Mời hoặc thêm CV mới vào phòng",
+          "title": "Bước 4 — Thêm thành viên",
+          "sub": "Bấm + hoặc Thêm để mời thành viên mới vào phòng",
+          "imgKey": "them_thanh_vien",
+          "scrollY": 0,
+          "hs": { "x": 300, "y": 130, "w": 60, "h": 40 },
+          "ttPos": "left",
+          "ttTitle": "Nút Thêm thành viên",
+          "ttText": "Bấm + hoặc Thêm để mời thành viên mới vào phòng",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Bấm Thêm thành viên",
+              "body": "Nút + hoặc 'Thêm thành viên' trong màn hình danh sách phòng."
+            },
+            {
+              "title": "Tìm theo SĐT hoặc tên",
+              "body": "Nhập SĐT hoặc tên nhân viên — hệ thống tìm kiếm trong database công ty."
+            },
+            {
+              "title": "Xác nhận thêm",
+              "body": "Chọn người → bấm Xác nhận → họ nhận thông báo và được thêm vào phòng."
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Phân quyền thành viên",
+          "desc": "Gán vai trò CV / Trưởng nhóm / QL",
+          "title": "Bước 5 — Phân quyền thành viên",
+          "sub": "Bấm vào thành viên → chọn Phân quyền để đổi vai trò",
+          "imgKey": "phan_quyen",
+          "scrollY": 0,
+          "hs": { "x": 310, "y": 200, "w": 45, "h": 45 },
+          "ttPos": "left",
+          "ttTitle": "Vai trò thành viên",
+          "ttText": "Bấm vào thành viên → chọn Phân quyền để đổi vai trò",
+          "tip": "Chỉ có 1 Trưởng nhóm mỗi phòng — đổi sẽ thu hồi quyền người cũ.",
+          "guide": [
+            {
+              "title": "Mở tùy chọn thành viên",
+              "body": "Bấm vào tên thành viên → bấm biểu tượng ⋮ hoặc 'Chỉnh sửa vai trò'."
+            },
+            {
+              "title": "Chọn vai trò",
+              "body": "Danh sách vai trò: Chuyên viên / Trưởng nhóm / Phó quản lý — chọn phù hợp."
+            },
+            {
+              "title": "Xác nhận thay đổi",
+              "body": "Bấm Lưu — thay đổi có hiệu lực ngay, người dùng nhận thông báo về quyền mới."
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Nhóm chat phòng",
+          "desc": "Tạo và quản lý nhóm chat nội bộ",
+          "title": "Bước 6 — Nhóm chat phòng",
+          "sub": "Tạo nhóm chat riêng cho phòng hoặc nhóm dự án",
+          "imgKey": "nhom_chat_phong",
+          "scrollY": 450,
+          "hs": { "x": 16, "y": 500, "w": 358, "h": 55 },
+          "ttPos": "right",
+          "ttTitle": "Nhóm chat phòng",
+          "ttText": "Tạo nhóm chat riêng cho phòng hoặc nhóm dự án",
+          "tip": "QL phòng mới có quyền tạo nhóm chat — thành viên chỉ tham gia.",
+          "guide": [
+            {
+              "title": "Xem nhóm chat hiện có",
+              "body": "Tab Nhóm chat trong màn hình quản lý phòng — liệt kê tất cả nhóm."
+            },
+            {
+              "title": "Tạo nhóm mới",
+              "body": "Bấm '+' → đặt tên nhóm → thêm thành viên → bấm Tạo nhóm."
+            },
+            {
+              "title": "Cài đặt nhóm",
+              "body": "Bấm vào nhóm → Cài đặt: thêm/xóa thành viên, đổi tên, ghim nhóm, thông báo."
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "name": "Báo cáo phòng",
+          "desc": "Thống kê hoạt động tháng của phòng",
+          "title": "Bước 7 — Báo cáo phòng",
+          "sub": "Xem số tin đăng, deal, lịch hẹn của toàn phòng theo kỳ",
+          "imgKey": "bao_cao_phong",
+          "scrollY": 450,
+          "hs": { "x": 16, "y": 500, "w": 358, "h": 300 },
+          "ttPos": "right",
+          "ttTitle": "Báo cáo hoạt động",
+          "ttText": "Xem số tin đăng, deal, lịch hẹn của toàn phòng",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Mở tab Báo cáo",
+              "body": "Tab Báo cáo trong màn hình quản lý phòng — chọn kỳ báo cáo (tuần/tháng/quý)."
+            },
+            {
+              "title": "Xem thống kê tổng quan",
+              "body": "Biểu đồ và số liệu: tổng tin đăng, deal thành công, lịch hẹn thực hiện."
+            },
+            {
+              "title": "Xem chi tiết theo thành viên",
+              "body": "Cuộn xuống bảng ranking — xem đóng góp cụ thể của từng thành viên."
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "name": "Chỉ tiêu KPI",
+          "desc": "Cài đặt mục tiêu cho phòng và cá nhân",
+          "title": "Bước 8 — Chỉ tiêu KPI",
+          "sub": "Đặt mục tiêu số lượng tin, deal và lịch hẹn cho phòng",
+          "imgKey": "chi_tieu_kpi",
+          "scrollY": 500,
+          "hs": { "x": 16, "y": 550, "w": 358, "h": 55 },
+          "ttPos": "right",
+          "ttTitle": "Chỉ tiêu KPI",
+          "ttText": "Đặt mục tiêu số lượng tin, deal và lịch hẹn",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Mở cài đặt chỉ tiêu",
+              "body": "Tab KPI trong màn hình quản lý phòng → chọn kỳ (tháng/quý)."
+            },
+            {
+              "title": "Nhập chỉ tiêu",
+              "body": "Điền số lượng cho từng loại: tin đăng mới, deal chốt, lịch hẹn, khách mới."
+            },
+            {
+              "title": "Phân bổ cho thành viên",
+              "body": "Có thể đặt KPI chung cho phòng hoặc phân bổ riêng cho từng thành viên."
+            }
+          ]
+        }
+      ],
+      "quality": { "errors": 0, "warnings": 0, "lastReviewed": null }
+    },
+    "tai_khoan_ca_nhan": {
+      "name": "Tài khoản cá nhân",
+      "role": "Đầu chủ",
+      "icon": "👤",
+      "iconImg": "assets/icons/tai_khoan_ca_nhan.png",
+      "description": "Quản lý hồ sơ cá nhân — thông tin, ảnh, bảo mật, thông báo",
+      "status": "draft",
+      "attributes": {
+        "industry": "real_estate",
+        "tenant": "nhapho",
+        "role": ["dau_chu", "hoc_vien", "quan_ly_phong"],
+        "level": "beginner",
+        "tags": ["tai_khoan", "ca_nhan", "bao_mat"],
+        "language": "vi"
+      },
+      "images": {
+        "menu": "/api/img?path=images/tai_khoan_ca_nhan/menu.jpg",
+        "xem_ho_so": "/api/img?path=images/tai_khoan_ca_nhan/xem_ho_so.jpg",
+        "chinh_sua": "/api/img?path=images/tai_khoan_ca_nhan/chinh_sua.jpg",
+        "anh_dai_dien": "/api/img?path=images/tai_khoan_ca_nhan/anh_dai_dien.jpg",
+        "bao_mat": "/api/img?path=images/tai_khoan_ca_nhan/bao_mat.jpg",
+        "thong_bao": "/api/img?path=images/tai_khoan_ca_nhan/thong_bao.jpg",
+        "dang_xuat": "/api/img?path=images/tai_khoan_ca_nhan/dang_xuat.jpg"
+      },
+      "steps": [
+        {
+          "id": 1,
+          "name": "Vào menu cá nhân",
+          "desc": "Avatar góc phải → vào tài khoản",
+          "title": "Bước 1 — Vào menu cá nhân",
+          "sub": "Bấm avatar để mở menu và vào phần Tài khoản",
+          "imgKey": "menu",
+          "scrollY": 0,
+          "hs": { "x": 340, "y": 55, "w": 45, "h": 45 },
+          "ttPos": "left",
+          "ttTitle": "Avatar cá nhân",
+          "ttText": "Bấm avatar để mở menu và vào phần Tài khoản",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Mở menu cá nhân",
+              "body": "Bấm avatar góc trên phải trang chủ."
+            },
+            {
+              "title": "Tìm nhóm Tài khoản",
+              "body": "Cuộn trong menu tìm mục 'Tài khoản cá nhân' hoặc 'Hồ sơ'."
+            },
+            {
+              "title": "Bấm vào",
+              "body": "Mở màn hình tài khoản với đầy đủ thông tin cá nhân của bạn."
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Hồ sơ cá nhân",
+          "desc": "Thông tin đầy đủ tài khoản của bạn",
+          "title": "Bước 2 — Hồ sơ cá nhân",
+          "sub": "Xem và kiểm tra thông tin tài khoản đang hiển thị",
+          "imgKey": "xem_ho_so",
+          "scrollY": 0,
+          "hs": { "x": 16, "y": 150, "w": 358, "h": 300 },
+          "ttPos": "right",
+          "ttTitle": "Hồ sơ cá nhân",
+          "ttText": "Xem và kiểm tra thông tin tài khoản đang hiển thị",
+          "tip": "Hồ sơ đầy đủ và ảnh rõ ràng giúp khách hàng tin tưởng hơn.",
+          "guide": [
+            {
+              "title": "Xem thông tin hiển thị",
+              "body": "Màn hình hồ sơ gồm: ảnh đại diện, tên, chức danh, SĐT, chi nhánh."
+            },
+            {
+              "title": "Kiểm tra thông tin chính xác",
+              "body": "Đảm bảo tên, SĐT, chi nhánh khớp với thực tế — khách hàng sẽ thấy thông tin này."
+            },
+            {
+              "title": "Bấm Chỉnh sửa",
+              "body": "Bấm nút Chỉnh sửa hoặc biểu tượng bút ✏️ để cập nhật thông tin."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Chỉnh sửa thông tin",
+          "desc": "Cập nhật tên, giới thiệu bản thân",
+          "title": "Bước 3 — Chỉnh sửa thông tin",
+          "sub": "Nhập thông tin mới và bấm Lưu để cập nhật hồ sơ",
+          "imgKey": "chinh_sua",
+          "scrollY": 200,
+          "hs": { "x": 16, "y": 250, "w": 358, "h": 300 },
+          "ttPos": "right",
+          "ttTitle": "Form chỉnh sửa",
+          "ttText": "Nhập thông tin mới và bấm Lưu để cập nhật hồ sơ",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Bấm vào trường cần sửa",
+              "body": "Bấm vào ô Tên, Giới thiệu hoặc trường nào muốn cập nhật."
+            },
+            {
+              "title": "Nhập thông tin mới",
+              "body": "Xóa nội dung cũ và nhập thông tin mới — tên nên dùng họ tên đầy đủ."
+            },
+            {
+              "title": "Lưu thay đổi",
+              "body": "Bấm Lưu hoặc Xác nhận góc trên phải — thông tin cập nhật ngay sau khi lưu."
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Cập nhật ảnh đại diện",
+          "desc": "Chọn hoặc chụp ảnh đại diện mới",
+          "title": "Bước 4 — Cập nhật ảnh đại diện",
+          "sub": "Bấm vào ảnh để chọn từ thư viện hoặc chụp mới",
+          "imgKey": "anh_dai_dien",
+          "scrollY": 0,
+          "hs": { "x": 140, "y": 140, "w": 110, "h": 110 },
+          "ttPos": "right",
+          "ttTitle": "Ảnh đại diện",
+          "ttText": "Bấm vào ảnh để chọn từ thư viện hoặc chụp mới",
+          "tip": "Ảnh chân dung rõ mặt, nền đơn giản tạo ấn tượng chuyên nghiệp nhất.",
+          "guide": [
+            {
+              "title": "Bấm vào ảnh đại diện",
+              "body": "Bấm vào ảnh tròn hoặc icon camera chồng lên ảnh → tùy chọn mở ra."
+            },
+            {
+              "title": "Chọn ảnh từ thư viện",
+              "body": "Chọn 'Thư viện ảnh' → chọn ảnh → cắt khung vuông/tròn → Xác nhận."
+            },
+            {
+              "title": "Chụp ảnh mới",
+              "body": "Chọn 'Chụp ảnh' → chụp ngay → cắt khung → Lưu ảnh đại diện mới."
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Cài đặt bảo mật",
+          "desc": "Đổi mật khẩu và bảo mật tài khoản",
+          "title": "Bước 5 — Cài đặt bảo mật",
+          "sub": "Đổi mật khẩu và bật xác thực 2 lớp để bảo vệ tài khoản",
+          "imgKey": "bao_mat",
+          "scrollY": 400,
+          "hs": { "x": 16, "y": 450, "w": 358, "h": 55 },
+          "ttPos": "right",
+          "ttTitle": "Bảo mật tài khoản",
+          "ttText": "Đổi mật khẩu và bật xác thực 2 lớp",
+          "tip": "Đổi mật khẩu mỗi 3 tháng một lần để bảo vệ tài khoản.",
+          "guide": [
+            {
+              "title": "Mở cài đặt bảo mật",
+              "body": "Trong tài khoản → tab Bảo mật hoặc mục Đổi mật khẩu."
+            },
+            {
+              "title": "Đổi mật khẩu",
+              "body": "Nhập mật khẩu cũ → nhập mật khẩu mới (≥8 ký tự, có số và chữ hoa) → Xác nhận."
+            },
+            {
+              "title": "Xác thực 2 lớp",
+              "body": "Bật OTP qua SĐT — mỗi lần đăng nhập mới cần thêm mã OTP từ tin nhắn."
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Cài đặt thông báo",
+          "desc": "Bật tắt thông báo theo từng loại",
+          "title": "Bước 6 — Cài đặt thông báo",
+          "sub": "Bật thông báo quan trọng, tắt thông báo ít dùng",
+          "imgKey": "thong_bao",
+          "scrollY": 470,
+          "hs": { "x": 16, "y": 520, "w": 358, "h": 55 },
+          "ttPos": "right",
+          "ttTitle": "Tùy chỉnh thông báo",
+          "ttText": "Bật thông báo quan trọng, tắt thông báo ít dùng",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Mở cài đặt thông báo",
+              "body": "Tab Thông báo trong tài khoản — danh sách các loại thông báo."
+            },
+            {
+              "title": "Bật/tắt theo loại",
+              "body": "Toggle từng loại: Chat / Lịch hẹn / Tin đăng / Thông báo hệ thống."
+            },
+            {
+              "title": "Cài giờ không làm phiền",
+              "body": "Bật 'Không làm phiền' và đặt khung giờ — không nhận push trong khoảng đó."
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "name": "Đăng xuất",
+          "desc": "Đăng xuất hoặc chuyển đổi tài khoản",
+          "title": "Bước 7 — Đăng xuất",
+          "sub": "Bấm Đăng xuất để thoát — cần đăng nhập lại bằng OTP",
+          "imgKey": "dang_xuat",
+          "scrollY": 650,
+          "hs": { "x": 90, "y": 680, "w": 210, "h": 50 },
+          "ttPos": "top",
+          "ttTitle": "Nút Đăng xuất",
+          "ttText": "Bấm Đăng xuất để thoát — cần đăng nhập lại bằng OTP",
+          "tip": "Sau khi đăng xuất phải dùng SĐT + OTP để vào lại — không dùng mật khẩu.",
+          "guide": [
+            {
+              "title": "Cuộn xuống cuối trang",
+              "body": "Nút Đăng xuất nằm ở cuối cùng màn hình tài khoản — màu đỏ hoặc xám."
+            },
+            {
+              "title": "Xác nhận đăng xuất",
+              "body": "App hỏi xác nhận một lần — bấm Đăng xuất để thoát hoàn toàn."
+            },
+            {
+              "title": "Đăng nhập lại",
+              "body": "Lần sau vào app: nhập SĐT → nhận OTP → đăng nhập bình thường."
+            }
+          ]
+        }
+      ],
+      "quality": { "errors": 0, "warnings": 0, "lastReviewed": null }
+    },
+    "quan_ly_kho_hang": {
+      "name": "Quản lý kho hàng",
+      "role": "Quản lý phòng",
+      "icon": "📦",
+      "iconImg": "assets/icons/quan_ly_kho_hang.png",
+      "description": "Quản lý tổng hợp kho hàng phòng — duyệt, phân công, thống kê",
+      "status": "draft",
+      "attributes": {
+        "industry": "real_estate",
+        "tenant": "nhapho",
+        "role": ["quan_ly_phong"],
+        "level": "intermediate",
+        "tags": ["kho_hang", "quan_ly", "duyet_tin"],
+        "language": "vi"
+      },
+      "images": {
+        "menu": "/api/img?path=images/quan_ly_kho_hang/menu.jpg",
+        "kho_phong": "/api/img?path=images/quan_ly_kho_hang/kho_phong.jpg",
+        "duyet_tin": "/api/img?path=images/quan_ly_kho_hang/duyet_tin.jpg",
+        "phan_cong": "/api/img?path=images/quan_ly_kho_hang/phan_cong.jpg",
+        "loc_kho": "/api/img?path=images/quan_ly_kho_hang/loc_kho.jpg",
+        "thong_ke": "/api/img?path=images/quan_ly_kho_hang/thong_ke.jpg",
+        "xuat_bao_cao": "/api/img?path=images/quan_ly_kho_hang/xuat_bao_cao.jpg"
+      },
+      "steps": [
+        {
+          "id": 1,
+          "name": "Vào menu cá nhân",
+          "desc": "Avatar góc phải → nhóm Quản lý kho",
+          "title": "Bước 1 — Vào menu cá nhân",
+          "sub": "Bấm avatar → tìm nhóm Quản lý kho hàng trong menu",
+          "imgKey": "menu",
+          "scrollY": 0,
+          "hs": { "x": 340, "y": 55, "w": 45, "h": 45 },
+          "ttPos": "left",
+          "ttTitle": "Avatar cá nhân",
+          "ttText": "Bấm avatar → tìm nhóm Quản lý kho hàng trong menu",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Mở menu cá nhân",
+              "body": "Bấm avatar góc trên phải trang chủ."
+            },
+            {
+              "title": "Tìm nhóm Quản lý kho",
+              "body": "Cuộn trong menu để tìm nhóm 'Quản lý kho hàng' dành riêng cho QL phòng."
+            },
+            {
+              "title": "Bấm vào nhóm",
+              "body": "Danh sách tính năng quản lý kho mở ra — gồm nhiều mục con."
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Kho hàng toàn phòng",
+          "desc": "Tất cả tin đăng của mọi thành viên",
+          "title": "Bước 2 — Kho hàng toàn phòng",
+          "sub": "Xem toàn bộ kho hàng của mọi thành viên trong phòng",
+          "imgKey": "kho_phong",
+          "scrollY": 0,
+          "hs": { "x": 16, "y": 200, "w": 358, "h": 350 },
+          "ttPos": "right",
+          "ttTitle": "Kho hàng phòng",
+          "ttText": "Xem toàn bộ kho hàng của mọi thành viên trong phòng",
+          "tip": "Mặc định hiển thị tin đang rao — chọn tab khác để xem chờ duyệt, đã bán.",
+          "guide": [
+            {
+              "title": "Xem tổng quan kho",
+              "body": "Màn hình kho phòng hiển thị tất cả tin của toàn bộ thành viên theo thứ tự mới nhất."
+            },
+            {
+              "title": "Lọc theo thành viên",
+              "body": "Bấm dropdown 'Thành viên' để xem riêng kho của 1 CV/ĐC cụ thể."
+            },
+            {
+              "title": "Xem theo trạng thái",
+              "body": "Các tab: Đang rao / Chờ duyệt / Đã bán / Thùng rác — bấm để lọc nhanh."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Duyệt tin thành viên",
+          "desc": "Xem xét và duyệt tin của CV",
+          "title": "Bước 3 — Duyệt tin thành viên",
+          "sub": "Bấm Duyệt hoặc Từ chối kèm lý do cho từng tin",
+          "imgKey": "duyet_tin",
+          "scrollY": 600,
+          "hs": { "x": 50, "y": 650, "w": 130, "h": 48 },
+          "ttPos": "top",
+          "ttTitle": "Duyệt / Từ chối",
+          "ttText": "Bấm Duyệt hoặc Từ chối kèm lý do cho từng tin",
+          "tip": "Luôn ghi lý do khi từ chối — giúp thành viên biết cần sửa gì.",
+          "guide": [
+            {
+              "title": "Mở tab Chờ duyệt",
+              "body": "Tab Chờ duyệt trong kho phòng — danh sách tin đang cần xem xét."
+            },
+            {
+              "title": "Xem chi tiết trước khi duyệt",
+              "body": "Bấm vào tin → kiểm tra thông tin, ảnh, pháp lý, giá — đảm bảo đúng thực tế."
+            },
+            {
+              "title": "Duyệt hoặc từ chối",
+              "body": "Bấm 'Duyệt' để đăng tin công khai. Bấm 'Từ chối' → nhập lý do → gửi cho CV."
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Phân công hàng",
+          "desc": "Giao tin BĐS cho CV phù hợp",
+          "title": "Bước 4 — Phân công hàng",
+          "sub": "Chọn CV và phân công hàng cần khai thác",
+          "imgKey": "phan_cong",
+          "scrollY": 600,
+          "hs": { "x": 200, "y": 650, "w": 140, "h": 48 },
+          "ttPos": "top",
+          "ttTitle": "Phân công tin",
+          "ttText": "Chọn CV và phân công hàng cần khai thác",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Chọn tin cần phân công",
+              "body": "Bấm vào tin trong kho → tùy chọn 'Phân công' hoặc 'Giao cho CV'."
+            },
+            {
+              "title": "Chọn CV phù hợp",
+              "body": "Tìm CV theo tên hoặc chọn từ danh sách — nên chọn người đang rảnh/có chuyên môn phù hợp."
+            },
+            {
+              "title": "Xác nhận phân công",
+              "body": "Bấm Xác nhận — CV được thông báo và tin xuất hiện trong danh sách công việc của họ."
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Lọc kho hàng",
+          "desc": "Tìm tin theo loại, giá, khu vực, thành viên",
+          "title": "Bước 5 — Lọc kho hàng",
+          "sub": "Dùng bộ lọc để tìm hàng phù hợp cho khách cụ thể",
+          "imgKey": "loc_kho",
+          "scrollY": 0,
+          "hs": { "x": 310, "y": 110, "w": 55, "h": 40 },
+          "ttPos": "left",
+          "ttTitle": "Bộ lọc kho",
+          "ttText": "Dùng bộ lọc để tìm hàng phù hợp cho khách cụ thể",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Mở bộ lọc",
+              "body": "Bấm icon phễu hoặc nút 'Lọc' trong màn hình kho hàng phòng."
+            },
+            {
+              "title": "Chọn tiêu chí",
+              "body": "Lọc theo: loại hình, khu vực, giá, diện tích, trạng thái, thành viên phụ trách."
+            },
+            {
+              "title": "Áp dụng và xem kết quả",
+              "body": "Bấm Lọc để áp dụng — kho hiển thị chỉ tin khớp tiêu chí đã chọn."
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Thống kê kho",
+          "desc": "Tổng quan số lượng và tỷ lệ theo trạng thái",
+          "title": "Bước 6 — Thống kê kho",
+          "sub": "Xem biểu đồ tổng quan kho theo tháng và thành viên",
+          "imgKey": "thong_ke",
+          "scrollY": 0,
+          "hs": { "x": 16, "y": 200, "w": 358, "h": 300 },
+          "ttPos": "right",
+          "ttTitle": "Thống kê kho",
+          "ttText": "Xem biểu đồ tổng quan kho theo tháng và thành viên",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Mở tab Thống kê",
+              "body": "Tab Thống kê trong màn hình quản lý kho — chọn kỳ (tuần/tháng/quý)."
+            },
+            {
+              "title": "Đọc biểu đồ",
+              "body": "Biểu đồ hình tròn hoặc cột: phân bổ tin theo trạng thái (đang rao/đã bán/chờ duyệt)."
+            },
+            {
+              "title": "So sánh theo tháng",
+              "body": "Chọn tháng khác để so sánh — theo dõi xu hướng kho tăng giảm theo thời gian."
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "name": "Xuất báo cáo kho",
+          "desc": "Tải về hoặc gửi báo cáo dưới dạng file",
+          "title": "Bước 7 — Xuất báo cáo kho",
+          "sub": "Bấm Xuất để tải báo cáo kho dưới dạng Excel hoặc PDF",
+          "imgKey": "xuat_bao_cao",
+          "scrollY": 0,
+          "hs": { "x": 310, "y": 55, "w": 55, "h": 40 },
+          "ttPos": "left",
+          "ttTitle": "Xuất báo cáo",
+          "ttText": "Bấm Xuất để tải báo cáo kho dưới dạng Excel hoặc PDF",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Bấm nút Xuất báo cáo",
+              "body": "Trong màn hình Thống kê → nút 'Xuất' hoặc 'Download' góc trên phải."
+            },
+            {
+              "title": "Chọn định dạng",
+              "body": "Chọn Excel (.xlsx) để chỉnh sửa hoặc PDF để chia sẻ/in ấn."
+            },
+            {
+              "title": "Gửi cho Ban quản lý",
+              "body": "Sau khi tải về, chia sẻ qua email hoặc Zalo cho trưởng phòng/ban giám đốc."
+            }
+          ]
+        }
+      ],
+      "quality": { "errors": 0, "warnings": 0, "lastReviewed": null }
     }
   },
   "featured": [
