@@ -1,6 +1,6 @@
 {
   "version": "v12",
-  "lastUpdated": "2026-05-20",
+  "lastUpdated": "2026-05-21",
   "brand": {
     "name": "Nhà Phố Việt Nam",
     "app": "App Nhà Phố",
@@ -1369,10 +1369,10 @@
           "imgKey": "list",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 23,
+            "y": 243,
+            "w": 62,
+            "h": 120
           },
           "ttPos": "right",
           "ttTitle": "Icon Đặt lịch",
@@ -1398,14 +1398,14 @@
           "name": "Xem danh sách lịch hẹn",
           "desc": "Danh sách lịch đã đặt theo trạng thái",
           "imgKey": "xem",
-          "scrollY": 0,
+          "scrollY": 229,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 267,
+            "y": 904,
+            "w": 46,
+            "h": 52
           },
-          "ttPos": "right",
+          "ttPos": "left",
           "ttTitle": "Danh sách lịch hẹn",
           "ttText": "Xem tất cả lịch theo tab: Chờ duyệt, Đã xác nhận, Đã hủy",
           "tip": "Tab Chờ duyệt hiện lịch chưa được đầu chủ xác nhận — theo dõi thường xuyên.",
@@ -1431,12 +1431,12 @@
           "imgKey": "dat",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 10,
+            "y": 101,
+            "w": 367,
+            "h": 89
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Nút Đặt lịch",
           "ttText": "Bấm Đặt lịch trên card tin để mở form hẹn xem nhà",
           "tip": "Đặt lịch trực tiếp từ card tin trong Kho tài nguyên — không cần vào màn hình Đặt lịch riêng.",
@@ -1462,10 +1462,10 @@
           "imgKey": "chon",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 71,
+            "y": 375,
+            "w": 231,
+            "h": 86
           },
           "ttPos": "right",
           "ttTitle": "Chọn ngày giờ hẹn",
@@ -1491,14 +1491,14 @@
           "name": "Xem lịch đã xác nhận",
           "desc": "Lịch hẹn đã được đầu chủ duyệt",
           "imgKey": "lich_dk",
-          "scrollY": 0,
+          "scrollY": 40,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 3,
+            "y": 102,
+            "w": 378,
+            "h": 121
           },
-          "ttPos": "right",
+          "ttPos": "left",
           "ttTitle": "Tab Đã xác nhận",
           "ttText": "Lịch xanh = đầu chủ đã đồng ý, sẵn sàng dẫn khách",
           "tip": "Nhận thông báo push khi đầu chủ xác nhận — bật thông báo App để không bỏ lỡ.",
@@ -1524,10 +1524,10 @@
           "imgKey": "thu",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 6,
+            "y": 301,
+            "w": 373,
+            "h": 126
           },
           "ttPos": "right",
           "ttTitle": "Nút Thu hồi lịch",
@@ -1555,12 +1555,12 @@
           "imgKey": "history",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 6,
+            "y": 102,
+            "w": 378,
+            "h": 520
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Lịch sử lịch hẹn",
           "ttText": "Xem lại tất cả lịch đã đặt, đã hủy theo thời gian",
           "tip": "",
@@ -1580,7 +1580,7 @@
           ]
         }
       ],
-      "status": "draft",
+      "status": "live",
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
@@ -1622,10 +1622,10 @@
           "imgKey": "home",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 154,
+            "y": 762,
+            "w": 88,
+            "h": 59
           },
           "ttPos": "right",
           "ttTitle": "Chuông thông báo",
@@ -1653,12 +1653,12 @@
           "imgKey": "lich",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 3,
+            "y": 215,
+            "w": 381,
+            "h": 131
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Danh sách lịch hẹn",
           "ttText": "Tab Chờ xác nhận hiện toàn bộ yêu cầu đang chờ",
           "tip": "Phản hồi yêu cầu trong vòng 24h — chuyên viên sẽ chủ động dẫn khách tốt hơn.",
@@ -1684,12 +1684,12 @@
           "imgKey": "accept",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 8,
+            "y": 300,
+            "w": 370,
+            "h": 192
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Nút Xác nhận",
           "ttText": "Bấm Xác nhận — chuyên viên nhận thông báo ngay lập tức",
           "tip": "Sau khi xác nhận, liên hệ chuyên viên để trao đổi thêm nếu cần chuẩn bị gì thêm.",
@@ -1715,12 +1715,12 @@
           "imgKey": "reject",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 8,
+            "y": 301,
+            "w": 366,
+            "h": 356
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Nút Từ chối",
           "ttText": "Bấm Từ chối, nhập lý do để chuyên viên hiểu và đặt lại",
           "tip": "Nhập lý do cụ thể giúp chuyên viên đặt lại lịch phù hợp — tránh mất khách tiềm năng.",
@@ -1746,12 +1746,12 @@
           "imgKey": "thu",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 8,
+            "y": 306,
+            "w": 372,
+            "h": 115
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Nút Thu hồi",
           "ttText": "Thu hồi lịch đã xác nhận khi có sự cố bất ngờ",
           "tip": "Thu hồi sớm nhất có thể — chuyên viên cần thời gian thông báo lại cho khách.",
@@ -1771,7 +1771,7 @@
           ]
         }
       ],
-      "status": "draft",
+      "status": "live",
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
@@ -1814,10 +1814,10 @@
           "imgKey": "home",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 77,
+            "y": 108,
+            "w": 88,
+            "h": 103
           },
           "ttPos": "right",
           "ttTitle": "Icon Khách cần mua gấp",
@@ -1845,12 +1845,12 @@
           "imgKey": "xem",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 3,
+            "y": 94,
+            "w": 386,
+            "h": 387
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Chi tiết khách hot",
           "ttText": "Bấm vào khách để xem nhu cầu, ngân sách, khu vực muốn mua",
           "tip": "Ghi nhớ nhu cầu khách — khi tìm được hàng phù hợp, liên hệ ngay để tăng tỷ lệ chốt.",
@@ -1873,15 +1873,15 @@
           "id": 3,
           "name": "Tạo khách cần mua gấp",
           "desc": "Form nhập thông tin khách hot mới",
-          "imgKey": "tao",
+          "imgKey": "xem",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 6,
+            "y": 93,
+            "w": 137,
+            "h": 56
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Nút Tạo mới",
           "ttText": "Bấm dấu + để mở form nhập thông tin khách cần mua gấp",
           "tip": "Điền đầy đủ nhu cầu ngay khi nói chuyện với khách — tránh quên sau khi cúp máy.",
@@ -1904,15 +1904,15 @@
           "id": 4,
           "name": "Sửa thông tin khách",
           "desc": "Cập nhật nhu cầu khách thay đổi",
-          "imgKey": "sua",
+          "imgKey": "tao",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 3,
+            "y": 97,
+            "w": 379,
+            "h": 622
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Nút Sửa",
           "ttText": "Bấm Sửa để cập nhật khi nhu cầu khách thay đổi",
           "tip": "",
@@ -1935,15 +1935,15 @@
           "id": 5,
           "name": "Xóa khách cần mua gấp",
           "desc": "Xóa hồ sơ khách không còn nhu cầu",
-          "imgKey": "xoa",
-          "scrollY": 0,
+          "imgKey": "tao",
+          "scrollY": 21,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 7,
+            "y": 794,
+            "w": 370,
+            "h": 61
           },
-          "ttPos": "right",
+          "ttPos": "top",
           "ttTitle": "Nút Xóa",
           "ttText": "Xóa khách đã mua được nhà hoặc không còn nhu cầu",
           "tip": "Xóa không khôi phục được — chắc chắn trước khi xác nhận.",
@@ -1966,15 +1966,15 @@
           "id": 6,
           "name": "Ghim khách ưu tiên",
           "desc": "Ghim khách hot lên đầu danh sách",
-          "imgKey": "ghim",
-          "scrollY": 0,
+          "imgKey": "hold",
+          "scrollY": 53,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 9,
+            "y": 538,
+            "w": 366,
+            "h": 352
           },
-          "ttPos": "right",
+          "ttPos": "top",
           "ttTitle": "Nút Ghim",
           "ttText": "Ghim khách để giữ trên đầu danh sách ưu tiên xử lý",
           "tip": "Chỉ ghim khách thực sự gấp — ghim quá nhiều làm mất tác dụng ưu tiên.",
@@ -1997,15 +1997,15 @@
           "id": 7,
           "name": "Hold tạm khách",
           "desc": "Tạm dừng khách chưa mua ngay",
-          "imgKey": "hold",
-          "scrollY": 0,
+          "imgKey": "sua",
+          "scrollY": 27,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 6,
+            "y": 820,
+            "w": 373,
+            "h": 62
           },
-          "ttPos": "right",
+          "ttPos": "top",
           "ttTitle": "Nút Hold",
           "ttText": "Hold khách đang chờ ngân sách hoặc tạm dừng tìm kiếm",
           "tip": "Hold giúp danh sách gọn hơn — chỉ để lại khách đang tích cực tìm nhà.",
@@ -2025,7 +2025,7 @@
           ]
         }
       ],
-      "status": "draft",
+      "status": "live",
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
@@ -2070,10 +2070,10 @@
           "imgKey": "menu",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 7,
+            "y": 540,
+            "w": 180,
+            "h": 96
           },
           "ttPos": "right",
           "ttTitle": "Avatar cá nhân",
@@ -2101,12 +2101,12 @@
           "imgKey": "menu_list_quan_ly_kho",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 3,
+            "y": 97,
+            "w": 378,
+            "h": 53
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Mục Quản lý kho",
           "ttText": "Bấm Quản lý kho để vào màn hình kho tin cá nhân",
           "tip": "",
@@ -2132,12 +2132,12 @@
           "imgKey": "trang_thai",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 3,
+            "y": 94,
+            "w": 384,
+            "h": 138
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "4 tab trạng thái tin",
           "ttText": "Chờ duyệt | Đã duyệt | Từ chối | Thùng rác — bấm để lọc",
           "tip": "",
@@ -2160,13 +2160,13 @@
           "id": 4,
           "name": "Xem tin chờ duyệt",
           "desc": "Tin đang chờ kiểm duyệt trong 24h",
-          "imgKey": "xem_cho_duyet",
+          "imgKey": "xem_da_duyet",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
+            "x": 100,
+            "y": 146,
             "w": 100,
-            "h": 80
+            "h": 49
           },
           "ttPos": "right",
           "ttTitle": "Tab Chờ duyệt",
@@ -2194,12 +2194,12 @@
           "imgKey": "xem_thung_rac",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 246,
+            "y": 142,
+            "w": 135,
+            "h": 59
           },
-          "ttPos": "right",
+          "ttPos": "left",
           "ttTitle": "Tab Thùng rác",
           "ttText": "Tin đã xóa — khôi phục hoặc xóa vĩnh viễn tại đây",
           "tip": "Khôi phục tin từ thùng rác đưa tin về trạng thái Chờ duyệt — cần duyệt lại.",
@@ -2222,13 +2222,13 @@
           "id": 6,
           "name": "Xem tin đã duyệt",
           "desc": "Tin đang live trên kho tài nguyên",
-          "imgKey": "xem_da_duyet",
+          "imgKey": "xem_tu_choi",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 192,
+            "y": 145,
+            "w": 98,
+            "h": 54
           },
           "ttPos": "right",
           "ttTitle": "Tab Đã duyệt",
@@ -2253,13 +2253,13 @@
           "id": 7,
           "name": "Xem tin bị từ chối",
           "desc": "Tin bị trả về kèm lý do, cần sửa",
-          "imgKey": "xem_tu_choi",
+          "imgKey": "xem_cho_duyet",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 4,
+            "y": 175,
+            "w": 63,
+            "h": 57
           },
           "ttPos": "right",
           "ttTitle": "Tab Từ chối",
@@ -2285,14 +2285,14 @@
           "name": "Lọc tin trong kho",
           "desc": "Bộ lọc tìm nhanh tin trong kho",
           "imgKey": "loc",
-          "scrollY": 0,
+          "scrollY": 44,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 8,
+            "y": 768,
+            "w": 367,
+            "h": 117
           },
-          "ttPos": "right",
+          "ttPos": "top",
           "ttTitle": "Nút Lọc",
           "ttText": "Lọc theo loại hình, địa chỉ, giá để tìm tin nhanh",
           "tip": "",
@@ -2315,15 +2315,15 @@
           "id": 9,
           "name": "Xem chi tiết một tin",
           "desc": "Toàn bộ nội dung tin đăng của bạn",
-          "imgKey": "xem_tin_chi_tiet",
-          "scrollY": 0,
+          "imgKey": "xem_tu_choi",
+          "scrollY": 237,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 5,
+            "y": 945,
+            "w": 378,
+            "h": 68
           },
-          "ttPos": "right",
+          "ttPos": "top",
           "ttTitle": "Chi tiết tin đăng",
           "ttText": "Bấm vào tin để xem toàn bộ nội dung và thao tác",
           "tip": "",
@@ -2343,7 +2343,7 @@
           ]
         }
       ],
-      "status": "draft",
+      "status": "live",
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
@@ -2385,10 +2385,10 @@
           "imgKey": "home",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 168,
+            "y": 205,
+            "w": 83,
+            "h": 100
           },
           "ttPos": "right",
           "ttTitle": "Icon Kho hàng tự do",
@@ -2416,12 +2416,12 @@
           "imgKey": "list",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 6,
+            "y": 93,
+            "w": 372,
+            "h": 92
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Danh sách BĐS",
           "ttText": "Bảng dữ liệu ngang — vuốt phải để thấy thêm cột",
           "tip": "Vuốt ngang để thấy cột Giá và Thông số — hai cột quan trọng nhất khi đánh giá nhanh.",
@@ -2447,12 +2447,12 @@
           "imgKey": "filter",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 224,
+            "y": 175,
+            "w": 157,
+            "h": 207
           },
-          "ttPos": "right",
+          "ttPos": "left",
           "ttTitle": "Nút Lọc",
           "ttText": "Bấm Lọc để chọn loại hình, khu vực và khoảng giá",
           "tip": "Lọc từ Tỉnh/TP xuống Quận rồi Đường — không chọn cấp dưới trước khi chọn cấp trên.",
@@ -2478,12 +2478,12 @@
           "imgKey": "an_cot",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 59,
+            "y": 180,
+            "w": 328,
+            "h": 269
           },
-          "ttPos": "right",
+          "ttPos": "left",
           "ttTitle": "Nút Ẩn cột",
           "ttText": "Bấm Ẩn cột để chọn cột nào hiển thị trong bảng",
           "tip": "Tắt cột G.Chú và B.Cáo nếu không dùng — bảng gọn hơn, đọc nhanh hơn.",
@@ -2509,12 +2509,12 @@
           "imgKey": "chi_tiet",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 180,
+            "y": 122,
+            "w": 203,
+            "h": 69
           },
-          "ttPos": "right",
+          "ttPos": "left",
           "ttTitle": "Panel chi tiết",
           "ttText": "Bấm vào tin để mở panel thông tin nhanh bên cạnh",
           "tip": "",
@@ -2540,12 +2540,12 @@
           "imgKey": "tin_chi_tiet",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 2,
+            "y": 45,
+            "w": 378,
+            "h": 719
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Trang tin đầy đủ",
           "ttText": "Bấm Xem chi tiết để mở trang BĐS với ảnh và mô tả đầy đủ",
           "tip": "",
@@ -2565,7 +2565,7 @@
           ]
         }
       ],
-      "status": "draft",
+      "status": "live",
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
@@ -2606,10 +2606,10 @@
           "imgKey": "menu",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 8,
+            "y": 456,
+            "w": 188,
+            "h": 82
           },
           "ttPos": "right",
           "ttTitle": "Avatar cá nhân",
@@ -2637,12 +2637,12 @@
           "imgKey": "menu_list_quan_ly_phong",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 6,
+            "y": 94,
+            "w": 370,
+            "h": 57
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Mục Quản lý phòng",
           "ttText": "Bấm Quản lý phòng để xem các tính năng quản lý",
           "tip": "",
@@ -2665,13 +2665,13 @@
           "id": 3,
           "name": "Vào Tin hoạt động",
           "desc": "Mục Tin hoạt động chứa mã giới thiệu",
-          "imgKey": "menu_list_tin_hoat_dong",
+          "imgKey": "xem",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 2,
+            "y": 91,
+            "w": 140,
+            "h": 59
           },
           "ttPos": "right",
           "ttTitle": "Tin hoạt động",
@@ -2696,15 +2696,15 @@
           "id": 4,
           "name": "Xem mã giới thiệu hiện có",
           "desc": "Danh sách mã và thống kê sử dụng",
-          "imgKey": "xem",
+          "imgKey": "them",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 9,
+            "y": 137,
+            "w": 358,
+            "h": 160
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Danh sách mã giới thiệu",
           "ttText": "Xem mã, số lần dùng và trạng thái từng mã",
           "tip": "",
@@ -2755,7 +2755,7 @@
           ]
         }
       ],
-      "status": "draft",
+      "status": "live",
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
@@ -2804,12 +2804,12 @@
           "imgKey": "menu",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 194,
+            "y": 461,
+            "w": 191,
+            "h": 83
           },
-          "ttPos": "right",
+          "ttPos": "left",
           "ttTitle": "Avatar cá nhân",
           "ttText": "Bấm avatar để mở menu và vào Quản lý khách",
           "tip": "",
@@ -2835,12 +2835,12 @@
           "imgKey": "menu_list_tai_khoan_ca_nhan",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 9,
+            "y": 96,
+            "w": 369,
+            "h": 54
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Tài khoản cá nhân",
           "ttText": "Bấm Tài khoản cá nhân để xem mục Quản lý khách",
           "tip": "",
@@ -2866,12 +2866,12 @@
           "imgKey": "xem_khach_dang_tim",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 7,
+            "y": 91,
+            "w": 382,
+            "h": 141
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Tab Đang tìm nhà",
           "ttText": "Danh sách khách chưa mua — xem nhu cầu và hàng phù hợp",
           "tip": "Sắp xếp theo Ngày cập nhật để thấy khách nào đang hoạt động gần nhất.",
@@ -2894,15 +2894,15 @@
           "id": 4,
           "name": "Xem khách đã mua",
           "desc": "Danh sách khách đã chốt giao dịch",
-          "imgKey": "xem_khach_da_mua",
+          "imgKey": "them_moi_khach",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 3,
+            "y": 51,
+            "w": 378,
+            "h": 123
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Tab Đã mua",
           "ttText": "Khách đã chốt — lưu lại để chăm sóc sau và referral",
           "tip": "Khách đã mua là nguồn referral tiềm năng — duy trì liên hệ để nhận giới thiệu.",
@@ -2925,15 +2925,15 @@
           "id": 5,
           "name": "Menu thao tác khách đã mua",
           "desc": "Bấm giữ để mở menu thao tác nhanh",
-          "imgKey": "giu_thao_tac_da_mua",
+          "imgKey": "xem_khach_da_mua",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 188,
+            "y": 136,
+            "w": 189,
+            "h": 55
           },
-          "ttPos": "right",
+          "ttPos": "left",
           "ttTitle": "Bấm giữ để mở menu",
           "ttText": "Bấm giữ vào khách đã mua để xem các thao tác nhanh",
           "tip": "",
@@ -2956,15 +2956,15 @@
           "id": 6,
           "name": "Menu thao tác khách đang tìm",
           "desc": "Bấm giữ để mở menu thao tác nhanh",
-          "imgKey": "giu_thao_tac_dang_tim",
+          "imgKey": "giu_thao_tac_da_mua",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 0,
+            "y": 567,
+            "w": 383,
+            "h": 284
           },
-          "ttPos": "right",
+          "ttPos": "top",
           "ttTitle": "Bấm giữ để mở menu",
           "ttText": "Bấm giữ khách đang tìm để xem thao tác: sửa, ghi chú, đánh dấu đã mua",
           "tip": "",
@@ -2987,15 +2987,15 @@
           "id": 7,
           "name": "Sửa thông tin khách",
           "desc": "Cập nhật nhu cầu và thông tin liên hệ",
-          "imgKey": "sua_thong_tin",
+          "imgKey": "giu_thao_tac_dang_tim",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 0,
+            "y": 616,
+            "w": 389,
+            "h": 238
           },
-          "ttPos": "right",
+          "ttPos": "top",
           "ttTitle": "Form sửa thông tin",
           "ttText": "Cập nhật SĐT, khu vực, ngân sách khi khách thay đổi nhu cầu",
           "tip": "",
@@ -3018,15 +3018,15 @@
           "id": 8,
           "name": "Xem hàng phù hợp",
           "desc": "BĐS khớp nhu cầu của khách này",
-          "imgKey": "xem_hang_phu_hop",
-          "scrollY": 0,
+          "imgKey": "sua_thong_tin",
+          "scrollY": 815,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 5,
+            "y": 1547,
+            "w": 375,
+            "h": 101
           },
-          "ttPos": "right",
+          "ttPos": "top",
           "ttTitle": "Hàng phù hợp",
           "ttText": "Hệ thống tự khớp BĐS theo nhu cầu và ngân sách khách",
           "tip": "Hệ thống khớp theo khu vực, loại hình và khoảng giá — lọc thêm nếu muốn thu hẹp kết quả.",
@@ -3049,15 +3049,15 @@
           "id": 9,
           "name": "Lọc hàng phù hợp",
           "desc": "Thu hẹp kết quả khớp theo tiêu chí",
-          "imgKey": "loc_hang_phu_hop",
+          "imgKey": "xem_hang_phu_hop",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 0,
+            "y": 46,
+            "w": 385,
+            "h": 236
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Lọc hàng phù hợp",
           "ttText": "Thêm tiêu chí để thu hẹp danh sách hàng phù hợp",
           "tip": "",
@@ -3080,15 +3080,15 @@
           "id": 10,
           "name": "Đánh dấu căn đã xem",
           "desc": "Ghi lại BĐS khách đã được dẫn xem",
-          "imgKey": "can_da_xem",
+          "imgKey": "loc_hang_phu_hop",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 6,
+            "y": 42,
+            "w": 373,
+            "h": 224
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Căn đã xem",
           "ttText": "Đánh dấu BĐS đã dẫn khách xem để tránh dẫn lại",
           "tip": "Đánh dấu đã xem giúp tránh dẫn khách xem lại căn họ đã từ chối — tiết kiệm thời gian.",
@@ -3111,15 +3111,15 @@
           "id": 11,
           "name": "Ghi chú về khách",
           "desc": "Nhập ghi chú nội bộ về khách hàng",
-          "imgKey": "ghi_chu",
+          "imgKey": "can_da_xem",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 2,
+            "y": 51,
+            "w": 383,
+            "h": 307
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Ô ghi chú khách",
           "ttText": "Ghi chú tính cách, yêu cầu đặc biệt, lịch sử trao đổi",
           "tip": "Ghi chú chi tiết giúp CV xử lý khách chính xác hơn — đặc biệt khi bàn giao khách cho người khác.",
@@ -3142,15 +3142,15 @@
           "id": 12,
           "name": "Thêm khách hàng mới",
           "desc": "Form nhập thông tin khách hàng mới",
-          "imgKey": "them_moi_khach",
+          "imgKey": "ghi_chu",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 8,
+            "y": 240,
+            "w": 372,
+            "h": 396
           },
-          "ttPos": "right",
+          "ttPos": "top",
           "ttTitle": "Nút Thêm khách mới",
           "ttText": "Bấm + để tạo hồ sơ khách hàng mới trong hệ thống",
           "tip": "Nhập đủ nhu cầu ngay khi tiếp nhận khách — hệ thống tự khớp hàng phù hợp ngay sau đó.",
@@ -3201,7 +3201,7 @@
           ]
         }
       ],
-      "status": "draft",
+      "status": "live",
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
@@ -3240,12 +3240,12 @@
           "imgKey": "menu",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 192,
+            "y": 461,
+            "w": 189,
+            "h": 82
           },
-          "ttPos": "right",
+          "ttPos": "left",
           "ttTitle": "Avatar cá nhân",
           "ttText": "Bấm avatar để mở menu và tìm Thông báo vụ chốt",
           "tip": "",
@@ -3271,12 +3271,12 @@
           "imgKey": "xem",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 2,
+            "y": 96,
+            "w": 384,
+            "h": 283
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Danh sách vụ chốt",
           "ttText": "Xem tất cả deal thành công của team theo thời gian",
           "tip": "",
@@ -3302,12 +3302,12 @@
           "imgKey": "tao",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 0,
+            "y": 93,
+            "w": 386,
+            "h": 507
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Nút Tạo vụ chốt",
           "ttText": "Bấm + để nhập thông tin deal mới thành công của team",
           "tip": "Tạo thông báo sớm sau khi chốt — tạo động lực và cập nhật kết quả cho toàn team.",
@@ -3327,7 +3327,7 @@
           ]
         }
       ],
-      "status": "draft",
+      "status": "live",
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
@@ -3372,10 +3372,10 @@
           "imgKey": "menu",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 8,
+            "y": 539,
+            "w": 191,
+            "h": 78
           },
           "ttPos": "right",
           "ttTitle": "Avatar cá nhân",
@@ -3403,12 +3403,12 @@
           "imgKey": "menu_list_quan_ly_kho",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 9,
+            "y": 145,
+            "w": 373,
+            "h": 45
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Tin chính chủ",
           "ttText": "Bấm Tin chính chủ để xem BĐS chính chủ từ các nền tảng",
           "tip": "",
@@ -3434,12 +3434,12 @@
           "imgKey": "xem",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 5,
+            "y": 100,
+            "w": 375,
+            "h": 117
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Danh sách tin chính chủ",
           "ttText": "Xem BĐS chính chủ — bấm để xem chi tiết từng tin",
           "tip": "Tin chính chủ thường có giá tốt hơn vì không qua môi giới — theo dõi thường xuyên.",
@@ -3465,12 +3465,12 @@
           "imgKey": "da_luu",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 245,
+            "y": 97,
+            "w": 138,
+            "h": 64
           },
-          "ttPos": "right",
+          "ttPos": "left",
           "ttTitle": "Tab Đã lưu",
           "ttText": "Tin chính chủ đã bookmark — truy cập nhanh để theo dõi",
           "tip": "",
@@ -3496,12 +3496,12 @@
           "imgKey": "ghi_chu",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 9,
+            "y": 102,
+            "w": 368,
+            "h": 350
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Ô ghi chú",
           "ttText": "Ghi chú thông tin khảo sát, thỏa thuận sơ bộ với chủ nhà",
           "tip": "Ghi chú ngay sau khi liên hệ chủ nhà — tránh quên thông tin quan trọng khi đàm phán.",
@@ -3527,12 +3527,12 @@
           "imgKey": "loc",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 5,
+            "y": 74,
+            "w": 379,
+            "h": 392
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Nút Lọc",
           "ttText": "Bấm Lọc để tìm tin chính chủ theo khu vực và giá",
           "tip": "",
@@ -3558,12 +3558,12 @@
           "imgKey": "tin_nhanh",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 6,
+            "y": 43,
+            "w": 373,
+            "h": 402
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Card tin nhanh",
           "ttText": "Bấm để xem tóm tắt BĐS mà không cần mở trang đầy đủ",
           "tip": "",
@@ -3589,12 +3589,12 @@
           "imgKey": "phan_hoi",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 9,
+            "y": 341,
+            "w": 363,
+            "h": 269
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Form Phản hồi",
           "ttText": "Gửi câu hỏi hoặc yêu cầu xem nhà cho chủ nhà",
           "tip": "Phản hồi ngắn gọn và rõ mục đích — chủ nhà trả lời nhanh hơn khi câu hỏi cụ thể.",
@@ -3645,7 +3645,7 @@
           ]
         }
       ],
-      "status": "draft",
+      "status": "live",
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
