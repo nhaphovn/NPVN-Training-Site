@@ -2532,18 +2532,18 @@
         {
           "id": 1,
           "name": "Bước 1 — Menu cá nhân",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "desc": "Chọn tab Quản lý Phòng - Nhóm ",
           "imgKey": "menu",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 8,
+            "y": 456,
+            "w": 188,
+            "h": 82
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Chọn",
+          "ttText": "Quản lý Phòng - nhóm cho cấp Quản lý phòng",
           "tip": "",
           "guide": [
             {
@@ -2559,18 +2559,18 @@
         {
           "id": 2,
           "name": "Bước 2 — Menu quản lý phòng",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "desc": "Chọn Mã giới thiệu để tạo mã",
           "imgKey": "menu_list_quan_ly_phong",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 6,
+            "y": 94,
+            "w": 370,
+            "h": 57
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "bottom",
+          "ttTitle": "Chọn",
+          "ttText": "Mã giới thiệu",
           "tip": "",
           "guide": [
             {
@@ -2585,19 +2585,19 @@
         },
         {
           "id": 3,
-          "name": "Bước 3 — Menu tin hoạt động",
-          "desc": "TODO: mô tả ngắn cho sidebar",
-          "imgKey": "menu_list_tin_hoat_dong",
+          "name": "Bước 4 — Tạo mới mã giới thiệu",
+          "desc": "Xem danh sách mã giới thiệu và tạo mới mã giới thiệu",
+          "imgKey": "xem",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 2,
+            "y": 91,
+            "w": 140,
+            "h": 59
           },
           "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttTitle": "Bấm Tạo mới",
+          "ttText": "Tạo mã để cấp mã giới thiệu cho nhân sự gia nhập Phòng",
           "tip": "",
           "guide": [
             {
@@ -2612,47 +2612,20 @@
         },
         {
           "id": 4,
-          "name": "Bước 4 — Xem chi tiết",
-          "desc": "TODO: mô tả ngắn cho sidebar",
-          "imgKey": "xem",
-          "scrollY": 0,
-          "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
-          },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
-          "guide": [
-            {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
-            },
-            {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
-            }
-          ]
-        },
-        {
-          "id": 5,
           "name": "Bước 5 — Thêm mới",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "desc": "Tạo mã giới thiệu",
           "imgKey": "them",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 9,
+            "y": 137,
+            "w": 358,
+            "h": 160
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttPos": "bottom",
+          "ttTitle": "Bấm Tạo mới ",
+          "ttText": "Chọn nhóm để nhân sự tự động vào nhóm hoặc không",
+          "tip": "Copy Mã giới thiệu để gửi cho thành viên mới. Mỗi Mã giới thiệu chỉ dùng 1 lần",
           "guide": [
             {
               "title": "TODO 1",
@@ -2665,7 +2638,7 @@
           ]
         }
       ],
-      "status": "draft",
+      "status": "live",
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
