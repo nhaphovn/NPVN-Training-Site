@@ -3,6 +3,7 @@
 // Body: raw image bytes
 // Response: { url, pathname, size }
 
+import { put } from '@vercel/blob';
 import { Buffer } from 'buffer';
 
 const ALLOWED_EXT = /\.(jpg|jpeg|png|webp)$/i;
@@ -96,28 +97,12 @@ export default async function handler(req, res) {
   else if (buffer[0] === 0x52 && buffer[1] === 0x49) contentType = 'image/webp';
 
   try {
-    // Bypass @vercel/blob SDK: SDK throws "access must be public" client-side for
-    // any access !== 'public', before the HTTP call even fires. Private stores need
-    // no x-access header — just omit it. REST API v8: pathname goes in URL path.
-    const uploadRes = await fetch(`https://blob.vercel-storage.com/${blobPath}`, {
-      method: 'PUT',
-      headers: {
-        'authorization':       `Bearer ${blobToken}`,
-        'x-api-version':       '8',
-        'x-access':            'private',
-        'x-add-random-suffix': '0',
-        'content-type':        contentType,
-        'x-content-length':    String(buffer.length),
-      },
-      body: buffer,
+    // SDK v2.4+ supports access:'private' for private Blob stores.
+    const blob = await put(blobPath, buffer, {
+      access:          'private',
+      contentType,
+      addRandomSuffix: false,
     });
-
-    if (!uploadRes.ok) {
-      const errText = await uploadRes.text();
-      throw new Error(`Blob API ${uploadRes.status}: ${errText.slice(0, 300)}`);
-    }
-
-    const blob = await uploadRes.json();
 
     const proxyUrl = `/api/img?path=${blob.pathname}`;
     return res.status(200).json({
