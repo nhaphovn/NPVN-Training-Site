@@ -2683,18 +2683,18 @@
         {
           "id": 1,
           "name": "Bước 1 — Menu cá nhân",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "desc": "Chọn tab Tài khoản cá nhân",
           "imgKey": "menu",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 194,
+            "y": 461,
+            "w": 191,
+            "h": 83
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "left",
+          "ttTitle": "Chon",
+          "ttText": "Tài khoản cá nhân để xem menu tài khoản",
           "tip": "",
           "guide": [
             {
@@ -2710,18 +2710,18 @@
         {
           "id": 2,
           "name": "Bước 2 — Menu tài khoản cá nhân",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "desc": "Chọn tab Quản lý khách - Tự khớp khách",
           "imgKey": "menu_list_tai_khoan_ca_nhan",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 9,
+            "y": 96,
+            "w": 369,
+            "h": 54
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "bottom",
+          "ttTitle": "Chọn",
+          "ttText": "Quản lý khách - Tự khớp khách",
           "tip": "",
           "guide": [
             {
@@ -2736,19 +2736,19 @@
         },
         {
           "id": 3,
-          "name": "Bước 3 — Xem khách đang tìm",
-          "desc": "TODO: mô tả ngắn cho sidebar",
+          "name": "Bước 3 — Xem khách đang tìm mua",
+          "desc": "Mặc định khi mở Quản lý khách là xem danh sách khách đang tìm mua nhà",
           "imgKey": "xem_khach_dang_tim",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 7,
+            "y": 91,
+            "w": 382,
+            "h": 141
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "bottom",
+          "ttTitle": "Xem - Thêm mới khách",
+          "ttText": "Thao tác Quản lý khách - Thêm mới khách ",
           "tip": "",
           "guide": [
             {
@@ -2763,20 +2763,20 @@
         },
         {
           "id": 4,
-          "name": "Bước 4 — Xem khách đã mua",
-          "desc": "TODO: mô tả ngắn cho sidebar",
-          "imgKey": "xem_khach_da_mua",
+          "name": "Bước 4 — Thêm mới khách",
+          "desc": "Form điền thông tin khách hàng",
+          "imgKey": "them_moi_khach",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 3,
+            "y": 51,
+            "w": 378,
+            "h": 123
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
+          "ttPos": "bottom",
+          "ttTitle": "Điền thông tin form",
+          "ttText": "Điền form đặc biệt là các thông tin về nhu cầu của khách",
+          "tip": "Hệ thống bảo mật hoàn toàn đối với các thông tin liên hệ của khách hàng!",
           "guide": [
             {
               "title": "TODO 1",
@@ -2790,19 +2790,19 @@
         },
         {
           "id": 5,
-          "name": "Bước 5 — Giữ thao tác đã mua",
-          "desc": "TODO: mô tả ngắn cho sidebar",
-          "imgKey": "giu_thao_tac_da_mua",
+          "name": "Bước 5 — Xem khách đã mua",
+          "desc": "Xem danh sách khách đã mua nhà",
+          "imgKey": "xem_khach_da_mua",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 188,
+            "y": 136,
+            "w": 189,
+            "h": 55
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "left",
+          "ttTitle": "Chonj Tab đã mua",
+          "ttText": "Xem danh sách và thông tin khách đã mua nhà",
           "tip": "",
           "guide": [
             {
@@ -2817,19 +2817,19 @@
         },
         {
           "id": 6,
-          "name": "Bước 6 — Giữ thao tác đang tìm",
-          "desc": "TODO: mô tả ngắn cho sidebar",
-          "imgKey": "giu_thao_tac_dang_tim",
+          "name": "Bước 6 — Giữ thao tác đã mua",
+          "desc": "Giữ dòng thông tin mỗi khách để thao tác",
+          "imgKey": "giu_thao_tac_da_mua",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 0,
+            "y": 567,
+            "w": 383,
+            "h": 284
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "top",
+          "ttTitle": "Giữ dòng thông tin khách",
+          "ttText": "Thao tác đối với khách hàng đã mua",
           "tip": "",
           "guide": [
             {
@@ -2844,19 +2844,19 @@
         },
         {
           "id": 7,
-          "name": "Bước 7 — Sửa thông tin",
-          "desc": "TODO: mô tả ngắn cho sidebar",
-          "imgKey": "sua_thong_tin",
+          "name": "Bước 7 — Giữ thao tác đang tìm",
+          "desc": "Thao tác đối với khách hàng đang tìm mua",
+          "imgKey": "giu_thao_tac_dang_tim",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 0,
+            "y": 616,
+            "w": 389,
+            "h": 238
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "top",
+          "ttTitle": "Giữ dòng thông tin khách",
+          "ttText": "Thao tác đối với khách hàng đang tìm mua",
           "tip": "",
           "guide": [
             {
@@ -2871,17 +2871,17 @@
         },
         {
           "id": 8,
-          "name": "Bước 8 — Xem hàng phù hợp",
+          "name": "Bước 8 — Sửa thông tin",
           "desc": "TODO: mô tả ngắn cho sidebar",
-          "imgKey": "xem_hang_phu_hop",
-          "scrollY": 0,
+          "imgKey": "sua_thong_tin",
+          "scrollY": 815,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 5,
+            "y": 1547,
+            "w": 375,
+            "h": 101
           },
-          "ttPos": "right",
+          "ttPos": "top",
           "ttTitle": "TODO",
           "ttText": "TODO: ≤15 từ",
           "tip": "",
@@ -2898,19 +2898,19 @@
         },
         {
           "id": 9,
-          "name": "Bước 9 — Lọc hàng phù hợp",
-          "desc": "TODO: mô tả ngắn cho sidebar",
-          "imgKey": "loc_hang_phu_hop",
+          "name": "Bước 9 — Xem hàng phù hợp",
+          "desc": "Bấm chọn \"Hàng phù hợp\" để xem danh sách ",
+          "imgKey": "xem_hang_phu_hop",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 0,
+            "y": 46,
+            "w": 385,
+            "h": 236
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "bottom",
+          "ttTitle": "Xem danh sách",
+          "ttText": "thông tin hàng phù hợp từ Kho tài nguyên",
           "tip": "",
           "guide": [
             {
@@ -2925,19 +2925,19 @@
         },
         {
           "id": 10,
-          "name": "Bước 10 — Căn đã xem",
-          "desc": "TODO: mô tả ngắn cho sidebar",
-          "imgKey": "can_da_xem",
+          "name": "Bước 10 — Lọc hàng phù hợp",
+          "desc": "Bộ lọc hàng phù hợp",
+          "imgKey": "loc_hang_phu_hop",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 6,
+            "y": 42,
+            "w": 373,
+            "h": 224
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "bottom",
+          "ttTitle": "Điền tiêu chí",
+          "ttText": "tiêu chí lọc hàng phù hợp nếu số lượng hàng vẫn nhiều để xem",
           "tip": "",
           "guide": [
             {
@@ -2952,19 +2952,19 @@
         },
         {
           "id": 11,
-          "name": "Bước 11 — Ghi chú",
-          "desc": "TODO: mô tả ngắn cho sidebar",
-          "imgKey": "ghi_chu",
+          "name": "Bước 11 — Căn đã xem",
+          "desc": "Xem các căn đã dẫn khách đi xem",
+          "imgKey": "can_da_xem",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 2,
+            "y": 51,
+            "w": 383,
+            "h": 307
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "bottom",
+          "ttTitle": "Xem ",
+          "ttText": "Thông tin các căn nhà đã dẫn khách đi xem",
           "tip": "",
           "guide": [
             {
@@ -2979,46 +2979,19 @@
         },
         {
           "id": 12,
-          "name": "Bước 12 — Thêm mới khách",
-          "desc": "TODO: mô tả ngắn cho sidebar",
-          "imgKey": "them_moi_khach",
+          "name": "Bước 12 — Ghi chú",
+          "desc": "Bổ sung ghi chú đối với khách",
+          "imgKey": "ghi_chu",
           "scrollY": 0,
           "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
+            "x": 8,
+            "y": 240,
+            "w": 372,
+            "h": 396
           },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
-          "tip": "",
-          "guide": [
-            {
-              "title": "TODO 1",
-              "body": "TODO mục 1"
-            },
-            {
-              "title": "TODO 2",
-              "body": "TODO mục 2"
-            }
-          ]
-        },
-        {
-          "id": 13,
-          "name": "Bước 13 — Truy vấn",
-          "desc": "TODO: mô tả ngắn cho sidebar",
-          "imgKey": "truy_van",
-          "scrollY": 0,
-          "hs": {
-            "x": 120,
-            "y": 200,
-            "w": 100,
-            "h": 80
-          },
-          "ttPos": "right",
-          "ttTitle": "TODO",
-          "ttText": "TODO: ≤15 từ",
+          "ttPos": "top",
+          "ttTitle": "Điền ghi chú",
+          "ttText": "Noted lại để ghi nhớ mọi điều có thể",
           "tip": "",
           "guide": [
             {
@@ -3032,7 +3005,7 @@
           ]
         }
       ],
-      "status": "draft",
+      "status": "live",
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
