@@ -241,6 +241,118 @@ main {
 .module-card:hover .mc-cta::after { transform: translateX(4px); }
 .module-card:hover .mc-cta { color: var(--green-dark); }
 
+/* ============ TOOLBAR — search + view toggle ============ */
+.modules-toolbar {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 20px;
+}
+.search-wrap {
+  flex: 1; position: relative;
+}
+.search-wrap svg {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  width: 16px; height: 16px; pointer-events: none;
+  color: var(--text-3);
+}
+.search-input {
+  width: 100%; padding: 11px 14px 11px 40px;
+  border: 1px solid var(--border); border-radius: 10px;
+  background: var(--white); font-family: inherit; font-size: 14px;
+  color: var(--text); outline: none;
+  transition: border-color .15s, box-shadow .15s;
+}
+.search-input::placeholder { color: var(--text-3); }
+.search-input:focus {
+  border-color: var(--green); box-shadow: 0 0 0 3px rgba(0,123,72,.10);
+}
+.view-toggle {
+  display: flex; gap: 2px; flex-shrink: 0;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 4px;
+}
+.view-btn {
+  width: 36px; height: 36px; border: none; background: transparent;
+  border-radius: 7px; cursor: pointer; display: grid; place-items: center;
+  color: var(--text-3); transition: background .12s, color .12s;
+}
+.view-btn.active { background: var(--green-soft); color: var(--green-dark); }
+.view-btn:not(.active):hover { background: var(--green-tint); color: var(--text-2); }
+.view-btn svg { width: 18px; height: 18px; }
+
+/* ============ LIST VIEW ============ */
+.modules-list {
+  display: flex; flex-direction: column; gap: 8px; margin-bottom: 40px;
+}
+.module-list-item {
+  background: var(--white); border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  text-decoration: none; color: inherit;
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  gap: 0 16px;
+  align-items: center;
+  padding: 14px 20px;
+  transition: border-color .15s, box-shadow .15s, transform .15s;
+}
+.module-list-item:hover {
+  border-color: var(--green-bright);
+  box-shadow: 0 4px 16px rgba(0,105,65,.09);
+  transform: translateX(2px);
+}
+.module-list-item.coming-soon {
+  opacity: .5; cursor: not-allowed; pointer-events: none;
+}
+.mli-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: var(--green-soft); display: grid; place-items: center;
+  flex-shrink: 0; font-size: 24px;
+}
+.mli-icon img { width: 32px; height: 32px; object-fit: contain; }
+.mli-body { min-width: 0; }
+.mli-top {
+  display: flex; align-items: baseline; gap: 10px; margin-bottom: 3px;
+}
+.mli-name {
+  font-size: 15px; font-weight: 700; color: var(--text);
+  letter-spacing: -0.01em; white-space: nowrap; overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mli-role {
+  font-size: 11px; font-weight: 700; color: var(--green);
+  text-transform: uppercase; letter-spacing: .07em; white-space: nowrap;
+  flex-shrink: 0;
+}
+.mli-desc {
+  font-size: 13px; color: var(--text-2);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.mli-right {
+  display: flex; align-items: center; gap: 14px; flex-shrink: 0;
+}
+.mli-steps {
+  background: var(--green-soft); color: var(--green-darker);
+  padding: 4px 12px; border-radius: 16px; font-weight: 700; font-size: 13px;
+  white-space: nowrap;
+}
+.mli-cta {
+  font-size: 13px; font-weight: 700; color: var(--green);
+  display: flex; align-items: center; gap: 4px; white-space: nowrap;
+}
+.mli-cta svg { width: 14px; height: 14px; transition: transform .15s; }
+.module-list-item:hover .mli-cta { color: var(--green-dark); }
+.module-list-item:hover .mli-cta svg { transform: translateX(3px); }
+
+/* search highlight */
+mark { background: #fff59d; color: inherit; border-radius: 2px; padding: 0 1px; }
+
+@media (max-width: 680px) {
+  .module-list-item { grid-template-columns: 40px 1fr; padding: 12px 14px; }
+  .mli-right { display: none; }
+  .mli-icon { width: 40px; height: 40px; border-radius: 10px; font-size: 20px; }
+  .search-input { font-size: 13px; }
+}
+
 /* ============ EMPTY STATE ============ */
 .empty {
   background: #fff; border-radius: var(--radius); padding: 36px 24px;
@@ -372,6 +484,34 @@ footer p:last-child { font-size: 11px !important; }
     <!-- role tabs injected -->
   </div>
 
+  <!-- Toolbar: search + view toggle -->
+  <div class="modules-toolbar" id="modules-toolbar" hidden>
+    <div class="search-wrap">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="9" r="6"/><path d="M15 15l-3-3"/>
+      </svg>
+      <input class="search-input" id="search-input" type="search"
+             placeholder="Tìm module theo tên, vai trò, mô tả..." autocomplete="off">
+    </div>
+    <div class="view-toggle">
+      <button class="view-btn active" id="btn-grid" title="Dạng lưới" aria-label="Lưới">
+        <svg viewBox="0 0 20 20" fill="currentColor">
+          <rect x="2" y="2" width="7" height="7" rx="1.5"/>
+          <rect x="11" y="2" width="7" height="7" rx="1.5"/>
+          <rect x="2" y="11" width="7" height="7" rx="1.5"/>
+          <rect x="11" y="11" width="7" height="7" rx="1.5"/>
+        </svg>
+      </button>
+      <button class="view-btn" id="btn-list" title="Dạng danh sách" aria-label="Danh sách">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <line x1="4" y1="6" x2="16" y2="6"/>
+          <line x1="4" y1="10" x2="16" y2="10"/>
+          <line x1="4" y1="14" x2="16" y2="14"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
   <div id="content">
     <div class="loader"><div class="spinner"></div>Đang tải modules...</div>
   </div>
@@ -388,6 +528,8 @@ footer p:last-child { font-size: 11px !important; }
 const STATE = {
   data: null,
   activeRole: 'all',
+  viewMode: 'grid',  // 'grid' | 'list'
+  searchQuery: '',
 };
 
 function $(id) { return document.getElementById(id); }
@@ -451,14 +593,30 @@ function setRole(rid) {
   renderModules();
 }
 
+function highlight(text, query) {
+  if (!query) return escapeHtml(text);
+  const escaped = escapeHtml(text);
+  const escapedQ = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return escaped.replace(new RegExp(escapedQ, 'gi'), m => `<mark>${m}</mark>`);
+}
+
+function matchSearch(m, query) {
+  if (!query) return true;
+  const q = query.toLowerCase();
+  return (m.name || '').toLowerCase().includes(q)
+      || (m.description || '').toLowerCase().includes(q)
+      || (m.role || '').toLowerCase().includes(q);
+}
+
 function renderModules() {
   const c = $('content');
   c.innerHTML = '';
 
   const modules = STATE.data.modules || {};
-  const roles = STATE.data.roles || {};
+  const roles   = STATE.data.roles   || {};
+  const q       = STATE.searchQuery;
 
-  // Determine which module IDs to show
+  // Role filter
   let showIds;
   if (STATE.activeRole === 'all') {
     showIds = Object.keys(modules);
@@ -467,39 +625,75 @@ function renderModules() {
     showIds = (role?.modules || []).filter(id => modules[id]);
   }
 
+  // Search filter
+  if (q) showIds = showIds.filter(id => matchSearch(modules[id], q));
+
   if (showIds.length === 0) {
+    const msg = q
+      ? `Không tìm thấy module nào cho "<strong>${escapeHtml(q)}</strong>"`
+      : 'Chưa có module cho vai trò này';
     c.innerHTML = `
       <div class="empty">
-        <div class="empty-icon">🛠</div>
-        <h3>Chưa có module cho vai trò này</h3>
-        <p>Đang phát triển — sẽ có sớm.</p>
+        <div class="empty-icon">${q ? '🔍' : '🛠'}</div>
+        <h3>${msg}</h3>
+        <p>${q ? 'Thử từ khoá khác hoặc chọn vai trò khác.' : 'Đang phát triển — sẽ có sớm.'}</p>
       </div>`;
     return;
   }
 
-  const grid = document.createElement('div');
-  grid.className = 'modules-grid';
-  for (const id of showIds) {
-    const m = modules[id];
-    const stepCount = m.steps?.length || 0;
-    const card = document.createElement('a');
-    card.className = 'module-card' + (stepCount === 0 ? ' coming-soon' : '');
-    if (stepCount > 0) card.href = `training-engine.html?module=${id}`;
-    card.innerHTML = `
-      <div class="mc-icon">${m.iconImg
+  if (STATE.viewMode === 'list') {
+    const list = document.createElement('div');
+    list.className = 'modules-list';
+    for (const id of showIds) {
+      const m = modules[id];
+      const stepCount = m.steps?.length || 0;
+      const item = document.createElement('a');
+      item.className = 'module-list-item' + (stepCount === 0 ? ' coming-soon' : '');
+      if (stepCount > 0) item.href = `training-engine.html?module=${id}`;
+      const iconHtml = m.iconImg
         ? `<img src="${escapeHtml(m.iconImg)}" alt="">`
-        : `<span class="mc-icon-emoji">${escapeHtml(m.icon || '📘')}</span>`
-      }</div>
-      <div class="mc-name">${escapeHtml(m.name || id)}</div>
-      <div class="mc-role">${escapeHtml(m.role || '')}</div>
-      <div class="mc-desc">${escapeHtml(m.description || '')}</div>
-      <div class="mc-meta">
-        <span class="mc-steps">${stepCount} bước</span>
-        <span class="mc-cta">Học ngay</span>
-      </div>`;
-    grid.appendChild(card);
+        : escapeHtml(m.icon || '📘');
+      item.innerHTML = `
+        <div class="mli-icon">${iconHtml}</div>
+        <div class="mli-body">
+          <div class="mli-top">
+            <span class="mli-name">${highlight(m.name || id, q)}</span>
+            <span class="mli-role">${highlight(m.role || '', q)}</span>
+          </div>
+          <div class="mli-desc">${highlight(m.description || '', q)}</div>
+        </div>
+        <div class="mli-right">
+          <span class="mli-steps">${stepCount} bước</span>
+          ${stepCount > 0 ? `<span class="mli-cta">Học ngay <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h8M7 3l4 4-4 4"/></svg></span>` : ''}
+        </div>`;
+      list.appendChild(item);
+    }
+    c.appendChild(list);
+  } else {
+    const grid = document.createElement('div');
+    grid.className = 'modules-grid';
+    for (const id of showIds) {
+      const m = modules[id];
+      const stepCount = m.steps?.length || 0;
+      const card = document.createElement('a');
+      card.className = 'module-card' + (stepCount === 0 ? ' coming-soon' : '');
+      if (stepCount > 0) card.href = `training-engine.html?module=${id}`;
+      card.innerHTML = `
+        <div class="mc-icon">${m.iconImg
+          ? `<img src="${escapeHtml(m.iconImg)}" alt="">`
+          : `<span class="mc-icon-emoji">${escapeHtml(m.icon || '📘')}</span>`
+        }</div>
+        <div class="mc-name">${highlight(m.name || id, q)}</div>
+        <div class="mc-role">${highlight(m.role || '', q)}</div>
+        <div class="mc-desc">${highlight(m.description || '', q)}</div>
+        <div class="mc-meta">
+          <span class="mc-steps">${stepCount} bước</span>
+          <span class="mc-cta">Học ngay</span>
+        </div>`;
+      grid.appendChild(card);
+    }
+    c.appendChild(grid);
   }
-  c.appendChild(grid);
 }
 
 function updateStats() {
@@ -548,6 +742,32 @@ async function boot() {
     renderFeatured();
     renderRoleTabs();
     renderModules();
+    $('modules-toolbar').hidden = false;
+
+    // Search — debounced 200ms
+    let _searchTimer;
+    $('search-input').addEventListener('input', e => {
+      clearTimeout(_searchTimer);
+      _searchTimer = setTimeout(() => {
+        STATE.searchQuery = e.target.value.trim();
+        renderModules();
+      }, 200);
+    });
+
+    // View toggle
+    $('btn-grid').addEventListener('click', () => {
+      STATE.viewMode = 'grid';
+      $('btn-grid').classList.add('active');
+      $('btn-list').classList.remove('active');
+      renderModules();
+    });
+    $('btn-list').addEventListener('click', () => {
+      STATE.viewMode = 'list';
+      $('btn-list').classList.add('active');
+      $('btn-grid').classList.remove('active');
+      renderModules();
+    });
+
     // Support ?role=hoc_vien deep link from App
     const deepRole = new URLSearchParams(location.search).get('role');
     if (deepRole && STATE.data.roles?.[deepRole]) {
