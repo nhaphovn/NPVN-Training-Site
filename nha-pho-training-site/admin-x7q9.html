@@ -138,31 +138,6 @@ button, input, textarea, select { font-family: inherit; font-size: inherit; }
 }
 .topbar .icon-btn:disabled:hover { border-color: var(--border-2); }
 
-/* Search bar in steps panel */
-.search-bar {
-  margin-bottom: 8px; position: relative;
-}
-.search-bar input {
-  width: 100%; padding: 7px 28px 7px 30px; border-radius: 8px;
-  border: 1px solid var(--border-2); font-size: 13px;
-}
-.search-bar input:focus {
-  outline: none; border-color: var(--green); box-shadow: 0 0 0 3px rgba(0,123,72,.12);
-}
-.search-bar::before {
-  content: '🔍'; position: absolute; left: 8px; top: 50%; transform: translateY(-50%);
-  font-size: 13px; pointer-events: none; opacity: .7;
-}
-.search-bar .clear-btn {
-  position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
-  background: transparent; border: none; cursor: pointer; font-size: 14px;
-  color: var(--text-2); width: 22px; height: 22px; padding: 0;
-}
-.search-bar .clear-btn:hover { color: var(--text); }
-.search-info {
-  font-size: 11px; color: var(--text-2); padding: 4px 2px; margin-bottom: 4px;
-}
-
 /* Bulk action bar */
 .bulk-bar {
   background: var(--green-light); border: 1px solid var(--green);
@@ -879,11 +854,6 @@ button, input, textarea, select { font-family: inherit; font-size: inherit; }
   <!-- LEFT: STEPS LIST -->
   <div class="panel" id="steps-panel">
     <h2>Các bước</h2>
-    <div class="search-bar">
-      <input type="text" id="step-search" placeholder="Tìm bước... (/)" autocomplete="off">
-      <button class="clear-btn" id="btn-clear-search" hidden title="Xóa (Esc)">×</button>
-    </div>
-    <div class="search-info" id="search-info" hidden></div>
     <div class="bulk-bar" id="bulk-bar" hidden>
       <span class="bulk-count" id="bulk-count">0 đã chọn</span>
       <button id="bulk-dup" title="Nhân bản các bước đã chọn">⎘ Dup</button>
@@ -1032,7 +1002,6 @@ const STATE = {
   mode: 'hotspot',      // 'hotspot' | 'view'
   imageBaseUrl: '',     // optional override for image paths
   selectedSteps: new Set(),  // multi-select for bulk ops
-  searchQuery: '',
 };
 
 /* History stack — each entry is { label, snapshot, moduleId, stepIdx } */
@@ -1596,39 +1565,6 @@ function bulkMove(dir) {
 }
 
 /* ============================================================
-   SEARCH
-   ============================================================ */
-function setSearchQuery(q) {
-  STATE.searchQuery = q.toLowerCase().trim();
-  $('btn-clear-search').hidden = !STATE.searchQuery;
-  renderStepsList();
-  renderSearchInfo();
-}
-
-function renderSearchInfo() {
-  const info = $('search-info');
-  if (!info || !STATE.module) return;
-  if (!STATE.searchQuery) {
-    info.hidden = true;
-    return;
-  }
-  const total = STATE.module.steps.length;
-  const matches = STATE.module.steps.filter(s => stepMatchesSearch(s)).length;
-  info.hidden = false;
-  info.textContent = `${matches}/${total} bước khớp`;
-}
-
-function stepMatchesSearch(s) {
-  if (!STATE.searchQuery) return true;
-  const haystack = [
-    s.name || '', s.desc || '', s.title || '',
-    s.sub || '', s.ttTitle || '', s.ttText || '',
-  ].join(' ').toLowerCase();
-  return haystack.indexOf(STATE.searchQuery) !== -1;
-}
-
-
-/* ============================================================
    LOAD JSON
    ============================================================ */
 async function tryFetchModulesJson() {
@@ -1806,7 +1742,6 @@ function renderAll() {
   renderModuleSelect();
   renderStepsList();
   renderBulkBar();
-  renderSearchInfo();
   renderForm();
   renderPreview();
 }
@@ -1838,10 +1773,7 @@ function renderStepsList() {
     list.innerHTML = '<p style="color:#888;font-size:12px;text-align:center;padding:14px 0">Chưa có module</p>';
     return;
   }
-  let visibleCount = 0;
   STATE.module.steps.forEach((s, i) => {
-    if (!stepMatchesSearch(s)) return;
-    visibleCount++;
     const isSelected = STATE.selectedSteps.has(i);
     const row = document.createElement('div');
     row.className = 'step-row' +
@@ -1886,9 +1818,6 @@ function renderStepsList() {
     });
     list.appendChild(row);
   });
-  if (STATE.searchQuery && visibleCount === 0) {
-    list.innerHTML = '<p style="color:#888;font-size:12px;text-align:center;padding:14px 0">Không có bước nào khớp</p>';
-  }
 }
 
 /* ============================================================
@@ -2888,14 +2817,6 @@ async function bootApp() {
   $('btn-undo').addEventListener('click', undo);
   $('btn-redo').addEventListener('click', redo);
 
-  // Search
-  $('step-search').addEventListener('input', (e) => setSearchQuery(e.target.value));
-  $('btn-clear-search').addEventListener('click', () => {
-    $('step-search').value = '';
-    setSearchQuery('');
-    $('step-search').focus();
-  });
-
   // Bulk actions
   $('bulk-dup').addEventListener('click', bulkDuplicate);
   $('bulk-up').addEventListener('click', () => bulkMove(-1));
@@ -2946,24 +2867,12 @@ async function bootApp() {
       downloadJson();
       return;
     }
-    // / — focus search (only when not in input)
-    if (e.key === '/' && !targetIsInput) {
-      e.preventDefault();
-      $('step-search').focus();
-      $('step-search').select();
-      return;
-    }
-    // Esc — clear selection or clear search
+    // Esc — clear selection or blur
     if (e.key === 'Escape') {
       if (!$('modal-module').hidden) { $('modal-module').hidden = true; return; }
       if (!$('modal-json').hidden) { $('modal-json').hidden = true; return; }
       if (STATE.selectedSteps.size > 0) {
         clearSelection();
-        return;
-      }
-      if (STATE.searchQuery) {
-        $('step-search').value = '';
-        setSearchQuery('');
         return;
       }
       // Blur active input
@@ -3029,7 +2938,6 @@ window.toggleStepSelection = toggleStepSelection;
 window.bulkDelete = bulkDelete;
 window.bulkDuplicate = bulkDuplicate;
 window.bulkMove = bulkMove;
-window.setSearchQuery = setSearchQuery;
 </script>
 <script src="admin-patch.js"></script>
 <script>
