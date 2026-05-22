@@ -1103,13 +1103,13 @@ body.embed-mode .module-header { border-radius: 0; }
             <div><span class="check">✓</span> Trả lời câu hỏi cụ thể</div>
             <div><span class="check">✓</span> Đưa ra tip + shortcut</div>
           </div>
-          <div class="empty-hint" id="empty-hint">💬 Free — 10 câu/giờ · 30 câu/ngày</div>
+          <div class="empty-hint" id="empty-hint">💬 Free — sử dụng trong giới hạn hàng ngày</div>
         </div>
 
         <!-- Remaining quota indicator (shown after first chat) -->
         <div class="api-key-hint" id="api-key-hint" hidden>
           <span class="key-dot">●</span>
-          <span id="quota-info">Còn 10 câu</span>
+          <span id="quota-info"></span>
         </div>
 
         <!-- Messages — hidden khi empty state shown -->
@@ -2047,12 +2047,24 @@ async function sendChat() {
     addBotMsg(text);
     STATE.history.push({ role: 'assistant', content: text });
 
-    // Show remaining quota
+    // Show quota status based on hourPct (hide when plenty remaining)
     if (data.remaining) {
       const info = document.getElementById('quota-info');
-      if (info) {
-        const r = data.remaining;
-        info.textContent = `Còn ${r.hour}/giờ · ${r.day}/ngày`;
+      const hint = document.getElementById('api-key-hint');
+      if (info && hint) {
+        const pct = data.remaining.hourPct ?? 100;
+        if (pct > 75) {
+          hint.hidden = true;
+        } else if (pct > 50) {
+          hint.hidden = false;
+          info.textContent = 'Còn nhiều quota 🟢';
+        } else if (pct > 25) {
+          hint.hidden = false;
+          info.textContent = 'Đã dùng khá nhiều 🟡';
+        } else {
+          hint.hidden = false;
+          info.textContent = 'Sắp hết quota giờ này ⚠️';
+        }
       }
     }
   } catch (err) {

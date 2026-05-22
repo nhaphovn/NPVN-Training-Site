@@ -20,3 +20,4 @@ PM có thể yêu cầu rollback hoặc develop từ một version cũ. Dùng gi
 | Tag | Commit | Nội dung |
 |-----|--------|---------|
 | `v6-sprint6-item1` | `9df65e7` | Sprint 6 Item 1: Vietnamese search, auth simplification, toolbar fix |
+| `v7-sprint7-chat-context` | `852a490` | Sprint 7: full module context injection in AI chat |

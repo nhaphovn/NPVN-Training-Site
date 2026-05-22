@@ -1,67 +1,79 @@
-// /api/chat.js — Vercel Edge Function
+// /api/chat.js — Vercel Node Serverless Function
 // Proxy chat sang Anthropic API, không lộ key + rate limit chống spam
 // Required env vars:
 //   ANTHROPIC_API_KEY (required)
 //   UPSTASH_REDIS_REST_URL (optional - nếu có thì rate limit persistent)
 //   UPSTASH_REDIS_REST_TOKEN (optional)
-//   DAILY_GLOBAL_CAP (optional, default 500)
-//   MODEL_NAME (optional, default 'claude-haiku-4-5')
+//   HOURLY_TOKEN_CAP     (optional, default 10000 tokens/IP/hour)
+//   DAILY_TOKEN_CAP_USER (optional, default 40000 tokens/IP/day)
+//   DAILY_TOKEN_GLOBAL   (optional, default 500000 tokens/day)
+//   MODEL_NAME (optional, default 'claude-haiku-4-5-20251001')
 
-export const config = { runtime: 'edge' };
-
-const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY;
-const UPSTASH_URL = process.env.UPSTASH_REDIS_REST_URL;
-const UPSTASH_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
-const DAILY_GLOBAL_CAP = parseInt(process.env.DAILY_GLOBAL_CAP || '500', 10);
-const MODEL = process.env.MODEL_NAME || 'claude-haiku-4-5-20251001';
+const ANTHROPIC_KEY     = process.env.ANTHROPIC_API_KEY;
+const UPSTASH_URL       = process.env.UPSTASH_REDIS_REST_URL;
+const UPSTASH_TOKEN     = process.env.UPSTASH_REDIS_REST_TOKEN;
+const HOURLY_TOKEN_CAP  = parseInt(process.env.HOURLY_TOKEN_CAP    || '10000',  10) || 10000;
+const DAILY_USER_CAP    = parseInt(process.env.DAILY_TOKEN_CAP_USER || '40000',  10) || 40000;
+const DAILY_GLOBAL_CAP  = parseInt(process.env.DAILY_TOKEN_GLOBAL   || '500000', 10) || 500000;
+const MODEL             = process.env.MODEL_NAME || 'claude-haiku-4-5-20251001';
 
 // In-memory fallback (resets on cold start) — only used if Upstash not configured
 const memCache = new Map();
 
-const cors = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type',
-};
-
-function json(body, status = 200) {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: { 'Content-Type': 'application/json', ...cors },
-  });
+function json(res, body, status = 200) {
+  res.setHeader('Content-Type', 'application/json');
+  return res.status(status).json(body);
 }
 
-async function kvIncr(key, ttlSec) {
+// kvAdd — increments key by amount, sets TTL. Returns new total. Fail-open.
+async function kvAdd(key, amount, ttlSec) {
   if (UPSTASH_URL && UPSTASH_TOKEN) {
     try {
-      // Pipeline: INCR + EXPIRE
-      const url = `${UPSTASH_URL}/pipeline`;
-      const res = await fetch(url, {
+      const res = await fetch(`${UPSTASH_URL}/pipeline`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${UPSTASH_TOKEN}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify([
-          ['INCR', key],
+          ['INCRBY', key, String(amount)],
           ['EXPIRE', key, String(ttlSec)],
         ]),
       });
       const data = await res.json();
-      return data?.[0]?.result || 1;
-    } catch (e) {
-      console.error('KV error:', e);
-      return 1; // fail-open
+      return data?.[0]?.result ?? amount;
+    } catch {
+      return amount; // fail-open
     }
   }
   // In-memory fallback
   const now = Date.now();
   const entry = memCache.get(key);
   if (!entry || entry.expiresAt < now) {
-    memCache.set(key, { count: 1, expiresAt: now + ttlSec * 1000 });
-    return 1;
+    memCache.set(key, { count: amount, expiresAt: now + ttlSec * 1000 });
+    return amount;
   }
-  entry.count += 1;
+  entry.count += amount;
+  return entry.count;
+}
+
+// kvGet — reads current value. Returns 0 for unknown/expired keys. Fail-open.
+async function kvGet(key) {
+  if (UPSTASH_URL && UPSTASH_TOKEN) {
+    try {
+      const res = await fetch(`${UPSTASH_URL}/get/${encodeURIComponent(key)}`, {
+        headers: { Authorization: `Bearer ${UPSTASH_TOKEN}` },
+      });
+      const data = await res.json();
+      return parseInt(data?.result || '0', 10);
+    } catch {
+      return 0; // fail-open
+    }
+  }
+  // In-memory fallback
+  const now = Date.now();
+  const entry = memCache.get(key);
+  if (!entry || entry.expiresAt < now) return 0;
   return entry.count;
 }
 
@@ -134,26 +146,35 @@ function buildSystemPrompt({ moduleName, role, step, stepName, stepTitle, stepGu
   return basePrompt + (knowledgeSection ? '\n\n' + knowledgeSection : '');
 }
 
-export default async function handler(req) {
-  if (req.method === 'OPTIONS') return new Response(null, { headers: cors });
-  if (req.method !== 'POST') return json({ error: 'method_not_allowed' }, 405);
+export default async function handler(req, res) {
+  // 1. CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
+  if (req.method === 'OPTIONS') return res.status(200).end();
+
+  // 2. Method check
+  if (req.method !== 'POST') return json(res, { error: 'method_not_allowed' }, 405);
+
+  // 3. API key guard
   if (!ANTHROPIC_KEY) {
-    return json({
+    return json(res, {
       error: 'not_configured',
       message: 'Admin chưa cấu hình API key, bạn báo PM giúp nhé! 🔧',
     }, 500);
   }
 
-  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
-    || req.headers.get('x-real-ip')
+  const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim()
+    || req.headers['x-real-ip']
     || 'unknown';
 
+  // 4. Parse body
   let body;
   try {
-    body = await req.json();
+    body = req.body || {};
   } catch {
-    return json({ error: 'bad_json' }, 400);
+    return json(res, { error: 'bad_json' }, 400);
   }
 
   const {
@@ -171,78 +192,86 @@ export default async function handler(req) {
   // allSteps is optional — if provided, must be array, max 30 items
   if (allSteps !== undefined && allSteps !== null) {
     if (!Array.isArray(allSteps)) {
-      return json({ error: 'allSteps_not_array', message: 'allSteps must be array' }, 400);
+      return json(res, { error: 'allSteps_not_array', message: 'allSteps must be array' }, 400);
     }
     if (allSteps.length > 30) {
-      return json({ error: 'allSteps_too_long', message: 'allSteps max 30 steps' }, 400);
+      return json(res, { error: 'allSteps_too_long', message: 'allSteps max 30 steps' }, 400);
     }
   }
 
-  // Validate
+  // 5. Input validation
   if (!Array.isArray(messages) || messages.length === 0) {
-    return json({ error: 'no_messages' }, 400);
+    return json(res, { error: 'no_messages' }, 400);
   }
   if (messages.length > 20) {
-    return json({
+    return json(res, {
       error: 'history_too_long',
       message: 'Cuộc trò chuyện hơi dài rồi, bấm "Xóa" để bắt đầu lại nhé! 🧹',
     }, 400);
   }
   const lastMsg = messages[messages.length - 1];
   if (!lastMsg || lastMsg.role !== 'user' || typeof lastMsg.content !== 'string') {
-    return json({ error: 'bad_message' }, 400);
+    return json(res, { error: 'bad_message' }, 400);
   }
   if (lastMsg.content.length > 500) {
-    return json({
+    return json(res, {
       error: 'too_long',
       message: 'Câu hỏi dài quá 500 ký tự, viết ngắn lại giúp mình nhé! ✂️',
     }, 400);
   }
   if (lastMsg.content.trim().length < 2) {
-    return json({
+    return json(res, {
       error: 'too_short',
       message: 'Câu hỏi ngắn quá, viết rõ hơn chút nha! 🤔',
     }, 400);
   }
   if (isAbusive(messages)) {
-    return json({
+    return json(res, {
       error: 'abuse',
       message: 'Mình thấy bạn lặp lại câu hỏi nhiều lần — có thể hỏi cách khác không? 😊',
     }, 429);
   }
 
-  // Rate limits
-  const hourCount = await kvIncr(`rl:ip:${ip}:h`, 3600);
-  if (hourCount > 10) {
-    return json({
-      error: 'rate_limit_hour',
-      message: 'Bạn hỏi hơi nhiều rồi 🐢 (giới hạn 10 câu/giờ) — chờ chút quay lại nhé!',
-    }, 429);
-  }
+  // 6. Build system prompt once — used in both pre-check estimation and Anthropic call
+  const systemPrompt = buildSystemPrompt({
+    moduleName, role, step, stepName, stepTitle, stepGuide, allSteps,
+  });
 
-  const dayCount = await kvIncr(`rl:ip:${ip}:d`, 86400);
-  if (dayCount > 30) {
-    return json({
-      error: 'rate_limit_day',
-      message: 'Hôm nay bạn đã hỏi 30 câu rồi 🌙 mai chúng ta tiếp tục nhé!',
-    }, 429);
-  }
-
+  // 7. Token budget pre-check
   const today = new Date().toISOString().slice(0, 10);
-  const globalCount = await kvIncr(`rl:global:${today}`, 86400);
-  if (globalCount > DAILY_GLOBAL_CAP) {
-    return json({
+  const keyHour   = `tb:ip:${ip}:h`;
+  const keyDay    = `tb:ip:${ip}:d`;
+  const keyGlobal = `tb:global:${today}`;
+
+  const estimatedInputTokens = Math.ceil((lastMsg.content.length + systemPrompt.length) / 4);
+  const estimatedCost = estimatedInputTokens + 50; // 50 = min output lower bound
+
+  const [hourUsed, dayUsed, globalUsed] = await Promise.all([
+    kvGet(keyHour),
+    kvGet(keyDay),
+    kvGet(keyGlobal),
+  ]);
+
+  if (hourUsed + estimatedCost > HOURLY_TOKEN_CAP) {
+    return json(res, {
+      error: 'rate_limit_hour',
+      message: 'Bạn hỏi hơi nhiều rồi 🐢 (giới hạn theo dung lượng/giờ) — chờ chút quay lại nhé!',
+    }, 429);
+  }
+  if (dayUsed + estimatedCost > DAILY_USER_CAP) {
+    return json(res, {
+      error: 'rate_limit_day',
+      message: 'Hôm nay bạn đã dùng nhiều rồi 🌙 mai chúng ta tiếp tục nhé!',
+    }, 429);
+  }
+  if (globalUsed + estimatedCost > DAILY_GLOBAL_CAP) {
+    return json(res, {
       error: 'global_cap',
       message: 'Trợ lý đang nghỉ do quá tải hôm nay 😴 mai quay lại nhé!',
     }, 429);
   }
 
-  // Build system prompt
-  const systemPrompt = buildSystemPrompt({
-    moduleName, role, step, stepName, stepTitle, stepGuide, allSteps,
-  });
-
-  // Call Anthropic
+  // 8. Call Anthropic
   try {
     const ctrl = new AbortController();
     const timeout = setTimeout(() => ctrl.abort(), 25000);
@@ -265,8 +294,7 @@ export default async function handler(req) {
 
     if (!anthropicRes.ok) {
       const errText = await anthropicRes.text();
-      console.error('Anthropic API error:', anthropicRes.status, errText.slice(0, 500));
-      // Parse upstream error for better debugging
+      console.error('[api/chat] Anthropic API error:', anthropicRes.status, errText.slice(0, 500));
       let upstreamMsg = '';
       try {
         const parsed = JSON.parse(errText);
@@ -282,31 +310,38 @@ export default async function handler(req) {
         : isCreditLow
         ? 'Trợ lý cần nạp thêm "xăng" rồi 😅 báo PM nạp credit Anthropic giúp nhé! ⛽'
         : 'Trợ lý gặp sự cố nhẹ 🔧 thử lại sau 30 giây nhé!';
-      return json({
+      return json(res, {
         error: 'upstream',
         message: friendly,
         upstreamStatus: anthropicRes.status,
-        upstreamDetail: upstreamMsg.slice(0, 200),  // helps debugging
+        upstreamDetail: upstreamMsg.slice(0, 200),
       }, 502);
     }
 
-    const data = await anthropicRes.json();
-    const text = (data.content || [])
-      .filter(c => c.type === 'text')
-      .map(c => c.text)
-      .join('\n')
-      .trim();
+    const anthropicData = await anthropicRes.json();
 
-    return json({
-      message: text || 'Hmm mình chưa nghĩ ra câu trả lời 🤔 hỏi cách khác thử nhé!',
+    // 9. Post-increment with actual tokens from Anthropic usage
+    const actualTokens = (anthropicData.usage?.input_tokens  || estimatedInputTokens)
+                       + (anthropicData.usage?.output_tokens  || 100);
+
+    await Promise.all([
+      kvAdd(keyHour,   actualTokens, 3600),
+      kvAdd(keyDay,    actualTokens, 86400),
+      kvAdd(keyGlobal, actualTokens, 86400),
+    ]);
+
+    // 10. Return response with remaining budget
+    return json(res, {
+      message: anthropicData.content?.[0]?.text || 'Hmm mình chưa nghĩ ra câu trả lời 🤔 hỏi cách khác thử nhé!',
       remaining: {
-        hour: Math.max(0, 10 - hourCount),
-        day: Math.max(0, 30 - dayCount),
+        hour:    Math.max(0, HOURLY_TOKEN_CAP - hourUsed - actualTokens),
+        day:     Math.max(0, DAILY_USER_CAP   - dayUsed  - actualTokens),
+        hourPct: Math.round(Math.max(0, HOURLY_TOKEN_CAP - hourUsed - actualTokens) / HOURLY_TOKEN_CAP * 100),
       },
     });
   } catch (err) {
-    console.error('Chat error:', err);
-    return json({
+    console.error('[api/chat]', err);
+    return json(res, {
       error: 'server_error',
       message: 'Có lỗi mạng, thử lại sau nhé! 🔌',
     }, 500);

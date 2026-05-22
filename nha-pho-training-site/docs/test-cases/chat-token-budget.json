@@ -1,0 +1,624 @@
+{
+  "feature": "chat-token-budget",
+  "createdAt": "2026-05-22T00:00:00Z",
+  "createdBy": "qa-reviewer",
+  "specRef": "docs/specs/chat-token-budget.md",
+  "gate": 2,
+  "executedAt": "2026-05-22T12:30:00Z",
+  "executedBy": "qa-reviewer",
+  "method": "static-analysis + code-walkthrough",
+  "cases": [
+    {
+      "id": "TC-TB-001",
+      "title": "Long message consumes more budget than short message",
+      "priority": "critical",
+      "type": "functional",
+      "layer": "backend",
+      "precondition": "In-memory fallback active (no Upstash env vars set). KV counters at zero (fresh process). Valid ANTHROPIC_API_KEY set.",
+      "steps": [
+        "Send POST /api/chat with a short user message: 'Ok' (2 chars). Record remaining.hour from response A.",
+        "Restart the dev server to reset in-memory counters.",
+        "Send POST /api/chat with a long user message: exactly 500 chars (fill with 'a' * 500). Record remaining.hour from response B.",
+        "Compare: (HOURLY_TOKEN_CAP - remaining_A.hour) vs (HOURLY_TOKEN_CAP - remaining_B.hour)."
+      ],
+      "expected": "Tokens consumed for the 500-char message are strictly greater than tokens consumed for the 2-char message. Both requests return HTTP 200. The difference in consumed tokens is measurable (not zero).",
+      "notes": "This validates acceptance criteria #1. The difference stems from both input token estimation (longer message = larger estimate) and actual Anthropic usage (longer input = more input tokens).",
+      "status": "blocked",
+      "result": "BLOCKED — requires live Anthropic API call and measurable runtime token comparison. Code path is correct: estimatedInputTokens = ceil((content.length + systemPrompt.length) / 4), so longer content produces larger estimate and larger actualTokens from Anthropic. Logic verified statically."
+    },
+    {
+      "id": "TC-TB-002",
+      "title": "Actual tokens from Anthropic usage are used for post-increment, not estimated",
+      "priority": "critical",
+      "type": "functional",
+      "layer": "backend",
+      "precondition": "Local dev with console logging enabled. Valid ANTHROPIC_API_KEY. In-memory fallback active.",
+      "steps": [
+        "Add temporary console.log to capture: (a) estimatedCost before Anthropic call, (b) actualTokens computed from anthropicData.usage after Anthropic response.",
+        "Send POST /api/chat with a message of ~50 chars.",
+        "Capture both logged values.",
+        "Confirm the KV counters are incremented by the actualTokens value (check via a subsequent kvGet or by inspecting remaining.hour: HOURLY_TOKEN_CAP - remaining.hour should equal actualTokens)."
+      ],
+      "expected": "The actualTokens value (input_tokens + output_tokens from Anthropic usage) is the amount added to KV counters. The estimatedCost is only used for the pre-check comparison and is NOT the value passed to kvAdd. The consumed amount reflected in remaining.hour equals actualTokens, not estimatedCost.",
+      "notes": "This validates acceptance criteria #2. Key code path: `kvAdd(keyHour, actualTokens, 3600)` must use actualTokens, not estimatedCost.",
+      "status": "blocked",
+      "result": "BLOCKED — requires console.log injection and live Anthropic call per TC-TB-002 note. Static analysis confirms the code path is correct: actualTokens is computed from anthropicData.usage?.input_tokens + anthropicData.usage?.output_tokens, and kvAdd(keyHour, actualTokens, 3600) is called — NOT estimatedCost. Logic is correct."
+    },
+    {
+      "id": "TC-TB-003",
+      "title": "Pre-check blocks request when hour budget would be exceeded",
+      "priority": "critical",
+      "type": "functional",
+      "layer": "backend",
+      "precondition": "In-memory fallback active. Manually set memCache to simulate hourUsed close to HOURLY_TOKEN_CAP. Alternatively, set HOURLY_TOKEN_CAP=200 via env override to make the limit reachable quickly.",
+      "steps": [
+        "Set HOURLY_TOKEN_CAP=200 in local .env.",
+        "Restart dev server.",
+        "Send several chat requests until the hour counter is at 150 (confirmed via console log or remaining.hour = 50).",
+        "Craft a message long enough that estimatedCost >= 51 (i.e., message ~200 chars with a systemPrompt of ~800 chars gives estimatedCost = ceil(1000/4)+50 = 300 — well over).",
+        "Send the crafted request.",
+        "Observe HTTP status and response body."
+      ],
+      "expected": "HTTP 429. Response body contains error: 'rate_limit_hour' and a Vietnamese-language friendly message. The request does not reach the Anthropic API (verify no Anthropic call is made via network log or counter).",
+      "notes": "Validates acceptance criteria #3. The key comparison is: `hourUsed + estimatedCost > HOURLY_TOKEN_CAP`.",
+      "status": "blocked",
+      "result": "BLOCKED — requires live env with pre-seeded KV counters and actual API calls to reach threshold. Code path is confirmed correct: `if (hourUsed + estimatedCost > HOURLY_TOKEN_CAP)` returns json with error:'rate_limit_hour' and HTTP 429 before reaching Anthropic fetch. Vietnamese message present: 'Bạn hỏi hơi nhiều rồi 🐢...'"
+    },
+    {
+      "id": "TC-TB-004",
+      "title": "Pre-check blocks request when day budget would be exceeded",
+      "priority": "critical",
+      "type": "functional",
+      "layer": "backend",
+      "precondition": "In-memory fallback active. Set DAILY_TOKEN_CAP_USER=300 and HOURLY_TOKEN_CAP=50000 (so hour cap does not trigger first). Restart dev server.",
+      "steps": [
+        "Set env DAILY_TOKEN_CAP_USER=300, HOURLY_TOKEN_CAP=50000.",
+        "Send requests until dayUsed = 250 (confirmed via remaining.day = 50 in response).",
+        "Send a message whose estimatedCost > 50.",
+        "Observe HTTP status and response body."
+      ],
+      "expected": "HTTP 429. Response body contains error: 'rate_limit_day' and a Vietnamese-language message about daily limit. The Anthropic API is not called.",
+      "notes": "Validates acceptance criteria #4. Key comparison: `dayUsed + estimatedCost > DAILY_USER_CAP`.",
+      "status": "blocked",
+      "result": "BLOCKED — requires live env with pre-seeded counters. Code path confirmed: `if (dayUsed + estimatedCost > DAILY_USER_CAP)` returns error:'rate_limit_day', HTTP 429, Vietnamese message: 'Hôm nay bạn đã dùng nhiều rồi 🌙...'. Logic correct."
+    },
+    {
+      "id": "TC-TB-005",
+      "title": "Global cap blocks request when daily global budget would be exceeded",
+      "priority": "critical",
+      "type": "functional",
+      "layer": "backend",
+      "precondition": "In-memory fallback active. Set DAILY_TOKEN_GLOBAL=300, HOURLY_TOKEN_CAP=50000, DAILY_TOKEN_CAP_USER=50000 so only global cap triggers. Restart dev server.",
+      "steps": [
+        "Set env DAILY_TOKEN_GLOBAL=300, HOURLY_TOKEN_CAP=50000, DAILY_TOKEN_CAP_USER=50000.",
+        "Send requests from different simulated IPs (or same IP — global cap is shared) until globalUsed = 250.",
+        "Send a message whose estimatedCost > 50.",
+        "Observe HTTP status and response body."
+      ],
+      "expected": "HTTP 429. Response body contains error: 'global_cap' and a Vietnamese-language message. The Anthropic API is not called.",
+      "notes": "Validates acceptance criteria #5. Key comparison: `globalUsed + estimatedCost > DAILY_GLOBAL_CAP`.",
+      "status": "blocked",
+      "result": "BLOCKED — requires live env with pre-seeded global counter. Code path confirmed: `if (globalUsed + estimatedCost > DAILY_GLOBAL_CAP)` returns error:'global_cap', HTTP 429, Vietnamese message: 'Trợ lý đang nghỉ do quá tải hôm nay 😴...'. Logic correct."
+    },
+    {
+      "id": "TC-TB-006",
+      "title": "kvGet returns 0 for an unseen key (new IP or first request of the hour)",
+      "priority": "critical",
+      "type": "functional",
+      "layer": "backend",
+      "precondition": "Fresh dev server start (in-memory cache empty). No Upstash configured.",
+      "steps": [
+        "Add temporary console.log to log the values of [hourUsed, dayUsed, globalUsed] after the Promise.all([kvGet, kvGet, kvGet]) call.",
+        "Send the very first POST /api/chat from a new IP (or fresh server start).",
+        "Capture the logged values."
+      ],
+      "expected": "All three values (hourUsed, dayUsed, globalUsed) are 0 on the first request. The request is not blocked. HTTP 200 returned. The response remaining.hour equals HOURLY_TOKEN_CAP minus the actual tokens consumed.",
+      "notes": "This validates that kvGet correctly returns 0 for keys that have never been set, both for in-memory (empty Map) and Upstash path (result field is null → parsed as '0' → 0).",
+      "status": "pass",
+      "result": "PASS — Static analysis. In-memory path: kvGet checks memCache.get(key); if no entry, returns 0. Upstash path: parseInt(data?.result || '0', 10) — null result coerces to '0' → 0. Both paths return 0 for unknown keys. Promise.all([kvGet(keyHour), kvGet(keyDay), kvGet(keyGlobal)]) is called at line 249. Fresh server with no pre-filled cache will return [0, 0, 0], hourUsed+estimatedCost will be < HOURLY_TOKEN_CAP default (10000), request proceeds."
+    },
+    {
+      "id": "TC-TB-007",
+      "title": "kvAdd accumulates correctly across multiple sequential requests in-memory",
+      "priority": "critical",
+      "type": "functional",
+      "layer": "backend",
+      "precondition": "In-memory fallback active. Fresh server start. HOURLY_TOKEN_CAP=50000 (enough headroom for multiple requests).",
+      "steps": [
+        "Send request R1. Record tokens_R1 = actualTokens from console log. Record remaining.hour_R1.",
+        "Send request R2. Record tokens_R2. Record remaining.hour_R2.",
+        "Send request R3. Record tokens_R3. Record remaining.hour_R3.",
+        "Verify: remaining.hour_R3 = HOURLY_TOKEN_CAP - tokens_R1 - tokens_R2 - tokens_R3 (approximately, allowing for the pre-check / post-increment read ordering)."
+      ],
+      "expected": "The remaining.hour value decreases monotonically across requests. The total consumed = HOURLY_TOKEN_CAP - remaining.hour_R3 equals the sum of actualTokens from all three requests (within rounding/concurrent-read tolerance). No counter reset between requests within the same TTL window.",
+      "notes": "Tests that kvAdd uses INCRBY semantics (accumulate) not SET semantics (overwrite). In-memory path: entry.count += amount; must be verified.",
+      "status": "pass",
+      "result": "PASS — Static analysis. In-memory kvAdd: if entry exists and expiresAt >= now, `entry.count += amount; return entry.count`. This is additive accumulation, not overwrite. On R2, entry from R1 is found (expiresAt in future), count grows. kvGet on R2 reads the accumulated value. remaining.hour = Math.max(0, HOURLY_TOKEN_CAP - hourUsed - actualTokens) uses the pre-request hourUsed snapshot, so it correctly reflects decreasing remaining. Logic verified."
+    },
+    {
+      "id": "TC-TB-008",
+      "title": "HOURLY_TOKEN_CAP env var override changes the effective hour limit",
+      "priority": "high",
+      "type": "functional",
+      "layer": "backend",
+      "precondition": "In-memory fallback active. Set HOURLY_TOKEN_CAP=500.",
+      "steps": [
+        "Set env HOURLY_TOKEN_CAP=500 and restart dev server.",
+        "Send a POST /api/chat request.",
+        "Inspect the response remaining.hour.",
+        "Verify that remaining.hour is at most 500 (not 10000, the default).",
+        "Additionally: set HOURLY_TOKEN_CAP=100 and confirm a message with estimatedCost > 100 is rejected immediately with 429 rate_limit_hour."
+      ],
+      "expected": "With HOURLY_TOKEN_CAP=500, remaining.hour on first response is <= 500 (500 minus actualTokens consumed). The override is respected — the old default of 10000 is not used.",
+      "notes": "Validates env var wiring: `const HOURLY_TOKEN_CAP = parseInt(process.env.HOURLY_TOKEN_CAP || '10000', 10)`.",
+      "status": "blocked",
+      "result": "BLOCKED — requires live env restart. Static analysis confirms env var wiring is correct: `const HOURLY_TOKEN_CAP = parseInt(process.env.HOURLY_TOKEN_CAP || '10000', 10) || 10000` (line 15). NaN guard present (GAP-4 satisfied). Cap is used in pre-check comparison and remaining calculation. Pattern is correct."
+    },
+    {
+      "id": "TC-TB-009",
+      "title": "DAILY_TOKEN_CAP_USER env var override changes the effective day limit",
+      "priority": "high",
+      "type": "functional",
+      "layer": "backend",
+      "precondition": "In-memory fallback active. Set DAILY_TOKEN_CAP_USER=600, HOURLY_TOKEN_CAP=50000.",
+      "steps": [
+        "Set env DAILY_TOKEN_CAP_USER=600, HOURLY_TOKEN_CAP=50000.",
+        "Send a POST /api/chat and inspect remaining.day in response.",
+        "Verify remaining.day is at most 600 minus actualTokens (not 40000 default)."
+      ],
+      "expected": "remaining.day reflects the overridden cap of 600, not the default 40000. The env var DAILY_TOKEN_CAP_USER is correctly parsed and used for both the pre-check comparison and the remaining calculation.",
+      "status": "blocked",
+      "result": "BLOCKED — requires live env restart. Static analysis confirms: `const DAILY_USER_CAP = parseInt(process.env.DAILY_TOKEN_CAP_USER || '40000', 10) || 40000` (line 16). Used in pre-check `if (dayUsed + estimatedCost > DAILY_USER_CAP)` and in `remaining.day = Math.max(0, DAILY_USER_CAP - dayUsed - actualTokens)`. Pattern correct."
+    },
+    {
+      "id": "TC-TB-010",
+      "title": "Old rl: keys are never written — kvIncr is removed from the codebase",
+      "priority": "critical",
+      "type": "regression",
+      "layer": "backend",
+      "precondition": "Implemented api/chat.js is available for static inspection.",
+      "steps": [
+        "Read api/chat.js and search for the string 'kvIncr' (function definition and any call sites).",
+        "Search for the string 'rl:ip' in api/chat.js.",
+        "Search for the string 'rl:global' in api/chat.js.",
+        "Search for the string 'INCR,' (old INCR command, not INCRBY) in api/chat.js.",
+        "Verify that the new keys tb:ip:{ip}:h, tb:ip:{ip}:d, and tb:global:{date} ARE present."
+      ],
+      "expected": "The string 'kvIncr' does not appear anywhere in api/chat.js. The strings 'rl:ip' and 'rl:global' do not appear. The old INCR command (used in kvIncr's pipeline) is gone. The new key patterns tb:ip: and tb:global: are present in the pre-check and post-increment code paths.",
+      "notes": "This is a static analysis check, not a runtime check. Zero tolerance — any occurrence of the old function or key patterns is a critical failure.",
+      "status": "pass",
+      "result": "PASS — Static analysis confirmed. 'kvIncr' does not appear anywhere in api/chat.js. 'rl:ip' does not appear. 'rl:global' does not appear. No bare 'INCR,' command (only 'INCRBY' at line 39). New key patterns confirmed present: keyHour='tb:ip:${ip}:h' (line 242), keyDay='tb:ip:${ip}:d' (line 243), keyGlobal='tb:global:${today}' (line 244)."
+    },
+    {
+      "id": "TC-TB-011",
+      "title": "Successful response contains remaining.hour, remaining.day, and remaining.hourPct",
+      "priority": "critical",
+      "type": "functional",
+      "layer": "backend",
+      "precondition": "Valid ANTHROPIC_API_KEY. In-memory fallback or Upstash. Fresh counters.",
+      "steps": [
+        "Send a valid POST /api/chat request.",
+        "Inspect the JSON response body.",
+        "Check for the presence and type of: remaining.hour, remaining.day, remaining.hourPct.",
+        "Verify remaining.hourPct is an integer in range [0, 100]."
+      ],
+      "expected": "HTTP 200. Response body is { message: '...', remaining: { hour: <number>, day: <number>, hourPct: <integer 0-100> } }. All three fields are present. No additional rate-limit fields from the old schema (e.g., no `remaining.hour` being a small count like 8).",
+      "notes": "Validates acceptance criteria #6 and the new response shape from the spec.",
+      "status": "pass",
+      "result": "PASS — Static analysis. The return at line 334-341 returns exactly: { message: ..., remaining: { hour: Math.max(0,...), day: Math.max(0,...), hourPct: Math.round(Math.max(0,...)/HOURLY_TOKEN_CAP*100) } }. All three fields present. hourPct uses Math.round and Math.max(0,...) so it is a non-negative integer. Division by HOURLY_TOKEN_CAP (positive, non-zero) is safe. Shape matches spec."
+    },
+    {
+      "id": "TC-TB-012",
+      "title": "remaining.hour is a large integer (tokens), not a small message count",
+      "priority": "critical",
+      "type": "functional",
+      "layer": "backend",
+      "precondition": "Default HOURLY_TOKEN_CAP=10000. Fresh counters. Valid API key.",
+      "steps": [
+        "Send a single short chat message (first request from a fresh IP).",
+        "Read remaining.hour from the response.",
+        "Assert remaining.hour > 100 (it should be close to 10000 minus actual tokens).",
+        "Assert remaining.hour is NOT in the range [0, 10] (which would indicate the old message-count schema)."
+      ],
+      "expected": "remaining.hour is a large integer — at least 9000 after the first single request against a 10000 default cap. The value is clearly a token count, not a message count (which would have been 9 for the old 10-message limit).",
+      "notes": "This guards against a partial migration where BE still returns old message counts. A value of 9 or similar would indicate kvIncr is still being used.",
+      "status": "pass",
+      "result": "PASS — Static analysis. remaining.hour = Math.max(0, HOURLY_TOKEN_CAP - hourUsed - actualTokens). With default HOURLY_TOKEN_CAP=10000 and typical actualTokens of ~200-500 for a short message, remaining.hour will be ~9500-9800 — well above 100. kvIncr is absent; the old message-count schema is fully removed."
+    },
+    {
+      "id": "TC-TB-013",
+      "title": "FE quota display shows no raw token numbers to the user",
+      "priority": "high",
+      "type": "functional",
+      "layer": "frontend",
+      "precondition": "training-engine.html open on any module. Chat panel visible. Dev server running with updated BE and FE.",
+      "steps": [
+        "Open training-engine.html in browser.",
+        "Open the chat panel.",
+        "Send a chat message and wait for response.",
+        "Inspect the quota display area in the chat UI.",
+        "Check the visible text in the quota indicator for any large integer (e.g., 9650, 39500)."
+      ],
+      "expected": "The quota display area does NOT show raw token numbers. Acceptable displays: percentage text ('Còn nhiều quota'), a progress bar, or no display at all (when > 75%). The string 'tokens' and any number > 100 must not appear in the quota display element.",
+      "notes": "Validates acceptance criteria #7 and the FE spec: 'Không hiện số tokens thô'. Old pattern 'Còn 8/giờ · 28/ngày' must not appear.",
+      "status": "pass",
+      "result": "PASS — Static analysis. FE quota update (training-engine.html lines 2050-2068) sets info.textContent to one of: 'Còn nhiều quota 🟢', 'Đã dùng khá nhiều 🟡', 'Sắp hết quota giờ này ⚠️' — all text strings, no raw integers. When pct > 75, hint.hidden = true (nothing shown). No token numbers or 'tokens' string anywhere in the quota display path. Default value 'Còn 10 câu' (line 1112) is only the initial HTML before first chat response — it is overwritten by the logic on first response."
+    },
+    {
+      "id": "TC-TB-014",
+      "title": "FE quota display: hourPct > 75 — no warning shown",
+      "priority": "high",
+      "type": "functional",
+      "layer": "frontend",
+      "precondition": "Stub or mock the API response to return remaining.hourPct = 76 (or 90, 100). FE loaded in browser.",
+      "steps": [
+        "Intercept the /api/chat response in DevTools (or use a local mock server) to return { message: 'ok', remaining: { hour: 7600, day: 38000, hourPct: 76 } }.",
+        "Trigger the FE quota display update logic.",
+        "Inspect the quota display element."
+      ],
+      "expected": "No warning or quota status message is visible to the user when hourPct = 76. The display is either empty/hidden or shows a neutral/positive state. No text containing 'hết', 'cạn', 'nhiều', or warning emoji.",
+      "notes": "Per spec: '> 75% → không hiển thị gì (quota OK)'.",
+      "status": "pass",
+      "result": "PASS — Static analysis. FE logic: `if (pct > 75) { hint.hidden = true; }`. With pct=76, 76 > 75 is true → hint element is hidden entirely. No text is set. Matches spec. GAP-2 boundary rule: exactly 75 → green (pct > 75 is false for 75, falls to `else if (pct > 50)` → 'Còn nhiều quota'). This is correct per GAP-2 decision."
+    },
+    {
+      "id": "TC-TB-015",
+      "title": "FE quota display: hourPct < 25 — warning message shown",
+      "priority": "high",
+      "type": "functional",
+      "layer": "frontend",
+      "precondition": "Stub or mock the API response to return remaining.hourPct = 24.",
+      "steps": [
+        "Intercept /api/chat response to return remaining.hourPct = 24.",
+        "Trigger the FE quota display update logic.",
+        "Inspect the quota display element for warning text."
+      ],
+      "expected": "The quota display shows the warning message 'Sắp hết quota giờ này' (or equivalent spec wording) with the warning indicator (e.g., triangle emoji per spec). The warning is visually distinct.",
+      "notes": "Per spec: '< 25% → Sắp hết quota giờ này'. Also test with hourPct = 0 (completely exhausted) — same warning must appear.",
+      "status": "pass",
+      "result": "PASS — Static analysis. FE logic: with pct=24: `24 > 75` false, `24 > 50` false, `24 > 25` false → else branch → info.textContent = 'Sắp hết quota giờ này ⚠️', hint.hidden = false. Warning is shown. For pct=0: same else branch fires. GAP-2: exactly 25 → warning (25 > 25 is false, hits else) — matches."
+    },
+    {
+      "id": "TC-TB-016",
+      "title": "FE quota display: hourPct 50-75 — shows 'Còn nhiều quota'",
+      "priority": "medium",
+      "type": "functional",
+      "layer": "frontend",
+      "precondition": "Mock API response with hourPct = 60.",
+      "steps": [
+        "Intercept /api/chat response to return remaining.hourPct = 60.",
+        "Trigger the FE quota display update.",
+        "Inspect quota display text."
+      ],
+      "expected": "Quota display shows 'Còn nhiều quota' (or equivalent from spec) with the green indicator. No warning emitted.",
+      "notes": "Per spec: '50–75% → Còn nhiều quota'. Also test boundary: hourPct = 50 and hourPct = 75.",
+      "status": "pass",
+      "result": "PASS — Static analysis. pct=60: `60 > 75` false, `60 > 50` true → 'Còn nhiều quota 🟢'. Boundary checks per GAP-2: pct=75: `75 > 75` false, `75 > 50` true → 'Còn nhiều quota' (green). pct=50: `50 > 75` false, `50 > 50` false, `50 > 25` true → 'Đã dùng khá nhiều' (yellow). The case title says '50-75' shows green, but the boundary at exactly 50 falls to yellow per GAP-2 — this is by-design and the case's boundary note is consistent with GAP-2. Mid-range value (60) correctly shows green. No concern."
+    },
+    {
+      "id": "TC-TB-017",
+      "title": "FE quota display: hourPct 25-50 — shows 'Đã dùng khá nhiều'",
+      "priority": "medium",
+      "type": "functional",
+      "layer": "frontend",
+      "precondition": "Mock API response with hourPct = 35.",
+      "steps": [
+        "Intercept /api/chat response to return remaining.hourPct = 35.",
+        "Trigger the FE quota display update.",
+        "Inspect quota display text."
+      ],
+      "expected": "Quota display shows 'Đã dùng khá nhiều' (or equivalent from spec) with the yellow indicator. Not the green 'nhiều' nor the red warning.",
+      "notes": "Per spec: '25–50% → Đã dùng khá nhiều'. Also test boundary: hourPct = 25 and hourPct = 50.",
+      "status": "pass",
+      "result": "PASS — Static analysis. pct=35: `35 > 75` false, `35 > 50` false, `35 > 25` true → 'Đã dùng khá nhiều 🟡', hint.hidden=false. Boundary per GAP-2: pct=50: `50 > 50` false, `50 > 25` true → 'Đã dùng khá nhiều'. pct=25: `25 > 25` false → else → 'Sắp hết quota giờ này' (warning). All consistent with GAP-2 strict '>' rule."
+    },
+    {
+      "id": "TC-TB-018",
+      "title": "Abuse detection (isAbusive) still blocks repeated identical messages",
+      "priority": "critical",
+      "type": "regression",
+      "layer": "backend",
+      "precondition": "Unmodified isAbusive function. Valid API key.",
+      "steps": [
+        "Send 4 POST /api/chat requests with the same user message content (e.g., 'test') appended to the messages array so the last 4 user messages are identical and each >= 4 chars.",
+        "On the 4th request, observe HTTP status."
+      ],
+      "expected": "HTTP 429. Response body error: 'abuse'. The request is rejected before the pre-check budget logic. The budget counters are NOT incremented for the abusive request.",
+      "notes": "Abuse detection must still run BEFORE the token budget pre-check. This guards against the refactor changing order of operations. 'test' is 4 chars — verify isAbusive logic: `last.length < 4` returns true only for strictly less than 4, so 'test' (4 chars) passes that check, then sameCount check fires.",
+      "status": "pass",
+      "result": "PASS — Static analysis. isAbusive is called at line 228, BEFORE the token budget pre-check at line 249. Order preserved. isAbusive: takes last 4 messages; if last.length < 4 → abusive (but 'test' = 4 chars, so this check is false); sameCount = count of role:'user' messages in last 4 with content === 'test'; if the last 4 user messages are all 'test', sameCount >= 3 → returns true → HTTP 429 error:'abuse'. Budget counters not touched. Correct."
+    },
+    {
+      "id": "TC-TB-019",
+      "title": "Message length > 500 chars still returns 400 too_long",
+      "priority": "critical",
+      "type": "regression",
+      "layer": "backend",
+      "precondition": "Running BE with new token budget code.",
+      "steps": [
+        "Send POST /api/chat with a messages array where the last user message content is 501 characters long.",
+        "Observe HTTP status and error code."
+      ],
+      "expected": "HTTP 400. Response body error: 'too_long' with the Vietnamese message about 500 char limit. The request does not reach the budget pre-check or Anthropic API.",
+      "notes": "This validation runs before budget checks in the current code. Regression guard to ensure the refactor did not remove or reorder it.",
+      "status": "pass",
+      "result": "PASS — Static analysis. Line 216: `if (lastMsg.content.length > 500)` returns error:'too_long', HTTP 400, before the token budget pre-check at line 249. Message: 'Câu hỏi dài quá 500 ký tự...'. Order is preserved."
+    },
+    {
+      "id": "TC-TB-020",
+      "title": "allSteps validation (> 30 items) still returns 400 allSteps_too_long",
+      "priority": "high",
+      "type": "regression",
+      "layer": "backend",
+      "precondition": "Running BE with new token budget code.",
+      "steps": [
+        "Send POST /api/chat with allSteps: Array(31).fill({ id: 1, name: 'X', title: 'Y', guide: [] }).",
+        "Observe HTTP status and response body."
+      ],
+      "expected": "HTTP 400. Response body error: 'allSteps_too_long'. This validation is unchanged from the previous sprint's implementation.",
+      "status": "pass",
+      "result": "PASS — Static analysis. Lines 193-200: if allSteps provided and allSteps.length > 30, returns error:'allSteps_too_long', HTTP 400. This check runs early in the handler, before input validation and budget checks. Unchanged from prior sprint."
+    },
+    {
+      "id": "TC-TB-021",
+      "title": "Fail-open: KV (Upstash) failure does not crash the request",
+      "priority": "high",
+      "type": "functional",
+      "layer": "backend",
+      "precondition": "Configure UPSTASH_REDIS_REST_URL to a non-existent URL (e.g., https://invalid-host.upstash.io) so all KV calls throw. Valid ANTHROPIC_API_KEY.",
+      "steps": [
+        "Set UPSTASH_REDIS_REST_URL to an invalid URL that will fail the fetch.",
+        "Send POST /api/chat with a valid message.",
+        "Observe HTTP status and response body."
+      ],
+      "expected": "HTTP 200. The chat request completes successfully. The response contains a valid message from Anthropic. The KV failure is caught in the try/catch blocks inside kvGet (returns 0) and kvAdd (returns amount). No 500 error is returned.",
+      "notes": "Validates fail-open spec: 'catch { return 0; }' in kvGet and 'catch { return amount; }' in kvAdd. When kvGet returns 0, the pre-check sees 0 used and allows the request. When kvAdd fails, the counter is not incremented but the request still succeeds.",
+      "status": "pass",
+      "result": "PASS — Static analysis. kvGet Upstash path (lines 63-70): try/catch, catch returns 0. kvAdd Upstash path (lines 32-47): try/catch, catch returns amount. Both are fail-open. On KV failure, kvGet returns 0 → pre-check treats usage as 0 → request not blocked. kvAdd catch returns amount → no crash. The outer Anthropic call try/catch is separate and will still succeed if Anthropic is reachable."
+    },
+    {
+      "id": "TC-TB-022",
+      "title": "In-memory fallback: counter accumulates correctly across sequential requests in the same TTL window",
+      "priority": "high",
+      "type": "functional",
+      "layer": "backend",
+      "precondition": "No Upstash env vars set. Fresh dev server (empty memCache). HOURLY_TOKEN_CAP=50000.",
+      "steps": [
+        "Send request R1 with a ~50-char message. Log the hourUsed before call (expect 0) and remaining.hour after.",
+        "Send request R2 immediately (same IP, within 3600s TTL). Log remaining.hour.",
+        "Compute: consumed_R1 = HOURLY_TOKEN_CAP - remaining.hour_R1; consumed_R2 = (HOURLY_TOKEN_CAP - remaining.hour_R2) - consumed_R1.",
+        "Verify consumed_R2 > 0 (second request added more tokens).",
+        "Verify remaining.hour_R2 < remaining.hour_R1 (counter accumulated, not reset)."
+      ],
+      "expected": "The in-memory memCache.get(keyHour) for R2 returns the running total from R1's kvAdd, not 0. remaining.hour decreases with each request. The entry is not re-initialized on R2 because expiresAt > Date.now().",
+      "notes": "Tests the critical in-memory accumulation path: `entry.count += amount; return entry.count;`",
+      "status": "pass",
+      "result": "PASS — Static analysis. kvAdd in-memory path (lines 50-57): on R1, no entry → creates entry {count: amount, expiresAt: now+3600000}. On R2, entry exists and expiresAt is ~3600s in future → `entry.count += amount; return entry.count`. kvGet on R2 (before Anthropic) reads this accumulated count as hourUsed. remaining.hour on R2 = HOURLY_TOKEN_CAP - accumulated_R1 - actual_R2 < remaining.hour on R1. Accumulation confirmed."
+    },
+    {
+      "id": "TC-TB-023",
+      "title": "Exactly at hour budget limit: last request that fits is accepted",
+      "priority": "critical",
+      "type": "boundary",
+      "layer": "backend",
+      "precondition": "In-memory fallback. Set HOURLY_TOKEN_CAP=400. Pre-fill hourUsed to 350 via earlier requests or direct memCache manipulation in a test harness.",
+      "steps": [
+        "Set HOURLY_TOKEN_CAP=400.",
+        "Pre-fill hourUsed = 350 (e.g., by sending requests that consume exactly 350 tokens, confirmed via console log).",
+        "Send a request whose estimatedCost = 50 (e.g., message of ~150 chars with a known system prompt length giving ceil(total/4)+50 = 50). Note: tune message length to hit the target.",
+        "Observe HTTP status: the check is hourUsed + estimatedCost > HOURLY_TOKEN_CAP → 350 + 50 = 400 which is NOT > 400 → request should pass."
+      ],
+      "expected": "HTTP 200. The request is accepted. The check `hourUsed + estimatedCost > HOURLY_TOKEN_CAP` evaluates to `400 > 400` which is false — the boundary is exclusive (strictly greater than), so an exact match passes.",
+      "notes": "This is a strict boundary: > vs >=. If the implementation uses >= it would block this request incorrectly. This case verifies the spec-stated > comparison.",
+      "status": "pass",
+      "result": "PASS — Static analysis. Line 255: `if (hourUsed + estimatedCost > HOURLY_TOKEN_CAP)`. Uses strict greater-than. 350 + 50 = 400, which is NOT > 400 → condition false → request not blocked. Correct per GAP-2 boundary rule."
+    },
+    {
+      "id": "TC-TB-024",
+      "title": "One token over hour budget limit: request is rejected with 429",
+      "priority": "critical",
+      "type": "boundary",
+      "layer": "backend",
+      "precondition": "Same setup as TC-TB-023 but with hourUsed = 351 and estimatedCost = 50.",
+      "steps": [
+        "Set HOURLY_TOKEN_CAP=400.",
+        "Pre-fill hourUsed = 351.",
+        "Send a request with estimatedCost = 50 (same message as TC-TB-023).",
+        "Observe HTTP status: 351 + 50 = 401 > 400 → should reject."
+      ],
+      "expected": "HTTP 429. Response error: 'rate_limit_hour'. The Anthropic API is not called. The budget counters are NOT incremented.",
+      "notes": "This is the counterpart to TC-TB-023. Together they verify the exact boundary behavior.",
+      "status": "pass",
+      "result": "PASS — Static analysis. 351 + 50 = 401 > 400 → condition true → returns error:'rate_limit_hour', HTTP 429. Execution stops before Anthropic call and before any kvAdd. Counters not incremented."
+    },
+    {
+      "id": "TC-TB-025",
+      "title": "Exactly at day budget limit: last request that fits is accepted",
+      "priority": "high",
+      "type": "boundary",
+      "layer": "backend",
+      "precondition": "In-memory fallback. Set DAILY_TOKEN_CAP_USER=400, HOURLY_TOKEN_CAP=50000. Pre-fill dayUsed = 350.",
+      "steps": [
+        "Set DAILY_TOKEN_CAP_USER=400, HOURLY_TOKEN_CAP=50000.",
+        "Pre-fill dayUsed = 350.",
+        "Send a request with estimatedCost = 50. dayUsed + estimatedCost = 400, NOT > 400.",
+        "Observe HTTP status."
+      ],
+      "expected": "HTTP 200. Request is accepted. The check `dayUsed + estimatedCost > DAILY_USER_CAP` evaluates to `400 > 400` which is false.",
+      "status": "pass",
+      "result": "PASS — Static analysis. Line 261: `if (dayUsed + estimatedCost > DAILY_USER_CAP)`. Strict greater-than. 350 + 50 = 400, NOT > 400 → request not blocked. Correct per GAP-2 boundary rule."
+    },
+    {
+      "id": "TC-TB-026",
+      "title": "One token over day budget limit: request is rejected with 429",
+      "priority": "high",
+      "type": "boundary",
+      "layer": "backend",
+      "precondition": "Same as TC-TB-025 but dayUsed = 351.",
+      "steps": [
+        "Set DAILY_TOKEN_CAP_USER=400, HOURLY_TOKEN_CAP=50000.",
+        "Pre-fill dayUsed = 351.",
+        "Send a request with estimatedCost = 50. 351 + 50 = 401 > 400.",
+        "Observe HTTP status."
+      ],
+      "expected": "HTTP 429. Response error: 'rate_limit_day'.",
+      "status": "pass",
+      "result": "PASS — Static analysis. 351 + 50 = 401 > 400 → condition true → returns error:'rate_limit_day', HTTP 429."
+    },
+    {
+      "id": "TC-TB-027",
+      "title": "Global cap: exactly at limit accepted, one over rejected",
+      "priority": "high",
+      "type": "boundary",
+      "layer": "backend",
+      "precondition": "In-memory fallback. Set DAILY_TOKEN_GLOBAL=400, HOURLY_TOKEN_CAP=50000, DAILY_TOKEN_CAP_USER=50000. Run two sub-cases: (a) globalUsed=350, estimatedCost=50; (b) globalUsed=351, estimatedCost=50.",
+      "steps": [
+        "Sub-case A: pre-fill globalUsed=350. Send request with estimatedCost=50. Expect HTTP 200 (400 not > 400).",
+        "Sub-case B: pre-fill globalUsed=351. Send same request. Expect HTTP 429 error: 'global_cap' (401 > 400)."
+      ],
+      "expected": "Sub-case A: HTTP 200. Sub-case B: HTTP 429 with error: 'global_cap'.",
+      "status": "pass",
+      "result": "PASS — Static analysis. Line 267: `if (globalUsed + estimatedCost > DAILY_GLOBAL_CAP)`. Sub-case A: 400 NOT > 400 → pass. Sub-case B: 401 > 400 → returns error:'global_cap', HTTP 429. Both sub-cases verified."
+    },
+    {
+      "id": "TC-TB-028",
+      "title": "Pre-check estimate passes but actual tokens exceed cap — counter still accumulates, no double-block",
+      "priority": "high",
+      "type": "functional",
+      "layer": "backend",
+      "precondition": "In-memory fallback. Set HOURLY_TOKEN_CAP=400. Situation: hourUsed = 370, estimatedCost = 29 (passes check: 370+29=399, not > 400). But Anthropic returns actualTokens = 50.",
+      "steps": [
+        "Set HOURLY_TOKEN_CAP=400.",
+        "Pre-fill hourUsed = 370.",
+        "Send a message carefully sized so estimatedCost = 29 (passes pre-check).",
+        "Anthropic responds with actualTokens = 50 (this is realistic — estimates are lower bounds).",
+        "After the response, the counter should be at 370 + 50 = 420 (over cap for future requests).",
+        "Send another request immediately. Observe if it is now blocked."
+      ],
+      "expected": "The first request returns HTTP 200 (pre-check used estimate 29, which passed). After the post-increment, hourUsed is now 420. The SECOND request is blocked with HTTP 429 rate_limit_hour (kvGet returns 420, any estimatedCost will push it over 400). No crash or double-counting on the first request.",
+      "notes": "This tests the by-design behavior: pre-check uses estimate (conservative lower bound), and actual tokens can push the counter slightly over the cap without causing an error on the current request — only future requests are blocked. This is intentional and spec-approved.",
+      "status": "pass",
+      "result": "PASS — Static analysis. Pre-check uses estimatedCost (line 247), Anthropic call succeeds, actualTokens (line 324) is added via kvAdd. remaining calculation uses pre-request hourUsed snapshot (not post-increment), so no crash on first request. Second request: kvGet returns 420, any positive estimatedCost → 420 + estimatedCost > 400 → HTTP 429. This is by-design per GAP-1 (pre-check excludes history tokens, near-budget over-runs are accepted)."
+    },
+    {
+      "id": "TC-TB-029",
+      "title": "kvAdd with Upstash path: INCRBY pipeline called with correct key and amount",
+      "priority": "high",
+      "type": "integration",
+      "layer": "backend",
+      "precondition": "Upstash configured. Valid UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN set. Valid ANTHROPIC_API_KEY.",
+      "steps": [
+        "Enable HTTP request logging (or use Upstash dashboard to monitor commands).",
+        "Send POST /api/chat with a valid message.",
+        "After the response, inspect the Upstash pipeline command that was sent.",
+        "Verify the pipeline contains: [['INCRBY', 'tb:ip:{ip}:h', '{actualTokens}'], ['EXPIRE', 'tb:ip:{ip}:h', '3600']].",
+        "Verify that the day key (tb:ip:{ip}:d) and global key (tb:global:{date}) also received INCRBY commands with the same actualTokens value."
+      ],
+      "expected": "Upstash receives exactly one pipeline call per kvAdd invocation (one per counter key). Each pipeline contains INCRBY (not INCR) with the actual token amount. TTL is set to 3600 for hour key and 86400 for day and global keys. Old 'rl:' keys receive no writes.",
+      "notes": "This is the only case that requires live Upstash. Can be deferred to staging environment if local Upstash credentials are unavailable. Critical for production correctness.",
+      "status": "blocked",
+      "result": "BLOCKED — requires live Upstash environment. Static analysis confirms: kvAdd Upstash pipeline sends [['INCRBY', key, String(amount)], ['EXPIRE', key, String(ttlSec)]] (lines 38-41). Three separate kvAdd calls at lines 328-331 with ttlSec=3600 (hour), 86400 (day), 86400 (global). Pipeline structure is correct. Live verification needed for staging gate."
+    },
+    {
+      "id": "TC-TB-030",
+      "title": "today key uses per-request date computation, not module-load time",
+      "priority": "medium",
+      "type": "functional",
+      "layer": "backend",
+      "precondition": "Ability to inspect the global key used in the pre-check. Static code analysis is sufficient.",
+      "steps": [
+        "Read api/chat.js and locate the line that computes `today` (expected: `const today = new Date().toISOString().slice(0, 10)`).",
+        "Confirm this line is inside the request handler function (i.e., not at module scope / top-level).",
+        "Also confirm it is evaluated before the keyGlobal construction (`tb:global:${today}`)."
+      ],
+      "expected": "The `today` variable is declared inside the handler function body, not at module scope. This means each request computes the current date at call time, ensuring the global key rotates at midnight without requiring a cold restart.",
+      "notes": "This is a static analysis check. A top-level `const today = ...` would be a bug — it would freeze the date at server startup time. Edge functions may run for hours, making this a real risk (R4 in the risk table).",
+      "status": "pass",
+      "result": "PASS — Static analysis. Line 241: `const today = new Date().toISOString().slice(0, 10);` is inside the handler function (export default async function handler(req, res) starting line 149). Module-scope constants (lines 12-18) do not include today. today is evaluated per-request, before keyGlobal construction at line 244. Correct."
+    },
+    {
+      "id": "TC-TB-031",
+      "title": "remaining values floor at 0 — never negative",
+      "priority": "medium",
+      "type": "boundary",
+      "layer": "backend",
+      "precondition": "In-memory fallback. Force a situation where hourUsed + actualTokens > HOURLY_TOKEN_CAP (this can happen: pre-check uses estimate, actual is larger). Or set HOURLY_TOKEN_CAP to a very small value like 50.",
+      "steps": [
+        "Set HOURLY_TOKEN_CAP=50.",
+        "Send a message whose actual tokens = 60 (will be over the hourly cap after first request — pre-check estimate may be < 50 so it passes).",
+        "Inspect remaining.hour in the response.",
+        "Verify remaining.hour is 0, not -10 or any negative value."
+      ],
+      "expected": "remaining.hour = Math.max(0, HOURLY_TOKEN_CAP - hourUsed - actualTokens) = Math.max(0, 50 - 0 - 60) = Math.max(0, -10) = 0. The value is 0, not negative.",
+      "notes": "Validates the Math.max(0, ...) guard in the remaining calculation.",
+      "status": "pass",
+      "result": "PASS — Static analysis. Line 337: `hour: Math.max(0, HOURLY_TOKEN_CAP - hourUsed - actualTokens)`. Line 338: `day: Math.max(0, DAILY_USER_CAP - dayUsed - actualTokens)`. Math.max(0, ...) prevents negative values. For hourUsed=0, actualTokens=60, HOURLY_TOKEN_CAP=50: Math.max(0, 50-0-60) = Math.max(0, -10) = 0."
+    },
+    {
+      "id": "TC-TB-032",
+      "title": "hourPct floors at 0 and caps at 100 — no out-of-range value",
+      "priority": "medium",
+      "type": "boundary",
+      "layer": "backend",
+      "precondition": "Same as TC-TB-031 for the floor case. For cap: fresh counters (hourUsed = 0, actualTokens very small).",
+      "steps": [
+        "Sub-case A (floor): Force a situation where remaining.hour = 0 (see TC-TB-031). Verify hourPct = 0.",
+        "Sub-case B (cap): Send first request with fresh counters and very small actualTokens. Verify hourPct is close to 100 but does not exceed 100.",
+        "Sub-case C (normal): Set hourUsed = 5000, HOURLY_TOKEN_CAP=10000, actualTokens=0 (simulate). Expected hourPct = Math.round((10000-5000-0)/10000*100) = 50."
+      ],
+      "expected": "Sub-case A: hourPct = 0. Sub-case B: hourPct = 100 or 99 (never > 100). Sub-case C: hourPct = 50. All values are in [0, 100].",
+      "notes": "The Math.max(0, ...) inside the hourPct formula and the Math.round should prevent out-of-range values.",
+      "status": "pass",
+      "result": "PASS — Static analysis. Line 339: `hourPct: Math.round(Math.max(0, HOURLY_TOKEN_CAP - hourUsed - actualTokens) / HOURLY_TOKEN_CAP * 100)`. Sub-case A: Math.max(0,-10)=0, 0/10000*100=0, Math.round(0)=0. Sub-case B: HOURLY_TOKEN_CAP-0-small = ~10000, 10000/10000*100=100, Math.round(100)=100. Cannot exceed 100 because numerator is Math.max(0,...) which cannot exceed HOURLY_TOKEN_CAP (unless hourUsed+actualTokens < 0, which is impossible). Sub-case C: Math.max(0,5000)/10000*100=50. All within [0,100]."
+    },
+    {
+      "id": "TC-TB-033",
+      "title": "FE degrades gracefully if hourPct is absent from response",
+      "priority": "medium",
+      "type": "regression",
+      "layer": "frontend",
+      "precondition": "Stub the API response to return { message: 'ok', remaining: { hour: 9000, day: 39000 } } — no hourPct field.",
+      "steps": [
+        "Intercept /api/chat response to return remaining WITHOUT hourPct.",
+        "Observe the quota display area in the chat UI.",
+        "Check browser console for JavaScript errors (NaN, undefined, TypeError)."
+      ],
+      "expected": "No JavaScript errors thrown. The quota display either hides (treats undefined as OK) or shows a safe default. No 'NaN%' or 'undefined' string appears in the UI. The chat functionality is not broken.",
+      "notes": "This is a defensive regression check in case BE ships before FE, or FE is tested against an older BE build.",
+      "status": "pass",
+      "result": "PASS — Static analysis. FE line 2055: `const pct = data.remaining.hourPct ?? 100;`. The nullish coalescing operator (??) means if hourPct is undefined or null, pct defaults to 100. 100 > 75 is true → hint.hidden = true. No display shown, no JavaScript error. The `data.remaining` object is always checked (`if (data.remaining)` at line 2051) before accessing hourPct."
+    },
+    {
+      "id": "TC-TB-034",
+      "title": "Message history > 20 items still returns 400 history_too_long",
+      "priority": "medium",
+      "type": "regression",
+      "layer": "backend",
+      "precondition": "Running BE with new token budget code.",
+      "steps": [
+        "Send POST /api/chat with messages array containing 21 items (alternating user/assistant).",
+        "Observe HTTP status and error code."
+      ],
+      "expected": "HTTP 400. Response error: 'history_too_long' with the Vietnamese message about clearing history. The request does not proceed to budget checks.",
+      "status": "pass",
+      "result": "PASS — Static analysis. Lines 206-210: `if (messages.length > 20)` returns error:'history_too_long', HTTP 400, message 'Cuộc trò chuyện hơi dài rồi...'. This runs before budget checks at line 249. 21 items > 20 → blocked."
+    },
+    {
+      "id": "TC-TB-035",
+      "title": "Pre-check issues three parallel kvGet calls via Promise.all, not sequential",
+      "priority": "low",
+      "type": "functional",
+      "layer": "backend",
+      "precondition": "Static code analysis of implemented api/chat.js.",
+      "steps": [
+        "Read api/chat.js and locate the pre-check block.",
+        "Confirm the three kvGet calls are wrapped in Promise.all: `const [hourUsed, dayUsed, globalUsed] = await Promise.all([kvGet(...), kvGet(...), kvGet(...)]);`",
+        "Confirm there is no sequential `await kvGet(keyHour); await kvGet(keyDay);` pattern."
+      ],
+      "expected": "All three kvGet calls are issued concurrently via Promise.all. This is a performance correctness check — sequential KV reads would add 2x unnecessary latency. The parallel pattern is as specified.",
+      "notes": "Low priority: the result is correct either way, but latency impact matters for edge function response time under load.",
+      "status": "pass",
+      "result": "PASS — Static analysis. Lines 249-253: `const [hourUsed, dayUsed, globalUsed] = await Promise.all([kvGet(keyHour), kvGet(keyDay), kvGet(keyGlobal)]);`. Three concurrent kvGet calls. No sequential await pattern. Similarly, post-increment kvAdd calls are also parallelized (lines 327-331)."
+    }
+  ]
+}
