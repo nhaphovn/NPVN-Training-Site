@@ -1,6 +1,6 @@
 {
   "version": "v12",
-  "lastUpdated": "2026-05-21",
+  "lastUpdated": "2026-05-22",
   "brand": {
     "name": "Nhà Phố Việt Nam",
     "app": "App Nhà Phố",
@@ -2974,7 +2974,7 @@
           },
           "ttPos": "top",
           "ttTitle": "Bấm giữ để mở menu",
-          "ttText": "Bấm giữ để thao tác: sửa, ghi chú, đánh dấu đã mua",
+          "ttText": "Bấm giữ khách đang tìm để xem thao tác: sửa, ghi chú, đánh dấu đã mua",
           "tip": "",
           "guide": [
             {
@@ -3679,13 +3679,21 @@
       "icon": "💬",
       "iconImg": "assets/icons/chat_nha_pho.png",
       "description": "Nhắn tin trực tiếp, chat nhóm và kênh thông báo mặc định",
-      "status": "draft",
+      "status": "live",
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
-        "role": ["hoc_vien", "dau_chu", "quan_ly_phong"],
+        "role": [
+          "hoc_vien",
+          "dau_chu",
+          "quan_ly_phong"
+        ],
         "level": "beginner",
-        "tags": ["chat", "nhan_tin", "nhom"],
+        "tags": [
+          "chat",
+          "nhan_tin",
+          "nhom"
+        ],
         "language": "vi"
       },
       "images": {
@@ -3698,7 +3706,20 @@
         "chat_nhom_tin_nhan": "/api/img?path=images/chat_nha_pho/chat_nhom_tin_nhan.jpg",
         "chat_mac_dinh": "/api/img?path=images/chat_nha_pho/chat_mac_dinh.jpg",
         "tim_kiem_chat": "/api/img?path=images/chat_nha_pho/tim_kiem_chat.jpg",
-        "them_ban": "/api/img?path=images/chat_nha_pho/them_ban.jpg"
+        "them_ban": "/api/img?path=images/chat_nha_pho/them_ban.jpg",
+        "b01_kho": "/api/img?path=images/chat_nha_pho/b01_kho.jpg",
+        "b02_m": "/api/img?path=images/chat_nha_pho/b02_m.jpg",
+        "b04_nh": "/api/img?path=images/chat_nha_pho/b04_nh.jpg",
+        "b05_n": "/api/img?path=images/chat_nha_pho/b05_n.jpg",
+        "b06_untitled": "/api/img?path=images/chat_nha_pho/b06_untitled.jpg",
+        "b07_2": "/api/img?path=images/chat_nha_pho/b07_2.jpg",
+        "b08_mess": "/api/img?path=images/chat_nha_pho/b08_mess.jpg",
+        "b09_t_m_ki_m": "/api/img?path=images/chat_nha_pho/b09_t_m_ki_m.jpg",
+        "b03_g_i_nh": "/api/img?path=images/chat_nha_pho/b03_g_i_nh.jpg",
+        "b03_add_20": "/api/img?path=images/chat_nha_pho/b03_add_20.jpg",
+        "b03_n": "/api/img?path=images/chat_nha_pho/b03_n.jpg",
+        "b03_2": "/api/img?path=images/chat_nha_pho/b03_2.jpg",
+        "b03_3": "/api/img?path=images/chat_nha_pho/b03_3.jpg"
       },
       "steps": [
         {
@@ -3707,11 +3728,16 @@
           "desc": "Icon chat ở hàng đầu trang chủ",
           "title": "Bước 1 — Tìm icon Chat",
           "sub": "Trên màn hình trang chủ, tìm icon Chat ở hàng icon tính năng",
-          "imgKey": "home_icon",
+          "imgKey": "b01_kho",
           "scrollY": 0,
-          "hs": { "x": 290, "y": 140, "w": 55, "h": 55 },
+          "hs": {
+            "x": 335,
+            "y": 45,
+            "w": 55,
+            "h": 55
+          },
           "ttPos": "left",
-          "ttTitle": "Icon Chat Nhà Phố",
+          "ttTitle": "Icon C",
           "ttText": "Bấm icon chat để mở danh sách hội thoại",
           "tip": "Icon chat có badge đỏ khi có tin chưa đọc.",
           "guide": [
@@ -3727,7 +3753,8 @@
               "title": "Bấm icon Chat",
               "body": "Sau khi bấm, màn hình danh sách hội thoại mở ra ngay."
             }
-          ]
+          ],
+          "img": "b01_kho"
         },
         {
           "id": 2,
@@ -3735,10 +3762,15 @@
           "desc": "Tất cả cuộc trò chuyện đang có",
           "title": "Bước 2 — Danh sách hội thoại",
           "sub": "Xem toàn bộ cuộc trò chuyện sắp xếp theo tin nhắn mới nhất",
-          "imgKey": "danh_sach",
+          "imgKey": "b02_m",
           "scrollY": 0,
-          "hs": { "x": 16, "y": 200, "w": 358, "h": 70 },
-          "ttPos": "right",
+          "hs": {
+            "x": 0,
+            "y": 321,
+            "w": 388,
+            "h": 63
+          },
+          "ttPos": "bottom",
           "ttTitle": "Danh sách Chat",
           "ttText": "Bấm vào tên để mở cuộc trò chuyện cụ thể",
           "tip": "Tin nhắn chưa đọc hiển thị in đậm và badge số.",
@@ -3755,7 +3787,8 @@
               "title": "Tìm kiếm nhanh",
               "body": "Bấm vào ô tìm kiếm phía trên — nhập tên người hoặc nội dung để lọc."
             }
-          ]
+          ],
+          "img": "b02_m"
         },
         {
           "id": 3,
@@ -3763,9 +3796,14 @@
           "desc": "Màn hình nhắn tin trực tiếp với 1 người",
           "title": "Bước 3 — Chat cá nhân",
           "sub": "Mở cuộc trò chuyện 1-1 và xem lịch sử tin nhắn",
-          "imgKey": "nhan_tin_ca_nhan",
-          "scrollY": 650,
-          "hs": { "x": 16, "y": 700, "w": 310, "h": 50 },
+          "imgKey": "b03_3",
+          "scrollY": 0,
+          "hs": {
+            "x": 126,
+            "y": 776,
+            "w": 249,
+            "h": 58
+          },
           "ttPos": "top",
           "ttTitle": "Khung nhắn tin",
           "ttText": "Gõ nội dung vào ô dưới cùng rồi bấm Gửi",
@@ -3783,7 +3821,8 @@
               "title": "Trả lời nhanh",
               "body": "Giữ ngón tay vào một tin nhắn để Reply/React/Copy mà không cần gõ lại."
             }
-          ]
+          ],
+          "img": "b03_3"
         },
         {
           "id": 4,
@@ -3791,9 +3830,14 @@
           "desc": "Nhập và gửi nội dung văn bản",
           "title": "Bước 4 — Gửi tin nhắn",
           "sub": "Nhập nội dung văn bản và gửi trong cuộc trò chuyện",
-          "imgKey": "gui_tin",
-          "scrollY": 670,
-          "hs": { "x": 16, "y": 720, "w": 310, "h": 48 },
+          "imgKey": "b04_nh",
+          "scrollY": 0,
+          "hs": {
+            "x": 42,
+            "y": 490,
+            "w": 344,
+            "h": 53
+          },
           "ttPos": "top",
           "ttTitle": "Ô nhập tin nhắn",
           "ttText": "Gõ nội dung → bấm mũi tên xanh để gửi",
@@ -3811,7 +3855,8 @@
               "title": "Emoji và sticker",
               "body": "Bấm icon mặt cười bên trái ô nhập để chọn emoji hoặc sticker."
             }
-          ]
+          ],
+          "img": "b04_nh"
         },
         {
           "id": 5,
@@ -3819,10 +3864,15 @@
           "desc": "Đính kèm và gửi hình ảnh trong chat",
           "title": "Bước 5 — Gửi ảnh",
           "sub": "Chọn ảnh từ thư viện hoặc chụp mới để gửi trong chat",
-          "imgKey": "gui_anh",
-          "scrollY": 670,
-          "hs": { "x": 16, "y": 720, "w": 45, "h": 48 },
-          "ttPos": "top",
+          "imgKey": "b05_n",
+          "scrollY": 0,
+          "hs": {
+            "x": 5,
+            "y": 494,
+            "w": 45,
+            "h": 48
+          },
+          "ttPos": "right",
           "ttTitle": "Nút đính kèm",
           "ttText": "Bấm icon hình ảnh hoặc dấu + để chọn ảnh",
           "tip": "Có thể chụp ảnh trực tiếp hoặc chọn từ thư viện.",
@@ -3839,7 +3889,8 @@
               "title": "Chụp ảnh trực tiếp",
               "body": "Chọn 'Máy ảnh' để chụp ngay và gửi trong cuộc trò chuyện."
             }
-          ]
+          ],
+          "img": "b05_n"
         },
         {
           "id": 6,
@@ -3847,9 +3898,14 @@
           "desc": "Tất cả nhóm chat đội nhóm đang tham gia",
           "title": "Bước 6 — Danh sách nhóm chat",
           "sub": "Chuyển sang tab Nhóm để xem danh sách nhóm đang tham gia",
-          "imgKey": "chat_nhom_list",
+          "imgKey": "b06_untitled",
           "scrollY": 0,
-          "hs": { "x": 130, "y": 110, "w": 130, "h": 40 },
+          "hs": {
+            "x": 3,
+            "y": 150,
+            "w": 217,
+            "h": 49
+          },
           "ttPos": "bottom",
           "ttTitle": "Tab Nhóm Chat",
           "ttText": "Chọn tab Nhóm để xem tất cả nhóm",
@@ -3867,7 +3923,8 @@
               "title": "Bấm vào nhóm",
               "body": "Bấm vào tên nhóm để vào nhóm chat và xem tin nhắn."
             }
-          ]
+          ],
+          "img": "b06_untitled"
         },
         {
           "id": 7,
@@ -3875,9 +3932,14 @@
           "desc": "Gửi và xem tin nhắn trong nhóm chat",
           "title": "Bước 7 — Chat trong nhóm",
           "sub": "Nhắn tin trong nhóm — toàn bộ thành viên nhóm nhận được",
-          "imgKey": "chat_nhom_tin_nhan",
-          "scrollY": 650,
-          "hs": { "x": 16, "y": 700, "w": 310, "h": 50 },
+          "imgKey": "b07_2",
+          "scrollY": 0,
+          "hs": {
+            "x": 16,
+            "y": 776,
+            "w": 319,
+            "h": 48
+          },
           "ttPos": "top",
           "ttTitle": "Tin nhắn nhóm",
           "ttText": "Nhắn tin bình thường — tất cả thành viên nhóm nhận được",
@@ -3895,7 +3957,8 @@
               "title": "Tag đồng nghiệp",
               "body": "Gõ @ rồi nhập tên đồng nghiệp để mention — người đó nhận thông báo riêng."
             }
-          ]
+          ],
+          "img": "b07_2"
         },
         {
           "id": 8,
@@ -3903,10 +3966,15 @@
           "desc": "Kênh chính thức từ ban quản lý",
           "title": "Bước 8 — Kênh thông báo",
           "sub": "Xem thông báo chính thức từ công ty qua kênh mặc định",
-          "imgKey": "chat_mac_dinh",
+          "imgKey": "b08_mess",
           "scrollY": 0,
-          "hs": { "x": 16, "y": 320, "w": 358, "h": 70 },
-          "ttPos": "right",
+          "hs": {
+            "x": 13,
+            "y": 122,
+            "w": 355,
+            "h": 538
+          },
+          "ttPos": "bottom",
           "ttTitle": "Kênh mặc định",
           "ttText": "Xem thông báo chính thức từ công ty — chỉ đọc",
           "tip": "Kênh mặc định chỉ admin mới gửi được — thành viên chỉ xem.",
@@ -3923,7 +3991,8 @@
               "title": "Không thể phản hồi",
               "body": "Kênh mặc định là một chiều — bạn không thể gửi tin. Liên hệ quản lý nếu cần hỏi."
             }
-          ]
+          ],
+          "img": "b08_mess"
         },
         {
           "id": 9,
@@ -3931,9 +4000,14 @@
           "desc": "Tìm người, nhóm hoặc nội dung cũ",
           "title": "Bước 9 — Tìm kiếm chat",
           "sub": "Nhập tên hoặc từ khóa để tìm hội thoại và nội dung cũ",
-          "imgKey": "tim_kiem_chat",
+          "imgKey": "b09_t_m_ki_m",
           "scrollY": 0,
-          "hs": { "x": 16, "y": 60, "w": 358, "h": 40 },
+          "hs": {
+            "x": 16,
+            "y": 40,
+            "w": 358,
+            "h": 52
+          },
           "ttPos": "bottom",
           "ttTitle": "Ô tìm kiếm chat",
           "ttText": "Nhập tên hoặc từ khóa để tìm hội thoại",
@@ -3951,7 +4025,8 @@
               "title": "Tìm nội dung tin",
               "body": "Nhập từ khóa để tìm trong lịch sử — kết quả hiển thị theo đoạn chat chứa từ đó."
             }
-          ]
+          ],
+          "img": "b09_t_m_ki_m"
         },
         {
           "id": 10,
@@ -3961,7 +4036,12 @@
           "sub": "Bấm nút tạo chat mới, tìm đồng nghiệp và mở hội thoại",
           "imgKey": "them_ban",
           "scrollY": 0,
-          "hs": { "x": 330, "y": 55, "w": 45, "h": 45 },
+          "hs": {
+            "x": 330,
+            "y": 55,
+            "w": 45,
+            "h": 45
+          },
           "ttPos": "left",
           "ttTitle": "Nút chat mới",
           "ttText": "Bấm + hoặc viết tin để bắt đầu hội thoại mới",
@@ -3982,7 +4062,11 @@
           ]
         }
       ],
-      "quality": { "errors": 0, "warnings": 0, "lastReviewed": null }
+      "quality": {
+        "errors": 0,
+        "warnings": 0,
+        "lastReviewed": null
+      }
     },
     "qr_code": {
       "name": "QR Code",
@@ -3994,9 +4078,15 @@
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
-        "role": ["hoc_vien", "dau_chu"],
+        "role": [
+          "hoc_vien",
+          "dau_chu"
+        ],
         "level": "beginner",
-        "tags": ["qr_code", "ket_noi"],
+        "tags": [
+          "qr_code",
+          "ket_noi"
+        ],
         "language": "vi"
       },
       "images": {
@@ -4015,7 +4105,12 @@
           "sub": "Trên màn hình trang chủ, tìm icon QR ở hàng icon tính năng",
           "imgKey": "home_icon",
           "scrollY": 0,
-          "hs": { "x": 240, "y": 140, "w": 55, "h": 55 },
+          "hs": {
+            "x": 240,
+            "y": 140,
+            "w": 55,
+            "h": 55
+          },
           "ttPos": "left",
           "ttTitle": "Icon QR Code",
           "ttText": "Bấm icon QR để xem mã của bạn hoặc quét",
@@ -4043,7 +4138,12 @@
           "sub": "Màn hình hiển thị mã QR lớn định danh tài khoản App của bạn",
           "imgKey": "qr_ca_nhan",
           "scrollY": 0,
-          "hs": { "x": 95, "y": 200, "w": 200, "h": 200 },
+          "hs": {
+            "x": 95,
+            "y": 200,
+            "w": 200,
+            "h": 200
+          },
           "ttPos": "bottom",
           "ttTitle": "Mã QR cá nhân",
           "ttText": "Cho người khác quét để kết nối với bạn nhanh",
@@ -4071,7 +4171,12 @@
           "sub": "Bấm Chia sẻ để gửi QR qua Zalo, Messenger hoặc lưu vào máy",
           "imgKey": "chia_se_qr",
           "scrollY": 0,
-          "hs": { "x": 120, "y": 450, "w": 150, "h": 48 },
+          "hs": {
+            "x": 120,
+            "y": 450,
+            "w": 150,
+            "h": 48
+          },
           "ttPos": "top",
           "ttTitle": "Nút chia sẻ QR",
           "ttText": "Bấm Chia sẻ để gửi QR qua Zalo, Messenger hoặc lưu vào máy",
@@ -4099,7 +4204,12 @@
           "sub": "Bấm Quét → hướng camera vào QR của đồng nghiệp để kết nối",
           "imgKey": "quet_qr",
           "scrollY": 0,
-          "hs": { "x": 80, "y": 300, "w": 230, "h": 230 },
+          "hs": {
+            "x": 80,
+            "y": 300,
+            "w": 230,
+            "h": 230
+          },
           "ttPos": "right",
           "ttTitle": "Nút Quét QR",
           "ttText": "Bấm Quét → hướng camera vào QR của đồng nghiệp",
@@ -4127,7 +4237,12 @@
           "sub": "Xem profile đồng nghiệp và chọn Kết nối hoặc Nhắn tin",
           "imgKey": "ket_qua_quet",
           "scrollY": 0,
-          "hs": { "x": 16, "y": 200, "w": 358, "h": 150 },
+          "hs": {
+            "x": 16,
+            "y": 200,
+            "w": 358,
+            "h": 150
+          },
           "ttPos": "right",
           "ttTitle": "Thông tin đồng nghiệp",
           "ttText": "Xem profile và chọn Kết nối hoặc Nhắn tin ngay",
@@ -4148,7 +4263,11 @@
           ]
         }
       ],
-      "quality": { "errors": 0, "warnings": 0, "lastReviewed": null }
+      "quality": {
+        "errors": 0,
+        "warnings": 0,
+        "lastReviewed": null
+      }
     },
     "bang_tin": {
       "name": "Bảng tin",
@@ -4160,9 +4279,17 @@
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
-        "role": ["dau_chu", "hoc_vien", "quan_ly_phong"],
+        "role": [
+          "dau_chu",
+          "hoc_vien",
+          "quan_ly_phong"
+        ],
         "level": "beginner",
-        "tags": ["bang_tin", "feed", "tuong_tac"],
+        "tags": [
+          "bang_tin",
+          "feed",
+          "tuong_tac"
+        ],
         "language": "vi"
       },
       "images": {
@@ -4183,7 +4310,12 @@
           "sub": "Bấm tab Bảng tin để xem tin thông báo và chia sẻ nội bộ",
           "imgKey": "home_tab",
           "scrollY": 0,
-          "hs": { "x": 200, "y": 830, "w": 80, "h": 50 },
+          "hs": {
+            "x": 200,
+            "y": 830,
+            "w": 80,
+            "h": 50
+          },
           "ttPos": "top",
           "ttTitle": "Tab Bảng tin",
           "ttText": "Bấm tab Bảng tin để xem tin nội bộ công ty",
@@ -4211,7 +4343,12 @@
           "sub": "Cuộn xuống để xem tất cả bài đăng — mới nhất ở trên cùng",
           "imgKey": "danh_sach_bai",
           "scrollY": 0,
-          "hs": { "x": 16, "y": 200, "w": 358, "h": 300 },
+          "hs": {
+            "x": 16,
+            "y": 200,
+            "w": 358,
+            "h": 300
+          },
           "ttPos": "right",
           "ttTitle": "Feed Bảng tin",
           "ttText": "Cuộn xuống để xem tất cả bài — mới nhất ở trên",
@@ -4239,7 +4376,12 @@
           "sub": "Bấm vào bài để xem nội dung đầy đủ, ảnh và bình luận",
           "imgKey": "xem_bai_dang",
           "scrollY": 0,
-          "hs": { "x": 16, "y": 150, "w": 358, "h": 400 },
+          "hs": {
+            "x": 16,
+            "y": 150,
+            "w": 358,
+            "h": 400
+          },
           "ttPos": "right",
           "ttTitle": "Nội dung bài đăng",
           "ttText": "Cuộn để đọc toàn bộ nội dung và xem ảnh",
@@ -4267,7 +4409,12 @@
           "sub": "Bấm vào ô bình luận, nhập nội dung và gửi",
           "imgKey": "binh_luan",
           "scrollY": 700,
-          "hs": { "x": 16, "y": 720, "w": 310, "h": 46 },
+          "hs": {
+            "x": 16,
+            "y": 720,
+            "w": 310,
+            "h": 46
+          },
           "ttPos": "top",
           "ttTitle": "Ô bình luận",
           "ttText": "Bấm vào ô bình luận → nhập → bấm Gửi",
@@ -4295,7 +4442,12 @@
           "sub": "Bấm icon like hoặc giữ để chọn phản ứng khác",
           "imgKey": "phan_ung",
           "scrollY": 500,
-          "hs": { "x": 20, "y": 550, "w": 60, "h": 40 },
+          "hs": {
+            "x": 20,
+            "y": 550,
+            "w": 60,
+            "h": 40
+          },
           "ttPos": "right",
           "ttTitle": "Nút Like/Phản ứng",
           "ttText": "Bấm icon tim hoặc giữ để chọn phản ứng khác",
@@ -4323,7 +4475,12 @@
           "sub": "Bấm icon chia sẻ để gửi bài qua Chat Nhà Phố hoặc kênh ngoài",
           "imgKey": "chia_se_bai",
           "scrollY": 500,
-          "hs": { "x": 150, "y": 550, "w": 60, "h": 40 },
+          "hs": {
+            "x": 150,
+            "y": 550,
+            "w": 60,
+            "h": 40
+          },
           "ttPos": "top",
           "ttTitle": "Nút Chia sẻ",
           "ttText": "Bấm icon chia sẻ để gửi qua Chat Nhà Phố",
@@ -4351,7 +4508,12 @@
           "sub": "Chọn tab hoặc bộ lọc để xem theo loại bài cụ thể",
           "imgKey": "loc_bang_tin",
           "scrollY": 0,
-          "hs": { "x": 16, "y": 110, "w": 358, "h": 40 },
+          "hs": {
+            "x": 16,
+            "y": 110,
+            "w": 358,
+            "h": 40
+          },
           "ttPos": "bottom",
           "ttTitle": "Bộ lọc Bảng tin",
           "ttText": "Chọn tab hoặc bộ lọc để xem theo loại bài",
@@ -4372,7 +4534,11 @@
           ]
         }
       ],
-      "quality": { "errors": 0, "warnings": 0, "lastReviewed": null }
+      "quality": {
+        "errors": 0,
+        "warnings": 0,
+        "lastReviewed": null
+      }
     },
     "kho_quan_tam": {
       "name": "Kho bạn quan tâm",
@@ -4384,9 +4550,15 @@
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
-        "role": ["hoc_vien"],
+        "role": [
+          "hoc_vien"
+        ],
         "level": "beginner",
-        "tags": ["kho", "quan_tam", "bookmark"],
+        "tags": [
+          "kho",
+          "quan_tam",
+          "bookmark"
+        ],
         "language": "vi"
       },
       "images": {
@@ -4406,7 +4578,12 @@
           "sub": "Bấm tab Kho quan tâm để xem hàng đang theo dõi",
           "imgKey": "home_tab",
           "scrollY": 0,
-          "hs": { "x": 280, "y": 280, "w": 110, "h": 45 },
+          "hs": {
+            "x": 280,
+            "y": 280,
+            "w": 110,
+            "h": 45
+          },
           "ttPos": "left",
           "ttTitle": "Tab Kho Quan tâm",
           "ttText": "Bấm tab Kho quan tâm để xem hàng đang theo dõi",
@@ -4434,7 +4611,12 @@
           "sub": "Xem toàn bộ hàng đang theo dõi với trạng thái mới nhất",
           "imgKey": "danh_sach",
           "scrollY": 0,
-          "hs": { "x": 16, "y": 160, "w": 358, "h": 300 },
+          "hs": {
+            "x": 16,
+            "y": 160,
+            "w": 358,
+            "h": 300
+          },
           "ttPos": "right",
           "ttTitle": "Danh sách Kho QT",
           "ttText": "Cuộn để xem tất cả hàng đang theo dõi",
@@ -4462,7 +4644,12 @@
           "sub": "Bấm vào card để xem đầy đủ thông tin và liên hệ đầu chủ",
           "imgKey": "xem_chi_tiet",
           "scrollY": 0,
-          "hs": { "x": 16, "y": 200, "w": 358, "h": 120 },
+          "hs": {
+            "x": 16,
+            "y": 200,
+            "w": 358,
+            "h": 120
+          },
           "ttPos": "right",
           "ttTitle": "Chi tiết tin BĐS",
           "ttText": "Bấm vào card để xem đầy đủ thông tin và ảnh",
@@ -4490,7 +4677,12 @@
           "sub": "Bấm icon tim/bookmark trên card để thêm vào Kho Quan tâm",
           "imgKey": "them_quan_tam",
           "scrollY": 0,
-          "hs": { "x": 320, "y": 200, "w": 45, "h": 45 },
+          "hs": {
+            "x": 320,
+            "y": 200,
+            "w": 45,
+            "h": 45
+          },
           "ttPos": "left",
           "ttTitle": "Icon Bookmark",
           "ttText": "Bấm icon tim/bookmark trên card để thêm vào Quan tâm",
@@ -4518,7 +4710,12 @@
           "sub": "Giữ card hoặc bấm icon tim đỏ để bỏ theo dõi",
           "imgKey": "xoa_quan_tam",
           "scrollY": 0,
-          "hs": { "x": 320, "y": 200, "w": 45, "h": 45 },
+          "hs": {
+            "x": 320,
+            "y": 200,
+            "w": 45,
+            "h": 45
+          },
           "ttPos": "left",
           "ttTitle": "Bỏ quan tâm",
           "ttText": "Giữ card hoặc bấm icon tim đỏ để bỏ theo dõi",
@@ -4546,7 +4743,12 @@
           "sub": "Bật thông báo để được báo khi tin thay đổi giá hoặc trạng thái",
           "imgKey": "thong_bao_cap_nhat",
           "scrollY": 0,
-          "hs": { "x": 330, "y": 60, "w": 45, "h": 45 },
+          "hs": {
+            "x": 330,
+            "y": 60,
+            "w": 45,
+            "h": 45
+          },
           "ttPos": "left",
           "ttTitle": "Cài thông báo",
           "ttText": "Bật thông báo để được báo khi tin thay đổi giá",
@@ -4567,7 +4769,11 @@
           ]
         }
       ],
-      "quality": { "errors": 0, "warnings": 0, "lastReviewed": null }
+      "quality": {
+        "errors": 0,
+        "warnings": 0,
+        "lastReviewed": null
+      }
     },
     "tin_hoat_dong": {
       "name": "Tin hoạt động",
@@ -4579,9 +4785,16 @@
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
-        "role": ["hoc_vien", "dau_chu"],
+        "role": [
+          "hoc_vien",
+          "dau_chu"
+        ],
         "level": "beginner",
-        "tags": ["tin_hoat_dong", "feed_nhom", "hoat_dong"],
+        "tags": [
+          "tin_hoat_dong",
+          "feed_nhom",
+          "hoat_dong"
+        ],
         "language": "vi"
       },
       "images": {
@@ -4601,7 +4814,12 @@
           "sub": "Bấm avatar góc trên phải để mở menu cá nhân",
           "imgKey": "menu",
           "scrollY": 0,
-          "hs": { "x": 340, "y": 55, "w": 45, "h": 45 },
+          "hs": {
+            "x": 340,
+            "y": 55,
+            "w": 45,
+            "h": 45
+          },
           "ttPos": "left",
           "ttTitle": "Avatar cá nhân",
           "ttText": "Bấm avatar góc trên phải để mở menu cá nhân",
@@ -4629,7 +4847,12 @@
           "sub": "Bấm vào mục để xem feed hoạt động của nhóm",
           "imgKey": "menu_tin_hoat_dong",
           "scrollY": 300,
-          "hs": { "x": 16, "y": 350, "w": 358, "h": 55 },
+          "hs": {
+            "x": 16,
+            "y": 350,
+            "w": 358,
+            "h": 55
+          },
           "ttPos": "right",
           "ttTitle": "Nhóm Tin hoạt động",
           "ttText": "Bấm vào mục để xem feed hoạt động của nhóm",
@@ -4657,7 +4880,12 @@
           "sub": "Cuộn để xem hoạt động mới nhất của cả nhóm theo thời gian",
           "imgKey": "feed_hoat_dong",
           "scrollY": 0,
-          "hs": { "x": 16, "y": 200, "w": 358, "h": 350 },
+          "hs": {
+            "x": 16,
+            "y": 200,
+            "w": 358,
+            "h": 350
+          },
           "ttPos": "right",
           "ttTitle": "Feed hoạt động",
           "ttText": "Cuộn để xem hoạt động mới nhất của cả nhóm",
@@ -4685,7 +4913,12 @@
           "sub": "Bấm vào card để xem chi tiết và tham gia trao đổi",
           "imgKey": "xem_hoat_dong",
           "scrollY": 0,
-          "hs": { "x": 16, "y": 200, "w": 358, "h": 120 },
+          "hs": {
+            "x": 16,
+            "y": 200,
+            "w": 358,
+            "h": 120
+          },
           "ttPos": "right",
           "ttTitle": "Card hoạt động",
           "ttText": "Bấm vào card để xem chi tiết và tham gia trao đổi",
@@ -4713,7 +4946,12 @@
           "sub": "Chọn lọc theo loại — tin mới, hợp đồng, lịch hẹn",
           "imgKey": "loc_hoat_dong",
           "scrollY": 0,
-          "hs": { "x": 330, "y": 55, "w": 45, "h": 45 },
+          "hs": {
+            "x": 330,
+            "y": 55,
+            "w": 45,
+            "h": 45
+          },
           "ttPos": "left",
           "ttTitle": "Bộ lọc hoạt động",
           "ttText": "Chọn lọc theo loại — tin mới, hợp đồng, lịch hẹn",
@@ -4741,7 +4979,12 @@
           "sub": "Bấm tên/avatar để xem feed riêng của thành viên đó",
           "imgKey": "theo_doi_ca_nhan",
           "scrollY": 0,
-          "hs": { "x": 16, "y": 215, "w": 45, "h": 45 },
+          "hs": {
+            "x": 16,
+            "y": 215,
+            "w": 45,
+            "h": 45
+          },
           "ttPos": "right",
           "ttTitle": "Profile thành viên",
           "ttText": "Bấm tên/avatar để xem feed riêng của thành viên đó",
@@ -4762,7 +5005,11 @@
           ]
         }
       ],
-      "quality": { "errors": 0, "warnings": 0, "lastReviewed": null }
+      "quality": {
+        "errors": 0,
+        "warnings": 0,
+        "lastReviewed": null
+      }
     },
     "quan_ly_phong_nhom": {
       "name": "Quản lý phòng-nhóm",
@@ -4774,9 +5021,15 @@
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
-        "role": ["quan_ly_phong"],
+        "role": [
+          "quan_ly_phong"
+        ],
         "level": "intermediate",
-        "tags": ["quan_ly_phong", "thanh_vien", "nhom"],
+        "tags": [
+          "quan_ly_phong",
+          "thanh_vien",
+          "nhom"
+        ],
         "language": "vi"
       },
       "images": {
@@ -4798,7 +5051,12 @@
           "sub": "Bấm avatar để vào menu với quyền quản lý phòng",
           "imgKey": "menu",
           "scrollY": 0,
-          "hs": { "x": 340, "y": 55, "w": 45, "h": 45 },
+          "hs": {
+            "x": 340,
+            "y": 55,
+            "w": 45,
+            "h": 45
+          },
           "ttPos": "left",
           "ttTitle": "Avatar quản lý",
           "ttText": "Bấm avatar để vào menu với quyền quản lý phòng",
@@ -4826,7 +5084,12 @@
           "sub": "Xem tất cả phòng và nhóm bạn có quyền quản lý",
           "imgKey": "danh_sach_phong",
           "scrollY": 0,
-          "hs": { "x": 16, "y": 200, "w": 358, "h": 200 },
+          "hs": {
+            "x": 16,
+            "y": 200,
+            "w": 358,
+            "h": 200
+          },
           "ttPos": "right",
           "ttTitle": "Phòng quản lý",
           "ttText": "Xem tất cả phòng và nhóm bạn có quyền quản lý",
@@ -4854,7 +5117,12 @@
           "sub": "Xem tất cả thành viên, vai trò và trạng thái hoạt động",
           "imgKey": "xem_thanh_vien",
           "scrollY": 0,
-          "hs": { "x": 16, "y": 200, "w": 358, "h": 300 },
+          "hs": {
+            "x": 16,
+            "y": 200,
+            "w": 358,
+            "h": 300
+          },
           "ttPos": "right",
           "ttTitle": "Danh sách thành viên",
           "ttText": "Xem tất cả thành viên, vai trò và trạng thái hoạt động",
@@ -4882,7 +5150,12 @@
           "sub": "Bấm + hoặc Thêm để mời thành viên mới vào phòng",
           "imgKey": "them_thanh_vien",
           "scrollY": 0,
-          "hs": { "x": 300, "y": 130, "w": 60, "h": 40 },
+          "hs": {
+            "x": 300,
+            "y": 130,
+            "w": 60,
+            "h": 40
+          },
           "ttPos": "left",
           "ttTitle": "Nút Thêm thành viên",
           "ttText": "Bấm + hoặc Thêm để mời thành viên mới vào phòng",
@@ -4910,7 +5183,12 @@
           "sub": "Bấm vào thành viên → chọn Phân quyền để đổi vai trò",
           "imgKey": "phan_quyen",
           "scrollY": 0,
-          "hs": { "x": 310, "y": 200, "w": 45, "h": 45 },
+          "hs": {
+            "x": 310,
+            "y": 200,
+            "w": 45,
+            "h": 45
+          },
           "ttPos": "left",
           "ttTitle": "Vai trò thành viên",
           "ttText": "Bấm vào thành viên → chọn Phân quyền để đổi vai trò",
@@ -4938,7 +5216,12 @@
           "sub": "Tạo nhóm chat riêng cho phòng hoặc nhóm dự án",
           "imgKey": "nhom_chat_phong",
           "scrollY": 450,
-          "hs": { "x": 16, "y": 500, "w": 358, "h": 55 },
+          "hs": {
+            "x": 16,
+            "y": 500,
+            "w": 358,
+            "h": 55
+          },
           "ttPos": "right",
           "ttTitle": "Nhóm chat phòng",
           "ttText": "Tạo nhóm chat riêng cho phòng hoặc nhóm dự án",
@@ -4966,7 +5249,12 @@
           "sub": "Xem số tin đăng, deal, lịch hẹn của toàn phòng theo kỳ",
           "imgKey": "bao_cao_phong",
           "scrollY": 450,
-          "hs": { "x": 16, "y": 500, "w": 358, "h": 300 },
+          "hs": {
+            "x": 16,
+            "y": 500,
+            "w": 358,
+            "h": 300
+          },
           "ttPos": "right",
           "ttTitle": "Báo cáo hoạt động",
           "ttText": "Xem số tin đăng, deal, lịch hẹn của toàn phòng",
@@ -4994,7 +5282,12 @@
           "sub": "Đặt mục tiêu số lượng tin, deal và lịch hẹn cho phòng",
           "imgKey": "chi_tieu_kpi",
           "scrollY": 500,
-          "hs": { "x": 16, "y": 550, "w": 358, "h": 55 },
+          "hs": {
+            "x": 16,
+            "y": 550,
+            "w": 358,
+            "h": 55
+          },
           "ttPos": "right",
           "ttTitle": "Chỉ tiêu KPI",
           "ttText": "Đặt mục tiêu số lượng tin, deal và lịch hẹn",
@@ -5015,7 +5308,11 @@
           ]
         }
       ],
-      "quality": { "errors": 0, "warnings": 0, "lastReviewed": null }
+      "quality": {
+        "errors": 0,
+        "warnings": 0,
+        "lastReviewed": null
+      }
     },
     "tai_khoan_ca_nhan": {
       "name": "Tài khoản cá nhân",
@@ -5027,9 +5324,17 @@
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
-        "role": ["dau_chu", "hoc_vien", "quan_ly_phong"],
+        "role": [
+          "dau_chu",
+          "hoc_vien",
+          "quan_ly_phong"
+        ],
         "level": "beginner",
-        "tags": ["tai_khoan", "ca_nhan", "bao_mat"],
+        "tags": [
+          "tai_khoan",
+          "ca_nhan",
+          "bao_mat"
+        ],
         "language": "vi"
       },
       "images": {
@@ -5050,7 +5355,12 @@
           "sub": "Bấm avatar để mở menu và vào phần Tài khoản",
           "imgKey": "menu",
           "scrollY": 0,
-          "hs": { "x": 340, "y": 55, "w": 45, "h": 45 },
+          "hs": {
+            "x": 340,
+            "y": 55,
+            "w": 45,
+            "h": 45
+          },
           "ttPos": "left",
           "ttTitle": "Avatar cá nhân",
           "ttText": "Bấm avatar để mở menu và vào phần Tài khoản",
@@ -5078,7 +5388,12 @@
           "sub": "Xem và kiểm tra thông tin tài khoản đang hiển thị",
           "imgKey": "xem_ho_so",
           "scrollY": 0,
-          "hs": { "x": 16, "y": 150, "w": 358, "h": 300 },
+          "hs": {
+            "x": 16,
+            "y": 150,
+            "w": 358,
+            "h": 300
+          },
           "ttPos": "right",
           "ttTitle": "Hồ sơ cá nhân",
           "ttText": "Xem và kiểm tra thông tin tài khoản đang hiển thị",
@@ -5106,7 +5421,12 @@
           "sub": "Nhập thông tin mới và bấm Lưu để cập nhật hồ sơ",
           "imgKey": "chinh_sua",
           "scrollY": 200,
-          "hs": { "x": 16, "y": 250, "w": 358, "h": 300 },
+          "hs": {
+            "x": 16,
+            "y": 250,
+            "w": 358,
+            "h": 300
+          },
           "ttPos": "right",
           "ttTitle": "Form chỉnh sửa",
           "ttText": "Nhập thông tin mới và bấm Lưu để cập nhật hồ sơ",
@@ -5134,7 +5454,12 @@
           "sub": "Bấm vào ảnh để chọn từ thư viện hoặc chụp mới",
           "imgKey": "anh_dai_dien",
           "scrollY": 0,
-          "hs": { "x": 140, "y": 140, "w": 110, "h": 110 },
+          "hs": {
+            "x": 140,
+            "y": 140,
+            "w": 110,
+            "h": 110
+          },
           "ttPos": "right",
           "ttTitle": "Ảnh đại diện",
           "ttText": "Bấm vào ảnh để chọn từ thư viện hoặc chụp mới",
@@ -5162,7 +5487,12 @@
           "sub": "Đổi mật khẩu và bật xác thực 2 lớp để bảo vệ tài khoản",
           "imgKey": "bao_mat",
           "scrollY": 400,
-          "hs": { "x": 16, "y": 450, "w": 358, "h": 55 },
+          "hs": {
+            "x": 16,
+            "y": 450,
+            "w": 358,
+            "h": 55
+          },
           "ttPos": "right",
           "ttTitle": "Bảo mật tài khoản",
           "ttText": "Đổi mật khẩu và bật xác thực 2 lớp",
@@ -5190,7 +5520,12 @@
           "sub": "Bật thông báo quan trọng, tắt thông báo ít dùng",
           "imgKey": "thong_bao",
           "scrollY": 470,
-          "hs": { "x": 16, "y": 520, "w": 358, "h": 55 },
+          "hs": {
+            "x": 16,
+            "y": 520,
+            "w": 358,
+            "h": 55
+          },
           "ttPos": "right",
           "ttTitle": "Tùy chỉnh thông báo",
           "ttText": "Bật thông báo quan trọng, tắt thông báo ít dùng",
@@ -5218,7 +5553,12 @@
           "sub": "Bấm Đăng xuất để thoát — cần đăng nhập lại bằng OTP",
           "imgKey": "dang_xuat",
           "scrollY": 650,
-          "hs": { "x": 90, "y": 680, "w": 210, "h": 50 },
+          "hs": {
+            "x": 90,
+            "y": 680,
+            "w": 210,
+            "h": 50
+          },
           "ttPos": "top",
           "ttTitle": "Nút Đăng xuất",
           "ttText": "Bấm Đăng xuất để thoát — cần đăng nhập lại bằng OTP",
@@ -5239,7 +5579,11 @@
           ]
         }
       ],
-      "quality": { "errors": 0, "warnings": 0, "lastReviewed": null }
+      "quality": {
+        "errors": 0,
+        "warnings": 0,
+        "lastReviewed": null
+      }
     },
     "quan_ly_kho_hang": {
       "name": "Quản lý kho hàng",
@@ -5251,9 +5595,15 @@
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
-        "role": ["quan_ly_phong"],
+        "role": [
+          "quan_ly_phong"
+        ],
         "level": "intermediate",
-        "tags": ["kho_hang", "quan_ly", "duyet_tin"],
+        "tags": [
+          "kho_hang",
+          "quan_ly",
+          "duyet_tin"
+        ],
         "language": "vi"
       },
       "images": {
@@ -5274,7 +5624,12 @@
           "sub": "Bấm avatar → tìm nhóm Quản lý kho hàng trong menu",
           "imgKey": "menu",
           "scrollY": 0,
-          "hs": { "x": 340, "y": 55, "w": 45, "h": 45 },
+          "hs": {
+            "x": 340,
+            "y": 55,
+            "w": 45,
+            "h": 45
+          },
           "ttPos": "left",
           "ttTitle": "Avatar cá nhân",
           "ttText": "Bấm avatar → tìm nhóm Quản lý kho hàng trong menu",
@@ -5302,7 +5657,12 @@
           "sub": "Xem toàn bộ kho hàng của mọi thành viên trong phòng",
           "imgKey": "kho_phong",
           "scrollY": 0,
-          "hs": { "x": 16, "y": 200, "w": 358, "h": 350 },
+          "hs": {
+            "x": 16,
+            "y": 200,
+            "w": 358,
+            "h": 350
+          },
           "ttPos": "right",
           "ttTitle": "Kho hàng phòng",
           "ttText": "Xem toàn bộ kho hàng của mọi thành viên trong phòng",
@@ -5330,7 +5690,12 @@
           "sub": "Bấm Duyệt hoặc Từ chối kèm lý do cho từng tin",
           "imgKey": "duyet_tin",
           "scrollY": 600,
-          "hs": { "x": 50, "y": 650, "w": 130, "h": 48 },
+          "hs": {
+            "x": 50,
+            "y": 650,
+            "w": 130,
+            "h": 48
+          },
           "ttPos": "top",
           "ttTitle": "Duyệt / Từ chối",
           "ttText": "Bấm Duyệt hoặc Từ chối kèm lý do cho từng tin",
@@ -5358,7 +5723,12 @@
           "sub": "Chọn CV và phân công hàng cần khai thác",
           "imgKey": "phan_cong",
           "scrollY": 600,
-          "hs": { "x": 200, "y": 650, "w": 140, "h": 48 },
+          "hs": {
+            "x": 200,
+            "y": 650,
+            "w": 140,
+            "h": 48
+          },
           "ttPos": "top",
           "ttTitle": "Phân công tin",
           "ttText": "Chọn CV và phân công hàng cần khai thác",
@@ -5386,7 +5756,12 @@
           "sub": "Dùng bộ lọc để tìm hàng phù hợp cho khách cụ thể",
           "imgKey": "loc_kho",
           "scrollY": 0,
-          "hs": { "x": 310, "y": 110, "w": 55, "h": 40 },
+          "hs": {
+            "x": 310,
+            "y": 110,
+            "w": 55,
+            "h": 40
+          },
           "ttPos": "left",
           "ttTitle": "Bộ lọc kho",
           "ttText": "Dùng bộ lọc để tìm hàng phù hợp cho khách cụ thể",
@@ -5414,7 +5789,12 @@
           "sub": "Xem biểu đồ tổng quan kho theo tháng và thành viên",
           "imgKey": "thong_ke",
           "scrollY": 0,
-          "hs": { "x": 16, "y": 200, "w": 358, "h": 300 },
+          "hs": {
+            "x": 16,
+            "y": 200,
+            "w": 358,
+            "h": 300
+          },
           "ttPos": "right",
           "ttTitle": "Thống kê kho",
           "ttText": "Xem biểu đồ tổng quan kho theo tháng và thành viên",
@@ -5442,7 +5822,12 @@
           "sub": "Bấm Xuất để tải báo cáo kho dưới dạng Excel hoặc PDF",
           "imgKey": "xuat_bao_cao",
           "scrollY": 0,
-          "hs": { "x": 310, "y": 55, "w": 55, "h": 40 },
+          "hs": {
+            "x": 310,
+            "y": 55,
+            "w": 55,
+            "h": 40
+          },
           "ttPos": "left",
           "ttTitle": "Xuất báo cáo",
           "ttText": "Bấm Xuất để tải báo cáo kho dưới dạng Excel hoặc PDF",
@@ -5463,7 +5848,11 @@
           ]
         }
       ],
-      "quality": { "errors": 0, "warnings": 0, "lastReviewed": null }
+      "quality": {
+        "errors": 0,
+        "warnings": 0,
+        "lastReviewed": null
+      }
     }
   },
   "featured": [
