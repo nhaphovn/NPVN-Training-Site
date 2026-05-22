@@ -33,6 +33,8 @@ function parseCookies(req) {
 // ---------------------------------------------------------------------------
 
 const PERSONAS = {
+  // Default test account — used when no persona specified
+  test:     { sub: 'user_test_001', name: 'Tài khoản Test', role: 'hoc_vien', tenant: 'nhapho', level: 'beginner' },
   hoc_vien: { sub: 'user_hv_001', name: 'Học viên Test', role: 'hoc_vien', tenant: 'nhapho', level: 'beginner' },
   dau_chu:  { sub: 'user_dc_001', name: 'Đầu chủ Test',  role: 'dau_chu',  tenant: 'nhapho', level: 'intermediate' },
   quan_ly_phong: { sub: 'user_ql_001', name: 'Quản lý Test', role: 'quan_ly_phong', tenant: 'nhapho', level: 'advanced' },
@@ -44,8 +46,7 @@ const PERSONAS = {
 
 function renderLoginPage(params) {
   const { client_id, redirect_uri, state, code_challenge, code_challenge_method } = params;
-  // Include _sub=authorize so persona-click links stay on this route
-  const hidden = [
+  const qs = [
     `_sub=authorize`,
     `client_id=${encodeURIComponent(client_id || '')}`,
     `redirect_uri=${encodeURIComponent(redirect_uri || '')}`,
@@ -53,6 +54,7 @@ function renderLoginPage(params) {
     `code_challenge=${encodeURIComponent(code_challenge || '')}`,
     `code_challenge_method=${encodeURIComponent(code_challenge_method || 'S256')}`,
     `action=login`,
+    `persona=test`,
   ].join('&');
 
   return `<!DOCTYPE html>
@@ -60,47 +62,30 @@ function renderLoginPage(params) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Đăng nhập — Môi trường Test</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Đăng nhập — Nhà Phố Training</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Be Vietnam Pro', sans-serif; background: #E5EDE5; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
-    .card { background: #fff; border-radius: 16px; padding: 40px 32px; max-width: 400px; width: 100%; box-shadow: 0 4px 24px rgba(0,0,0,0.10); }
-    .logo { text-align: center; margin-bottom: 8px; }
-    .logo-dot { width: 48px; height: 48px; background: #00A651; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; font-size: 24px; color: #fff; font-weight: 700; margin-bottom: 12px; }
-    h1 { font-size: 20px; font-weight: 700; color: #1A1A1A; text-align: center; margin-bottom: 6px; }
-    .notice { font-size: 13px; color: #007A3D; background: #E5EDE5; border-radius: 8px; padding: 10px 14px; text-align: center; margin-bottom: 28px; font-weight: 500; }
-    .section-label { font-size: 12px; font-weight: 600; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
-    .persona-list { display: flex; flex-direction: column; gap: 10px; }
-    .persona-btn { display: block; width: 100%; padding: 14px 18px; border-radius: 10px; border: 2px solid #E5EDE5; background: #fff; cursor: pointer; text-align: left; font-family: inherit; transition: border-color 0.15s, background 0.15s; text-decoration: none; }
-    .persona-btn:hover { border-color: #00A651; background: #f0faf5; }
-    .persona-name { font-size: 15px; font-weight: 600; color: #1A1A1A; display: block; }
-    .persona-sub { font-size: 12px; color: #666; display: block; margin-top: 2px; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F4FAF5; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+    .card { background: #fff; border-radius: 20px; padding: 48px 36px; max-width: 380px; width: 100%; box-shadow: 0 8px 32px rgba(0,77,46,.12); text-align: center; }
+    .logo { width: 56px; height: 56px; background: #00A651; border-radius: 14px; display: inline-flex; align-items: center; justify-content: center; font-size: 26px; color: #fff; font-weight: 800; margin-bottom: 20px; }
+    h1 { font-size: 21px; font-weight: 700; color: #0F1F14; margin-bottom: 8px; letter-spacing: -0.01em; }
+    .sub { font-size: 14px; color: #4A5A4F; margin-bottom: 32px; line-height: 1.5; }
+    .btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 52px; background: #00A651; color: #fff; text-decoration: none; border-radius: 13px; font-size: 15px; font-weight: 700; letter-spacing: .01em; transition: background .15s, transform .1s; }
+    .btn:hover { background: #006941; transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .tag { margin-top: 20px; font-size: 11px; color: #88958C; background: #F4FAF5; border-radius: 6px; padding: 5px 10px; display: inline-block; }
   </style>
 </head>
 <body>
   <div class="card">
-    <div class="logo">
-      <div class="logo-dot">N</div>
-      <h1>Nhà Phố Training</h1>
-    </div>
-    <div class="notice">Đây là môi trường test — chọn vai trò để đăng nhập</div>
-    <div class="section-label">Chọn vai trò</div>
-    <div class="persona-list">
-      <a href="?${hidden}&persona=hoc_vien" class="persona-btn">
-        <span class="persona-name">Học viên</span>
-        <span class="persona-sub">ID: user_hv_001 · Cấp độ: Beginner</span>
-      </a>
-      <a href="?${hidden}&persona=dau_chu" class="persona-btn">
-        <span class="persona-name">Đầu chủ</span>
-        <span class="persona-sub">ID: user_dc_001 · Cấp độ: Intermediate</span>
-      </a>
-      <a href="?${hidden}&persona=quan_ly_phong" class="persona-btn">
-        <span class="persona-name">Quản lý phòng</span>
-        <span class="persona-sub">ID: user_ql_001 · Cấp độ: Advanced</span>
-      </a>
-    </div>
+    <div class="logo">N</div>
+    <h1>Nhà Phố Training</h1>
+    <p class="sub">Kết nối tài khoản App Nhà Phố của bạn để bắt đầu học</p>
+    <a href="?${qs}" class="btn">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2a8 8 0 1 0 0 16A8 8 0 0 0 10 2z"/><path d="M10 6v4l3 3"/></svg>
+      Đăng nhập với App Nhà Phố
+    </a>
+    <span class="tag">Môi trường test</span>
   </div>
 </body>
 </html>`;

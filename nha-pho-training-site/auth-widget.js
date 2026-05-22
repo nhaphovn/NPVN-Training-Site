@@ -8,9 +8,8 @@
 
 const CSS = `
 .auth-widget { display:flex; align-items:center; gap:10px; font-size:13px; }
-.aw-role-badge { background:#E0EEE3; color:#004D2E; padding:3px 10px; border-radius:20px; font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:.05em; }
-.aw-name { font-weight:600; color:#0F1F14; max-width:120px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.aw-logout { color:#88958C; text-decoration:none; font-size:12px; padding:4px 8px; border-radius:6px; border:1px solid #DCE7DE; transition:all .15s; }
+.aw-name { font-weight:600; color:#0F1F14; max-width:140px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.aw-logout { color:#88958C; text-decoration:none; font-size:12px; padding:4px 8px; border-radius:6px; border:1px solid #DCE7DE; transition:all .15s; white-space:nowrap; }
 .aw-logout:hover { border-color:#007B48; color:#007B48; }
 .aw-login-btn { background:#00A651; color:#fff; text-decoration:none; padding:7px 16px; border-radius:8px; font-weight:700; font-size:13px; transition:background .15s; white-space:nowrap; }
 .aw-login-btn:hover { background:#006941; }
@@ -45,18 +44,17 @@ function roleLabel(role) {
 function renderLoggedIn(container, user) {
   container.innerHTML = `
     <div class="auth-widget auth-widget--in">
-      <span class="aw-role-badge">${escAttr(roleLabel(user.role))}</span>
-      <span class="aw-name">${escAttr(user.name || '')}</span>
-      <a href="/api/auth/logout" class="aw-logout">Dang xuat</a>
+      <span class="aw-name">${escAttr(user.name || 'Tài khoản')}</span>
+      <a href="/api/auth/logout" class="aw-logout">Đăng xuất</a>
     </div>
   `;
 }
 
 function renderLoggedOut(container) {
-  const loginHref = '/login.html?returnTo=' + encodeURIComponent(location.href);
+  const loginHref = '/api/auth/login?returnTo=' + encodeURIComponent(location.href);
   container.innerHTML = `
     <div class="auth-widget auth-widget--out">
-      <a href="${escAttr(loginHref)}" class="aw-login-btn">Dang nhap</a>
+      <a href="${escAttr(loginHref)}" class="aw-login-btn">Đăng nhập</a>
     </div>
   `;
 }
