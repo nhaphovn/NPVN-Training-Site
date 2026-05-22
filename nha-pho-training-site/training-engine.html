@@ -934,6 +934,10 @@ aside.sidebar {
   .completion-actions .btn { width: 100%; }
 }
 
+/* Embed mode — transparent bg, no radius on header */
+body.embed-mode { background: transparent; }
+body.embed-mode .module-header { border-radius: 0; }
+
 /* Confetti */
 .confetti {
   position: fixed; inset: 0; pointer-events: none; overflow: hidden;
@@ -1161,11 +1165,51 @@ const STATE = {
 };
 
 /* ============================================================
+   DEEP LINK + EMBED SUPPORT
+   ============================================================ */
+
+// If ?token=xxx in URL → exchange for session cookie, then continue boot
+async function maybeExchangeToken() {
+  const params = new URLSearchParams(location.search);
+  const token = params.get('token');
+  if (!token) return;
+  try {
+    // POST token to /api/auth/token-exchange
+    await fetch('/api/auth/token-exchange', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token }),
+      credentials: 'include',
+    });
+    // Remove token from URL without reload
+    params.delete('token');
+    const newUrl = location.pathname + (params.toString() ? '?' + params.toString() : '');
+    history.replaceState({}, '', newUrl);
+  } catch (e) {
+    console.warn('[embed] token exchange failed:', e.message);
+  }
+}
+
+function applyEmbedMode() {
+  const params = new URLSearchParams(location.search);
+  if (params.get('embed') !== '1') return;
+  // Hide header and footer elements if they exist
+  document.querySelectorAll('header, .site-header, .hero, footer, .nav-bar').forEach(el => {
+    el.style.display = 'none';
+  });
+  // Add embed class to body for CSS targeting
+  document.body.classList.add('embed-mode');
+}
+
+/* ============================================================
    BOOTSTRAP — đọc query param + fetch JSON
    ============================================================ */
 window.addEventListener('DOMContentLoaded', boot);
 
 async function boot() {
+  await maybeExchangeToken();
+  applyEmbedMode();
+
   // Lấy module từ ?module=xxx
   const params = new URLSearchParams(location.search);
   const moduleId = params.get('module');
@@ -1371,12 +1415,46 @@ function goToStep(idx) {
   renderStep();
 }
 function nextStep() {
-  if (STATE.currentStep < STATE.steps.length - 1) {
-    goToStep(STATE.currentStep + 1);
+  const completingStep = STATE.currentStep;
+  const total = STATE.steps.length;
+
+  if (completingStep < total - 1) {
+    goToStep(completingStep + 1);
   } else {
     // Already at last step → show completion
     showCompletion();
+    // Notify parent frame: module complete
+    if (window.parent !== window) {
+      window.parent.postMessage({
+        type: 'nhapho_training',
+        event: 'module_complete',
+        moduleId: STATE.moduleId,
+      }, '*');
+    }
   }
+
+  // Notify parent frame: step complete (fires on every next, including last)
+  if (window.parent !== window) {
+    window.parent.postMessage({
+      type: 'nhapho_training',
+      event: 'step_complete',
+      moduleId: STATE.moduleId,
+      stepId: completingStep,
+      percent: Math.round(((completingStep + 1) / total) * 100),
+    }, '*');
+  }
+
+  // Fire-and-forget progress API call (non-blocking)
+  fetch('/api/v1/progress', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      moduleId: STATE.moduleId,
+      stepId: completingStep,
+      action: 'complete',
+    }),
+    credentials: 'include',
+  }).catch(() => {}); // silent — user experience not affected by tracking failures
 }
 function prevStep() { if (STATE.currentStep > 0) goToStep(STATE.currentStep - 1); }
 

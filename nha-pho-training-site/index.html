@@ -547,6 +547,11 @@ async function boot() {
     renderFeatured();
     renderRoleTabs();
     renderModules();
+    // Support ?role=hoc_vien deep link from App
+    const deepRole = new URLSearchParams(location.search).get('role');
+    if (deepRole && STATE.data.roles?.[deepRole]) {
+      setRole(deepRole);
+    }
   } catch (e) {
     showError(e.message, e.stack);
   }
