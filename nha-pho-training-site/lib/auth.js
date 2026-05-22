@@ -52,7 +52,10 @@ export function verifyJwt(token, secret) {
   const expected = base64url(
     crypto.createHmac('sha256', secret).update(`${header}.${body}`).digest()
   );
-  if (!crypto.timingSafeEqual(Buffer.from(sig), Buffer.from(expected))) return null;
+  const sigBuf = Buffer.from(sig);
+  const expBuf = Buffer.from(expected);
+  if (sigBuf.length !== expBuf.length) return null;
+  if (!crypto.timingSafeEqual(sigBuf, expBuf)) return null;
 
   // Decode payload
   let payload;

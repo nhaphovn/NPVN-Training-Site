@@ -212,8 +212,9 @@ export default async function handler(req, res) {
     code_challenge_method,
   } = req.query;
 
-  // Handle login action (user clicked a persona button)
-  if (action === 'login' && persona) {
+  // Auto-login if persona already provided in URL (from login.js ?persona= param)
+  // OR when user clicked a persona button (action=login)
+  if ((action === 'login' || (persona && !action)) && persona) {
     const user = PERSONAS[persona];
     if (!user) {
       return res.status(400).json({ error: 'unknown_persona' });
@@ -255,8 +256,19 @@ export default async function handler(req, res) {
       `mock_codes=${encodeURIComponent(JSON.stringify(mockCodes))}; HttpOnly; Secure; SameSite=Lax; Max-Age=600; Path=/`
     );
 
-    // Redirect to client's redirect_uri with code + state
-    const callbackUrl = new URL(redirect_uri);
+    // Validate redirect_uri is same-origin (prevent open redirect)
+    const protocol = req.headers['x-forwarded-proto'] || 'https';
+    const host = req.headers.host;
+    const expectedOrigin = `${protocol}://${host}`;
+    let callbackUrl;
+    try {
+      callbackUrl = new URL(redirect_uri);
+      if (callbackUrl.origin !== expectedOrigin) {
+        return res.status(400).json({ error: 'invalid_redirect_uri', message: 'redirect_uri must be same origin' });
+      }
+    } catch {
+      return res.status(400).json({ error: 'invalid_redirect_uri' });
+    }
     callbackUrl.searchParams.set('code', code);
     callbackUrl.searchParams.set('state', state);
 

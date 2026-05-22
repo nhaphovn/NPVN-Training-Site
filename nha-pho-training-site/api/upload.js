@@ -72,7 +72,7 @@ export default async function handler(req, res) {
 
   // --- Auth ---
   const adminToken = process.env.ADMIN_UPLOAD_TOKEN;
-  if (adminToken && req.headers['x-admin-token'] !== adminToken) {
+  if (!adminToken || req.headers['x-admin-token'] !== adminToken) {
     return res.status(401).json({ error: 'unauthorized' });
   }
 

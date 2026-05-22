@@ -62,7 +62,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'pkce_invalid' });
     }
 
-    const { code_verifier, state: storedState } = pkceData;
+    const { code_verifier, state: storedState, returnTo: pkceReturnTo } = pkceData;
 
     // 2. Verify state (CSRF protection)
     if (stateParam !== storedState) {
@@ -142,10 +142,11 @@ export default async function handler(req, res) {
     ];
     res.setHeader('Set-Cookie', cookies_to_set);
 
-    // 8. Redirect
+    // 8. Redirect — prefer returnTo from PKCE cookie (set by login.js), fall back to query param
+    const returnToResolved = pkceReturnTo || returnTo || null;
     let redirectTarget = '/';
-    if (returnTo && isSameOrigin(returnTo, origin)) {
-      redirectTarget = returnTo;
+    if (returnToResolved && isSameOrigin(returnToResolved, origin)) {
+      redirectTarget = returnToResolved;
     }
 
     res.setHeader('Location', redirectTarget);

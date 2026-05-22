@@ -37,25 +37,31 @@ export default async function handler(req, res) {
     // 3. Generate state (16 random bytes, base64url)
     const state = base64url(crypto.randomBytes(16));
 
-    // 4. Store PKCE data in short-lived cookie (10 minutes)
-    const pkcePayload = JSON.stringify({ code_verifier, state });
+    // 4. Read optional params from query
+    const returnTo = req.query?.returnTo || null;
+    const persona  = req.query?.persona  || null;
+
+    // 5. Store PKCE + returnTo in short-lived cookie (10 minutes)
+    const pkcePayload = JSON.stringify({ code_verifier, state, ...(returnTo ? { returnTo } : {}) });
     res.setHeader('Set-Cookie', [
       `nhapho_pkce=${encodeURIComponent(pkcePayload)}; HttpOnly; Secure; SameSite=Lax; Max-Age=600; Path=/`,
     ]);
 
-    // 5. Build authorization URL
+    // 6. Build authorization URL
     const clientId = process.env.APP_OAUTH_CLIENT_ID || 'nhapho_training_local';
     const protocol = req.headers['x-forwarded-proto'] || 'https';
     const host = req.headers.host;
     const origin = `${protocol}://${host}`;
     const redirectUri = `${origin}/api/auth/callback`;
 
+    const usingMock = !process.env.APP_OAUTH_AUTHORIZE_URL;
     let authorizeUrl;
-    if (process.env.APP_OAUTH_AUTHORIZE_URL) {
+    if (!usingMock) {
       authorizeUrl = new URL(process.env.APP_OAUTH_AUTHORIZE_URL);
     } else {
-      // Mock IdP: same origin
       authorizeUrl = new URL(`${origin}/api/auth/_mock-idp/authorize`);
+      // Forward persona so mock IdP can auto-select without showing the picker
+      if (persona) authorizeUrl.searchParams.set('persona', persona);
     }
 
     authorizeUrl.searchParams.set('client_id', clientId);
@@ -66,7 +72,7 @@ export default async function handler(req, res) {
     authorizeUrl.searchParams.set('code_challenge', code_challenge);
     authorizeUrl.searchParams.set('code_challenge_method', 'S256');
 
-    // 6. Redirect to authorization URL
+    // 7. Redirect to authorization URL
     res.setHeader('Location', authorizeUrl.toString());
     return res.status(302).end();
   } catch (err) {

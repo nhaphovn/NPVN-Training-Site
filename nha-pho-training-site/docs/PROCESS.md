@@ -51,7 +51,10 @@
 │            ↓                            │                             │
 │       Self-testing                      │                             │
 │            ↓ pass                       │                             │
-│       Propose testing  ─────────────────┘                             │
+│       ⚠️  QA Gate (Gate 2) ─────────────┘                             │
+│       QA reviews ALL new code BEFORE any commit/push                  │
+│       Failures → FE/BE fix → re-submit to QA                          │
+│       Only after QA PASS: commit + push                               │
 │                                                                       │
 └──────────────────────────────────────────────────────────────────────┘
                               │

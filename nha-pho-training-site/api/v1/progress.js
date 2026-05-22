@@ -8,16 +8,16 @@ import { join } from 'path';
 import { requireAuth } from '../../lib/auth.js';
 
 // ---------------------------------------------------------------------------
-// KV — lazy import with availability guard
+// KV — lazy loader (called inside handlers, never at module scope)
 // ---------------------------------------------------------------------------
 
-let kv = null;
-try {
-  const mod = await import('@vercel/kv');
-  kv = mod.kv;
-} catch {
-  // @vercel/kv not installed — all handlers will return 503
-  kv = null;
+async function getKv() {
+  try {
+    const mod = await import('@vercel/kv');
+    return mod.kv ?? null;
+  } catch {
+    return null;
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -115,7 +115,7 @@ function envelope(data) {
 // GET handler
 // ---------------------------------------------------------------------------
 
-async function handleGet(req, res, user) {
+async function handleGet(req, res, user, kv) {
   const { moduleId } = req.query || {};
 
   if (moduleId) {
@@ -139,14 +139,14 @@ async function handleGet(req, res, user) {
 
   // Summary across all modules
   const summary = await kv.get(kvSummaryKey(user.sub));
-  return res.status(200).json(envelope(summary || {}));
+  return res.status(200).json(envelope(summary ?? {}));
 }
 
 // ---------------------------------------------------------------------------
 // POST handler
 // ---------------------------------------------------------------------------
 
-async function handlePost(req, res, user) {
+async function handlePost(req, res, user, kv) {
   const { moduleId, stepId, action } = req.body || {};
 
   // --- input validation ---
@@ -208,7 +208,7 @@ async function handlePost(req, res, user) {
       : 0;
 
     // Update summary
-    await updateSummary(user.sub, moduleId, progress.completedSteps, percent);
+    await updateSummary(user.sub, moduleId, progress.completedSteps, percent, kv);
 
     return res.status(200).json(envelope({
       moduleId,
@@ -242,7 +242,7 @@ async function handlePost(req, res, user) {
   await kv.set(key, progress);
 
   // Update summary
-  await updateSummary(user.sub, moduleId, progress.completedSteps, percent);
+  await updateSummary(user.sub, moduleId, progress.completedSteps, percent, kv);
 
   // Emit events
   emitEvent('progress.step_completed', user, moduleId, { stepId, percent });
@@ -263,10 +263,10 @@ async function handlePost(req, res, user) {
 // Summary updater
 // ---------------------------------------------------------------------------
 
-async function updateSummary(userId, moduleId, completedSteps, percent) {
+async function updateSummary(userId, moduleId, completedSteps, percent, kv) {
   try {
     const summaryKey = kvSummaryKey(userId);
-    const summary = (await kv.get(summaryKey)) || {};
+    const summary = (await kv.get(summaryKey)) ?? {};
     summary[moduleId] = { completedSteps: completedSteps.length, percent };
     await kv.set(summaryKey, summary);
   } catch (e) {
@@ -287,12 +287,15 @@ export default async function handler(req, res) {
     return res.status(405).json({ ok: false, error: 'method_not_allowed' });
   }
 
+  // Lazy-load KV inside the request handler (never at module scope)
+  const kv = await getKv();
+
   // KV availability guard
   if (!kv) {
     return res.status(503).json({
       ok:      false,
       error:   'kv_not_configured',
-      message: 'Vercel KV chua duoc cai dat. Chay: npm install @vercel/kv',
+      message: 'Vercel KV chua duoc cai dat. Set KV_REST_API_URL + KV_REST_API_TOKEN tren Vercel.',
     });
   }
 
@@ -301,8 +304,8 @@ export default async function handler(req, res) {
   if (!user) return; // 401 already sent
 
   try {
-    if (req.method === 'GET')  return await handleGet(req, res, user);
-    if (req.method === 'POST') return await handlePost(req, res, user);
+    if (req.method === 'GET')  return await handleGet(req, res, user, kv);
+    if (req.method === 'POST') return await handlePost(req, res, user, kv);
   } catch (err) {
     console.error('[api/v1/progress]', err);
     return res.status(500).json({
