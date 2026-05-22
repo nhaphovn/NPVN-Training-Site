@@ -340,6 +340,7 @@ footer p:last-child { font-size: 11px !important; }
 
 <section class="hero">
   <div class="hero-inner">
+    <div id="auth-widget-mount" style="position:absolute;top:0;right:0;"></div>
     <div class="hero-brand">
       <div class="hero-brand-logo"><img src="assets/logo-small.png" alt="Nhà Phố"></div>
       <div class="hero-brand-text">
@@ -558,6 +559,14 @@ async function boot() {
 }
 
 document.addEventListener('DOMContentLoaded', boot);
+
+// Auth widget — optional, degrades gracefully if module fails to load
+(async () => {
+  try {
+    const { default: initAuthWidget } = await import('./auth-widget.js');
+    initAuthWidget(document.getElementById('auth-widget-mount'));
+  } catch(e) {}
+})();
 </script>
 </body>
 </html>

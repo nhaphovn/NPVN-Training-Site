@@ -199,6 +199,8 @@ header.top-bar::after {
   font-weight: 500;
 }
 .btn-back:hover { background: var(--green-soft); color: var(--green-dark); }
+#auth-widget-mount { margin-left: auto; flex-shrink: 0; }
+@media (max-width: 600px) { #auth-widget-mount .aw-name { display: none; } }
 
 main.grid {
   display: grid; grid-template-columns: 280px 1fr 380px; gap: 20px;
@@ -1021,6 +1023,7 @@ body.embed-mode .module-header { border-radius: 0; }
       <span id="progress-text">1/12</span>
       <div class="progress-bar"><span id="progress-fill" style="width:8%"></span></div>
     </div>
+    <div id="auth-widget-mount"></div>
   </header>
 
   <main class="grid">
@@ -2071,6 +2074,14 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
 }
+
+// Auth widget — optional, degrades gracefully if module fails to load
+(async () => {
+  try {
+    const { default: initAuthWidget } = await import('./auth-widget.js');
+    initAuthWidget(document.getElementById('auth-widget-mount'));
+  } catch(e) { /* auth widget optional */ }
+})();
 </script>
 </body>
 </html>

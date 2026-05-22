@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Đăng nhập — Nhà Phố Training Center</title>
+<meta name="description" content="Đăng nhập vào hệ thống đào tạo nội bộ Nhà Phố Việt Nam.">
+<link rel="icon" href="assets/logo-small.png">
+<style>
+/* SF Pro Display — local woff2 (Latin + Vietnamese subset) */
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('fonts/SFProDisplay-Light.woff2') format('woff2');
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('fonts/SFProDisplay-Regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('fonts/SFProDisplay-Medium.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('fonts/SFProDisplay-Semibold.woff2') format('woff2');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('fonts/SFProDisplay-Bold.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('fonts/SFProDisplay-Heavy.woff2') format('woff2');
+  font-weight: 800; font-style: normal; font-display: swap;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --green: #00A651;
+  --green-dark: #007A3D;
+  --green-darker: #004D2E;
+  --green-soft: #E0EEE3;
+  --green-tint: #F4FAF5;
+  --white: #fff;
+  --text: #1A1A1A;
+  --text-2: #4A5A4F;
+  --text-3: #88958C;
+  --border: #DCE7DE;
+  --font: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+html, body {
+  min-height: 100%;
+  font-family: var(--font);
+  background: var(--green-tint);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px 16px;
+}
+
+/* ---- Card ---- */
+.login-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0, 77, 46, .12), 0 2px 8px rgba(0, 77, 46, .06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ---- Logo ---- */
+.login-logo {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 20px;
+  display: grid;
+  place-items: center;
+  background: var(--green-soft);
+  border-radius: 16px;
+  padding: 8px;
+  border: 1px solid var(--border);
+}
+.login-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ---- Heading ---- */
+.login-headline {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.login-sub {
+  font-size: 14px;
+  color: var(--text-2);
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+
+/* ---- Primary button ---- */
+.btn-primary {
+  display: block;
+  width: 100%;
+  background: var(--green);
+  color: var(--white);
+  text-decoration: none;
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 700;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s, transform .1s;
+  letter-spacing: .01em;
+}
+.btn-primary:hover {
+  background: var(--green-dark);
+  transform: translateY(-1px);
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* ---- Divider ---- */
+.login-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin: 22px 0;
+  color: var(--text-3);
+  font-size: 13px;
+}
+.login-divider::before,
+.login-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ---- Dev section ---- */
+#dev-section {
+  display: none;
+  width: 100%;
+}
+.dev-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 10px;
+}
+.dev-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+.btn-persona {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  width: 100%;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--green);
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.btn-persona:hover {
+  border-color: var(--green);
+  background: var(--green-tint);
+}
+
+/* ---- Bottom note ---- */
+.login-note {
+  margin-top: 24px;
+  font-size: 12px;
+  color: var(--text-3);
+  line-height: 1.5;
+  max-width: 320px;
+}
+
+/* ---- Footer ---- */
+footer {
+  margin-top: 28px;
+  font-size: 12px;
+  color: var(--text-3);
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<div class="login-card">
+
+  <div class="login-logo">
+    <img src="assets/logo-small.png" alt="Nhà Phố">
+  </div>
+
+  <h1 class="login-headline">Đăng nhập vào Training Center</h1>
+  <p class="login-sub">Sử dụng tài khoản App Nhà Phố của bạn</p>
+
+  <a id="btn-login-main" href="/api/auth/login" class="btn-primary">
+    Đăng nhập với App Nhà Phố &rarr;
+  </a>
+
+  <div class="login-divider">hoặc</div>
+
+  <div id="dev-section">
+    <p class="dev-label">Chế độ test</p>
+    <div class="dev-btns">
+      <a class="btn-persona" href="/api/auth/login?persona=hoc_vien">Đăng nhập với tư cách Học viên</a>
+      <a class="btn-persona" href="/api/auth/login?persona=dau_chu">Đăng nhập với tư cách Đầu chủ</a>
+      <a class="btn-persona" href="/api/auth/login?persona=quan_ly_phong">Đăng nhập với tư cách Quản lý phòng</a>
+    </div>
+  </div>
+
+  <p class="login-note">Dữ liệu học tập sẽ được lưu theo tài khoản App của bạn</p>
+
+</div>
+
+<footer>© 2026 Nhà Phố Việt Nam</footer>
+
+<script>
+'use strict';
+
+// Show dev section only on localhost or ?dev=1
+const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+const isDev = new URLSearchParams(location.search).get('dev') === '1';
+document.getElementById('dev-section').style.display = (isLocal || isDev) ? 'block' : 'none';
+
+// Preserve ?returnTo= when clicking login button
+const returnTo = new URLSearchParams(location.search).get('returnTo');
+if (returnTo) {
+  document.querySelectorAll('a[href^="/api/auth/login"]').forEach(a => {
+    const u = new URL(a.href, location.origin);
+    u.searchParams.set('returnTo', returnTo);
+    a.href = u.toString();
+  });
+}
+</script>
+</body>
+</html>
