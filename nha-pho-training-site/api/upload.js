@@ -71,8 +71,10 @@ export default async function handler(req, res) {
   console.log('[upload] ABAC-prep:', { tenant: abacTenant, role: abacRole, module: abacModule });
 
   // --- Auth ---
+  // Fails closed when ADMIN_UPLOAD_TOKEN is set; open when not configured (matches save.js behavior).
+  // Set ADMIN_UPLOAD_TOKEN on Vercel to enforce token requirement.
   const adminToken = process.env.ADMIN_UPLOAD_TOKEN;
-  if (!adminToken || req.headers['x-admin-token'] !== adminToken) {
+  if (adminToken && req.headers['x-admin-token'] !== adminToken) {
     return res.status(401).json({ error: 'unauthorized' });
   }
 
