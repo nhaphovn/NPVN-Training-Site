@@ -1,15 +1,23 @@
 // api/upload.js — Vercel Node Serverless Function
-// POST /api/upload?filename=xxx.jpg
-// Body: raw image bytes
-// Response: { url, pathname, size }
+// POST /api/upload?module=xxx&key=yyy
+// Body: raw image or video bytes
+// Headers: content-type (determines image vs video routing)
+// Response: { ok, url, proxyUrl, pathname, size, filename, module, key, mediaType }
 
 import { put } from '@vercel/blob';
 import { Buffer } from 'buffer';
 
-const ALLOWED_EXT = /\.(jpg|jpeg|png|webp)$/i;
-const MAX_SIZE_MB = 5;
+// --- Type tables ---
+const IMAGE_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);
+const VIDEO_TYPES = new Set(['video/mp4', 'video/webm', 'video/quicktime']);
 
-// Disable body parser - we need raw bytes
+const IMAGE_EXT_RE = /\.(jpg|jpeg|png|webp)$/i;
+const VIDEO_EXT_RE = /\.(mp4|webm|mov)$/i;
+
+const MAX_IMAGE_BYTES = 5  * 1024 * 1024;  //  5 MB
+const MAX_VIDEO_BYTES = 50 * 1024 * 1024;  // 50 MB
+
+// Disable body parser — we need raw bytes
 export const config = {
   api: { bodyParser: false },
 };
@@ -24,7 +32,31 @@ async function readRawBody(req) {
 function setCors(res) {
   res.setHeader('Access-Control-Allow-Origin',  '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-admin-token');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Content-Type, x-admin-token, x-tenant, x-role, x-module'
+  );
+}
+
+// Sniff image content-type from magic bytes
+function sniffImageType(buf) {
+  if (buf[0] === 0x89 && buf[1] === 0x50) return 'image/png';
+  if (buf[0] === 0xFF && buf[1] === 0xD8) return 'image/jpeg';
+  if (buf[0] === 0x52 && buf[1] === 0x49) return 'image/webp';
+  return null;
+}
+
+// Derive file extension from content-type
+function extForType(ct) {
+  const map = {
+    'image/jpeg':     '.jpg',
+    'image/png':      '.png',
+    'image/webp':     '.webp',
+    'video/mp4':      '.mp4',
+    'video/webm':     '.webm',
+    'video/quicktime':'.mov',
+  };
+  return map[ct] || '';
 }
 
 export default async function handler(req, res) {
@@ -32,7 +64,13 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST')   return res.status(405).json({ error: 'method_not_allowed' });
 
-  // Optional auth
+  // --- ABAC prep — read, log, do NOT enforce yet ---
+  const abacTenant = req.headers['x-tenant']  || null;
+  const abacRole   = req.headers['x-role']    || null;
+  const abacModule = req.headers['x-module']  || null;
+  console.log('[upload] ABAC-prep:', { tenant: abacTenant, role: abacRole, module: abacModule });
+
+  // --- Auth ---
   const adminToken = process.env.ADMIN_UPLOAD_TOKEN;
   if (adminToken && req.headers['x-admin-token'] !== adminToken) {
     return res.status(401).json({ error: 'unauthorized' });
@@ -40,42 +78,89 @@ export default async function handler(req, res) {
 
   const blobToken = process.env.BLOB_READ_WRITE_TOKEN;
   if (!blobToken) {
-    return res.status(500).json({ error: 'not_configured', message: 'BLOB_READ_WRITE_TOKEN chưa set trên Vercel' });
+    return res.status(500).json({
+      error:   'not_configured',
+      message: 'BLOB_READ_WRITE_TOKEN chưa set trên Vercel',
+    });
   }
 
-  // Accept either:
-  //   ?module=dat_lich_dau_khach&key=menu        → images/dat_lich_dau_khach/menu.jpg
-  //   ?filename=dat_lich_dau_khach_menu.jpg      → legacy, kept for compat
+  // --- Determine media kind from declared Content-Type header ---
+  const declaredType = (req.headers['content-type'] || '').split(';')[0].trim().toLowerCase();
+  const isVideo = VIDEO_TYPES.has(declaredType);
+  const isImage = IMAGE_TYPES.has(declaredType);
+
+  // We accept image OR video; unknown types are rejected after body read to avoid wasted work.
+  // (We validate extension below too.)
+
+  // --- Resolve blobPath ---
+  // Accept:
+  //   ?module=dat_lich&key=menu          → images/dat_lich/menu.jpg  (images)
+  //                                        videos/dat_lich/menu.mp4  (videos)
+  //   ?filename=dat_lich_menu.jpg        → legacy, kept for compat
   const moduleId = req.query.module;
   const keyId    = req.query.key;
 
   let blobPath, clean;
+
   if (moduleId && keyId) {
     const safeModule = moduleId.replace(/[^a-z0-9_]/gi, '_').toLowerCase();
     const safeKey    = keyId.replace(/[^a-z0-9_\-\.]/gi, '_').toLowerCase();
-    const ext        = safeKey.match(/\.(jpg|jpeg|png|webp)$/i) ? '' : '.jpg';
+
+    // Determine extension: prefer one already in key, else derive from declared type
+    let ext = '';
+    if (isVideo) {
+      ext = VIDEO_EXT_RE.test(safeKey) ? '' : extForType(declaredType);
+    } else {
+      ext = IMAGE_EXT_RE.test(safeKey) ? '' : '.jpg';
+    }
+
     clean    = safeKey + ext;
-    blobPath = `images/${safeModule}/${clean}`;
+    const folder = isVideo ? 'videos' : 'images';
+    blobPath = `${folder}/${safeModule}/${clean}`;
+
   } else {
     const filename = req.query.filename;
     if (!filename) {
-      return res.status(400).json({ error: 'params_required', message: 'Cần ?module=&key= hoặc ?filename=' });
+      return res.status(400).json({
+        error:   'params_required',
+        message: 'Cần ?module=&key= hoặc ?filename=',
+      });
     }
     clean = String(filename).replace(/[^a-z0-9_\-\.\/]/gi, '_').toLowerCase();
     if (clean.includes('/')) {
-      blobPath = clean.startsWith('images/') ? clean : `images/${clean}`;
+      // If caller already provided a path, respect it; add folder prefix only if missing
+      if (isVideo) {
+        blobPath = clean.startsWith('videos/') ? clean : `videos/${clean}`;
+      } else {
+        blobPath = clean.startsWith('images/') ? clean : `images/${clean}`;
+      }
     } else {
-      // Legacy: parse module from underscore-separated filename
-      const parts   = clean.replace(/\.[^.]+$/, '').split('_');
-      const mod     = parts.slice(0, -1).join('_') || parts[0];
-      blobPath = `images/${mod}/${clean}`;
+      // Legacy: derive module from underscore-separated filename
+      const parts = clean.replace(/\.[^.]+$/, '').split('_');
+      const mod   = parts.slice(0, -1).join('_') || parts[0];
+      const folder = isVideo ? 'videos' : 'images';
+      blobPath = `${folder}/${mod}/${clean}`;
     }
   }
 
-  if (!ALLOWED_EXT.test(clean)) {
-    return res.status(400).json({ error: 'invalid_extension', message: 'Chỉ jpg, png, webp' });
+  // --- Validate extension ---
+  const validExt = isVideo ? VIDEO_EXT_RE.test(clean) : IMAGE_EXT_RE.test(clean);
+  if (!validExt && !isVideo && !isImage) {
+    return res.status(400).json({
+      error:   'invalid_type',
+      message: 'Chỉ chấp nhận jpg/png/webp (ảnh) hoặc mp4/webm/mov (video)',
+    });
+  }
+  if (!validExt) {
+    return res.status(400).json({
+      error:   'invalid_extension',
+      message: isVideo
+        ? 'Video phải là .mp4, .webm hoặc .mov'
+        : 'Ảnh phải là .jpg, .png hoặc .webp',
+    });
   }
 
+  // --- Read body ---
   let buffer;
   try {
     buffer = await readRawBody(req);
@@ -83,38 +168,63 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'read_failed', message: e.message });
   }
 
-  if (buffer.length > MAX_SIZE_MB * 1024 * 1024) {
-    return res.status(413).json({ error: 'file_too_large', message: `Vượt ${MAX_SIZE_MB}MB` });
-  }
   if (buffer.length < 100) {
     return res.status(400).json({ error: 'file_empty' });
   }
 
-  // Detect content type
-  let contentType = req.headers['content-type'] || 'image/jpeg';
-  if (buffer[0] === 0x89 && buffer[1] === 0x50)      contentType = 'image/png';
-  else if (buffer[0] === 0xFF && buffer[1] === 0xD8) contentType = 'image/jpeg';
-  else if (buffer[0] === 0x52 && buffer[1] === 0x49) contentType = 'image/webp';
+  // --- Size limit (per media type) ---
+  if (isVideo && buffer.length > MAX_VIDEO_BYTES) {
+    return res.status(413).json({
+      error:   'video_too_large',
+      message: 'Video vượt 50MB',
+    });
+  }
+  if (!isVideo && buffer.length > MAX_IMAGE_BYTES) {
+    return res.status(413).json({
+      error:   'file_too_large',
+      message: `Vượt ${MAX_IMAGE_BYTES / 1024 / 1024}MB`,
+    });
+  }
 
+  // --- Resolve final content-type ---
+  let contentType = declaredType;
+  if (!isVideo) {
+    // Prefer magic-byte sniff for images (more reliable than caller's header)
+    contentType = sniffImageType(buffer) || declaredType || 'image/jpeg';
+  }
+
+  // --- Upload to Vercel Blob ---
   try {
-    // SDK v2.4+ supports access:'private' for private Blob stores.
     const blob = await put(blobPath, buffer, {
       access:          'private',
       contentType,
       addRandomSuffix: false,
     });
 
-    const proxyUrl = `/api/img?path=${blob.pathname}`;
-    return res.status(200).json({
-      ok:       true,
-      url:      blob.url,
+    const resolvedModule = moduleId || blobPath.split('/')[1];
+    const resolvedKey    = keyId    || clean.replace(/\.[^.]+$/, '');
+    const proxyUrl       = `/api/img?path=${blob.pathname}`;
+
+    const responseBody = {
+      ok:        true,
+      url:       blob.url,
       proxyUrl,
-      pathname: blob.pathname,
-      size:     buffer.length,
-      filename: clean,
-      module:   moduleId || blobPath.split('/')[1],
-      key:      keyId    || clean.replace(/\.[^.]+$/, ''),
-    });
+      pathname:  blob.pathname,
+      size:      buffer.length,
+      filename:  clean,
+      module:    resolvedModule,
+      key:       resolvedKey,
+      mediaType: isVideo ? 'video' : 'image',
+    };
+
+    // Add video-specific fields
+    if (isVideo) {
+      responseBody.videoUrl = blob.url;
+    }
+
+    console.log('[upload] success:', { blobPath, size: buffer.length, mediaType: responseBody.mediaType });
+    return res.status(200).json(responseBody);
+
   } catch (err) {
     console.error('[upload] error:', err);
     return res.status(500).json({
