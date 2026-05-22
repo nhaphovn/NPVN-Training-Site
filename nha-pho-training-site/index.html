@@ -600,12 +600,20 @@ function highlight(text, query) {
   return escaped.replace(new RegExp(escapedQ, 'gi'), m => `<mark>${m}</mark>`);
 }
 
+function stripDiacritics(s) {
+  return String(s || '')
+    .replace(/[đĐ]/g, m => m === 'đ' ? 'd' : 'D')
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .toLowerCase();
+}
+
 function matchSearch(m, query) {
   if (!query) return true;
-  const q = query.toLowerCase();
-  return (m.name || '').toLowerCase().includes(q)
-      || (m.description || '').toLowerCase().includes(q)
-      || (m.role || '').toLowerCase().includes(q);
+  const q = stripDiacritics(query);
+  return stripDiacritics(m.name).includes(q)
+      || stripDiacritics(m.description).includes(q)
+      || stripDiacritics(m.role).includes(q);
 }
 
 function renderModules() {
