@@ -14,7 +14,7 @@
 | **Mục đích** | Training nhân viên dùng app — interactive tour hotspot + chatbot AI |
 | **Phiên bản** | v14 |
 | **Deploy** | Vercel static hosting (free) |
-| **Production URLs** | `https://npvn-training-site.vercel.app` (primary) · `https://nha-pho-training-site.vercel.app` (alias) — **2 projects riêng, cùng GitHub repo, phải set env vars trên cả 2** |
+| **Production URL** | `https://npvn-training-site.vercel.app` — 1 Vercel project, cùng GitHub repo |
 | **GitHub Repo** | `nhaphovn/NPVN-Training-Site` — `nha-pho-training-site/` là subdirectory, không phải root |
 | **Owner** | PM tại Nhà Phố |
 

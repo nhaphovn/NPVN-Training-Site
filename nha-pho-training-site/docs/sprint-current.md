@@ -1,152 +1,105 @@
-# Sprint 5 — Integration Foundation
+# Sprint 6 — Content Completion + UX Polish
 
-> Theme: API-first · Auth mock · Progress tracking · Upload v2
+> Theme: Hoàn thiện nội dung modules + UX mobile-first
 > Start: 2026-05-22
-> Owner: Tech Lead orchestrates · BE + FE implement
-> North star: **mỗi item phải packaged độc lập, ghép được với web app Nhà Phố**
+> Owner: Tech Lead orchestrates
+> Process: 4-phase nghiêm túc — QA gate TRƯỚC khi code
 
 ---
 
-## Goal
+## Sprint 5 Retro (brief)
 
-Xây dựng nền tảng tích hợp để training site có thể connect với App Nhà Phố:
-- API versioned, clean, CORS-ready cho `khonhapho.com`
-- Auth foundation (mock IdP → real OAuth khi App team sẵn sàng)
-- User progress tracking (per-user, per-module)
-- Upload service tái sử dụng được (image + video)
+### Delivered ✅
+- Upload service v2 (image + video)
+- API v1 modules endpoint
+- Auth mock IdP + client
+- User progress API (KV-backed)
+- Deep link + embed support
+- Homepage search + list/grid toggle
+- Auth simplification (no role picker)
 
-Mỗi item là một **standalone package** — build xong có thể test độc lập, plug in sau.
+### Process violations ❌ (ghi nhận, không tái diễn)
+- 4 commits push không qua QA gate trước
+- 1 feature (admin step-search) thêm ngoài PM spec → phải xóa
+- Deploy không qua DevSecOps canary
+- Toolbar dùng JS-controlled `hidden` → dễ vỡ, bug production
 
----
-
-## Items (theo thứ tự triển khai)
-
-### Item 0 — Hotfix ✅ DONE
-- [x] Fix ttText > 15 từ trong `quan_ly_khach` step 6
-
-### Item 1 — Upload Service v2 🔵 NEXT
-> Effort: S | Owner: Backend Engineer + Frontend Engineer
-> ADR: không cần (refactor, không phải new architecture)
-
-**Deliverables:**
-- `api/upload.js` — hỗ trợ video (`mp4/webm/mov`, ≤50MB), ABAC headers
-- `upload-service.js` — client module export, dùng được từ admin + training-engine + bất kỳ page nào
-- Headers `x-tenant`, `x-role`, `x-module` truyền qua upload request (prep cho ABAC, không enforce chưa)
-
-**Acceptance:** PM upload video thử trong admin, file lưu Blob private store thành công.
-
----
-
-### Item 2 — API v1 Layer 🔵 TODO
-> Effort: S | Owner: Backend Engineer
-> ADR: ADR-004 (API versioning) — TL viết trước khi BE code
-
-**Deliverables:**
-- `api/v1/modules.js` — GET danh sách modules, filter by `?role=&status=`
-- `api/v1/module.js` — GET chi tiết 1 module + steps (không kèm hotspot raw)
-- Response envelope chuẩn: `{ ok, data, meta: { version, generatedAt } }`
-- CORS header: allow `https://khonhapho.com`, `https://app.nhapho.com` (besides `*`)
-- Rate limit header: `X-RateLimit-Limit: 100`, `X-RateLimit-Remaining`
-
-**Integration contract:** App Nhà Phố gọi `/api/v1/modules?role=hoc_vien` → hiện training khuyến nghị.
-
----
-
-### Item 3 — Auth Module (Mock IdP + Client) 🔵 TODO
-> Effort: M | Owner: Backend Engineer
-> ADR: ADR-001 (đã approved), implement Stage 1 + 2
-
-**Deliverables:**
-- `api/auth/login.js` — redirect to IdP (mock hoặc real tuỳ env var)
-- `api/auth/callback.js` — OAuth code exchange, set HttpOnly cookie
-- `api/auth/logout.js` — clear cookie + invalidate KV session
-- `api/auth/me.js` — GET current user từ session
-- `api/auth/_mock-idp/` — mock IdP simulating App Nhà Phố OAuth
-- `lib/auth.js` — `requireAuth(req)` middleware helper, dùng trong `/api/v1/*`
-- Login page: `login.html` — minimal, brand colors
-
-**Config:** Env var `APP_OAUTH_AUTHORIZE_URL` → nếu set dùng real IdP, không set dùng mock.
-
----
-
-### Item 4 — User Progress API 🔵 TODO
-> Effort: M | Owner: Backend Engineer
-> ADR: ADR-003 (Progress storage — Vercel KV)
-
-**Deliverables:**
-- `api/v1/progress.js`
-  - `POST /api/v1/progress` body `{ moduleId, stepId, action: 'complete' }` → save to KV
-  - `GET  /api/v1/progress?moduleId=xxx` → user's progress for that module
-  - `GET  /api/v1/progress` → all modules progress (summary)
-- KV key scheme: `progress:{userId}:{moduleId}` → `{ steps: [1,2,3], startedAt, completedAt? }`
-- Events emitted: `progress.step_completed`, `progress.tour_started`, `progress.tour_completed`
-- training-engine.html gọi API này khi user bấm Next/Done
-
-**Dependency:** Item 3 (auth) phải xong trước — `requireAuth` middleware dùng trong endpoint.
-
----
-
-### Item 5 — Deep Link + Embed Support 🔵 TODO
-> Effort: S | Owner: Frontend Engineer
-
-**Deliverables:**
-- `training-engine.html` nhận `?token=xxx` query param → set session cookie → học ngay
-- `?embed=1` mode: ẩn header/footer, resize-safe cho iframe từ App
-- `postMessage` API: emit `{ type: 'step_complete', moduleId, stepId }` cho parent frame
-- `index.html` deep link: `?role=hoc_vien` → tự chọn tab role
-
-**Integration UX:** App Nhà Phố mở webview → `training.nhapho.com/training-engine.html?module=dang_tin&token=JWT`
-
----
-
-## Definition of Done Sprint 5
-
-| Item | Owner | Status |
-|------|-------|--------|
-| Upload service v2 (image + video) | BE + FE | ⏳ |
-| API v1 modules endpoint | BE | ⏳ |
-| Auth mock IdP + client | BE | ⏳ |
-| User progress API (KV-backed) | BE | ⏳ |
-| Deep link + embed support | FE | ⏳ |
-| Sprint 5 retro + Sprint 6 plan | TL | ⏳ |
-
----
-
-## Architecture diagram — integration points
-
+### Rule chốt cho Sprint 6
 ```
-┌─────────────────────────────────┐
-│  App Nhà Phố (khonhapho.com)    │
-│  - Recommend training modules   │
-│  - Deep link vào training       │
-│  - Show user progress badge     │
-└─────────────┬───────────────────┘
-              │  HTTPS + JWT
-              ▼
-┌─────────────────────────────────────────────┐
-│  Training Site (npvn-training-site.vercel.app) │
-│                                              │
-│  /api/v1/modules   ← query catalogue        │
-│  /api/v1/progress  ← sync progress          │
-│  /api/auth/*       ← SSO via App OAuth      │
-│  /api/upload       ← content management     │
-│                                              │
-│  training-engine.html?module=X&token=JWT    │
-│  → ?embed=1 mode for App webview            │
-└─────────────────────────────────────────────┘
+QA viết test plan → APPROVED → FE/BE code → QA execute → DevSecOps canary → PM UAT
+Không có exception nào.
 ```
 
 ---
 
-## Risks
+## Sprint 6 — Items (chờ PM confirm)
 
-| Risk | Mitigation |
-|------|-----------|
-| App team chưa có OAuth endpoints | Mock IdP → zero code change khi App ready |
-| Vercel KV cần upgrade plan | Eval KV usage; fallback Blob nếu cần |
-| CORS cho khonhapho.com | Verify domain chính xác với App team trước khi hardcode |
-| iframe CSP policy của App | Test embed mode với App dev team |
+> ⚠️ PHASE 1 đang diễn ra — Tech Lead cần PM xác nhận scope trước khi plan tiếp
+
+### Item 0 — DevSecOps: Env vars (không cần spec riêng)
+> Effort: XS | Owner: DevSecOps
+> Không cần test plan — là config, không phải feature
+
+- [ ] Set `JWT_SIGNING_SECRET` trên Vercel project `npvn-training-site`
+- [ ] Create Vercel KV store, set `KV_REST_API_URL` + `KV_REST_API_TOKEN`
+- [ ] Set `ADMIN_UPLOAD_TOKEN` để lock down admin
+
+**Blocker:** Progress API không hoạt động cho đến khi KV được set.
 
 ---
+
+### Item 1 — Vietnamese search (DEF-S-001 backlog)
+> Effort: XS | Owner: FE
+> QA viết test plan TRƯỚC khi FE code
+
+Search hiện tại không match khi người dùng gõ không dấu ("dang tin" không tìm được "Đăng tin BĐS").
+
+**Acceptance:** gõ "dang tin" → match "Đăng tin BĐS"
+
+---
+
+### Item 2 — Content module completion (8 draft modules)
+> Effort: M | Owner: **PM tự chủ động qua Admin**
+> Tech Lead/FE không cần action — PM sẽ request hỗ trợ khi cần
+
+8 modules đang ở trạng thái `draft`:
+- `chat_nha_pho` · `qr_code` · `bang_tin` · `kho_quan_tam`
+- `tin_hoat_dong` · `quan_ly_phong_nhom` · `tai_khoan_ca_nhan` · `quan_ly_kho_hang`
+
+PM sử dụng `admin-x7q9.html` để upload ảnh + điền hotspot + tooltip trực tiếp.
+Tools hỗ trợ: `tools/coordinate_picker.html` (tọa độ hotspot).
+
+---
+
+### Item 3 — Mobile UX
+> **DEFERRED** — PM xác nhận chưa cần điều chỉnh hiện tại
+
+---
+
+## Definition of Done Sprint 6
+
+| Item | Phase 1 | QA Plan | Code | QA Pass | UAT | Deploy |
+|------|---------|---------|------|---------|-----|--------|
+| Env vars setup | ✅ | N/A | ⏳ PM action | N/A | ⏳ | ⏳ |
+| Vietnamese search | ✅ | ✅ 16 cases | ✅ | ✅ 16/16 | ⏳ | ✅ `72f4e71` |
+| Content modules (8) | ✅ | N/A | PM-owned via Admin | N/A | PM-owned | PM-owned |
+| Mobile UX | — | — | — | — | — | DEFERRED |
+
+---
+
+## Process checkpoint — mỗi item PHẢI đi qua:
+
+```
+1. Tech Lead viết tech spec (docs/specs/<item>.md)
+2. QA Reviewer viết test plan + cases (docs/test-plans/ + test-cases/) ← TRƯỚC khi code
+3. Tech Lead approve test plan
+4. FE/BE implement song song
+5. FE/BE self-test → báo cáo Tech Lead
+6. QA execute test cases đã viết từ bước 2
+7. QA PASS → PM UAT
+8. PM PASS → DevSecOps canary deploy (không bỏ qua)
+9. Monitor 30 min → full release
+10. Eval Specialist đo lường
+```
 
 *Last updated: 2026-05-22*

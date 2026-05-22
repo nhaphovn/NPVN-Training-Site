@@ -2007,6 +2007,12 @@ async function sendChat() {
 
   // Build context from current step
   const s = STATE.steps[STATE.currentStep] || {};
+  const allSteps = (STATE.module?.steps || []).map(step => ({
+    id: step.id,
+    name: step.name || '',
+    title: step.title || '',
+    guide: Array.isArray(step.guide) ? step.guide : [],
+  }));
   const payload = {
     messages: STATE.history.slice(-8),
     moduleId: STATE.moduleId,
@@ -2016,6 +2022,7 @@ async function sendChat() {
     stepName: s.name || '',
     stepTitle: s.title || s.ttTitle || '',
     stepGuide: s.guide || [],
+    allSteps,
   };
 
   try {
