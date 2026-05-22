@@ -1,10 +1,10 @@
-// api/auth/_mock-idp.js — merged mock IdP (authorize + token + userinfo)
+// api/auth/mock-idp.js — merged mock IdP (authorize + token + userinfo)
 // Routes by ?_sub=authorize|token|userinfo
 //
-// GET  /api/auth/_mock-idp?_sub=authorize&client_id=...&...  → show persona picker
-// GET  /api/auth/_mock-idp?_sub=authorize&...&persona=X      → auto-login persona
-// POST /api/auth/_mock-idp?_sub=token                        → exchange code for access_token
-// GET  /api/auth/_mock-idp?_sub=userinfo                     → return user from access_token
+// GET  /api/auth/mock-idp?_sub=authorize&client_id=...&...  → show persona picker
+// GET  /api/auth/mock-idp?_sub=authorize&...&persona=X      → auto-login persona
+// POST /api/auth/mock-idp?_sub=token                        → exchange code for access_token
+// GET  /api/auth/mock-idp?_sub=userinfo                     → return user from access_token
 //
 // Hobby plan: merges 3 files into 1 to stay under the 12-function limit.
 

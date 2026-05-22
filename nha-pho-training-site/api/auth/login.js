@@ -59,7 +59,7 @@ export default async function handler(req, res) {
     if (!usingMock) {
       authorizeUrl = new URL(process.env.APP_OAUTH_AUTHORIZE_URL);
     } else {
-      authorizeUrl = new URL(`${origin}/api/auth/_mock-idp`);
+      authorizeUrl = new URL(`${origin}/api/auth/mock-idp`);
       authorizeUrl.searchParams.set('_sub', 'authorize');
       // Forward persona so mock IdP can auto-select without showing the picker
       if (persona) authorizeUrl.searchParams.set('persona', persona);
