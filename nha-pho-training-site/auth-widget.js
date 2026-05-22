@@ -15,12 +15,6 @@ const CSS = `
 .aw-login-btn:hover { background:#006941; }
 `;
 
-const ROLE_LABELS = {
-  hoc_vien: 'Hoc vien',
-  dau_chu: 'Dau chu',
-  quan_ly_phong: 'Quan ly',
-};
-
 // Module-level cache
 let _cachedUser = null;
 
@@ -30,15 +24,6 @@ function injectCSS() {
   style.id = 'auth-widget-style';
   style.textContent = CSS;
   document.head.appendChild(style);
-}
-
-function roleLabel(role) {
-  const map = {
-    hoc_vien: 'Hoc vien',
-    dau_chu: 'Dau chu',
-    quan_ly_phong: 'Quan ly',
-  };
-  return map[role] || role;
 }
 
 function renderLoggedIn(container, user) {
