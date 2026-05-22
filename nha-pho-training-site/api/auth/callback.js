@@ -78,7 +78,7 @@ export default async function handler(req, res) {
 
     // 4. Exchange code for token
     let tokenData;
-    const tokenUrl = process.env.APP_OAUTH_TOKEN_URL || `${origin}/api/auth/_mock-idp/token`;
+    const tokenUrl = process.env.APP_OAUTH_TOKEN_URL || `${origin}/api/auth/_mock-idp?_sub=token`;
 
     const tokenRes = await fetch(tokenUrl, {
       method: 'POST',
@@ -101,7 +101,7 @@ export default async function handler(req, res) {
     tokenData = await tokenRes.json();
 
     // 5. Fetch userinfo
-    const userinfoUrl = process.env.APP_OAUTH_USERINFO_URL || `${origin}/api/auth/_mock-idp/userinfo`;
+    const userinfoUrl = process.env.APP_OAUTH_USERINFO_URL || `${origin}/api/auth/_mock-idp?_sub=userinfo`;
 
     const userinfoRes = await fetch(userinfoUrl, {
       headers: { Authorization: `Bearer ${tokenData.access_token}` },

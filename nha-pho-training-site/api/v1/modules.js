@@ -1,8 +1,9 @@
 // api/v1/modules.js — Vercel Node Serverless Function
-// GET /api/v1/modules
-// Query params:
-//   ?role=hoc_vien   → filter by role (must exist in data.roles[role].modules)
-//   ?status=live     → filter by module status ('live' | 'draft'). Default: all.
+// GET /api/v1/modules               → list all modules (summary, no steps)
+// GET /api/v1/modules?id=dang_tin   → module detail (includes sanitized steps)
+// GET /api/v1/modules?role=...&status=...  → filtered list
+//
+// Merged from module.js to stay under Vercel Hobby plan 12-function limit.
 
 import fs from 'fs';
 import path from 'path';
@@ -37,6 +38,14 @@ function loadModulesData() {
   return JSON.parse(raw);
 }
 
+function sanitizeStep(step) {
+  const { id, name, title, sub, ttTitle, ttText, guide, tip } = step;
+  const out = { id, name, title, sub, ttTitle, ttText };
+  if (guide !== undefined) out.guide = guide;
+  if (tip   !== undefined) out.tip   = tip;
+  return out;
+}
+
 export default async function handler(req, res) {
   setCorsHeaders(req, res);
   setRateLimitHeaders(res);
@@ -49,7 +58,23 @@ export default async function handler(req, res) {
   try {
     const data = loadModulesData();
 
-    const { role, status } = req.query || {};
+    const { id, role, status } = req.query || {};
+
+    // --- Detail mode: ?id= provided ---
+    if (id) {
+      const mod = data.modules && data.modules[id];
+      if (!mod) {
+        return res.status(404).json({ ok: false, error: 'module_not_found', message: `Module "${id}" không tồn tại` });
+      }
+      const steps = Array.isArray(mod.steps) ? mod.steps.map(sanitizeStep) : [];
+      return res.status(200).json({
+        ok:   true,
+        data: { id, name: mod.name || null, role: mod.role || null, icon: mod.icon || null, description: mod.description || null, stepCount: steps.length, status: mod.status || 'draft', attributes: mod.attributes || null, steps },
+        meta: { version: 'v1', generatedAt: new Date().toISOString() },
+      });
+    }
+
+    // --- List mode ---
 
     // Resolve role filter: look up allowed module ids from data.roles[role].modules
     let allowedByRole = null;
