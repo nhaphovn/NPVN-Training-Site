@@ -144,6 +144,11 @@ header.top-bar {
   border-bottom: 1px solid var(--border);
   padding: 12px 20px; display: flex; align-items: center; gap: 16px;
   box-shadow: 0 1px 0 rgba(0, 77, 46, .04);
+  transform: translateY(-100%);
+  transition: transform .28s ease;
+}
+header.top-bar.header-visible {
+  transform: translateY(0);
 }
 /* Subtle green gradient strip on top bar bottom edge */
 header.top-bar::after {
@@ -2136,6 +2141,28 @@ function escapeHtml(str) {
     const { default: initAuthWidget } = await import('./auth-widget.js');
     initAuthWidget(document.getElementById('auth-widget-mount'));
   } catch(e) { /* auth widget optional */ }
+})();
+
+// Auto-hide header: hidden on load, reappear on scroll-up
+(function() {
+  const hdr = document.querySelector('header.top-bar');
+  if (!hdr) return;
+  let lastY = 0;
+  let ticking = false;
+  window.addEventListener('scroll', function() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function() {
+      const y = window.scrollY;
+      const d = y - lastY;
+      if (Math.abs(d) >= 4) {
+        if (d < 0) hdr.classList.add('header-visible');
+        else hdr.classList.remove('header-visible');
+        lastY = y;
+      }
+      ticking = false;
+    });
+  }, { passive: true });
 })();
 </script>
 </body>
