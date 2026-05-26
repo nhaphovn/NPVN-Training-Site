@@ -274,7 +274,7 @@ aside.sidebar {
 }
 .phone-screen img.bg {
   width: var(--screen-w); display: block; position: absolute; top: 0; left: 0;
-  transition: top .3s ease;
+  transition: top .3s ease, opacity .18s ease;
   user-select: none; pointer-events: none;
   -webkit-user-drag: none;
 }
@@ -737,6 +737,8 @@ aside.sidebar {
   .phone-notch { width: 80px; height: 18px; }
   .phone-screen { border-radius: 26px; }
   .right-panel { position: static; max-height: none; overflow: visible; }
+  /* Guide card: no internal scroll on mobile — let content flow naturally */
+  .guide-card { max-height: none; overflow-y: visible; }
 
   /* Mobile bottom sheet */
   .mobile-pills {
@@ -757,12 +759,20 @@ aside.sidebar {
   .pill.active { background: var(--green); color: var(--white); border-color: var(--green); }
   .pill.done { border-color: var(--green); color: var(--green); }
 
-  /* Mobile: tooltip render inline dưới phone, không absolute */
+  /* Mobile: tooltip overlaid at bottom of phone graphic */
   .tooltip {
-    position: static !important;
-    transform: none !important;
-    top: auto !important; left: auto !important; right: auto !important; bottom: auto !important;
-    margin: 14px 0 0; max-width: 100%; min-width: 0;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    bottom: 14px !important;
+    top: auto !important; right: auto !important;
+    width: calc(var(--screen-w) - 12px) !important;
+    max-width: calc(var(--screen-w) - 12px);
+    min-width: 0; margin: 0;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 4px 20px rgba(0,0,0,.18);
   }
   .tooltip::after { display: none; }
 
@@ -1120,7 +1130,7 @@ body.embed-mode .module-header { border-radius: 0; }
 
         <!-- Input — always enabled -->
         <form class="chat-form" id="chat-form" onsubmit="event.preventDefault(); sendChat();">
-          <input type="text" id="chat-input" placeholder="Hỏi gì về bước này?" autocomplete="off" maxlength="500">
+          <input type="text" id="chat-input" placeholder="Hỏi nhanh…" autocomplete="off" maxlength="50">
           <button type="submit" id="chat-send" title="Gửi">↑</button>
         </form>
       </div>
@@ -1341,6 +1351,23 @@ function initApp() {
   updateChatState();
 
   goToStep(0);
+  preloadModuleImages();
+}
+
+function preloadModuleImages() {
+  const m = STATE.module;
+  if (!m || !m.steps) return;
+  const seen = new Set();
+  m.steps.forEach(s => {
+    const imgKey = s.img || s.imgKey;
+    const imgPath = m.images?.[imgKey];
+    if (imgPath && !seen.has(imgKey)) {
+      seen.add(imgKey);
+      resolveMediaSrc(imgPath, STATE.moduleId, imgKey, false).then(src => {
+        const img = new Image(); img.src = src;
+      });
+    }
+  });
 }
 
 /* Update chat panel visibility based on whether user has chatted yet */
@@ -1769,8 +1796,16 @@ function renderStep() {
   const imgPath = STATE.module.images?.[imgKey];
   if (imgPath) {
     resolveMediaSrc(imgPath, STATE.moduleId, imgKey, false).then(src => {
-      if (phoneBg.src.indexOf(src) === -1 && !phoneBg.src.endsWith(src)) phoneBg.src = src;
       phoneBg.alt = s.name || '';
+      if (phoneBg.src.indexOf(src) !== -1 || phoneBg.src.endsWith(src)) {
+        phoneBg.style.opacity = '1'; // already correct image
+      } else {
+        phoneBg.style.opacity = '0';
+        const tmp = new Image();
+        tmp.onload = () => { phoneBg.src = src; phoneBg.style.opacity = '1'; };
+        tmp.onerror = () => { phoneBg.src = src; phoneBg.style.opacity = '1'; };
+        tmp.src = src;
+      }
     });
   }
 
