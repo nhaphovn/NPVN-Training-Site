@@ -341,8 +341,7 @@ aside.sidebar {
   white-space: nowrap;
 }
 .dim-overlay {
-  /* z-index thấp hơn hotspot để hotspot nổi bật trên overlay */
-  position: absolute; inset: 0; background: rgba(0,0,0,.55);
+  position: absolute; inset: 0; background: rgba(0,0,0,.38);
   pointer-events: none; transition: opacity .3s;
   z-index: 1;
 }
@@ -362,7 +361,7 @@ aside.sidebar {
 /* 4 dim rects xung quanh hotspot tạo spotlight. Vị trí set bởi JS. */
 .dim-rect {
   position: absolute;
-  background: rgba(20, 20, 30, 0.55);   /* sáng hơn 15% so với 0.65 */
+  background: rgba(20, 20, 30, 0.38);
   pointer-events: none;
   z-index: 3;
 }
@@ -714,10 +713,10 @@ aside.sidebar {
    ============================================================ */
 @media (max-width: 767px) {
   :root {
-    --phone-w: 230px;
-    --screen-w: 216px;
-    --screen-h: 480px;
-    --scale: 0.5538; /* 216/390 */
+    --phone-w: 290px;
+    --screen-w: 276px;
+    --screen-h: 612px;
+    --scale: 0.7077; /* 276/390 */
   }
   body { font-size: 14px; }
   header.top-bar { padding: 8px 12px; gap: 8px; }
@@ -732,8 +731,11 @@ aside.sidebar {
     padding: 12px; gap: 12px;
     padding-bottom: 90px; /* room for fixed nav */
   }
-  .demo-wrap { padding: 12px; position: static; }
-  .phone-frame { height: 500px; border-radius: 32px; padding: 6px; }
+  .demo-wrap {
+    background: transparent; box-shadow: none; border: none;
+    padding: 8px 0; position: static;
+  }
+  .phone-frame { height: 632px; border-radius: 32px; padding: 6px; }
   .phone-notch { width: 80px; height: 18px; }
   .phone-screen { border-radius: 26px; }
   .right-panel { position: static; max-height: none; overflow: visible; }
@@ -1888,8 +1890,8 @@ function renderStep() {
   // Vị trí pixels của hotspot trong phone-container (frame padding 8 đã cộng)
   const hsTopPx = (hs.y - scrollY) * scale + 8;
   const hsBottomPx = (hs.y + hs.h - scrollY) * scale + 8;
-  // Phone frame height match CSS .phone-frame: 770px desktop, 500px mobile
-  const phoneFrameH = window.innerWidth < 768 ? 500 : 770;
+  // Phone frame height match CSS .phone-frame: 770px desktop, 632px mobile
+  const phoneFrameH = window.innerWidth < 768 ? 632 : 770;
   const safeMargin = 12; // khoảng cách giữa hotspot và tooltip
 
   // Flip 'bottom' → 'top' nếu sẽ tràn xuống dưới phone
