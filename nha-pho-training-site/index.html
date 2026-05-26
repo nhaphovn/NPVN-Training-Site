@@ -141,7 +141,7 @@ main {
 }
 .role-tabs::-webkit-scrollbar { display: none; }
 .role-tab {
-  flex: 1; min-width: 150px; padding: 13px 18px;
+  flex: 0 0 auto; padding: 13px 18px;
   background: transparent; border: none; cursor: pointer;
   border-radius: 10px; font-family: inherit; font-size: 13px; font-weight: 600;
   color: var(--text-2); transition: all .15s;
@@ -437,7 +437,7 @@ footer p:last-child { font-size: 11px !important; }
 }
 @media (max-width: 800px) {
   .modules-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-  .role-tab { min-width: 120px; padding: 11px 14px; }
+  .role-tab { padding: 11px 14px; }
 }
 @media (max-width: 600px) {
   .hero { padding: 32px 20px 36px; }
