@@ -208,10 +208,10 @@ export default async function handler(req, res) {
   if (!lastMsg || lastMsg.role !== 'user' || typeof lastMsg.content !== 'string') {
     return json(res, { error: 'bad_message' }, 400);
   }
-  if (lastMsg.content.length > 50) {
+  if (lastMsg.content.length > 500) {
     return json(res, {
       error: 'too_long',
-      message: 'Viết ngắn thôi nha! Tối đa 50 ký tự 😄',
+      message: 'Câu hỏi hơi dài rồi! Tối đa 500 ký tự thôi nhé 😄',
     }, 400);
   }
   if (lastMsg.content.trim().length < 2) {

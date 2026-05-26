@@ -759,13 +759,12 @@ aside.sidebar {
   .pill.active { background: var(--green); color: var(--white); border-color: var(--green); }
   .pill.done { border-color: var(--green); color: var(--green); }
 
-  /* Mobile: tooltip overlaid at bottom of phone graphic */
+  /* Mobile: tooltip overlaid inside phone graphic — position computed by JS smart-flip */
   .tooltip {
     position: absolute !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
-    bottom: 14px !important;
-    top: auto !important; right: auto !important;
+    right: auto !important;
     width: calc(var(--screen-w) - 12px) !important;
     max-width: calc(var(--screen-w) - 12px);
     min-width: 0; margin: 0;
@@ -1130,7 +1129,7 @@ body.embed-mode .module-header { border-radius: 0; }
 
         <!-- Input — always enabled -->
         <form class="chat-form" id="chat-form" onsubmit="event.preventDefault(); sendChat();">
-          <input type="text" id="chat-input" placeholder="Hỏi nhanh…" autocomplete="off" maxlength="50">
+          <input type="text" id="chat-input" placeholder="Hỏi nhanh…" autocomplete="off" maxlength="500">
           <button type="submit" id="chat-send" title="Gửi">↑</button>
         </form>
       </div>
