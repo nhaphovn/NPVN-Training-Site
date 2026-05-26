@@ -133,39 +133,41 @@ main {
 .role-tabs {
   background: var(--white);
   border-radius: 14px; padding: 6px;
-  display: flex; gap: 4px;
-  overflow-x: auto; scrollbar-width: none;
-  margin: 24px 0 28px;
+  display: flex; gap: 4px; flex-wrap: wrap;
+  margin: 20px 0 24px;
   border: 1px solid var(--border);
   box-shadow: 0 1px 2px rgba(0, 0, 0, .03);
 }
-.role-tabs::-webkit-scrollbar { display: none; }
 .role-tab {
-  flex: 0 0 auto; padding: 13px 18px;
+  flex: 0 0 auto; padding: 10px 16px;
   background: transparent; border: none; cursor: pointer;
   border-radius: 10px; font-family: inherit; font-size: 13px; font-weight: 600;
   color: var(--text-2); transition: all .15s;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
   white-space: nowrap;
 }
-.role-tab:hover:not(.active) {
-  color: var(--text);
-}
+.role-tab:hover:not(.active) { color: var(--text); }
 .role-tab.active {
   background: var(--green-bright);
   color: var(--green-darker);
   box-shadow: 0 2px 6px rgba(133, 196, 65, .35);
 }
 .role-tab .badge {
-  background: rgba(255,255,255,.32);
-  color: #fff;
+  background: rgba(255,255,255,.32); color: #fff;
   padding: 2px 8px; border-radius: 10px;
-  font-size: 12px; font-weight: 700;
-  min-width: 22px; text-align: center;
+  font-size: 11px; font-weight: 700; min-width: 20px; text-align: center;
 }
-.role-tab:not(.active) .badge {
-  background: var(--green-soft);
-  color: var(--green-dark);
+.role-tab:not(.active) .badge { background: var(--green-soft); color: var(--green-dark); }
+/* Logo (all) button — icon only */
+.role-tab--logo { padding: 8px 12px; color: var(--green-dark); }
+.role-tab--logo svg { display: block; }
+/* Short labels hidden by default; shown on narrow screens */
+.tab-short { display: none; }
+@media (max-width: 540px) {
+  .role-tab { padding: 8px 11px; font-size: 12px; gap: 5px; }
+  .role-tab--logo { padding: 8px 10px; }
+  .tab-full { display: none; }
+  .tab-short { display: inline; }
 }
 
 /* ============ MODULES GRID ============ */
@@ -437,7 +439,7 @@ footer p:last-child { font-size: 11px !important; }
 }
 @media (max-width: 800px) {
   .modules-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-  .role-tab { padding: 11px 14px; }
+  .role-tab { padding: 10px 14px; }
 }
 @media (max-width: 600px) {
   .hero { padding: 32px 20px 36px; }
@@ -478,8 +480,9 @@ footer p:last-child { font-size: 11px !important; }
   </div>
 
   <div class="role-tabs" id="role-tabs">
-    <button class="role-tab active" data-role="all">
-      Tất cả <span class="badge" id="badge-all">—</span>
+    <button class="role-tab role-tab--logo active" data-role="all" title="Tất cả">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span id="badge-all" style="display:none"></span>
     </button>
     <!-- role tabs injected -->
   </div>
@@ -579,7 +582,7 @@ function renderRoleTabs() {
     const btn = document.createElement('button');
     btn.className = 'role-tab' + (STATE.activeRole === rid ? ' active' : '');
     btn.dataset.role = rid;
-    btn.innerHTML = `${escapeHtml(role.name)} <span class="badge">${count}</span>`;
+    btn.innerHTML = `<span class="tab-full">${escapeHtml(role.name)}</span><span class="tab-short">${escapeHtml(role.short || role.name)}</span> <span class="badge">${count}</span>`;
     btn.addEventListener('click', () => setRole(rid));
     tabs.appendChild(btn);
   }

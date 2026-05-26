@@ -14,6 +14,7 @@
   "roles": {
     "dau_chu": {
       "name": "Đầu chủ",
+      "short": "ĐC",
       "icon": "🏠",
       "modules": [
         "dang_tin",
@@ -26,6 +27,7 @@
     },
     "hoc_vien": {
       "name": "Học viên / Chuyên viên",
+      "short": "HV/CV",
       "icon": "📋",
       "modules": [
         "loc_kho",
@@ -42,6 +44,7 @@
     },
     "quan_ly_phong": {
       "name": "Quản lý phòng",
+      "short": "Q.lý",
       "icon": "👔",
       "modules": [
         "quan_ly_khach",
