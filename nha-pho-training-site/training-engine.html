@@ -142,14 +142,16 @@ header.top-bar {
   position: sticky; top: 0; z-index: 50;
   background: var(--white);
   border-bottom: 1px solid var(--border);
-  padding: 12px 20px; display: flex; align-items: center; gap: 16px;
+  padding: 0 20px; display: flex; align-items: center; gap: 16px;
   box-shadow: 0 1px 0 rgba(0, 77, 46, .04);
   overflow: hidden;
   max-height: 0;
-  transition: max-height .28s ease;
+  transition: max-height .28s ease, padding-top .28s ease, padding-bottom .28s ease;
 }
 header.top-bar.header-visible {
   max-height: 80px;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 /* Subtle green gradient strip on top bar bottom edge */
 header.top-bar::after {
@@ -725,7 +727,8 @@ aside.sidebar {
     --scale: 0.7077; /* 276/390 */
   }
   body { font-size: 14px; }
-  header.top-bar { padding: 8px 12px; gap: 8px; }
+  header.top-bar { gap: 8px; }
+  header.top-bar.header-visible { padding-top: 8px; padding-bottom: 8px; }
   .logo span { display: none; }
   .module-title { font-size: 13px; }
   .module-title small { font-size: 10px; }
@@ -734,12 +737,12 @@ aside.sidebar {
 
   main.grid {
     grid-template-columns: 1fr;
-    padding: 12px; gap: 12px;
+    padding: 0 12px; gap: 8px;
     padding-bottom: 90px; /* room for fixed nav */
   }
   .demo-wrap {
     background: transparent; box-shadow: none; border: none;
-    padding: 8px 0; position: static;
+    padding: 0; position: static;
   }
   .phone-frame { height: 632px; border-radius: 32px; padding: 6px; }
   .phone-notch { width: 80px; height: 18px; }
