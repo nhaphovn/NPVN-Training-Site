@@ -200,7 +200,7 @@ export default async function handler(req, res) {
   // --- Upload to Vercel Blob ---
   try {
     const blob = await put(blobPath, buffer, {
-      access:          'private',
+      access:          'public',
       contentType,
       addRandomSuffix: false,
       allowOverwrite:  true,

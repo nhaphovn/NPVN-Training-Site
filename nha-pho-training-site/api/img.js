@@ -1,7 +1,7 @@
-// api/img.js — Blob image redirect
+// api/img.js — Blob image proxy
 // GET /api/img?path=images/dang_tin/home.jpg
-// Calls head() to get signed downloadUrl, then 302-redirects browser to it.
-// Browser fetches directly from Vercel Blob CDN — avoids server-side fetch 403.
+// Tries public blob URL first (new uploads), falls back to private (legacy).
+// Strips ?download=1 so <img> renders inline instead of triggering download.
 
 import { head } from '@vercel/blob';
 
@@ -31,33 +31,48 @@ export default async function handler(req, res) {
   const storeId = parts[3];
   if (!storeId) return res.status(500).json({ error: 'bad_token_format' });
 
-  const blobUrl = `https://${storeId}.private.blob.vercel-storage.com/${path}`;
-
+  // Try public subdomain first (blobs uploaded with access: 'public'),
+  // fall back to private subdomain (blobs uploaded with access: 'private').
   let meta;
-  try {
-    meta = await head(blobUrl, { token });
-  } catch (e) {
-    const msg = String(e?.message || e);
-    const is404 = /not.?found|404/i.test(msg) || e?.status === 404;
-    if (is404) {
-      return res.status(404).json({
-        error: 'not_found', path,
-        message: `Ảnh '${path}' chưa upload lên Blob`,
-      });
+  for (const subdomain of ['public', 'private']) {
+    const blobUrl = `https://${storeId}.${subdomain}.blob.vercel-storage.com/${path}`;
+    try {
+      meta = await head(blobUrl, { token });
+      break;
+    } catch (e) {
+      const is404 = /not.?found|404/i.test(String(e?.message || e)) || e?.status === 404;
+      if (!is404) {
+        console.error(`[api/img] head() error (${subdomain}):`, e?.message || e);
+        return res.status(502).json({ error: 'blob_error', path, message: String(e?.message || e) });
+      }
+      // 404 on this subdomain → try the other
     }
-    console.error('[api/img] head() failed:', msg);
-    return res.status(502).json({ error: 'blob_error', path, message: msg });
   }
 
-  // downloadUrl: Vercel-signed URL valid for ~60s — redirect browser to it directly.
-  // Server-side fetch(downloadUrl) returns 403 (CDN blocks server proxying of signed URLs).
-  const downloadUrl = meta.downloadUrl || meta.url;
-  if (!downloadUrl) {
-    return res.status(502).json({ error: 'no_download_url', path });
+  if (!meta) {
+    return res.status(404).json({
+      error: 'not_found', path,
+      message: `Ảnh '${path}' chưa upload lên Blob`,
+    });
   }
 
-  // Short cache on redirect: 60s (signed URL expires, so browser must re-validate)
-  res.setHeader('Cache-Control', 'public, max-age=60');
+  // meta.url = direct CDN URL (public blobs: permanent; private blobs: URL is the key)
+  // meta.downloadUrl = same but with ?download=1 (forces Content-Disposition: attachment)
+  // Always prefer meta.url and strip ?download=1 so <img> renders inline.
+  let redirectUrl = meta.url || meta.downloadUrl;
+  if (!redirectUrl) {
+    return res.status(502).json({ error: 'no_url', path });
+  }
+
+  try {
+    const u = new URL(redirectUrl);
+    u.searchParams.delete('download');
+    redirectUrl = u.toString();
+  } catch (_) {}
+
+  // Public blob URLs never expire — cache aggressively.
+  // Private blob URLs are security-by-obscurity — 1h cache is fine.
+  res.setHeader('Cache-Control', 'public, max-age=3600');
   res.setHeader('X-Blob-Path', path);
-  return res.redirect(302, downloadUrl);
+  return res.redirect(302, redirectUrl);
 }
