@@ -142,17 +142,12 @@ header.top-bar {
   position: sticky; top: 0; z-index: 50;
   background: var(--white);
   border-bottom: 1px solid var(--border);
-  padding: 0 20px; display: flex; align-items: center; gap: 16px;
+  padding: 12px 20px; display: flex; align-items: center; gap: 16px;
   box-shadow: 0 1px 0 rgba(0, 77, 46, .04);
-  overflow: hidden;
-  max-height: 0;
   transition: max-height .28s ease, padding-top .28s ease, padding-bottom .28s ease;
 }
-header.top-bar.header-visible {
-  max-height: 80px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-}
+/* header-visible class không cần thiết trên desktop — header luôn hiển thị */
+header.top-bar.header-visible { /* no-op on desktop, used on mobile */ }
 /* Subtle green gradient strip on top bar bottom edge */
 header.top-bar::after {
   content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
@@ -727,8 +722,19 @@ aside.sidebar {
     --scale: 0.7077; /* 276/390 */
   }
   body { font-size: 14px; }
-  header.top-bar { gap: 8px; }
-  header.top-bar.header-visible { padding-top: 8px; padding-bottom: 8px; }
+  /* Mobile: header ẩn mặc định, hiện khi scroll lên */
+  header.top-bar {
+    gap: 8px;
+    overflow: hidden;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  header.top-bar.header-visible {
+    max-height: 60px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
   .logo span { display: none; }
   .module-title { font-size: 13px; }
   .module-title small { font-size: 10px; }
@@ -1526,25 +1532,31 @@ async function resolveMediaSrc(path, moduleId, mediaKey, isVideo) {
 }
 
 function loadMediaFromIDB(key) {
-  return new Promise((resolve) => {
-    if (!window.indexedDB) return resolve(null);
-    const req = indexedDB.open('np_admin_media', 1);
-    req.onupgradeneeded = (e) => {
-      const db = e.target.result;
-      if (!db.objectStoreNames.contains('media')) db.createObjectStore('media');
-    };
-    req.onsuccess = (e) => {
-      const db = e.target.result;
-      if (!db.objectStoreNames.contains('media')) { db.close(); return resolve(null); }
-      try {
-        const tx = db.transaction(['media'], 'readonly');
-        const store = tx.objectStore('media');
-        const getReq = store.get(key);
-        getReq.onsuccess = () => { db.close(); resolve(getReq.result || null); };
-        getReq.onerror = () => { db.close(); resolve(null); };
-      } catch (err) { db.close(); resolve(null); }
-    };
-    req.onerror = () => resolve(null);
+  if (!window.indexedDB) return Promise.resolve(null);
+  // Try video store first (np_admin_media), then image store (np_admin_images)
+  function readFromDb(dbName, storeName) {
+    return new Promise((resolve) => {
+      const req = indexedDB.open(dbName, 1);
+      req.onupgradeneeded = (e) => {
+        const db = e.target.result;
+        if (!db.objectStoreNames.contains(storeName)) db.createObjectStore(storeName);
+      };
+      req.onsuccess = (e) => {
+        const db = e.target.result;
+        if (!db.objectStoreNames.contains(storeName)) { db.close(); return resolve(null); }
+        try {
+          const tx = db.transaction([storeName], 'readonly');
+          const getReq = tx.objectStore(storeName).get(key);
+          getReq.onsuccess = () => { db.close(); resolve(getReq.result || null); };
+          getReq.onerror = () => { db.close(); resolve(null); };
+        } catch (err) { db.close(); resolve(null); }
+      };
+      req.onerror = () => resolve(null);
+    });
+  }
+  return readFromDb('np_admin_media', 'media').then(blob => {
+    if (blob) return blob;
+    return readFromDb('np_admin_images', 'images');
   });
 }
 
@@ -2147,13 +2159,23 @@ function escapeHtml(str) {
   } catch(e) { /* auth widget optional */ }
 })();
 
-// Auto-hide header: hidden on load, reappear on scroll-up
+// Auto-hide header: chỉ áp dụng trên mobile (<768px)
+// Desktop: header luôn hiển thị (CSS đã xử lý)
 (function() {
   const hdr = document.querySelector('header.top-bar');
   if (!hdr) return;
+
+  function isMobile() { return window.innerWidth < 768; }
+
+  // Mobile: show header briefly on load then hide after first scroll-down
+  if (isMobile()) {
+    hdr.classList.add('header-visible');
+  }
+
   let lastY = 0;
   let ticking = false;
   window.addEventListener('scroll', function() {
+    if (!isMobile()) return; // desktop: nothing to do
     if (ticking) return;
     ticking = true;
     requestAnimationFrame(function() {
@@ -2166,6 +2188,11 @@ function escapeHtml(str) {
       }
       ticking = false;
     });
+  }, { passive: true });
+
+  // Re-check on resize (e.g. rotate phone)
+  window.addEventListener('resize', function() {
+    if (!isMobile()) hdr.classList.remove('header-visible'); // desktop: class không cần thiết
   }, { passive: true });
 })();
 </script>

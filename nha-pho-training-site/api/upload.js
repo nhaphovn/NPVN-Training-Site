@@ -42,7 +42,9 @@ function setCors(res) {
 function sniffImageType(buf) {
   if (buf[0] === 0x89 && buf[1] === 0x50) return 'image/png';
   if (buf[0] === 0xFF && buf[1] === 0xD8) return 'image/jpeg';
-  if (buf[0] === 0x52 && buf[1] === 0x49) return 'image/webp';
+  // WebP: RIFF....WEBP — must check bytes 8-11, not just first 2 (RIFF is also used by AVI/WAV)
+  if (buf.length >= 12 && buf[0]===0x52 && buf[1]===0x49 && buf[2]===0x46 && buf[3]===0x46
+      && buf[8]===0x57 && buf[9]===0x45 && buf[10]===0x42 && buf[11]===0x50) return 'image/webp';
   return null;
 }
 

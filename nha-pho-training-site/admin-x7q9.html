@@ -670,6 +670,42 @@ button, input, textarea, select { font-family: inherit; font-size: inherit; }
 .step-img-hint { font-size: 11px; color: var(--text-3); margin-top: 4px; }
 .step-img-hint code { font-size: 10px; background: #f0f4f1; padding: 1px 4px; border-radius: 3px; }
 
+/* ============ MODULE ICON UPLOAD ============ */
+.icon-upload-zone {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 12px; background: #fafbfc; border: 1px solid var(--border);
+  border-radius: 8px; margin-top: 6px;
+}
+.icon-preview {
+  width: 64px; height: 64px; flex-shrink: 0;
+  border: 1.5px solid var(--border-2); border-radius: 10px;
+  background: var(--green-tint); display: grid; place-items: center;
+  position: relative; overflow: hidden; cursor: pointer;
+  transition: border-color .15s;
+}
+.icon-preview:hover { border-color: var(--green); box-shadow: 0 0 0 3px rgba(0,123,72,.1); }
+.icon-preview img { width: 100%; height: 100%; object-fit: cover; border-radius: 9px; }
+.icon-preview .placeholder { font-size: 26px; opacity: .5; pointer-events: none; }
+.icon-preview .uploaded-badge {
+  position: absolute; top: 3px; right: 3px;
+  width: 12px; height: 12px; background: var(--green);
+  border-radius: 50%; border: 1.5px solid #fff; z-index: 2;
+}
+.icon-upload-info { flex: 1; min-width: 0; }
+.icon-upload-btn {
+  height: 28px; padding: 0 12px; border-radius: 6px; border: 1.5px solid var(--border-2);
+  background: var(--white); cursor: pointer; font-size: 12px; font-weight: 500;
+  color: var(--text-2); transition: all .12s; font-family: inherit;
+}
+.icon-upload-btn:hover { border-color: var(--green); color: var(--green-dark); background: var(--green-light); }
+.icon-upload-hint { font-size: 11px; color: var(--text-3); margin-top: 5px; line-height: 1.4; }
+.icon-status { font-size: 11px; margin-top: 4px; min-height: 14px; }
+.icon-status.ok { color: var(--green-dark); }
+.icon-status.warn { color: var(--orange); }
+.icon-status.err { color: var(--red); }
+.icon-upload-zone.dragover { border-color: var(--green); background: var(--green-light); }
+.icon-upload-zone.dragover .icon-preview { border-color: var(--green); }
+
 /* Drag-over highlight */
 .modal-bg .img-upload-row.dragover .img-thumb {
   border-color: var(--green); background: var(--green-light);
@@ -956,6 +992,20 @@ button, input, textarea, select { font-family: inherit; font-size: inherit; }
         <div class="form-row">
           <label>Icon (emoji)</label>
           <input type="text" id="mm-icon" maxlength="4">
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Ảnh icon (hiển thị trang chủ)</label>
+        <div class="icon-upload-zone" id="mm-icon-zone">
+          <div class="icon-preview" id="mm-icon-preview" title="Bấm hoặc kéo thả ảnh icon">
+            <span class="placeholder">🖼</span>
+          </div>
+          <div class="icon-upload-info">
+            <button type="button" class="icon-upload-btn" id="mm-icon-upload-btn">Chọn ảnh icon</button>
+            <input type="file" id="mm-icon-file" accept="image/*" style="display:none">
+            <div class="icon-upload-hint">128×128px, JPG/PNG/WebP<br>Sẽ hiển thị trên trang chủ thay thế emoji</div>
+            <div class="icon-status" id="mm-icon-status"></div>
+          </div>
         </div>
       </div>
       <div class="form-row">
@@ -2497,6 +2547,52 @@ function openModuleModal(editing) {
   $('mm-featured').checked = editing ? (STATE.data.featured || []).includes(STATE.moduleId) : false;
   $('mm-delete').hidden = !editing;
   renderImagesEditor(m.images || {});
+
+  // Icon image
+  const iconZone = $('mm-icon-zone');
+  const iconPreview = $('mm-icon-preview');
+  const iconStatus = $('mm-icon-status');
+  const iconFile = $('mm-icon-file');
+  const iconBtn = $('mm-icon-upload-btn');
+  if (iconZone && iconPreview) {
+    // Reset state
+    iconZone.dataset.iconImg = m.iconImg || '';
+    iconStatus.className = 'icon-status';
+    iconStatus.textContent = '';
+    // Show existing icon
+    if (m.iconImg && m.iconImg.startsWith('/')) {
+      iconPreview.innerHTML = `<img src="${escapeHtml(m.iconImg)}" alt="icon"><div class="uploaded-badge"></div>`;
+      iconStatus.className = 'icon-status ok';
+      iconStatus.textContent = '✓ Đã có ảnh icon';
+    } else if (m.iconImg && m.iconImg.startsWith('assets/')) {
+      iconPreview.innerHTML = `<img src="${escapeHtml(m.iconImg)}" alt="icon">`;
+      iconStatus.className = 'icon-status warn';
+      iconStatus.textContent = '⚠ Đang dùng asset local — upload ảnh thật để thay';
+    } else {
+      iconPreview.innerHTML = '<span class="placeholder">🖼</span>';
+    }
+    // Bind events (clone to remove old listeners)
+    const newBtn = iconBtn.cloneNode(true);
+    iconBtn.parentNode.replaceChild(newBtn, iconBtn);
+    const newFile = iconFile.cloneNode(true);
+    iconFile.parentNode.replaceChild(newFile, iconFile);
+    newBtn.addEventListener('click', () => newFile.click());
+    newFile.addEventListener('change', async (e) => {
+      const f = e.target.files[0];
+      if (f) await handleIconUpload(f);
+      newFile.value = '';
+    });
+    iconPreview.addEventListener('click', () => document.getElementById('mm-icon-file')?.click(), { once: true });
+    // Drag-drop on zone
+    iconZone.ondragover = (e) => { e.preventDefault(); iconZone.classList.add('dragover'); };
+    iconZone.ondragleave = () => iconZone.classList.remove('dragover');
+    iconZone.ondrop = async (e) => {
+      e.preventDefault(); iconZone.classList.remove('dragover');
+      const f = e.dataTransfer.files[0];
+      if (f && f.type.startsWith('image/')) await handleIconUpload(f);
+    };
+  }
+
   $('modal-module').hidden = false;
 }
 
@@ -2663,7 +2759,15 @@ async function handleMediaUpload(file, row, moduleId) {
       const ext = (file.name.split('.').pop() || 'mp4').toLowerCase();
       const validExt = ['mp4', 'webm', 'mov', 'm4v'].includes(ext) ? ext : 'mp4';
       pathInput.value = `/videos/${mid}/${key}.${validExt}`;
-      toast(`✓ Upload video ${key} (${Math.round(file.size/1024/1024*10)/10}MB)`, 'success');
+      toast(`✓ Lưu local video ${key} — đang upload Blob...`, '');
+      // Try Vercel Blob upload
+      try {
+        const result = await uploadToBlob(file, mid, key, true);
+        pathInput.value = result.proxyUrl || pathInput.value;
+        toast(`✓ Video ${key} (${Math.round(file.size/1024/1024*10)/10}MB) đã lên Blob ✓`, 'success');
+      } catch (blobErr) {
+        toast(`⚠ Video lưu local (${blobErr.message.slice(0,60)})`, '');
+      }
     } else {
       // Image — resize + convert
       const { blob, width, height } = await processImageFile(file, 390);
@@ -2675,7 +2779,15 @@ async function handleMediaUpload(file, row, moduleId) {
       if (!/\.(jpg|jpeg|png|webp)$/i.test(pathInput.value)) {
         pathInput.value = `/images/${mid}/${key}.jpg`;
       }
-      toast(`✓ Upload ảnh ${key} (${width}×${height}px, ${Math.round(blob.size/1024)}KB)`, 'success');
+      toast(`✓ Lưu local ảnh ${key} — đang upload Blob...`, '');
+      // Try Vercel Blob upload
+      try {
+        const result = await uploadToBlob(blob, mid, key, false);
+        pathInput.value = result.proxyUrl || pathInput.value;
+        toast(`✓ Ảnh ${key} (${width}×${height}px) đã lên Blob ✓`, 'success');
+      } catch (blobErr) {
+        toast(`⚠ Ảnh lưu local (${blobErr.message.slice(0,60)})`, '');
+      }
     }
   } catch (e) {
     thumb.innerHTML = '<span class="placeholder">📷</span>';
@@ -2685,6 +2797,136 @@ async function handleMediaUpload(file, row, moduleId) {
 
 // Backward-compat alias
 const handleImageUpload = handleMediaUpload;
+
+/* ============================================================
+   ICON IMAGE PROCESSING — center-crop to 128×128 square
+   ============================================================ */
+async function processIconFile(file) {
+  if (!file.type.startsWith('image/')) throw new Error('File phải là ảnh');
+  const dataUrl = await new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(r.result);
+    r.onerror = () => reject(r.error);
+    r.readAsDataURL(file);
+  });
+  const img = await new Promise((resolve, reject) => {
+    const i = new Image();
+    i.onload = () => resolve(i);
+    i.onerror = () => reject(new Error('Ảnh hỏng'));
+    i.src = dataUrl;
+  });
+  const SIZE = 128;
+  const canvas = document.createElement('canvas');
+  canvas.width = SIZE; canvas.height = SIZE;
+  const ctx = canvas.getContext('2d');
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
+  // Center-crop: fit largest square in center
+  const sw = img.naturalWidth;
+  const sh = img.naturalHeight;
+  const side = Math.min(sw, sh);
+  const sx = Math.floor((sw - side) / 2);
+  const sy = Math.floor((sh - side) / 2);
+  ctx.drawImage(img, sx, sy, side, side, 0, 0, SIZE, SIZE);
+  const blob = await new Promise((resolve, reject) => {
+    canvas.toBlob((b) => b ? resolve(b) : reject(new Error('Convert failed')), 'image/jpeg', 0.90);
+  });
+  return blob;
+}
+
+async function handleIconUpload(file) {
+  const preview = document.getElementById('mm-icon-preview');
+  const status = document.getElementById('mm-icon-status');
+  if (!preview || !status) return;
+
+  const mid = mmEditingId || (document.getElementById('mm-id')?.value.trim()) || '';
+  if (!mid) {
+    status.className = 'icon-status err';
+    status.textContent = 'Nhập ID module trước khi upload icon';
+    return;
+  }
+
+  // Loading state
+  preview.innerHTML = '<span class="placeholder">⏳</span>';
+  status.className = 'icon-status';
+  status.textContent = 'Đang xử lý ảnh...';
+
+  let iconBlob;
+  try {
+    iconBlob = await processIconFile(file);
+  } catch (e) {
+    preview.innerHTML = '<span class="placeholder">🖼</span>';
+    status.className = 'icon-status err';
+    status.textContent = 'Lỗi xử lý: ' + e.message;
+    return;
+  }
+
+  // Show preview locally first
+  const localUrl = URL.createObjectURL(iconBlob);
+  preview.innerHTML = `<img src="${localUrl}" alt="icon">`;
+
+  // Try Vercel Blob upload
+  status.textContent = 'Đang upload lên Blob...';
+  try {
+    const result = await uploadToBlob(iconBlob, mid, 'icon', false);
+    // Store iconImg in module state
+    if (STATE.module) STATE.module.iconImg = result.proxyUrl;
+    // Also update the hidden field we'll read in saveModuleModal
+    document.getElementById('mm-icon-zone').dataset.iconImg = result.proxyUrl;
+    preview.innerHTML = `<img src="${localUrl}" alt="icon"><div class="uploaded-badge"></div>`;
+    status.className = 'icon-status ok';
+    status.textContent = '✓ Đã upload icon lên Blob';
+    setDirty(true);
+  } catch (blobErr) {
+    // Keep local blob URL as a placeholder path — will be included in ZIP export
+    const localPath = `/api/img?path=images/${mid}/icon.jpg`;
+    document.getElementById('mm-icon-zone').dataset.iconImg = localPath;
+    status.className = 'icon-status warn';
+    status.textContent = '⚠ Lưu local (' + blobErr.message.slice(0, 60) + ')';
+  }
+}
+
+/* ============================================================
+   VERCEL BLOB UPLOAD
+   POST /api/upload?module=<id>&key=<key>
+   Returns { ok, proxyUrl } or throws with human-readable message.
+   401 → ADMIN_UPLOAD_TOKEN sai/chưa set đúng phía client
+   500 not_configured → BLOB_READ_WRITE_TOKEN chưa set trên Vercel
+   ============================================================ */
+const BLOB_TOKEN_KEY = 'np_upload_token';
+
+function getBlobToken() {
+  return localStorage.getItem(BLOB_TOKEN_KEY) || '';
+}
+
+async function uploadToBlob(blobData, moduleId, key, isVideo) {
+  const ct = isVideo ? (blobData.type || 'video/mp4') : 'image/jpeg';
+  const url = `/api/upload?module=${encodeURIComponent(moduleId)}&key=${encodeURIComponent(key)}`;
+  const headers = { 'Content-Type': ct };
+  const token = getBlobToken();
+  if (token) headers['x-admin-token'] = token;
+
+  let resp;
+  try {
+    resp = await fetch(url, { method: 'POST', headers, body: blobData });
+  } catch (e) {
+    throw new Error('Mạng lỗi: ' + e.message);
+  }
+
+  let data = {};
+  try { data = await resp.json(); } catch (_) {}
+
+  if (resp.status === 401) {
+    throw new Error('401: Token sai — kiểm tra ADMIN_UPLOAD_TOKEN hoặc để trống env var');
+  }
+  if (resp.status === 500 && data.error === 'not_configured') {
+    throw new Error('500: BLOB_READ_WRITE_TOKEN chưa set trên Vercel — dùng ZIP export thay thế');
+  }
+  if (!resp.ok) {
+    throw new Error(`${resp.status}: ${data.message || data.error || 'Upload thất bại'}`);
+  }
+  return data; // { ok, proxyUrl, url, pathname, ... }
+}
 
 function readImagesEditor() {
   const out = {};
@@ -2701,10 +2943,12 @@ function saveModuleModal() {
   const id = $('mm-id').value.trim();
   if (!id) return toast('Cần nhập ID', 'error');
   if (!/^[a-z0-9_]+$/.test(id)) return toast('ID chỉ dùng a-z, 0-9, _', 'error');
+  const iconImgVal = ($('mm-icon-zone')?.dataset.iconImg || '').trim();
   const newData = {
     name: $('mm-name').value.trim(),
     role: $('mm-role').value.trim(),
     icon: $('mm-icon').value.trim() || '📘',
+    ...(iconImgVal ? { iconImg: iconImgVal } : {}),
     description: $('mm-desc').value.trim(),
     images: readImagesEditor(),
   };
