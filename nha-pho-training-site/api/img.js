@@ -1,10 +1,11 @@
-// api/img.js — Private Blob image proxy
+// api/img.js — Blob image redirect
 // GET /api/img?path=images/dang_tin/home.jpg
-// Uses @vercel/blob head() to get a signed downloadUrl, then streams the bytes to client.
+// Calls head() to get signed downloadUrl, then 302-redirects browser to it.
+// Browser fetches directly from Vercel Blob CDN — avoids server-side fetch 403.
 
 import { head } from '@vercel/blob';
 
-export const config = { api: { responseLimit: '10mb' } };
+export const config = { api: { responseLimit: false } };
 
 function setCors(res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -25,14 +26,13 @@ export default async function handler(req, res) {
   const token = process.env.BLOB_READ_WRITE_TOKEN;
   if (!token) return res.status(500).json({ error: 'not_configured', message: 'BLOB_READ_WRITE_TOKEN chưa set' });
 
-  // Derive store ID from token — preserve original case (Vercel Blob URLs are case-sensitive)
+  // Derive store ID from token (format: vercel_blob_rw_<storeId>_<secret>)
   const parts = token.split('_');
   const storeId = parts[3];
   if (!storeId) return res.status(500).json({ error: 'bad_token_format' });
 
   const blobUrl = `https://${storeId}.private.blob.vercel-storage.com/${path}`;
 
-  // Use SDK head() — handles auth correctly and returns a signed downloadUrl
   let meta;
   try {
     meta = await head(blobUrl, { token });
@@ -41,7 +41,7 @@ export default async function handler(req, res) {
     const is404 = /not.?found|404/i.test(msg) || e?.status === 404;
     if (is404) {
       return res.status(404).json({
-        error: 'blob_error', status: 404, path,
+        error: 'not_found', path,
         message: `Ảnh '${path}' chưa upload lên Blob`,
       });
     }
@@ -49,26 +49,15 @@ export default async function handler(req, res) {
     return res.status(502).json({ error: 'blob_error', path, message: msg });
   }
 
-  // Fetch via signed downloadUrl (no auth header needed)
-  let r;
-  try {
-    r = await fetch(meta.downloadUrl);
-  } catch (e) {
-    return res.status(502).json({ error: 'fetch_failed', message: e.message });
+  // downloadUrl: Vercel-signed URL valid for ~60s — redirect browser to it directly.
+  // Server-side fetch(downloadUrl) returns 403 (CDN blocks server proxying of signed URLs).
+  const downloadUrl = meta.downloadUrl || meta.url;
+  if (!downloadUrl) {
+    return res.status(502).json({ error: 'no_download_url', path });
   }
 
-  if (!r.ok) {
-    return res.status(r.status).json({
-      error: 'fetch_failed', path,
-      message: `Download URL returned ${r.status}`,
-    });
-  }
-
-  const buffer = Buffer.from(await r.arrayBuffer());
-  const ct = r.headers.get('content-type') || meta.contentType || 'image/jpeg';
-
-  res.setHeader('Content-Type', ct);
-  res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+  // Short cache on redirect: 60s (signed URL expires, so browser must re-validate)
+  res.setHeader('Cache-Control', 'public, max-age=60');
   res.setHeader('X-Blob-Path', path);
-  res.send(buffer);
+  return res.redirect(302, downloadUrl);
 }
