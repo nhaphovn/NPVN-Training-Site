@@ -201,6 +201,7 @@ export default async function handler(req, res) {
       access:          'private',
       contentType,
       addRandomSuffix: false,
+      allowOverwrite:  true,
     });
 
     const resolvedModule = moduleId || blobPath.split('/')[1];
