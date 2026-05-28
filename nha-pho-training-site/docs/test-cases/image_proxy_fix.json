@@ -1,0 +1,237 @@
+{
+  "test_plan_id": "image_proxy_fix",
+  "version": "1.0",
+  "created": "2026-05-27",
+  "created_by": "qa-reviewer",
+  "production_url": "https://npvn-training-site.vercel.app",
+  "feature": "api/img.js — image proxy for Vercel Blob (private + public)",
+  "gate": "Gate 2 — must pass before deploy",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "title": "API endpoint /api/img returns an image response, not JSON and not a redirect to an inaccessible URL",
+      "type": "api",
+      "severity": "critical",
+      "tags": ["module:api_img", "phase:post-fix"],
+      "preconditions": [
+        "Fix is deployed to the target environment (staging or production)",
+        "BLOB_READ_WRITE_TOKEN is set in Vercel environment variables",
+        "At least one image exists on Blob: images/dang_tin/home.jpg"
+      ],
+      "steps": [
+        "Open browser DevTools > Network tab",
+        "Navigate to https://npvn-training-site.vercel.app/training-engine.html?module=dang_tin",
+        "Wait for step 1 to render",
+        "In the Network tab, find the request matching /api/img?path=images/dang_tin/home.jpg",
+        "Inspect the final response (follow all redirects to the last response)"
+      ],
+      "expected": "The final response has HTTP status 200. The Content-Type header is 'image/jpeg' (or 'image/png'/'image/webp' if applicable). The response body is binary image bytes — no JSON payload visible. The <img> element in the phone mockup displays the screenshot (not a broken image icon).",
+      "actual": null,
+      "status": "pending",
+      "notes": "Root cause: current code does 302 to private blob URL which browser cannot access without Bearer token. After fix, private blobs must be proxied server-side."
+    },
+    {
+      "id": "TC-02",
+      "title": "Image renders visually inside training-engine.html phone mockup for step 1 of dang_tin",
+      "type": "ui",
+      "severity": "critical",
+      "tags": ["module:training_engine", "phase:post-fix"],
+      "preconditions": [
+        "Fix is deployed",
+        "BLOB_READ_WRITE_TOKEN is set",
+        "images/dang_tin/home.jpg is on Blob"
+      ],
+      "steps": [
+        "Open Chrome, navigate to https://npvn-training-site.vercel.app/training-engine.html?module=dang_tin",
+        "Wait up to 5 seconds for the phone mockup to load",
+        "Observe the phone screen area inside the mockup frame"
+      ],
+      "expected": "The phone screen shows a real screenshot of the Nha Pho app home screen. No broken-image icon (torn page symbol) is visible. The hotspot overlay (green pulsing rectangle) is positioned on top of the visible screenshot.",
+      "actual": null,
+      "status": "pending",
+      "notes": "Visual pass criterion: screenshot is recognisable, not a grey/white blank or broken-image icon. Hotspot overlay position correctness is out of scope for this test case."
+    },
+    {
+      "id": "TC-03",
+      "title": "Public blob: /api/img issues 302 redirect to public CDN URL that browser can access without auth",
+      "type": "api",
+      "severity": "high",
+      "tags": ["module:api_img", "phase:post-fix", "blob:public"],
+      "preconditions": [
+        "Fix is deployed",
+        "BLOB_READ_WRITE_TOKEN is set",
+        "An image has been uploaded with access: 'public' (new upload path via api/upload.js). Confirm by checking blob pathname on public subdomain."
+      ],
+      "steps": [
+        "Using curl with redirect following disabled: curl -I 'https://npvn-training-site.vercel.app/api/img?path=<public_blob_path>'",
+        "Note the HTTP status code and Location header value",
+        "Separately, perform a GET to the Location URL without any Authorization header"
+      ],
+      "expected": "Step 1 response: HTTP 302, Location header points to a URL on *.public.blob.vercel-storage.com (public CDN) with no auth token in URL. Step 2 response: HTTP 200 from the CDN URL with Content-Type image/*. This confirms public blobs do not require auth and the redirect is safe to follow.",
+      "actual": null,
+      "status": "pending",
+      "notes": "If no public blob exists yet, upload one via admin panel first using api/upload.js (which sets access: 'public'). Public blob path format: images/<module>/<key>.jpg on public subdomain."
+    },
+    {
+      "id": "TC-04",
+      "title": "Private blob: /api/img proxies image bytes server-side with Bearer auth — does NOT redirect to private URL",
+      "type": "api",
+      "severity": "critical",
+      "tags": ["module:api_img", "phase:post-fix", "blob:private"],
+      "preconditions": [
+        "Fix is deployed",
+        "BLOB_READ_WRITE_TOKEN is set",
+        "A known legacy private blob exists (e.g., images/dang_tin/home.jpg uploaded before public access change). Confirm it is on private subdomain by checking that HEAD on public subdomain returns 404."
+      ],
+      "steps": [
+        "Run: curl -v 'https://npvn-training-site.vercel.app/api/img?path=images/dang_tin/home.jpg' -o /dev/null",
+        "Observe all HTTP transactions in verbose output",
+        "Check final HTTP status, Content-Type header, Cache-Control header",
+        "Confirm no redirect step goes to a *.private.blob.vercel-storage.com URL"
+      ],
+      "expected": "Single HTTP 200 response from npvn-training-site.vercel.app (no redirect to private blob domain). Content-Type: image/jpeg. Cache-Control: public, max-age=86400. Response body is non-zero binary data (image bytes). No 302 to private subdomain at any step in the redirect chain.",
+      "actual": null,
+      "status": "pending",
+      "notes": "This is the primary regression test for the root cause fix. If the response is a 302 to *.private.blob.vercel-storage.com, the fix has NOT been applied or is not working."
+    },
+    {
+      "id": "TC-05",
+      "title": "Path traversal attempt returns HTTP 400",
+      "type": "security",
+      "severity": "critical",
+      "tags": ["module:api_img", "phase:post-fix", "security:path-traversal"],
+      "preconditions": [
+        "Fix is deployed",
+        "BLOB_READ_WRITE_TOKEN is set (or not — this check runs before token lookup)"
+      ],
+      "steps": [
+        "Send: GET /api/img?path=../../etc/passwd",
+        "Send: GET /api/img?path=../images/dang_tin/home.jpg",
+        "Send: GET /api/img?path=/images/dang_tin/home.jpg  (starts with /)",
+        "Send: GET /api/img?path=images%2F..%2F..%2Fetc%2Fpasswd  (URL-encoded ..)"
+      ],
+      "expected": "All four requests return HTTP 400 with JSON body { \"error\": \"invalid_path\" }. No image bytes are returned. No 500 error. The URL-encoded variant (step 4) should also be rejected — verify that the validation handles both raw and decoded forms.",
+      "actual": null,
+      "status": "pending",
+      "notes": "Current code checks path.includes('..') and path.startsWith('/'). Step 4 tests whether URL-decoded input is also validated — express/Node typically decodes query params before the handler sees them, so encoded '..' should also be caught. If step 4 returns 200 or 404 rather than 400, flag as HIGH severity finding."
+    },
+    {
+      "id": "TC-06",
+      "title": "Path not found on Blob returns HTTP 404 with JSON error body",
+      "type": "api",
+      "severity": "high",
+      "tags": ["module:api_img", "phase:post-fix"],
+      "preconditions": [
+        "Fix is deployed",
+        "BLOB_READ_WRITE_TOKEN is set",
+        "The path images/dang_tin/does_not_exist_xyz.jpg does NOT exist on Blob (verify this)"
+      ],
+      "steps": [
+        "Send: GET /api/img?path=images/dang_tin/does_not_exist_xyz.jpg",
+        "Inspect HTTP status code",
+        "Inspect response body"
+      ],
+      "expected": "HTTP 404. Response body is JSON: { \"error\": \"not_found\", \"path\": \"images/dang_tin/does_not_exist_xyz.jpg\", \"message\": \"...\" }. Content-Type of the error response is application/json. No HTML error page. No 500.",
+      "actual": null,
+      "status": "pending",
+      "notes": "Friendly 404 JSON is required so the front-end (or a future admin panel) can surface a useful error message instead of a generic network error."
+    },
+    {
+      "id": "TC-07",
+      "title": "Cache-Control header is 'public, max-age=86400' on a successful image response",
+      "type": "api",
+      "severity": "high",
+      "tags": ["module:api_img", "phase:post-fix", "headers"],
+      "preconditions": [
+        "Fix is deployed",
+        "A valid image path exists on Blob (e.g., images/dang_tin/home.jpg)"
+      ],
+      "steps": [
+        "Send: curl -I 'https://npvn-training-site.vercel.app/api/img?path=images/dang_tin/home.jpg'",
+        "For a private blob (proxied response): inspect Cache-Control header in the 200 response",
+        "For a public blob (302 redirect): inspect Cache-Control header on the /api/img 302 response"
+      ],
+      "expected": "Private blob (proxied): Cache-Control header value is exactly 'public, max-age=86400'. Public blob (redirect): Cache-Control on the 302 may be 'public, max-age=3600' (current code) — note the value; the spec requirement from the bug context is max-age=86400. Flag discrepancy between public and private if values differ significantly.",
+      "actual": null,
+      "status": "pending",
+      "notes": "The proposed fix code sets Cache-Control: public, max-age=86400. The current code for public (redirect) sets max-age=3600. If Tech Lead confirms both should be 86400, update expectation accordingly. As written, the test verifies the private proxy path matches the proposed fix spec."
+    },
+    {
+      "id": "TC-08",
+      "title": "Content-Type header is image/jpeg (or image/*) on a successful response — NOT application/json",
+      "type": "api",
+      "severity": "critical",
+      "tags": ["module:api_img", "phase:post-fix", "headers"],
+      "preconditions": [
+        "Fix is deployed",
+        "Valid JPEG image exists on Blob: images/dang_tin/home.jpg",
+        "Valid JPEG image exists on Blob: images/loc_kho/home.jpg"
+      ],
+      "steps": [
+        "Send: curl -I 'https://npvn-training-site.vercel.app/api/img?path=images/dang_tin/home.jpg'",
+        "Check Content-Type header on the final 200 response",
+        "Repeat for images/loc_kho/home.jpg",
+        "Repeat for images/bo_suu_tap/b01_list.jpg"
+      ],
+      "expected": "All three requests return a final 200 response where Content-Type is 'image/jpeg'. Value must NOT be 'application/json', 'text/html', or 'application/octet-stream'. The header must be present — absence of Content-Type is also a failure.",
+      "actual": null,
+      "status": "pending",
+      "notes": "The proposed fix derives Content-Type from the upstream fetch response header. If upstream does not return Content-Type, the fix defaults to 'image/jpeg'. Both paths are acceptable. If a PNG is stored instead of JPEG, expect 'image/png'."
+    },
+    {
+      "id": "TC-09",
+      "title": "When BLOB_READ_WRITE_TOKEN is not set, /api/img returns HTTP 500 immediately — no hang",
+      "type": "api",
+      "severity": "high",
+      "tags": ["module:api_img", "phase:post-fix", "config"],
+      "preconditions": [
+        "A local or staging environment where BLOB_READ_WRITE_TOKEN is intentionally unset or removed",
+        "The fix code is deployed to this environment"
+      ],
+      "steps": [
+        "Ensure BLOB_READ_WRITE_TOKEN is not set in the environment (remove from .env or Vercel env vars for the test environment)",
+        "Send: GET /api/img?path=images/dang_tin/home.jpg",
+        "Measure time to first byte — should be under 2 seconds",
+        "Inspect HTTP status and response body"
+      ],
+      "expected": "HTTP 500 within 2 seconds. Response body is JSON: { \"error\": \"not_configured\", \"message\": \"BLOB_READ_WRITE_TOKEN chưa set\" }. The function does NOT hang or time out at 30s. No unhandled exception in Vercel function logs.",
+      "actual": null,
+      "status": "pending",
+      "notes": "This test cannot be run against production without removing the token. Use a separate staging deployment or Vercel preview with the env var deleted. The current code already has this guard — the test verifies it is preserved after the fix is applied."
+    },
+    {
+      "id": "TC-10",
+      "title": "All three live content modules (dang_tin, loc_kho, bo_suu_tap) display images without any broken image",
+      "type": "ui",
+      "severity": "critical",
+      "tags": ["module:training_engine", "phase:post-fix", "e2e"],
+      "preconditions": [
+        "Fix is deployed",
+        "BLOB_READ_WRITE_TOKEN is set",
+        "All 19 image paths registered in modules.json for the three modules are present on Blob",
+        "dang_tin: images/dang_tin/home.jpg, images/dang_tin/form.jpg (2 images)",
+        "loc_kho: images/loc_kho/home.jpg, images/loc_kho/b02.jpg, images/loc_kho/b04.jpg, images/loc_kho/b06a.jpg, images/loc_kho/b06s.jpg, images/loc_kho/b07.jpg, images/loc_kho/b08.jpg (7 images)",
+        "bo_suu_tap: images/bo_suu_tap/b01_list.jpg, images/bo_suu_tap/b01_feed.jpg, images/bo_suu_tap/b02_bst.jpg, images/bo_suu_tap/b03_tao.jpg, images/bo_suu_tap/b04_menu.jpg, images/bo_suu_tap/b05_sua.jpg, images/bo_suu_tap/b06_tin.jpg, images/bo_suu_tap/b07_xoa.jpg, images/bo_suu_tap/b08_ghi.jpg, images/bo_suu_tap/b09_daluu.jpg (10 images)"
+      ],
+      "steps": [
+        "Open Chrome DevTools, go to Network tab, filter by 'Img' type",
+        "Navigate to /training-engine.html?module=dang_tin",
+        "Click through all steps (1 to 11). For each step, verify the phone screen shows an image (not broken). Note any step where image is broken.",
+        "Navigate to /training-engine.html?module=loc_kho",
+        "Click through all steps (1 to 12). Note any broken images.",
+        "Navigate to /training-engine.html?module=bo_suu_tap",
+        "Click through all steps (1 to 12). Note any broken images.",
+        "In DevTools Network tab, verify no /api/img request returned a 4xx or 5xx status code"
+      ],
+      "expected": "Zero broken images across all steps of all three modules. Every /api/img request in the Network tab shows HTTP 200 (or 302 followed by 200). No requests show HTTP 401, 403, 404, or 502 for paths that exist on Blob.",
+      "actual": null,
+      "status": "pending",
+      "notes": "If a specific image is missing from Blob (i.e., was never uploaded), the 404 from /api/img is expected and should be treated as a content gap — not a proxy bug. Document any 404s separately. Only proxy failures (401/403 on existing blobs, or 502) are failures for this test case."
+    }
+  ],
+  "pass_criteria": {
+    "critical_pass_rate": "100%",
+    "high_pass_rate": "100%",
+    "gate_block_if": "Any critical or high test case fails"
+  }
+}

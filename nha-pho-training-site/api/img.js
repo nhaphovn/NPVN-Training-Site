@@ -1,7 +1,11 @@
 // api/img.js — Blob image proxy
 // GET /api/img?path=images/dang_tin/home.jpg
-// Tries public blob URL first (new uploads), falls back to private (legacy).
-// Strips ?download=1 so <img> renders inline instead of triggering download.
+//
+// Public blobs (upload.js access:'public'): 302 redirect to CDN URL — fast, no server bandwidth.
+// Private blobs (legacy uploads):           server-side proxy with Bearer auth — no redirect.
+//
+// Switching all uploads to access:'public' eliminates the proxy path for new uploads.
+// Existing private blobs are proxied until re-uploaded via admin.
 
 import { head } from '@vercel/blob';
 
@@ -26,53 +30,58 @@ export default async function handler(req, res) {
   const token = process.env.BLOB_READ_WRITE_TOKEN;
   if (!token) return res.status(500).json({ error: 'not_configured', message: 'BLOB_READ_WRITE_TOKEN chưa set' });
 
-  // Derive store ID from token (format: vercel_blob_rw_<storeId>_<secret>)
+  // Derive store ID: token format is vercel_blob_rw_<storeId>_<secret>
   const parts = token.split('_');
   const storeId = parts[3];
   if (!storeId) return res.status(500).json({ error: 'bad_token_format' });
 
-  // Try public subdomain first (blobs uploaded with access: 'public'),
-  // fall back to private subdomain (blobs uploaded with access: 'private').
-  let meta;
-  for (const subdomain of ['public', 'private']) {
-    const blobUrl = `https://${storeId}.${subdomain}.blob.vercel-storage.com/${path}`;
-    try {
-      meta = await head(blobUrl, { token });
-      break;
-    } catch (e) {
-      const is404 = /not.?found|404/i.test(String(e?.message || e)) || e?.status === 404;
-      if (!is404) {
-        console.error(`[api/img] head() error (${subdomain}):`, e?.message || e);
-        return res.status(502).json({ error: 'blob_error', path, message: String(e?.message || e) });
-      }
-      // 404 on this subdomain → try the other
+  // ── Path 1: Public blob (new uploads) ──────────────────────────────────
+  // head() on the public CDN URL — if it exists, redirect browser there directly.
+  // Public URLs are permanent, no auth, no server bandwidth.
+  const publicUrl = `https://${storeId}.public.blob.vercel-storage.com/${path}`;
+  try {
+    const meta = await head(publicUrl, { token });
+    res.setHeader('Cache-Control', 'public, max-age=86400');
+    res.setHeader('X-Blob-Path', path);
+    return res.redirect(302, meta.url);
+  } catch (e) {
+    const is404 = /not.?found|404/i.test(String(e?.message || e)) || e?.status === 404;
+    if (!is404) {
+      console.error('[api/img] public head() error:', e?.message || e);
+      return res.status(502).json({ error: 'blob_error', path, message: String(e?.message || e) });
     }
+    // 404 → blob not public, fall through to private proxy
   }
 
-  if (!meta) {
+  // ── Path 2: Private blob (legacy uploads) ──────────────────────────────
+  // Fetch bytes server-side with Bearer auth then pipe to client.
+  // Browser cannot access private blob URLs directly (requires Bearer token).
+  const privateUrl = `https://${storeId}.private.blob.vercel-storage.com/${path}`;
+  let upstream;
+  try {
+    upstream = await fetch(privateUrl, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  } catch (e) {
+    console.error('[api/img] fetch failed:', e.message);
+    return res.status(502).json({ error: 'fetch_failed', path, message: e.message });
+  }
+
+  if (upstream.status === 404) {
     return res.status(404).json({
       error: 'not_found', path,
       message: `Ảnh '${path}' chưa upload lên Blob`,
     });
   }
-
-  // meta.url = direct CDN URL (public blobs: permanent; private blobs: URL is the key)
-  // meta.downloadUrl = same but with ?download=1 (forces Content-Disposition: attachment)
-  // Always prefer meta.url and strip ?download=1 so <img> renders inline.
-  let redirectUrl = meta.url || meta.downloadUrl;
-  if (!redirectUrl) {
-    return res.status(502).json({ error: 'no_url', path });
+  if (!upstream.ok) {
+    console.error('[api/img] upstream error:', upstream.status, path);
+    return res.status(502).json({ error: 'upstream_error', status: upstream.status, path });
   }
 
-  try {
-    const u = new URL(redirectUrl);
-    u.searchParams.delete('download');
-    redirectUrl = u.toString();
-  } catch (_) {}
-
-  // Public blob URLs never expire — cache aggressively.
-  // Private blob URLs are security-by-obscurity — 1h cache is fine.
-  res.setHeader('Cache-Control', 'public, max-age=3600');
+  const buffer = await upstream.arrayBuffer();
+  const ct = upstream.headers.get('content-type') || 'image/jpeg';
+  res.setHeader('Content-Type', ct);
+  res.setHeader('Cache-Control', 'public, max-age=86400');
   res.setHeader('X-Blob-Path', path);
-  return res.redirect(302, redirectUrl);
+  return res.send(Buffer.from(buffer));
 }
