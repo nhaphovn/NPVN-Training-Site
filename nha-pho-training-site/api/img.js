@@ -1,9 +1,6 @@
-// api/img.js — Blob image proxy
+// api/img.js — Blob image proxy (private store)
 // GET /api/img?path=images/dang_tin/home.jpg
-//
-// Tries public subdomain first (no auth) — works for public stores.
-// Falls back to private subdomain with Bearer auth — works for private stores.
-// Always pipes bytes server-side; no redirect to avoid auth issues.
+// Fetches from private Vercel Blob store with Bearer auth, pipes bytes to client.
 
 export const config = { api: { responseLimit: false } };
 
@@ -26,45 +23,29 @@ export default async function handler(req, res) {
   const token = process.env.BLOB_READ_WRITE_TOKEN;
   if (!token) return res.status(500).json({ error: 'not_configured', message: 'BLOB_READ_WRITE_TOKEN chưa set' });
 
-  // Derive store ID: token format is vercel_blob_rw_<storeId>_<secret>
   const storeId = token.match(/^vercel_blob_rw_([^_]+)/)?.[1];
   if (!storeId) return res.status(500).json({ error: 'bad_token_format' });
 
-  // Try public subdomain without auth — succeeds for public stores.
-  // Try private subdomain with Bearer — succeeds for private stores.
-  // head() from @vercel/blob SDK uses Bearer internally and cannot distinguish
-  // public from private, so we test actual HTTP access instead.
-  const candidates = [
-    { url: `https://${storeId}.public.blob.vercel-storage.com/${path}`, headers: {} },
-    { url: `https://${storeId}.private.blob.vercel-storage.com/${path}`, headers: { Authorization: `Bearer ${token}` } },
-  ];
-
-  for (const { url, headers } of candidates) {
-    let upstream;
-    try {
-      upstream = await fetch(url, { headers });
-    } catch (e) {
-      console.error('[api/img] fetch error:', url, e.message);
-      continue;
-    }
-
-    if (upstream.status === 404 || upstream.status === 403) continue;
-
-    if (!upstream.ok) {
-      console.error('[api/img] upstream error:', upstream.status, url);
-      return res.status(502).json({ error: 'upstream_error', status: upstream.status, path });
-    }
-
-    const buffer = await upstream.arrayBuffer();
-    const ct = upstream.headers.get('content-type') || 'image/jpeg';
-    res.setHeader('Content-Type', ct);
-    res.setHeader('Cache-Control', 'public, max-age=86400');
-    res.setHeader('X-Blob-Path', path);
-    return res.send(Buffer.from(buffer));
+  const blobUrl = `https://${storeId}.private.blob.vercel-storage.com/${path}`;
+  let upstream;
+  try {
+    upstream = await fetch(blobUrl, { headers: { Authorization: `Bearer ${token}` } });
+  } catch (e) {
+    console.error('[api/img] fetch error:', e.message);
+    return res.status(502).json({ error: 'fetch_failed', path, message: e.message });
   }
 
-  return res.status(404).json({
-    error: 'not_found', path,
-    message: `Ảnh '${path}' chưa upload lên Blob`,
-  });
+  if (upstream.status === 404) {
+    return res.status(404).json({ error: 'not_found', path, message: `Ảnh '${path}' chưa upload lên Blob` });
+  }
+  if (!upstream.ok) {
+    console.error('[api/img] upstream error:', upstream.status, path);
+    return res.status(502).json({ error: 'upstream_error', status: upstream.status, path });
+  }
+
+  const buffer = await upstream.arrayBuffer();
+  res.setHeader('Content-Type', upstream.headers.get('content-type') || 'image/jpeg');
+  res.setHeader('Cache-Control', 'public, max-age=86400');
+  res.setHeader('X-Blob-Path', path);
+  return res.send(Buffer.from(buffer));
 }
