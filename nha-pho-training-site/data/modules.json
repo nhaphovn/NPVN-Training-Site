@@ -3680,7 +3680,7 @@
       "name": "Chat Nhà Phố",
       "role": "Học viên / Chuyên viên",
       "icon": "💬",
-      "iconImg": "/api/img?path=images/chat_nha_pho/icon.jpg",
+      "iconImg": "assets/icons/chat_nha_pho.png",
       "description": "Nhắn tin trực tiếp, chat nhóm và kênh thông báo mặc định",
       "status": "live",
       "attributes": {
@@ -5323,7 +5323,7 @@
       "icon": "👤",
       "iconImg": "assets/icons/tai_khoan_ca_nhan.png",
       "description": "Quản lý hồ sơ cá nhân — thông tin, ảnh, bảo mật, thông báo",
-      "status": "draft",
+      "status": "live",
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
@@ -5347,7 +5347,13 @@
         "anh_dai_dien": "/api/img?path=images/tai_khoan_ca_nhan/anh_dai_dien.jpg",
         "bao_mat": "/api/img?path=images/tai_khoan_ca_nhan/bao_mat.jpg",
         "thong_bao": "/api/img?path=images/tai_khoan_ca_nhan/thong_bao.jpg",
-        "dang_xuat": "/api/img?path=images/tai_khoan_ca_nhan/dang_xuat.jpg"
+        "dang_xuat": "/api/img?path=images/tai_khoan_ca_nhan/dang_xuat.jpg",
+        "b01_1": "/api/img?path=images/tai_khoan_ca_nhan/b01_1.jpg",
+        "b02_2": "/api/img?path=images/tai_khoan_ca_nhan/b02_2.jpg",
+        "b03_3": "/api/img?path=images/tai_khoan_ca_nhan/b03_3.jpg",
+        "b04_2": "/api/img?path=images/tai_khoan_ca_nhan/b04_2.jpg",
+        "b05_5": "/api/img?path=images/tai_khoan_ca_nhan/b05_5.jpg",
+        "b07_7": "/api/img?path=images/tai_khoan_ca_nhan/b07_7.jpg"
       },
       "steps": [
         {
@@ -5356,13 +5362,13 @@
           "desc": "Avatar góc phải → vào tài khoản",
           "title": "Bước 1 — Vào menu cá nhân",
           "sub": "Bấm avatar để mở menu và vào phần Tài khoản",
-          "imgKey": "menu",
+          "imgKey": "b01_1",
           "scrollY": 0,
           "hs": {
-            "x": 340,
-            "y": 55,
-            "w": 45,
-            "h": 45
+            "x": 326,
+            "y": 773,
+            "w": 56,
+            "h": 60
           },
           "ttPos": "left",
           "ttTitle": "Avatar cá nhân",
@@ -5381,7 +5387,8 @@
               "title": "Bấm vào",
               "body": "Mở màn hình tài khoản với đầy đủ thông tin cá nhân của bạn."
             }
-          ]
+          ],
+          "img": "b01_1"
         },
         {
           "id": 2,
@@ -5389,15 +5396,15 @@
           "desc": "Thông tin đầy đủ tài khoản của bạn",
           "title": "Bước 2 — Hồ sơ cá nhân",
           "sub": "Xem và kiểm tra thông tin tài khoản đang hiển thị",
-          "imgKey": "xem_ho_so",
+          "imgKey": "b02_2",
           "scrollY": 0,
           "hs": {
-            "x": 16,
-            "y": 150,
-            "w": 358,
-            "h": 300
+            "x": 6,
+            "y": 158,
+            "w": 371,
+            "h": 616
           },
-          "ttPos": "right",
+          "ttPos": "top",
           "ttTitle": "Hồ sơ cá nhân",
           "ttText": "Xem và kiểm tra thông tin tài khoản đang hiển thị",
           "tip": "Hồ sơ đầy đủ và ảnh rõ ràng giúp khách hàng tin tưởng hơn.",
@@ -5414,7 +5421,8 @@
               "title": "Bấm Chỉnh sửa",
               "body": "Bấm nút Chỉnh sửa hoặc biểu tượng bút ✏️ để cập nhật thông tin."
             }
-          ]
+          ],
+          "img": "b02_2"
         },
         {
           "id": 3,
@@ -5422,15 +5430,15 @@
           "desc": "Cập nhật tên, giới thiệu bản thân",
           "title": "Bước 3 — Chỉnh sửa thông tin",
           "sub": "Nhập thông tin mới và bấm Lưu để cập nhật hồ sơ",
-          "imgKey": "chinh_sua",
-          "scrollY": 200,
+          "imgKey": "b03_3",
+          "scrollY": 0,
           "hs": {
-            "x": 16,
-            "y": 250,
-            "w": 358,
-            "h": 300
+            "x": 0,
+            "y": 107,
+            "w": 401,
+            "h": 632
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Form chỉnh sửa",
           "ttText": "Nhập thông tin mới và bấm Lưu để cập nhật hồ sơ",
           "tip": "",
@@ -5447,7 +5455,8 @@
               "title": "Lưu thay đổi",
               "body": "Bấm Lưu hoặc Xác nhận góc trên phải — thông tin cập nhật ngay sau khi lưu."
             }
-          ]
+          ],
+          "img": "b03_3"
         },
         {
           "id": 4,
@@ -5455,13 +5464,13 @@
           "desc": "Chọn hoặc chụp ảnh đại diện mới",
           "title": "Bước 4 — Cập nhật ảnh đại diện",
           "sub": "Bấm vào ảnh để chọn từ thư viện hoặc chụp mới",
-          "imgKey": "anh_dai_dien",
+          "imgKey": "b04_2",
           "scrollY": 0,
           "hs": {
-            "x": 140,
-            "y": 140,
-            "w": 110,
-            "h": 110
+            "x": 71,
+            "y": 222,
+            "w": 47,
+            "h": 48
           },
           "ttPos": "right",
           "ttTitle": "Ảnh đại diện",
@@ -5480,7 +5489,8 @@
               "title": "Chụp ảnh mới",
               "body": "Chọn 'Chụp ảnh' → chụp ngay → cắt khung → Lưu ảnh đại diện mới."
             }
-          ]
+          ],
+          "img": "b04_2"
         },
         {
           "id": 5,
@@ -5488,15 +5498,15 @@
           "desc": "Đổi mật khẩu và bảo mật tài khoản",
           "title": "Bước 5 — Cài đặt bảo mật",
           "sub": "Đổi mật khẩu và bật xác thực 2 lớp để bảo vệ tài khoản",
-          "imgKey": "bao_mat",
-          "scrollY": 400,
+          "imgKey": "b05_5",
+          "scrollY": 0,
           "hs": {
-            "x": 16,
-            "y": 450,
-            "w": 358,
-            "h": 55
+            "x": 0,
+            "y": 43,
+            "w": 399,
+            "h": 462
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Bảo mật tài khoản",
           "ttText": "Đổi mật khẩu và bật xác thực 2 lớp",
           "tip": "Đổi mật khẩu mỗi 3 tháng một lần để bảo vệ tài khoản.",
@@ -5513,54 +5523,22 @@
               "title": "Xác thực 2 lớp",
               "body": "Bật OTP qua SĐT — mỗi lần đăng nhập mới cần thêm mã OTP từ tin nhắn."
             }
-          ]
+          ],
+          "img": "b05_5"
         },
         {
           "id": 6,
-          "name": "Cài đặt thông báo",
-          "desc": "Bật tắt thông báo theo từng loại",
-          "title": "Bước 6 — Cài đặt thông báo",
-          "sub": "Bật thông báo quan trọng, tắt thông báo ít dùng",
-          "imgKey": "thong_bao",
-          "scrollY": 470,
-          "hs": {
-            "x": 16,
-            "y": 520,
-            "w": 358,
-            "h": 55
-          },
-          "ttPos": "right",
-          "ttTitle": "Tùy chỉnh thông báo",
-          "ttText": "Bật thông báo quan trọng, tắt thông báo ít dùng",
-          "tip": "",
-          "guide": [
-            {
-              "title": "Mở cài đặt thông báo",
-              "body": "Tab Thông báo trong tài khoản — danh sách các loại thông báo."
-            },
-            {
-              "title": "Bật/tắt theo loại",
-              "body": "Toggle từng loại: Chat / Lịch hẹn / Tin đăng / Thông báo hệ thống."
-            },
-            {
-              "title": "Cài giờ không làm phiền",
-              "body": "Bật 'Không làm phiền' và đặt khung giờ — không nhận push trong khoảng đó."
-            }
-          ]
-        },
-        {
-          "id": 7,
           "name": "Đăng xuất",
           "desc": "Đăng xuất hoặc chuyển đổi tài khoản",
           "title": "Bước 7 — Đăng xuất",
           "sub": "Bấm Đăng xuất để thoát — cần đăng nhập lại bằng OTP",
-          "imgKey": "dang_xuat",
-          "scrollY": 650,
+          "imgKey": "b07_7",
+          "scrollY": 367,
           "hs": {
-            "x": 90,
-            "y": 680,
-            "w": 210,
-            "h": 50
+            "x": 5,
+            "y": 1114,
+            "w": 381,
+            "h": 55
           },
           "ttPos": "top",
           "ttTitle": "Nút Đăng xuất",
@@ -5579,7 +5557,8 @@
               "title": "Đăng nhập lại",
               "body": "Lần sau vào app: nhập SĐT → nhận OTP → đăng nhập bình thường."
             }
-          ]
+          ],
+          "img": "b07_7"
         }
       ],
       "quality": {
