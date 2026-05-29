@@ -4278,7 +4278,7 @@
       "icon": "📢",
       "iconImg": "assets/icons/bang_tin.png",
       "description": "Xem và tương tác bảng tin nội bộ — thông báo, tin tức, chia sẻ",
-      "status": "draft",
+      "status": "live",
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
@@ -4302,7 +4302,13 @@
         "binh_luan": "/api/img?path=images/bang_tin/binh_luan.jpg",
         "phan_ung": "/api/img?path=images/bang_tin/phan_ung.jpg",
         "chia_se_bai": "/api/img?path=images/bang_tin/chia_se_bai.jpg",
-        "loc_bang_tin": "/api/img?path=images/bang_tin/loc_bang_tin.jpg"
+        "loc_bang_tin": "/api/img?path=images/bang_tin/loc_bang_tin.jpg",
+        "b01_1": "/api/img?path=images/bang_tin/b01_1.jpg",
+        "b04_4": "/api/img?path=images/bang_tin/b04_4.jpg",
+        "b05_5": "/api/img?path=images/bang_tin/b05_5.jpg",
+        "b03_3": "/api/img?path=images/bang_tin/b03_3.jpg",
+        "b06_6": "/api/img?path=images/bang_tin/b06_6.jpg",
+        "b06_3": "/api/img?path=images/bang_tin/b06_3.jpg"
       },
       "steps": [
         {
@@ -4311,13 +4317,13 @@
           "desc": "Tab Bảng tin trên navigation trang chủ",
           "title": "Bước 1 — Chọn tab Bảng tin",
           "sub": "Bấm tab Bảng tin để xem tin thông báo và chia sẻ nội bộ",
-          "imgKey": "home_tab",
+          "imgKey": "b01_1",
           "scrollY": 0,
           "hs": {
-            "x": 200,
-            "y": 830,
-            "w": 80,
-            "h": 50
+            "x": 8,
+            "y": 498,
+            "w": 214,
+            "h": 53
           },
           "ttPos": "top",
           "ttTitle": "Tab Bảng tin",
@@ -4336,7 +4342,8 @@
               "title": "Phân biệt loại bài",
               "body": "Bài thông báo chính thức có nhãn 'Thông báo' — bài chia sẻ cá nhân không có nhãn đặc biệt."
             }
-          ]
+          ],
+          "img": "b01_1"
         },
         {
           "id": 2,
@@ -4377,15 +4384,15 @@
           "desc": "Nội dung đầy đủ bài thông báo hoặc chia sẻ",
           "title": "Bước 3 — Đọc chi tiết bài đăng",
           "sub": "Bấm vào bài để xem nội dung đầy đủ, ảnh và bình luận",
-          "imgKey": "xem_bai_dang",
+          "imgKey": "b03_3",
           "scrollY": 0,
           "hs": {
-            "x": 16,
-            "y": 150,
-            "w": 358,
-            "h": 400
+            "x": 0,
+            "y": 145,
+            "w": 412,
+            "h": 653
           },
-          "ttPos": "right",
+          "ttPos": "top",
           "ttTitle": "Nội dung bài đăng",
           "ttText": "Cuộn để đọc toàn bộ nội dung và xem ảnh",
           "tip": "",
@@ -4402,7 +4409,8 @@
               "title": "Cuộn đến bình luận",
               "body": "Cuộn xuống cuối bài để xem phần bình luận và tham gia thảo luận."
             }
-          ]
+          ],
+          "img": "b03_3"
         },
         {
           "id": 4,
@@ -4410,13 +4418,13 @@
           "desc": "Thêm nhận xét vào bài đăng",
           "title": "Bước 4 — Bình luận bài",
           "sub": "Bấm vào ô bình luận, nhập nội dung và gửi",
-          "imgKey": "binh_luan",
-          "scrollY": 700,
+          "imgKey": "b04_4",
+          "scrollY": 0,
           "hs": {
-            "x": 16,
-            "y": 720,
-            "w": 310,
-            "h": 46
+            "x": 2,
+            "y": 570,
+            "w": 384,
+            "h": 64
           },
           "ttPos": "top",
           "ttTitle": "Ô bình luận",
@@ -4435,7 +4443,8 @@
               "title": "Bấm Gửi",
               "body": "Bấm Gửi — bình luận xuất hiện ngay bên dưới và tác giả bài nhận thông báo."
             }
-          ]
+          ],
+          "img": "b04_4"
         },
         {
           "id": 5,
@@ -4443,15 +4452,15 @@
           "desc": "Like, tim hoặc các phản ứng emoji",
           "title": "Bước 5 — Phản ứng bài đăng",
           "sub": "Bấm icon like hoặc giữ để chọn phản ứng khác",
-          "imgKey": "phan_ung",
-          "scrollY": 500,
+          "imgKey": "b05_5",
+          "scrollY": 0,
           "hs": {
-            "x": 20,
-            "y": 550,
-            "w": 60,
-            "h": 40
+            "x": 8,
+            "y": 87,
+            "w": 300,
+            "h": 143
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Nút Like/Phản ứng",
           "ttText": "Bấm icon tim hoặc giữ để chọn phản ứng khác",
           "tip": "",
@@ -4468,7 +4477,8 @@
               "title": "Bỏ phản ứng",
               "body": "Bấm lại icon đã chọn để bỏ phản ứng."
             }
-          ]
+          ],
+          "img": "b05_5"
         },
         {
           "id": 6,
@@ -4476,13 +4486,13 @@
           "desc": "Gửi bài cho đồng nghiệp qua chat",
           "title": "Bước 6 — Chia sẻ bài đăng",
           "sub": "Bấm icon chia sẻ để gửi bài qua Chat Nhà Phố hoặc kênh ngoài",
-          "imgKey": "chia_se_bai",
-          "scrollY": 500,
+          "imgKey": "b06_3",
+          "scrollY": 101,
           "hs": {
-            "x": 150,
-            "y": 550,
-            "w": 60,
-            "h": 40
+            "x": 274,
+            "y": 787,
+            "w": 97,
+            "h": 82
           },
           "ttPos": "top",
           "ttTitle": "Nút Chia sẻ",
@@ -4501,40 +4511,42 @@
               "title": "Chia sẻ ra ngoài",
               "body": "Chọn 'Chia sẻ khác' để gửi qua Zalo, copy link hoặc các kênh ngoài app."
             }
-          ]
+          ],
+          "img": "b06_3"
         },
         {
           "id": 7,
-          "name": "Lọc Bảng tin",
-          "desc": "Lọc theo loại bài — thông báo, chia sẻ",
-          "title": "Bước 7 — Lọc Bảng tin",
-          "sub": "Chọn tab hoặc bộ lọc để xem theo loại bài cụ thể",
-          "imgKey": "loc_bang_tin",
-          "scrollY": 0,
+          "name": "Chia sẻ bài đăng (copy)",
+          "desc": "Gửi bài cho đồng nghiệp qua chat",
+          "title": "Bước 6 — Chia sẻ bài đăng",
+          "sub": "Bấm icon chia sẻ để gửi bài qua Chat Nhà Phố hoặc kênh ngoài",
+          "imgKey": "b06_6",
+          "scrollY": 101,
           "hs": {
-            "x": 16,
-            "y": 110,
-            "w": 358,
-            "h": 40
+            "x": 0,
+            "y": 707,
+            "w": 423,
+            "h": 261
           },
-          "ttPos": "bottom",
-          "ttTitle": "Bộ lọc Bảng tin",
-          "ttText": "Chọn tab hoặc bộ lọc để xem theo loại bài",
+          "ttPos": "top",
+          "ttTitle": "Nút Chia sẻ",
+          "ttText": "Bấm icon chia sẻ để gửi qua Chat Nhà Phố",
           "tip": "",
           "guide": [
             {
-              "title": "Dùng tab phân loại",
-              "body": "Phía trên feed có các tab: Tất cả / Thông báo / Chia sẻ — bấm để lọc."
+              "title": "Bấm nút Chia sẻ",
+              "body": "Icon chia sẻ (→) bên dưới bài — bấm để mở tùy chọn."
             },
             {
-              "title": "Lọc theo phòng ban",
-              "body": "Bấm icon lọc (phễu) để chọn xem bài từ chi nhánh hoặc phòng cụ thể."
+              "title": "Gửi qua Chat Nhà Phố",
+              "body": "Chọn 'Gửi tin nhắn' → tìm đồng nghiệp → bài được gửi kèm link preview."
             },
             {
-              "title": "Đánh dấu đã đọc",
-              "body": "Bấm 'Đánh dấu tất cả đã đọc' để xóa badge đỏ trên tab Bảng tin."
+              "title": "Chia sẻ ra ngoài",
+              "body": "Chọn 'Chia sẻ khác' để gửi qua Zalo, copy link hoặc các kênh ngoài app."
             }
-          ]
+          ],
+          "img": "b06_6"
         }
       ],
       "quality": {
@@ -5323,7 +5335,7 @@
       "icon": "👤",
       "iconImg": "assets/icons/tai_khoan_ca_nhan.png",
       "description": "Quản lý hồ sơ cá nhân — thông tin, ảnh, bảo mật, thông báo",
-      "status": "live",
+      "status": "draft",
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
