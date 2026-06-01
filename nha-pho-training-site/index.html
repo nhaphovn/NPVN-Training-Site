@@ -433,6 +433,33 @@ footer p:last-child { font-size: 11px !important; }
   padding: 1px 7px; border-radius: 8px; margin-left: 2px;
 }
 
+/* ============ SORT SELECT ============ */
+.sort-wrap {
+  flex-shrink: 0; position: relative; display: flex; align-items: center;
+}
+.sort-wrap .sort-icon {
+  position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
+  width: 14px; height: 14px; pointer-events: none; color: var(--text-3);
+  flex-shrink: 0;
+}
+.sort-select {
+  -webkit-appearance: none; appearance: none;
+  padding: 11px 28px 11px 32px;
+  border: 1px solid var(--border); border-radius: 10px;
+  background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2388958C' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 10px center;
+  font-family: inherit; font-size: 13px; font-weight: 500;
+  color: var(--text); outline: none; cursor: pointer;
+  transition: border-color .15s, box-shadow .15s;
+  white-space: nowrap;
+}
+.sort-select:focus {
+  border-color: var(--green); box-shadow: 0 0 0 3px rgba(0,123,72,.10);
+}
+@media (max-width: 540px) {
+  .sort-wrap .sort-icon { display: none; }
+  .sort-select { padding: 9px 24px 9px 10px; font-size: 12px; }
+}
+
 /* ============ RESPONSIVE ============ */
 @media (max-width: 1100px) {
   .modules-grid { grid-template-columns: repeat(3, 1fr); }
@@ -496,6 +523,17 @@ footer p:last-child { font-size: 11px !important; }
       <input class="search-input" id="search-input" type="search"
              placeholder="Tìm module theo tên, vai trò, mô tả..." autocomplete="off">
     </div>
+    <div class="sort-wrap">
+      <svg class="sort-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 3v10M3 13l-1.5-1.5M3 13l1.5-1.5M13 13V3M13 3l-1.5 1.5M13 3l1.5 1.5"/>
+      </svg>
+      <select id="sort-select" class="sort-select" title="Sắp xếp">
+        <option value="views">Xem nhiều nhất</option>
+        <option value="a-z">A → Z</option>
+        <option value="newest">Mới nhất</option>
+        <option value="oldest">Cũ nhất</option>
+      </select>
+    </div>
     <div class="view-toggle">
       <button class="view-btn active" id="btn-grid" title="Dạng lưới" aria-label="Lưới">
         <svg viewBox="0 0 20 20" fill="currentColor">
@@ -533,6 +571,7 @@ const STATE = {
   activeRole: 'all',
   viewMode: 'grid',  // 'grid' | 'list'
   searchQuery: '',
+  sortOrder: 'views',  // 'views' | 'a-z' | 'newest' | 'oldest'
 };
 
 function $(id) { return document.getElementById(id); }
@@ -619,6 +658,34 @@ function matchSearch(m, query) {
       || stripDiacritics(m.role).includes(q);
 }
 
+const _VIEWS_PREFIX = 'nhapho_views_';
+function getViewCount(id) {
+  return parseInt(localStorage.getItem(_VIEWS_PREFIX + id) || '0', 10);
+}
+function incrementViewCount(id) {
+  localStorage.setItem(_VIEWS_PREFIX + id, getViewCount(id) + 1);
+}
+
+function sortIds(ids, modules) {
+  const naturalOrder = Object.keys(modules);
+  const ord = STATE.sortOrder;
+  if (ord === 'a-z') {
+    return [...ids].sort((a, b) =>
+      (modules[a].name || a).localeCompare(modules[b].name || b, 'vi'));
+  }
+  if (ord === 'newest') {
+    return [...ids].sort((a, b) => naturalOrder.indexOf(b) - naturalOrder.indexOf(a));
+  }
+  if (ord === 'oldest') {
+    return [...ids].sort((a, b) => naturalOrder.indexOf(a) - naturalOrder.indexOf(b));
+  }
+  // 'views': descending by localStorage count, tie-break by natural order
+  return [...ids].sort((a, b) => {
+    const diff = getViewCount(b) - getViewCount(a);
+    return diff !== 0 ? diff : naturalOrder.indexOf(a) - naturalOrder.indexOf(b);
+  });
+}
+
 function renderModules() {
   const c = $('content');
   c.innerHTML = '';
@@ -638,6 +705,9 @@ function renderModules() {
 
   // Search filter
   if (q) showIds = showIds.filter(id => matchSearch(modules[id], q));
+
+  // Sort
+  showIds = sortIds(showIds, modules);
 
   if (showIds.length === 0) {
     const msg = q
@@ -664,6 +734,7 @@ function renderModules() {
       const iconHtml = m.iconImg
         ? `<img src="${escapeHtml(m.iconImg)}" alt="">`
         : escapeHtml(m.icon || '📘');
+      if (stepCount > 0) item.addEventListener('click', () => incrementViewCount(id));
       item.innerHTML = `
         <div class="mli-icon">${iconHtml}</div>
         <div class="mli-body">
@@ -689,6 +760,7 @@ function renderModules() {
       const card = document.createElement('a');
       card.className = 'module-card' + (stepCount === 0 ? ' coming-soon' : '');
       if (stepCount > 0) card.href = `training-engine.html?module=${id}`;
+      if (stepCount > 0) card.addEventListener('click', () => incrementViewCount(id));
       card.innerHTML = `
         <div class="mc-icon">${m.iconImg
           ? `<img src="${escapeHtml(m.iconImg)}" alt="">`
@@ -763,6 +835,12 @@ async function boot() {
         STATE.searchQuery = e.target.value.trim();
         renderModules();
       }, 200);
+    });
+
+    // Sort
+    $('sort-select').addEventListener('change', e => {
+      STATE.sortOrder = e.target.value;
+      renderModules();
     });
 
     // View toggle
