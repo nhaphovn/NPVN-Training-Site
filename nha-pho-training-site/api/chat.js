@@ -77,6 +77,15 @@ async function kvGet(key) {
   return entry.count;
 }
 
+// Strip invisible / non-printable Unicode characters silently — no warning to user
+function sanitizeText(s) {
+  return String(s || '')
+    .replace(new RegExp('[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F]', 'g'), '')
+    .replace(new RegExp('[\u200B-\u200F\u202A-\u202E\u2060-\u2064\uFEFF]', 'g'), '')
+    .replace(new RegExp('[\uFFF0-\uFFFF]', 'g'), '')
+    .trim();
+}
+
 // Reject obvious abuse (repeated identical msgs)
 function isAbusive(messages) {
   const recent = messages.slice(-4);
@@ -115,10 +124,10 @@ function buildSystemPrompt({ moduleName, role, step, stepName, stepTitle, stepGu
   const basePrompt = `Bạn là chatbot hỗ trợ của App Nhà Phố — như đồng nghiệp thạo app ngồi cạnh, trả lời nhanh và thân thiện.
 
 # Phong cách — BẮT BUỘC
-- Ngắn gọn, mạch lạc. Mỗi ý TỐI ĐA 2 câu ngắn.
-- Câu trả lời dài → PHẢI xuống dòng giữa các ý, KHÔNG viết liền tù tì.
-- Tự nhiên như đồng nghiệp thân (không robot, không văn phòng)
-- 1-2 emoji là đủ, không lạm dụng
+- Ngắn gọn: mặc định TỐI ĐA 3 câu, đi thẳng vào ý chính.
+- Câu trả lời nhiều ý → mỗi ý 1 đoạn riêng, cách nhau 1 dòng trắng. TUYỆT ĐỐI không dùng -, *, •, hay emoji làm gạch đầu dòng.
+- KHÔNG viết 1 đoạn liền tù tì — mỗi ý phải xuống dòng mới.
+- Thân thiện, tự nhiên. Tối đa 1 emoji ở cuối câu nếu cần, không làm icon list.
 
 # Vai trò
 - Trả lời nhanh điều user chưa biết hoặc không tìm thấy trong hướng dẫn
@@ -196,33 +205,41 @@ export default async function handler(req, res) {
     }
   }
 
+  // Sanitize: strip invisible characters from all user messages silently
+  const cleanMessages = messages.map(m =>
+    (m && m.role === 'user' && typeof m.content === 'string')
+      ? { ...m, content: sanitizeText(m.content) }
+      : m
+  );
+  const lastClean = cleanMessages[cleanMessages.length - 1];
+
   // 5. Input validation
-  if (!Array.isArray(messages) || messages.length === 0) {
+  if (!Array.isArray(cleanMessages) || cleanMessages.length === 0) {
     return json(res, { error: 'no_messages' }, 400);
   }
-  if (messages.length > 20) {
+  if (cleanMessages.length > 20) {
     return json(res, {
       error: 'history_too_long',
       message: 'Cuộc trò chuyện hơi dài rồi, bấm "Xóa" để bắt đầu lại nhé! 🧹',
     }, 400);
   }
-  const lastMsg = messages[messages.length - 1];
-  if (!lastMsg || lastMsg.role !== 'user' || typeof lastMsg.content !== 'string') {
+  // lastClean already set above
+  if (!lastClean || lastClean.role !== 'user' || typeof lastClean.content !== 'string') {
     return json(res, { error: 'bad_message' }, 400);
   }
-  if (lastMsg.content.length > 500) {
+  if (lastClean.content.length > 500) {
     return json(res, {
       error: 'too_long',
       message: 'Câu hỏi hơi dài rồi! Tối đa 500 ký tự thôi nhé 😄',
     }, 400);
   }
-  if (lastMsg.content.trim().length < 2) {
+  if (lastClean.content.trim().length < 2) {
     return json(res, {
       error: 'too_short',
       message: 'Câu hỏi ngắn quá, viết rõ hơn chút nha! 🤔',
     }, 400);
   }
-  if (isAbusive(messages)) {
+  if (isAbusive(cleanMessages)) {
     return json(res, {
       error: 'abuse',
       message: 'Mình thấy bạn lặp lại câu hỏi nhiều lần — có thể hỏi cách khác không? 😊',
@@ -240,7 +257,7 @@ export default async function handler(req, res) {
   const keyDay    = `tb:ip:${ip}:d`;
   const keyGlobal = `tb:global:${today}`;
 
-  const estimatedInputTokens = Math.ceil((lastMsg.content.length + systemPrompt.length) / 4);
+  const estimatedInputTokens = Math.ceil((lastClean.content.length + systemPrompt.length) / 4);
   const estimatedCost = estimatedInputTokens + 50; // 50 = min output lower bound
 
   const [hourUsed, dayUsed, globalUsed] = await Promise.all([
@@ -284,7 +301,7 @@ export default async function handler(req, res) {
         model: MODEL,
         max_tokens: 130,
         system: systemPrompt,
-        messages: messages.slice(-8),
+        messages: cleanMessages.slice(-8),
       }),
     });
     clearTimeout(timeout);
