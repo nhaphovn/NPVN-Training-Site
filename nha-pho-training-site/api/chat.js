@@ -12,9 +12,9 @@
 const ANTHROPIC_KEY     = process.env.ANTHROPIC_API_KEY;
 const UPSTASH_URL       = process.env.UPSTASH_REDIS_REST_URL;
 const UPSTASH_TOKEN     = process.env.UPSTASH_REDIS_REST_TOKEN;
-const HOURLY_TOKEN_CAP  = parseInt(process.env.HOURLY_TOKEN_CAP    || '10000',  10) || 10000;
-const DAILY_USER_CAP    = parseInt(process.env.DAILY_TOKEN_CAP_USER || '40000',  10) || 40000;
-const DAILY_GLOBAL_CAP  = parseInt(process.env.DAILY_TOKEN_GLOBAL   || '500000', 10) || 500000;
+const HOURLY_TOKEN_CAP  = parseInt(process.env.HOURLY_TOKEN_CAP    || '80000',   10) || 80000;
+const DAILY_USER_CAP    = parseInt(process.env.DAILY_TOKEN_CAP_USER || '300000',  10) || 300000;
+const DAILY_GLOBAL_CAP  = parseInt(process.env.DAILY_TOKEN_GLOBAL   || '2000000', 10) || 2000000;
 const MODEL             = process.env.MODEL_NAME || 'claude-haiku-4-5-20251001';
 
 // In-memory fallback (resets on cold start) — only used if Upstash not configured
@@ -307,11 +307,12 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json',
         'x-api-key': ANTHROPIC_KEY,
         'anthropic-version': '2023-06-01',
+        'anthropic-beta': 'prompt-caching-2024-07-31',
       },
       body: JSON.stringify({
         model: MODEL,
-        max_tokens: 130,
-        system: systemPrompt,
+        max_tokens: 300,
+        system: [{ type: 'text', text: systemPrompt, cache_control: { type: 'ephemeral' } }],
         messages: cleanMessages.slice(-8),
       }),
     });
