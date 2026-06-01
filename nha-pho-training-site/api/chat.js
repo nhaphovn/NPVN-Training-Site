@@ -163,6 +163,22 @@ Nhấn nút Đăng tin ở màn hình chính.
   return basePrompt + (knowledgeSection ? '\n\n' + knowledgeSection : '');
 }
 
+// Add cache_control to the second-to-last message so conversation history is cached.
+// The last message (new user turn) is never cached — it changes every request.
+// Prefix-match rule: system prompt cached first, then history, then new turn.
+function cacheMessages(msgs) {
+  if (msgs.length < 2) return msgs;
+  return msgs.map((m, i) => {
+    if (i !== msgs.length - 2) return m;
+    // Normalize content to array and mark last block as ephemeral
+    const content = typeof m.content === 'string'
+      ? [{ type: 'text', text: m.content }]
+      : m.content.map(b => ({ ...b }));
+    content[content.length - 1] = { ...content[content.length - 1], cache_control: { type: 'ephemeral' } };
+    return { ...m, content };
+  });
+}
+
 export default async function handler(req, res) {
   // 1. CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -313,7 +329,7 @@ export default async function handler(req, res) {
         model: MODEL,
         max_tokens: 300,
         system: [{ type: 'text', text: systemPrompt, cache_control: { type: 'ephemeral' } }],
-        messages: cleanMessages.slice(-8),
+        messages: cacheMessages(cleanMessages.slice(-8)),
       }),
     });
     clearTimeout(timeout);
