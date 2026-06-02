@@ -12,9 +12,9 @@
 const ANTHROPIC_KEY     = process.env.ANTHROPIC_API_KEY;
 const UPSTASH_URL       = process.env.UPSTASH_REDIS_REST_URL;
 const UPSTASH_TOKEN     = process.env.UPSTASH_REDIS_REST_TOKEN;
-const HOURLY_TOKEN_CAP  = parseInt(process.env.HOURLY_TOKEN_CAP    || '80000',   10) || 80000;
-const DAILY_USER_CAP    = parseInt(process.env.DAILY_TOKEN_CAP_USER || '300000',  10) || 300000;
-const DAILY_GLOBAL_CAP  = parseInt(process.env.DAILY_TOKEN_GLOBAL   || '2000000', 10) || 2000000;
+const HOURLY_TOKEN_CAP  = parseInt(process.env.HOURLY_TOKEN_CAP    || '10000',  10) || 10000;   // ~10 LLM calls/hour/IP
+const DAILY_USER_CAP    = parseInt(process.env.DAILY_TOKEN_CAP_USER || '20000',  10) || 20000;   // 20 LLM calls/user/day
+const DAILY_GLOBAL_CAP  = parseInt(process.env.DAILY_TOKEN_GLOBAL   || '167000', 10) || 167000;  // $5/month hard ceiling
 const MODEL             = process.env.MODEL_NAME || 'claude-haiku-4-5-20251001';
 
 // In-memory fallback (resets on cold start) — only used if Upstash not configured

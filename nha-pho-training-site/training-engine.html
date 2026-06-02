@@ -2027,6 +2027,73 @@ function addBotMsg(text, cls = '') {
   box.scrollTop = box.scrollHeight;
   return div;
 }
+/* ============================================================
+   FAQ LAYER — check before every LLM call
+   ============================================================ */
+let FAQ = null;
+
+async function loadFAQ() {
+  try {
+    const res = await fetch('/data/faq.json');
+    if (res.ok) FAQ = await res.json();
+  } catch (_) { /* fail-open: LLM handles it */ }
+}
+loadFAQ();
+
+function normVi(str) {
+  return String(str || '').toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/đ/g, 'd').replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\s+/g, ' ').trim();
+}
+
+function matchFAQ(question, moduleId, stepId, threshold = 2) {
+  if (!FAQ) return null;
+  const q = normVi(question);
+  const items = [...(FAQ.global || []), ...(FAQ.modules?.[moduleId] || [])];
+  let best = null, bestScore = 0;
+  for (const item of items) {
+    let score = 0;
+    for (const kw of (item.kw || [])) {
+      const kwn = normVi(kw);
+      if (q.includes(kwn)) score += kwn.split(' ').length * 2;
+    }
+    if (item.steps?.includes(stepId)) score += 2;
+    if (score > bestScore) { bestScore = score; best = item; }
+  }
+  return bestScore >= threshold ? { item: best, score: bestScore } : null;
+}
+
+// Client-side LLM daily quota (server enforces hard limit too)
+const _LLM_CNT_KEY = 'nhapho_llm_cnt';
+const _LLM_DATE_KEY = 'nhapho_llm_date';
+const LLM_PER_DAY = 20;
+
+function getLLMCount() {
+  const today = new Date().toISOString().slice(0, 10);
+  if (localStorage.getItem(_LLM_DATE_KEY) !== today) {
+    localStorage.setItem(_LLM_DATE_KEY, today);
+    localStorage.setItem(_LLM_CNT_KEY, '0');
+    return 0;
+  }
+  return parseInt(localStorage.getItem(_LLM_CNT_KEY) || '0', 10);
+}
+function incLLMCount() {
+  localStorage.setItem(_LLM_CNT_KEY, String(getLLMCount() + 1));
+}
+
+// Circuit breaker — stops calling API after 3 consecutive errors
+const chatBreaker = {
+  failures: 0, lastFail: 0,
+  isOpen() {
+    if (this.failures < 3) return false;
+    if (Date.now() - this.lastFail > 5 * 60 * 1000) { this.failures = 0; return false; }
+    return true;
+  },
+  fail() { this.failures++; this.lastFail = Date.now(); },
+  ok()   { this.failures = 0; },
+};
+
 function addUserMsg(text) {
   const div = document.createElement('div');
   div.className = 'msg user';
@@ -2046,14 +2113,9 @@ async function sendChat() {
   const input = document.getElementById('chat-input');
   const q = input.value.trim();
   if (!q) return;
-  if (q.length > 500) {
-    addErrMsg('Câu hỏi dài quá 500 ký tự, viết ngắn lại nhé!');
-    return;
-  }
+  if (q.length > 500) { addErrMsg('Câu hỏi dài quá 500 ký tự, viết ngắn lại nhé!'); return; }
 
-  // Hide suggestions once user sends first message
   document.getElementById('chat-suggest').hidden = true;
-
   addUserMsg(q);
   input.value = '';
   STATE.history.push({ role: 'user', content: q });
@@ -2061,14 +2123,54 @@ async function sendChat() {
 
   const sendBtn = document.getElementById('chat-send');
   sendBtn.disabled = true;
-  const typing = addBotMsg('', 'typing');
+  const stepId = STATE.currentStep + 1;
 
-  // Build context from current step
+  // ── TIER 0: FAQ (instant, free, no API call) ─────────────────
+  const faqHit = matchFAQ(q, STATE.moduleId, stepId);
+  if (faqHit) {
+    await new Promise(r => setTimeout(r, 350)); // natural typing feel
+    addBotMsg(faqHit.item.a);
+    STATE.history.push({ role: 'assistant', content: faqHit.item.a });
+    sendBtn.disabled = false;
+    input.focus();
+    return;
+  }
+
+  // ── TIER 1: client-side daily quota check ────────────────────
+  if (getLLMCount() >= LLM_PER_DAY) {
+    await new Promise(r => setTimeout(r, 300));
+    const fallback = matchFAQ(q, STATE.moduleId, stepId, 1);
+    if (fallback) {
+      addBotMsg(fallback.item.a + '\n\n(Bạn đã dùng hết 20 lượt hỏi hôm nay — đây là câu gần nhất từ FAQ.)');
+    } else {
+      addErrMsg('Bạn đã dùng hết 20 lượt hỏi hôm nay. Hỏi tiếp qua nhóm hỗ trợ hoặc quay lại ngày mai nhé!');
+    }
+    STATE.history.pop();
+    sendBtn.disabled = false;
+    input.focus();
+    return;
+  }
+
+  // ── TIER 1: circuit breaker (API lỗi liên tục) ───────────────
+  if (chatBreaker.isOpen()) {
+    await new Promise(r => setTimeout(r, 300));
+    const fallback = matchFAQ(q, STATE.moduleId, stepId, 1);
+    if (fallback) {
+      addBotMsg(fallback.item.a + '\n\n(Chat hỗ trợ đang tạm gián đoạn — gợi ý từ FAQ.)');
+    } else {
+      addErrMsg('Chat hỗ trợ đang tạm gián đoạn. Thử lại sau vài phút hoặc hỏi qua nhóm Zalo nhé!');
+    }
+    STATE.history.pop();
+    sendBtn.disabled = false;
+    input.focus();
+    return;
+  }
+
+  // ── TIER 2: LLM API ──────────────────────────────────────────
+  const typing = addBotMsg('', 'typing');
   const s = STATE.steps[STATE.currentStep] || {};
   const allSteps = (STATE.module?.steps || []).map(step => ({
-    id: step.id,
-    name: step.name || '',
-    title: step.title || '',
+    id: step.id, name: step.name || '', title: step.title || '',
     guide: Array.isArray(step.guide) ? step.guide : [],
   }));
   const payload = {
@@ -2076,7 +2178,7 @@ async function sendChat() {
     moduleId: STATE.moduleId,
     moduleName: STATE.module?.name || '',
     role: STATE.module?.role || '',
-    step: STATE.currentStep + 1,
+    step: stepId,
     stepName: s.name || '',
     stepTitle: s.title || s.ttTitle || '',
     stepGuide: s.guide || [],
@@ -2094,39 +2196,38 @@ async function sendChat() {
     const data = await res.json().catch(() => ({}));
 
     if (!res.ok) {
-      // Use server's friendly message if provided
-      const msg = data?.message || `Lỗi: HTTP ${res.status}`;
-      addErrMsg(msg);
+      chatBreaker.fail();
+      addErrMsg(data?.message || `Lỗi: HTTP ${res.status}`);
       STATE.history.pop();
       return;
     }
 
+    chatBreaker.ok();
+    incLLMCount();
     const text = data.message || '(không có phản hồi)';
     addBotMsg(text);
     STATE.history.push({ role: 'assistant', content: text });
 
-    // Show quota status based on hourPct (hide when plenty remaining)
     if (data.remaining) {
       const info = document.getElementById('quota-info');
       const hint = document.getElementById('api-key-hint');
       if (info && hint) {
         const pct = data.remaining.hourPct ?? 100;
-        if (pct > 75) {
+        const left = LLM_PER_DAY - getLLMCount();
+        if (pct > 75 && left > 10) {
           hint.hidden = true;
-        } else if (pct > 50) {
-          hint.hidden = false;
-          info.textContent = 'Còn nhiều quota 🟢';
+        } else if (pct > 50 && left > 5) {
+          hint.hidden = false; info.textContent = `Còn ${left} lượt hỏi hôm nay 🟢`;
         } else if (pct > 25) {
-          hint.hidden = false;
-          info.textContent = 'Đã dùng khá nhiều 🟡';
+          hint.hidden = false; info.textContent = `Còn ${left} lượt hỏi hôm nay 🟡`;
         } else {
-          hint.hidden = false;
-          info.textContent = 'Sắp hết quota giờ này ⚠️';
+          hint.hidden = false; info.textContent = `Còn ${left} lượt — sắp hết ⚠️`;
         }
       }
     }
   } catch (err) {
     typing.remove();
+    chatBreaker.fail();
     addErrMsg('Lỗi mạng — kiểm tra kết nối rồi thử lại nhé!');
     STATE.history.pop();
   } finally {
