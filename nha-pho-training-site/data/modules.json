@@ -1,6 +1,6 @@
 {
   "version": "v12",
-  "lastUpdated": "2026-05-29",
+  "lastUpdated": "2026-06-02",
   "brand": {
     "name": "Nhà Phố Việt Nam",
     "app": "App Nhà Phố",
@@ -4308,7 +4308,8 @@
         "b05_5": "/api/img?path=images/bang_tin/b05_5.jpg",
         "b03_3": "/api/img?path=images/bang_tin/b03_3.jpg",
         "b06_6": "/api/img?path=images/bang_tin/b06_6.jpg",
-        "b06_3": "/api/img?path=images/bang_tin/b06_3.jpg"
+        "b06_3": "/api/img?path=images/bang_tin/b06_3.jpg",
+        "b08_7": "/api/img?path=images/bang_tin/b08_7.jpg"
       },
       "steps": [
         {
@@ -4547,6 +4548,40 @@
             }
           ],
           "img": "b06_6"
+        },
+        {
+          "id": 8,
+          "name": "Chia sẻ bài đăng (copy) (copy)",
+          "desc": "Gửi bài cho đồng nghiệp qua chat",
+          "title": "Bước 6 — Chia sẻ bài đăng",
+          "sub": "Bấm icon chia sẻ để gửi bài qua Chat Nhà Phố hoặc kênh ngoài",
+          "imgKey": "b08_7",
+          "scrollY": 101,
+          "hs": {
+            "x": 0,
+            "y": 707,
+            "w": 423,
+            "h": 261
+          },
+          "ttPos": "top",
+          "ttTitle": "Nút Chia sẻ",
+          "ttText": "Bấm icon chia sẻ để gửi qua Chat Nhà Phố",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Bấm nút Chia sẻ",
+              "body": "Icon chia sẻ (→) bên dưới bài — bấm để mở tùy chọn."
+            },
+            {
+              "title": "Gửi qua Chat Nhà Phố",
+              "body": "Chọn 'Gửi tin nhắn' → tìm đồng nghiệp → bài được gửi kèm link preview."
+            },
+            {
+              "title": "Chia sẻ ra ngoài",
+              "body": "Chọn 'Chia sẻ khác' để gửi qua Zalo, copy link hoặc các kênh ngoài app."
+            }
+          ],
+          "img": "b08_7"
         }
       ],
       "quality": {
