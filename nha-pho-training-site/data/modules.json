@@ -4075,7 +4075,7 @@
       "name": "QR Code",
       "role": "Học viên / Chuyên viên",
       "icon": "📷",
-      "iconImg": "assets/icons/qr_code.png",
+      "iconImg": "/api/img?path=images/qr_code/icon.jpg",
       "description": "Xem QR cá nhân, quét QR đồng nghiệp, kết nối nhanh",
       "status": "draft",
       "attributes": {
@@ -4840,41 +4840,31 @@
         "feed_hoat_dong": "/api/img?path=images/tin_hoat_dong/feed_hoat_dong.jpg",
         "xem_hoat_dong": "/api/img?path=images/tin_hoat_dong/xem_hoat_dong.jpg",
         "loc_hoat_dong": "/api/img?path=images/tin_hoat_dong/loc_hoat_dong.jpg",
-        "theo_doi_ca_nhan": "/api/img?path=images/tin_hoat_dong/theo_doi_ca_nhan.jpg"
+        "theo_doi_ca_nhan": "/api/img?path=images/tin_hoat_dong/theo_doi_ca_nhan.jpg",
+        "b01_1": "/api/img?path=images/tin_hoat_dong/b01_1.jpg",
+        "b02_2": "/api/img?path=images/tin_hoat_dong/b02_2.jpg"
       },
       "steps": [
         {
           "id": 1,
           "name": "Vào Menu cá nhân",
           "desc": "Avatar góc phải → mở menu cá nhân",
-          "title": "Bước 1 — Vào Menu cá nhân",
-          "sub": "Bấm avatar góc trên phải để mở menu cá nhân",
-          "imgKey": "menu",
+          "title": "Bước 7 — ",
+          "sub": "",
+          "imgKey": "b01_1",
           "scrollY": 0,
           "hs": {
-            "x": 340,
-            "y": 55,
-            "w": 45,
-            "h": 45
+            "x": 100,
+            "y": 200,
+            "w": 80,
+            "h": 80
           },
-          "ttPos": "left",
+          "ttPos": "right",
           "ttTitle": "Avatar cá nhân",
-          "ttText": "Bấm avatar góc trên phải để mở menu cá nhân",
+          "ttText": "",
           "tip": "",
-          "guide": [
-            {
-              "title": "Tìm avatar trang chủ",
-              "body": "Avatar ảnh đại diện của bạn nằm góc trên phải màn hình trang chủ."
-            },
-            {
-              "title": "Bấm vào avatar",
-              "body": "Menu cá nhân mở ra với danh sách tính năng được nhóm theo chức năng."
-            },
-            {
-              "title": "Tìm nhóm Tin hoạt động",
-              "body": "Cuộn trong menu để tìm nhóm 'Tin hoạt động' — thường có icon 📋."
-            }
-          ]
+          "guide": [],
+          "img": "b01_1"
         },
         {
           "id": 2,
@@ -4882,13 +4872,13 @@
           "desc": "Danh sách tính năng trong nhóm",
           "title": "Bước 2 — Nhóm Tin hoạt động",
           "sub": "Bấm vào mục để xem feed hoạt động của nhóm",
-          "imgKey": "menu_tin_hoat_dong",
-          "scrollY": 300,
+          "imgKey": "b02_2",
+          "scrollY": 0,
           "hs": {
-            "x": 16,
-            "y": 350,
-            "w": 358,
-            "h": 55
+            "x": 14,
+            "y": 41,
+            "w": 374,
+            "h": 366
           },
           "ttPos": "right",
           "ttTitle": "Nhóm Tin hoạt động",
@@ -4907,7 +4897,8 @@
               "title": "Biểu tượng phân biệt",
               "body": "Mỗi mục trong nhóm có icon riêng giúp nhận biết nhanh loại feed."
             }
-          ]
+          ],
+          "img": "b02_2"
         },
         {
           "id": 3,
@@ -5054,7 +5045,7 @@
       "icon": "🏢",
       "iconImg": "assets/icons/quan_ly_phong_nhom.png",
       "description": "Quản lý thành viên, phân quyền, nhóm chat và chỉ tiêu phòng",
-      "status": "draft",
+      "status": "live",
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
@@ -5077,7 +5068,9 @@
         "phan_quyen": "/api/img?path=images/quan_ly_phong_nhom/phan_quyen.jpg",
         "nhom_chat_phong": "/api/img?path=images/quan_ly_phong_nhom/nhom_chat_phong.jpg",
         "bao_cao_phong": "/api/img?path=images/quan_ly_phong_nhom/bao_cao_phong.jpg",
-        "chi_tieu_kpi": "/api/img?path=images/quan_ly_phong_nhom/chi_tieu_kpi.jpg"
+        "chi_tieu_kpi": "/api/img?path=images/quan_ly_phong_nhom/chi_tieu_kpi.jpg",
+        "b01_1": "/api/img?path=images/quan_ly_phong_nhom/b01_1.jpg",
+        "b02_2": "/api/img?path=images/quan_ly_phong_nhom/b02_2.jpg"
       },
       "steps": [
         {
@@ -5086,13 +5079,13 @@
           "desc": "Avatar góc phải → menu quản lý",
           "title": "Bước 1 — Vào Menu cá nhân",
           "sub": "Bấm avatar để vào menu với quyền quản lý phòng",
-          "imgKey": "menu",
+          "imgKey": "b01_1",
           "scrollY": 0,
           "hs": {
-            "x": 340,
-            "y": 55,
-            "w": 45,
-            "h": 45
+            "x": 324,
+            "y": 775,
+            "w": 57,
+            "h": 55
           },
           "ttPos": "left",
           "ttTitle": "Avatar quản lý",
@@ -5111,7 +5104,8 @@
               "title": "Tìm nhóm quản lý",
               "body": "Cuộn trong menu để tìm nhóm 'Quản lý phòng' hoặc 'Quản lý nhóm'."
             }
-          ]
+          ],
+          "img": "b01_1"
         },
         {
           "id": 2,
@@ -5119,13 +5113,13 @@
           "desc": "Các phòng và nhóm bạn đang quản lý",
           "title": "Bước 2 — Danh sách phòng",
           "sub": "Xem tất cả phòng và nhóm bạn có quyền quản lý",
-          "imgKey": "danh_sach_phong",
+          "imgKey": "b02_2",
           "scrollY": 0,
           "hs": {
             "x": 16,
-            "y": 200,
-            "w": 358,
-            "h": 200
+            "y": 43,
+            "w": 370,
+            "h": 357
           },
           "ttPos": "right",
           "ttTitle": "Phòng quản lý",
@@ -5144,7 +5138,8 @@
               "title": "Chỉ số tổng quan",
               "body": "Header mỗi card có số tin đang rao, số deal tháng này của phòng đó."
             }
-          ]
+          ],
+          "img": "b02_2"
         },
         {
           "id": 3,
