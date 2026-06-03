@@ -4569,7 +4569,7 @@
       "name": "Kho bạn quan tâm",
       "role": "Học viên / Chuyên viên",
       "icon": "❤️",
-      "iconImg": "assets/icons/kho_quan_tam.png",
+      "iconImg": "/api/img?path=images/kho_quan_tam/icon.jpg",
       "description": "Theo dõi kho hàng quan tâm — bookmark, cập nhật, thông báo",
       "status": "draft",
       "attributes": {
