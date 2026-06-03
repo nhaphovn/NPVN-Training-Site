@@ -4251,7 +4251,7 @@
       "name": "Bảng tin",
       "role": "Đầu chủ",
       "icon": "📢",
-      "iconImg": "assets/icons/bang_tin.png",
+      "iconImg": "/api/img?path=images/bang_tin/icon.jpg",
       "description": "Xem và tương tác bảng tin nội bộ — thông báo, tin tức, chia sẻ",
       "status": "live",
       "attributes": {
