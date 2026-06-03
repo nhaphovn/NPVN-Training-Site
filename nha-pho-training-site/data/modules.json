@@ -106,7 +106,7 @@
           "title": "Bước 2 — Nhân bản tin đăng",
           "sub": "Tùy chọn: Bấm \"Chọn tin\" để nhân bản từ tin đã đăng — không cần điền lại từ đầu",
           "img": "form",
-          "scrollY": 38,
+          "scrollY": 0,
           "hs": {
             "x": 5,
             "y": 98,
@@ -140,7 +140,7 @@
           "title": "Bước 3 — Chọn Loại hình & Đặc điểm",
           "sub": "Chọn đúng loại hình — quyết định toàn bộ thông số nhà xuất hiện ở bước sau",
           "img": "form",
-          "scrollY": 101,
+          "scrollY": 84,
           "hs": {
             "x": 4,
             "y": 161,
@@ -174,7 +174,7 @@
           "title": "Bước 4 — Nhập Vị trí & Địa chỉ",
           "sub": "Chọn từ trên xuống: Thành phố → Quận/Huyện → Phường → Đường/Phố → Số nhà",
           "img": "form",
-          "scrollY": 198,
+          "scrollY": 211,
           "hs": {
             "x": 7,
             "y": 335,
@@ -344,7 +344,7 @@
           "title": "Bước 8 — Nhập Pháp lý & Thông tin bảo mật",
           "sub": "Chọn loại pháp lý, nhập Serial sổ và SĐT chủ nhà — được công ty bảo mật hoàn toàn",
           "img": "form",
-          "scrollY": 1800,
+          "scrollY": 1785,
           "hs": {
             "x": 6,
             "y": 1854,
@@ -378,7 +378,7 @@
           "title": "Bước 9 — Upload ảnh & Tài liệu",
           "sub": "Upload ảnh thực tế (≤12), video (≤4, mỗi file ≤50MB), ảnh pháp lý (≤20), audio (≤4)",
           "img": "form",
-          "scrollY": 1866,
+          "scrollY": 1865,
           "hs": {
             "x": 6,
             "y": 2102,
