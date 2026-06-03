@@ -5043,7 +5043,7 @@
       "name": "Quản lý phòng-nhóm",
       "role": "Quản lý phòng",
       "icon": "🏢",
-      "iconImg": "assets/icons/quan_ly_phong_nhom.png",
+      "iconImg": "/api/img?path=images/quan_ly_phong_nhom/icon.jpg",
       "description": "Quản lý thành viên, phân quyền, nhóm chat và chỉ tiêu phòng",
       "status": "live",
       "attributes": {
