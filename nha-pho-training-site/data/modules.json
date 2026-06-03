@@ -4816,7 +4816,7 @@
       "name": "Tin hoạt động",
       "role": "Học viên / Chuyên viên",
       "icon": "📋",
-      "iconImg": "assets/icons/tin_hoat_dong.png",
+      "iconImg": "/api/img?path=images/tin_hoat_dong/icon.jpg",
       "description": "Theo dõi hoạt động team — giao dịch mới, cập nhật kho, tin tức nhóm",
       "status": "draft",
       "attributes": {
