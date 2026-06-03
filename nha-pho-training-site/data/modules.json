@@ -1,6 +1,6 @@
 {
   "version": "v12",
-  "lastUpdated": "2026-06-02",
+  "lastUpdated": "2026-06-03",
   "brand": {
     "name": "Nhà Phố Việt Nam",
     "app": "App Nhà Phố",
@@ -484,7 +484,7 @@
           "title": "Bước 1 — Vào Kho tài nguyên",
           "sub": "Từ trang chủ, bấm icon Kho tài nguyên — hàng đầu tiên, vị trí bên trái nhất",
           "imgKey": "home",
-          "scrollY": 27,
+          "scrollY": 0,
           "hs": {
             "x": 10,
             "y": 107,
@@ -518,7 +518,7 @@
           "title": "Bước 2 — Tab Danh sách",
           "sub": "Màn hình mặc định — bảng dữ liệu dạng hàng ngang với đầy đủ thông tin từng tin đăng",
           "imgKey": "b02",
-          "scrollY": 65,
+          "scrollY": 0,
           "hs": {
             "x": 6,
             "y": 145,
@@ -552,7 +552,7 @@
           "title": "Bước 3 — Kéo danh sách xem đủ cột",
           "sub": "Danh sách có nhiều cột — vuốt ngón tay sang phải/trái để thấy toàn bộ thông tin",
           "imgKey": "b02",
-          "scrollY": 167,
+          "scrollY": 0,
           "hs": {
             "x": 1,
             "y": 247,
@@ -586,7 +586,7 @@
           "title": "Bước 4 — Xem danh sách tối ưu",
           "sub": "Kéo đến vừa đủ hiện Địa chỉ + Thông số + Giá trong 1 màn hình — xem được nhiều căn nhất",
           "imgKey": "b04",
-          "scrollY": 155,
+          "scrollY": 0,
           "hs": {
             "x": 0,
             "y": 235,
@@ -620,7 +620,7 @@
           "title": "Bước 5 — Dùng tính năng Ẩn cột",
           "sub": "Bấm 'Ẩn cột' trong thanh toolbar để chọn cột nào hiển thị — bớt rối mắt hơn",
           "imgKey": "b06a",
-          "scrollY": 111,
+          "scrollY": 0,
           "hs": {
             "x": 62,
             "y": 191,
@@ -654,7 +654,7 @@
           "title": "Bước 6 — Chọn cột cần hiển thị",
           "sub": "Toggle xanh = hiện | Toggle xám = ẩn. Bấm Đặt lại để về mặc định",
           "imgKey": "b06a",
-          "scrollY": 162,
+          "scrollY": 0,
           "hs": {
             "x": 57,
             "y": 242,
@@ -688,7 +688,7 @@
           "title": "Bước 7 — Tab Đã lưu",
           "sub": "Xem tất cả tin đã lưu vào bộ sưu tập — có ghi chú kèm theo từng tin",
           "imgKey": "b06s",
-          "scrollY": 64,
+          "scrollY": 0,
           "hs": {
             "x": 232,
             "y": 138,
@@ -722,7 +722,7 @@
           "title": "Bước 8 — Tab Chi tiết",
           "sub": "Xem tin đăng dạng feed — lướt từng tin đầy đủ ảnh, thông tin, giá như mạng xã hội",
           "imgKey": "b07",
-          "scrollY": 70,
+          "scrollY": 0,
           "hs": {
             "x": 128,
             "y": 150,
@@ -756,12 +756,12 @@
           "title": "Bước 9 — Mở bộ lọc kho",
           "sub": "Bấm nút Lọc trong toolbar để mở panel nhập tiêu chí lọc tin đăng",
           "imgKey": "b08",
-          "scrollY": 150,
+          "scrollY": 40,
           "hs": {
             "x": 4,
-            "y": 230,
-            "w": 59,
-            "h": 37
+            "y": 228,
+            "w": 64,
+            "h": 39
           },
           "ttPos": "right",
           "ttTitle": "Nút Lọc",
@@ -790,7 +790,7 @@
           "title": "Bước 10 — Nhập tiêu chí lọc BĐS",
           "sub": "Chọn Hiện trạng, Loại hình, Tỉnh/TP, Quận/Huyện, Đường, Giá tối thiểu/tối đa",
           "imgKey": "b08",
-          "scrollY": 231,
+          "scrollY": 41,
           "hs": {
             "x": 40,
             "y": 311,
@@ -824,7 +824,7 @@
           "title": "Bước 11 — Lọc theo Chi nhánh",
           "sub": "Hệ thống mặc định hiển thị theo Chi nhánh của bạn — có thể thay đổi tùy nhu cầu",
           "imgKey": "b08",
-          "scrollY": 605,
+          "scrollY": 40,
           "hs": {
             "x": 37,
             "y": 685,
@@ -858,7 +858,7 @@
           "title": "Bước 12 — Bấm Lọc để áp dụng",
           "sub": "Chọn phòng ban hoặc tên tài khoản cụ thể → bấm nút Lọc màu xanh để áp dụng",
           "imgKey": "b08",
-          "scrollY": 645,
+          "scrollY": 40,
           "hs": {
             "x": 40,
             "y": 725,
