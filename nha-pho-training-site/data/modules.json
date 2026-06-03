@@ -3680,7 +3680,7 @@
       "name": "Chat Nhà Phố",
       "role": "Học viên / Chuyên viên",
       "icon": "💬",
-      "iconImg": "assets/icons/chat_nha_pho.png",
+      "iconImg": "/api/img?path=images/chat_nha_pho/icon.jpg",
       "description": "Nhắn tin trực tiếp, chat nhóm và kênh thông báo mặc định",
       "status": "live",
       "attributes": {
