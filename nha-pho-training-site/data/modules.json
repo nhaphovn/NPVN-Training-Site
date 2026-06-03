@@ -5600,7 +5600,7 @@
       "name": "Quản lý kho hàng",
       "role": "Quản lý phòng",
       "icon": "📦",
-      "iconImg": "assets/icons/quan_ly_kho_hang.png",
+      "iconImg": "/api/img?path=images/quan_ly_kho_hang/icon.jpg",
       "description": "Quản lý tổng hợp kho hàng phòng — duyệt, phân công, thống kê",
       "status": "draft",
       "attributes": {
