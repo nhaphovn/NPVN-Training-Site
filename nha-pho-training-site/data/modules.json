@@ -5350,7 +5350,7 @@
       "name": "Tài khoản cá nhân",
       "role": "Đầu chủ",
       "icon": "👤",
-      "iconImg": "assets/icons/tai_khoan_ca_nhan.png",
+      "iconImg": "/api/img?path=images/tai_khoan_ca_nhan/icon.jpg",
       "description": "Quản lý hồ sơ cá nhân — thông tin, ảnh, bảo mật, thông báo",
       "status": "draft",
       "attributes": {
