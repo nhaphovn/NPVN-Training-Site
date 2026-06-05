@@ -1,6 +1,6 @@
 {
   "version": "v12",
-  "lastUpdated": "2026-06-03",
+  "lastUpdated": "2026-06-05",
   "brand": {
     "name": "Nhà Phố Việt Nam",
     "app": "App Nhà Phố",
@@ -106,7 +106,7 @@
           "title": "Bước 2 — Nhân bản tin đăng",
           "sub": "Tùy chọn: Bấm \"Chọn tin\" để nhân bản từ tin đã đăng — không cần điền lại từ đầu",
           "img": "form",
-          "scrollY": 0,
+          "scrollY": 38,
           "hs": {
             "x": 5,
             "y": 98,
@@ -140,7 +140,7 @@
           "title": "Bước 3 — Chọn Loại hình & Đặc điểm",
           "sub": "Chọn đúng loại hình — quyết định toàn bộ thông số nhà xuất hiện ở bước sau",
           "img": "form",
-          "scrollY": 84,
+          "scrollY": 101,
           "hs": {
             "x": 4,
             "y": 161,
@@ -174,7 +174,7 @@
           "title": "Bước 4 — Nhập Vị trí & Địa chỉ",
           "sub": "Chọn từ trên xuống: Thành phố → Quận/Huyện → Phường → Đường/Phố → Số nhà",
           "img": "form",
-          "scrollY": 211,
+          "scrollY": 198,
           "hs": {
             "x": 7,
             "y": 335,
@@ -344,7 +344,7 @@
           "title": "Bước 8 — Nhập Pháp lý & Thông tin bảo mật",
           "sub": "Chọn loại pháp lý, nhập Serial sổ và SĐT chủ nhà — được công ty bảo mật hoàn toàn",
           "img": "form",
-          "scrollY": 1785,
+          "scrollY": 1800,
           "hs": {
             "x": 6,
             "y": 1854,
@@ -378,7 +378,7 @@
           "title": "Bước 9 — Upload ảnh & Tài liệu",
           "sub": "Upload ảnh thực tế (≤12), video (≤4, mỗi file ≤50MB), ảnh pháp lý (≤20), audio (≤4)",
           "img": "form",
-          "scrollY": 1865,
+          "scrollY": 1866,
           "hs": {
             "x": 6,
             "y": 2102,
@@ -484,7 +484,7 @@
           "title": "Bước 1 — Vào Kho tài nguyên",
           "sub": "Từ trang chủ, bấm icon Kho tài nguyên — hàng đầu tiên, vị trí bên trái nhất",
           "imgKey": "home",
-          "scrollY": 0,
+          "scrollY": 27,
           "hs": {
             "x": 10,
             "y": 107,
@@ -518,7 +518,7 @@
           "title": "Bước 2 — Tab Danh sách",
           "sub": "Màn hình mặc định — bảng dữ liệu dạng hàng ngang với đầy đủ thông tin từng tin đăng",
           "imgKey": "b02",
-          "scrollY": 0,
+          "scrollY": 65,
           "hs": {
             "x": 6,
             "y": 145,
@@ -552,7 +552,7 @@
           "title": "Bước 3 — Kéo danh sách xem đủ cột",
           "sub": "Danh sách có nhiều cột — vuốt ngón tay sang phải/trái để thấy toàn bộ thông tin",
           "imgKey": "b02",
-          "scrollY": 0,
+          "scrollY": 167,
           "hs": {
             "x": 1,
             "y": 247,
@@ -586,7 +586,7 @@
           "title": "Bước 4 — Xem danh sách tối ưu",
           "sub": "Kéo đến vừa đủ hiện Địa chỉ + Thông số + Giá trong 1 màn hình — xem được nhiều căn nhất",
           "imgKey": "b04",
-          "scrollY": 0,
+          "scrollY": 155,
           "hs": {
             "x": 0,
             "y": 235,
@@ -620,7 +620,7 @@
           "title": "Bước 5 — Dùng tính năng Ẩn cột",
           "sub": "Bấm 'Ẩn cột' trong thanh toolbar để chọn cột nào hiển thị — bớt rối mắt hơn",
           "imgKey": "b06a",
-          "scrollY": 0,
+          "scrollY": 111,
           "hs": {
             "x": 62,
             "y": 191,
@@ -654,7 +654,7 @@
           "title": "Bước 6 — Chọn cột cần hiển thị",
           "sub": "Toggle xanh = hiện | Toggle xám = ẩn. Bấm Đặt lại để về mặc định",
           "imgKey": "b06a",
-          "scrollY": 0,
+          "scrollY": 162,
           "hs": {
             "x": 57,
             "y": 242,
@@ -688,7 +688,7 @@
           "title": "Bước 7 — Tab Đã lưu",
           "sub": "Xem tất cả tin đã lưu vào bộ sưu tập — có ghi chú kèm theo từng tin",
           "imgKey": "b06s",
-          "scrollY": 0,
+          "scrollY": 64,
           "hs": {
             "x": 232,
             "y": 138,
@@ -722,7 +722,7 @@
           "title": "Bước 8 — Tab Chi tiết",
           "sub": "Xem tin đăng dạng feed — lướt từng tin đầy đủ ảnh, thông tin, giá như mạng xã hội",
           "imgKey": "b07",
-          "scrollY": 0,
+          "scrollY": 70,
           "hs": {
             "x": 128,
             "y": 150,
@@ -756,12 +756,12 @@
           "title": "Bước 9 — Mở bộ lọc kho",
           "sub": "Bấm nút Lọc trong toolbar để mở panel nhập tiêu chí lọc tin đăng",
           "imgKey": "b08",
-          "scrollY": 40,
+          "scrollY": 150,
           "hs": {
             "x": 4,
-            "y": 228,
-            "w": 64,
-            "h": 39
+            "y": 230,
+            "w": 59,
+            "h": 37
           },
           "ttPos": "right",
           "ttTitle": "Nút Lọc",
@@ -790,7 +790,7 @@
           "title": "Bước 10 — Nhập tiêu chí lọc BĐS",
           "sub": "Chọn Hiện trạng, Loại hình, Tỉnh/TP, Quận/Huyện, Đường, Giá tối thiểu/tối đa",
           "imgKey": "b08",
-          "scrollY": 41,
+          "scrollY": 231,
           "hs": {
             "x": 40,
             "y": 311,
@@ -824,7 +824,7 @@
           "title": "Bước 11 — Lọc theo Chi nhánh",
           "sub": "Hệ thống mặc định hiển thị theo Chi nhánh của bạn — có thể thay đổi tùy nhu cầu",
           "imgKey": "b08",
-          "scrollY": 40,
+          "scrollY": 605,
           "hs": {
             "x": 37,
             "y": 685,
@@ -858,7 +858,7 @@
           "title": "Bước 12 — Bấm Lọc để áp dụng",
           "sub": "Chọn phòng ban hoặc tên tài khoản cụ thể → bấm nút Lọc màu xanh để áp dụng",
           "imgKey": "b08",
-          "scrollY": 40,
+          "scrollY": 645,
           "hs": {
             "x": 40,
             "y": 725,
@@ -933,7 +933,7 @@
           "title": "Bước 1 — Lưu tin từ tab Danh sách",
           "sub": "Trong tab Danh sách kho tài nguyên, bấm icon 🔖 ở cột đầu tiên để lưu tin quan tâm",
           "imgKey": "b01_list",
-          "scrollY": 9,
+          "scrollY": 166,
           "hs": {
             "x": 2,
             "y": 246,
@@ -967,7 +967,7 @@
           "title": "Bước 2 — Ghi chú tin từ Danh sách",
           "sub": "Với tin đã lưu (icon đỏ), bấm icon 🗒 cột G.Chú để thêm ghi chú nhanh",
           "imgKey": "b01_list",
-          "scrollY": 9,
+          "scrollY": 223,
           "hs": {
             "x": 63,
             "y": 303,
@@ -1004,9 +1004,9 @@
           "scrollY": 1230,
           "hs": {
             "x": 233,
-            "y": 1299,
+            "y": 1310,
             "w": 120,
-            "h": 50
+            "h": 39
           },
           "ttPos": "left",
           "ttTitle": "Icon Lưu trên feed",
@@ -1035,7 +1035,7 @@
           "title": "Bước 4 — Chọn Bộ sưu tập khi lưu tin",
           "sub": "Sau khi bấm icon Lưu, popup xuất hiện để chọn BST — lưu Mặc định hoặc chọn BST cụ thể",
           "imgKey": "b02_bst",
-          "scrollY": 0,
+          "scrollY": 296,
           "hs": {
             "x": 20,
             "y": 376,
@@ -1069,7 +1069,7 @@
           "title": "Bước 5 — Lưu tin vào BST cụ thể",
           "sub": "Tick vào BST muốn lưu — có thể chọn nhiều BST cùng lúc — rồi bấm Xong",
           "imgKey": "b02_bst",
-          "scrollY": 0,
+          "scrollY": 368,
           "hs": {
             "x": 20,
             "y": 448,
@@ -1103,7 +1103,7 @@
           "title": "Bước 6 — Tạo Bộ sưu tập mới",
           "sub": "Vào màn hình Bộ sưu tập → bấm 'Tạo bộ sưu tập' → nhập tên → bấm Tạo",
           "imgKey": "b03_tao",
-          "scrollY": 0,
+          "scrollY": 253,
           "hs": {
             "x": 9,
             "y": 333,
@@ -1137,7 +1137,7 @@
           "title": "Bước 7 — Sửa & Xóa Bộ sưu tập",
           "sub": "Bấm giữ vào BST hoặc bấm nút 3 chấm (···) để xem tùy chọn Sửa và Xóa",
           "imgKey": "b04_menu",
-          "scrollY": 75,
+          "scrollY": 339,
           "hs": {
             "x": 17,
             "y": 419,
@@ -1171,7 +1171,7 @@
           "title": "Bước 8 — Sửa Bộ sưu tập",
           "sub": "Màn hình Sửa BST: đổi ảnh đại diện, đổi tên, rồi bấm Lưu để cập nhật",
           "imgKey": "b05_sua",
-          "scrollY": 43,
+          "scrollY": 275,
           "hs": {
             "x": 118,
             "y": 355,
@@ -1205,7 +1205,7 @@
           "title": "Bước 9 — Xem và quản lý tin trong BST",
           "sub": "Trong BST: lọc sắp xếp, xem tiêu đề tin, ghi chú, và thao tác gỡ/thêm BST khác",
           "imgKey": "b06_tin",
-          "scrollY": 50,
+          "scrollY": 41,
           "hs": {
             "x": 5,
             "y": 121,
@@ -1239,7 +1239,7 @@
           "title": "Bước 10 — Gỡ tin khỏi Bộ sưu tập",
           "sub": "Bấm giữ vào tin hoặc bấm nút 3 chấm (···) → chọn 'Gỡ bỏ' để xóa tin khỏi BST này",
           "imgKey": "b07_xoa",
-          "scrollY": 21,
+          "scrollY": 621,
           "hs": {
             "x": 18,
             "y": 701,
@@ -1273,7 +1273,7 @@
           "title": "Bước 11 — Ghi chú và tải ảnh cho tin đã lưu",
           "sub": "Màn hình Ghi chú: nhập text, tải tối đa 6 ảnh (rất hữu ích khi đi khảo sát), rồi bấm Lưu",
           "imgKey": "b08_ghi",
-          "scrollY": 9,
+          "scrollY": 26,
           "hs": {
             "x": 3,
             "y": 106,
@@ -1307,12 +1307,12 @@
           "title": "Bước 12 — Xem tab Đã lưu trong Kho tài nguyên",
           "sub": "Tab Đã lưu trong Kho tài nguyên hiển thị tất cả tin đã bấm lưu — toàn bộ, không phân BST",
           "imgKey": "b09_daluu",
-          "scrollY": 55,
+          "scrollY": 64,
           "hs": {
             "x": 232,
             "y": 138,
-            "w": 152,
-            "h": 52
+            "w": 138,
+            "h": 41
           },
           "ttPos": "left",
           "ttTitle": "Tab Đã lưu",
@@ -2241,7 +2241,7 @@
             "w": 98,
             "h": 54
           },
-          "ttPos": "right",
+          "ttPos": "bottom",
           "ttTitle": "Tab Đã duyệt",
           "ttText": "Tin đang live — chuyên viên thấy và có thể đặt lịch",
           "tip": "Tin đã duyệt có thể chỉnh sửa một số trường — loại hình, pháp lý và SĐT không sửa được.",
@@ -3680,7 +3680,7 @@
       "name": "Chat Nhà Phố",
       "role": "Học viên / Chuyên viên",
       "icon": "💬",
-      "iconImg": "/api/img?path=images/chat_nha_pho/icon.jpg",
+      "iconImg": "assets/icons/chat_nha_pho.png",
       "description": "Nhắn tin trực tiếp, chat nhóm và kênh thông báo mặc định",
       "status": "live",
       "attributes": {
@@ -4075,7 +4075,7 @@
       "name": "QR Code",
       "role": "Học viên / Chuyên viên",
       "icon": "📷",
-      "iconImg": "/api/img?path=images/qr_code/icon.jpg",
+      "iconImg": "assets/icons/qr_code.png",
       "description": "Xem QR cá nhân, quét QR đồng nghiệp, kết nối nhanh",
       "status": "draft",
       "attributes": {
@@ -4251,7 +4251,7 @@
       "name": "Bảng tin",
       "role": "Đầu chủ",
       "icon": "📢",
-      "iconImg": "/api/img?path=images/bang_tin/icon.jpg",
+      "iconImg": "assets/icons/bang_tin.png",
       "description": "Xem và tương tác bảng tin nội bộ — thông báo, tin tức, chia sẻ",
       "status": "live",
       "attributes": {
@@ -4569,7 +4569,7 @@
       "name": "Kho bạn quan tâm",
       "role": "Học viên / Chuyên viên",
       "icon": "❤️",
-      "iconImg": "/api/img?path=images/kho_quan_tam/icon.jpg",
+      "iconImg": "assets/icons/kho_quan_tam.png",
       "description": "Theo dõi kho hàng quan tâm — bookmark, cập nhật, thông báo",
       "status": "draft",
       "attributes": {
@@ -4816,7 +4816,7 @@
       "name": "Tin hoạt động",
       "role": "Học viên / Chuyên viên",
       "icon": "📋",
-      "iconImg": "/api/img?path=images/tin_hoat_dong/icon.jpg",
+      "iconImg": "assets/icons/tin_hoat_dong.png",
       "description": "Theo dõi hoạt động team — giao dịch mới, cập nhật kho, tin tức nhóm",
       "status": "draft",
       "attributes": {
@@ -4842,43 +4842,95 @@
         "loc_hoat_dong": "/api/img?path=images/tin_hoat_dong/loc_hoat_dong.jpg",
         "theo_doi_ca_nhan": "/api/img?path=images/tin_hoat_dong/theo_doi_ca_nhan.jpg",
         "b01_1": "/api/img?path=images/tin_hoat_dong/b01_1.jpg",
-        "b02_2": "/api/img?path=images/tin_hoat_dong/b02_2.jpg"
+        "b02_1": "/api/img?path=images/tin_hoat_dong/b02_1.jpg",
+        "b03_2": "/api/img?path=images/tin_hoat_dong/b03_2.jpg",
+        "b04_4": "/api/img?path=images/tin_hoat_dong/b04_4.jpg",
+        "b05_5": "/api/img?path=images/tin_hoat_dong/b05_5.jpg",
+        "b07_4": "/api/img?path=images/tin_hoat_dong/b07_4.jpg",
+        "b07_7": "/api/img?path=images/tin_hoat_dong/b07_7.jpg"
       },
       "steps": [
         {
           "id": 1,
           "name": "Vào Menu cá nhân",
           "desc": "Avatar góc phải → mở menu cá nhân",
-          "title": "Bước 7 — ",
-          "sub": "",
+          "title": "Bước 1 — Vào Menu cá nhân",
+          "sub": "Bấm avatar góc trên phải để mở menu cá nhân",
           "imgKey": "b01_1",
           "scrollY": 0,
           "hs": {
-            "x": 100,
-            "y": 200,
-            "w": 80,
-            "h": 80
+            "x": 320,
+            "y": 769,
+            "w": 65,
+            "h": 62
           },
-          "ttPos": "right",
+          "ttPos": "left",
           "ttTitle": "Avatar cá nhân",
-          "ttText": "",
+          "ttText": "Bấm avatar góc trên phải để mở menu cá nhân",
           "tip": "",
-          "guide": [],
+          "guide": [
+            {
+              "title": "Tìm avatar trang chủ",
+              "body": "Avatar ảnh đại diện của bạn nằm góc trên phải màn hình trang chủ."
+            },
+            {
+              "title": "Bấm vào avatar",
+              "body": "Menu cá nhân mở ra với danh sách tính năng được nhóm theo chức năng."
+            },
+            {
+              "title": "Tìm nhóm Tin hoạt động",
+              "body": "Cuộn trong menu để tìm nhóm 'Tin hoạt động' — thường có icon 📋."
+            }
+          ],
           "img": "b01_1"
         },
         {
           "id": 2,
+          "name": "Vào Menu cá nhân ",
+          "desc": "Avatar góc phải → mở menu cá nhân",
+          "title": "Bước 1 — Vào Menu cá nhân",
+          "sub": "Bấm avatar góc trên phải để mở menu cá nhân",
+          "imgKey": "b02_1",
+          "scrollY": 0,
+          "hs": {
+            "x": 11,
+            "y": 299,
+            "w": 189,
+            "h": 73
+          },
+          "ttPos": "right",
+          "ttTitle": "Avatar cá nhân",
+          "ttText": "Bấm icon để vào list tin hoạt động",
+          "tip": "",
+          "guide": [
+            {
+              "title": "Tìm avatar trang chủ",
+              "body": "Avatar ảnh đại diện của bạn nằm góc trên phải màn hình trang chủ."
+            },
+            {
+              "title": "Bấm vào avatar",
+              "body": "Menu cá nhân mở ra với danh sách tính năng được nhóm theo chức năng."
+            },
+            {
+              "title": "Tìm nhóm Tin hoạt động",
+              "body": "Cuộn trong menu để tìm nhóm 'Tin hoạt động' — thường có icon 📋."
+            }
+          ],
+          "img": "b02_1"
+        },
+        {
+          "id": 3,
           "name": "Nhóm Tin hoạt động",
           "desc": "Danh sách tính năng trong nhóm",
           "title": "Bước 2 — Nhóm Tin hoạt động",
           "sub": "Bấm vào mục để xem feed hoạt động của nhóm",
-          "imgKey": "b02_2",
+          "imgKey": "b03_2",
           "scrollY": 0,
           "hs": {
-            "x": 14,
-            "y": 41,
-            "w": 374,
-            "h": 366
+            "x": 10,
+            "y": 46,
+            "w": 379,
+            "h": 324
           },
           "ttPos": "right",
           "ttTitle": "Nhóm Tin hoạt động",
@@ -4898,21 +4950,21 @@
               "body": "Mỗi mục trong nhóm có icon riêng giúp nhận biết nhanh loại feed."
             }
           ],
-          "img": "b02_2"
+          "img": "b03_2"
         },
         {
-          "id": 3,
+          "id": 4,
           "name": "Feed hoạt động nhóm",
           "desc": "Dòng thời gian hoạt động toàn nhóm",
           "title": "Bước 3 — Feed hoạt động nhóm",
           "sub": "Cuộn để xem hoạt động mới nhất của cả nhóm theo thời gian",
-          "imgKey": "feed_hoat_dong",
+          "imgKey": "b04_4",
           "scrollY": 0,
           "hs": {
-            "x": 16,
-            "y": 200,
-            "w": 358,
-            "h": 350
+            "x": 4,
+            "y": 43,
+            "w": 381,
+            "h": 802
           },
           "ttPos": "right",
           "ttTitle": "Feed hoạt động",
@@ -4931,25 +4983,60 @@
               "title": "Cuộn để tải thêm",
               "body": "Cuộn xuống cuối màn hình để tải thêm hoạt động cũ hơn."
             }
-          ]
+          ],
+          "img": "b04_4"
         },
         {
-          "id": 4,
-          "name": "Chi tiết hoạt động",
-          "desc": "Thông tin đầy đủ một sự kiện cụ thể",
-          "title": "Bước 4 — Chi tiết hoạt động",
-          "sub": "Bấm vào card để xem chi tiết và tham gia trao đổi",
-          "imgKey": "xem_hoat_dong",
+          "id": 5,
+          "name": "Tạo bài viết",
+          "desc": "Dòng thời gian hoạt động toàn nhóm",
+          "title": "Bước 3 — Feed hoạt động nhóm",
+          "sub": "Cuộn để xem hoạt động mới nhất của cả nhóm theo thời gian",
+          "imgKey": "b04_4",
           "scrollY": 0,
           "hs": {
-            "x": 16,
-            "y": 200,
-            "w": 358,
-            "h": 120
+            "x": 4,
+            "y": 88,
+            "w": 131,
+            "h": 65
           },
           "ttPos": "right",
-          "ttTitle": "Card hoạt động",
-          "ttText": "Bấm vào card để xem chi tiết và tham gia trao đổi",
+          "ttTitle": "Bấm dấu + để mở form nhập thông báo vụ chốt",
+          "ttText": "Cuộn để xem hoạt động mới nhất của cả nhóm",
+          "tip": "Mỗi hoạt động có dấu thời gian — giúp theo dõi nhịp làm việc của cả nhóm.",
+          "guide": [
+            {
+              "title": "Đọc dòng thời gian",
+              "body": "Mỗi card là 1 sự kiện: đăng tin mới, ký hợp đồng, lịch hẹn, phản hồi khách."
+            },
+            {
+              "title": "Xem theo người",
+              "body": "Bấm vào tên thành viên trong card để xem riêng hoạt động của người đó."
+            },
+            {
+              "title": "Cuộn để tải thêm",
+              "body": "Cuộn xuống cuối màn hình để tải thêm hoạt động cũ hơn."
+            }
+          ],
+          "img": "b04_4"
+        },
+        {
+          "id": 6,
+          "name": "Tạo bài viết",
+          "desc": "Form nhập nội dung bài viết",
+          "title": "Bước 4 — Chi tiết hoạt động",
+          "sub": "Bấm vào card để xem chi tiết và tham gia trao đổi",
+          "imgKey": "b05_5",
+          "scrollY": 0,
+          "hs": {
+            "x": 4,
+            "y": 50,
+            "w": 381,
+            "h": 602
+          },
+          "ttPos": "bottom",
+          "ttTitle": "Nút tạo bài viết",
+          "ttText": "Nhập nội dung và tải ảnh lên",
           "tip": "",
           "guide": [
             {
@@ -4964,25 +5051,26 @@
               "title": "Bình luận hoạt động",
               "body": "Cuộn xuống phần bình luận để nhận xét hoặc chúc mừng đồng nghiệp."
             }
-          ]
+          ],
+          "img": "b05_5"
         },
         {
-          "id": 5,
-          "name": "Lọc hoạt động",
+          "id": 7,
+          "name": "Sửa/xóa bài viết",
           "desc": "Chọn loại hoạt động muốn xem",
           "title": "Bước 5 — Lọc hoạt động",
           "sub": "Chọn lọc theo loại — tin mới, hợp đồng, lịch hẹn",
-          "imgKey": "loc_hoat_dong",
-          "scrollY": 0,
+          "imgKey": "b07_7",
+          "scrollY": 85,
           "hs": {
-            "x": 330,
-            "y": 55,
-            "w": 45,
-            "h": 45
+            "x": 0,
+            "y": 579,
+            "w": 392,
+            "h": 504
           },
-          "ttPos": "left",
-          "ttTitle": "Bộ lọc hoạt động",
-          "ttText": "Chọn lọc theo loại — tin mới, hợp đồng, lịch hẹn",
+          "ttPos": "top",
+          "ttTitle": "Form sửa/xóa",
+          "ttText": "Chọn lsửa, xóa or ghim...",
           "tip": "",
           "guide": [
             {
@@ -4997,40 +5085,8 @@
               "title": "Áp dụng bộ lọc",
               "body": "Bấm Áp dụng — feed cập nhật ngay chỉ hiện loại đã chọn."
             }
-          ]
-        },
-        {
-          "id": 6,
-          "name": "Theo dõi cá nhân",
-          "desc": "Xem riêng hoạt động của một thành viên",
-          "title": "Bước 6 — Theo dõi cá nhân",
-          "sub": "Bấm tên/avatar để xem feed riêng của thành viên đó",
-          "imgKey": "theo_doi_ca_nhan",
-          "scrollY": 0,
-          "hs": {
-            "x": 16,
-            "y": 215,
-            "w": 45,
-            "h": 45
-          },
-          "ttPos": "right",
-          "ttTitle": "Profile thành viên",
-          "ttText": "Bấm tên/avatar để xem feed riêng của thành viên đó",
-          "tip": "",
-          "guide": [
-            {
-              "title": "Bấm vào avatar/tên",
-              "body": "Trong bất kỳ card nào, bấm avatar hoặc tên người dùng."
-            },
-            {
-              "title": "Xem profile hoạt động",
-              "body": "Trang cá nhân hiển thị lịch sử hoạt động, số tin đăng, số hợp đồng."
-            },
-            {
-              "title": "Theo dõi thành viên",
-              "body": "Bấm 'Theo dõi' để ưu tiên hoạt động của người này lên đầu feed của bạn."
-            }
-          ]
+          ],
+          "img": "b07_7"
         }
       ],
       "quality": {
@@ -5043,9 +5099,9 @@
       "name": "Quản lý phòng-nhóm",
       "role": "Quản lý phòng",
       "icon": "🏢",
-      "iconImg": "/api/img?path=images/quan_ly_phong_nhom/icon.jpg",
+      "iconImg": "assets/icons/quan_ly_phong_nhom.png",
       "description": "Quản lý thành viên, phân quyền, nhóm chat và chỉ tiêu phòng",
-      "status": "live",
+      "status": "draft",
       "attributes": {
         "industry": "real_estate",
         "tenant": "nhapho",
@@ -5068,9 +5124,7 @@
         "phan_quyen": "/api/img?path=images/quan_ly_phong_nhom/phan_quyen.jpg",
         "nhom_chat_phong": "/api/img?path=images/quan_ly_phong_nhom/nhom_chat_phong.jpg",
         "bao_cao_phong": "/api/img?path=images/quan_ly_phong_nhom/bao_cao_phong.jpg",
-        "chi_tieu_kpi": "/api/img?path=images/quan_ly_phong_nhom/chi_tieu_kpi.jpg",
-        "b01_1": "/api/img?path=images/quan_ly_phong_nhom/b01_1.jpg",
-        "b02_2": "/api/img?path=images/quan_ly_phong_nhom/b02_2.jpg"
+        "chi_tieu_kpi": "/api/img?path=images/quan_ly_phong_nhom/chi_tieu_kpi.jpg"
       },
       "steps": [
         {
@@ -5079,13 +5133,13 @@
           "desc": "Avatar góc phải → menu quản lý",
           "title": "Bước 1 — Vào Menu cá nhân",
           "sub": "Bấm avatar để vào menu với quyền quản lý phòng",
-          "imgKey": "b01_1",
+          "imgKey": "menu",
           "scrollY": 0,
           "hs": {
-            "x": 324,
-            "y": 775,
-            "w": 57,
-            "h": 55
+            "x": 340,
+            "y": 55,
+            "w": 45,
+            "h": 45
           },
           "ttPos": "left",
           "ttTitle": "Avatar quản lý",
@@ -5104,8 +5158,7 @@
               "title": "Tìm nhóm quản lý",
               "body": "Cuộn trong menu để tìm nhóm 'Quản lý phòng' hoặc 'Quản lý nhóm'."
             }
-          ],
-          "img": "b01_1"
+          ]
         },
         {
           "id": 2,
@@ -5113,13 +5166,13 @@
           "desc": "Các phòng và nhóm bạn đang quản lý",
           "title": "Bước 2 — Danh sách phòng",
           "sub": "Xem tất cả phòng và nhóm bạn có quyền quản lý",
-          "imgKey": "b02_2",
+          "imgKey": "danh_sach_phong",
           "scrollY": 0,
           "hs": {
             "x": 16,
-            "y": 43,
-            "w": 370,
-            "h": 357
+            "y": 200,
+            "w": 358,
+            "h": 200
           },
           "ttPos": "right",
           "ttTitle": "Phòng quản lý",
@@ -5138,8 +5191,7 @@
               "title": "Chỉ số tổng quan",
               "body": "Header mỗi card có số tin đang rao, số deal tháng này của phòng đó."
             }
-          ],
-          "img": "b02_2"
+          ]
         },
         {
           "id": 3,
@@ -5350,7 +5402,7 @@
       "name": "Tài khoản cá nhân",
       "role": "Đầu chủ",
       "icon": "👤",
-      "iconImg": "/api/img?path=images/tai_khoan_ca_nhan/icon.jpg",
+      "iconImg": "assets/icons/tai_khoan_ca_nhan.png",
       "description": "Quản lý hồ sơ cá nhân — thông tin, ảnh, bảo mật, thông báo",
       "status": "draft",
       "attributes": {
@@ -5600,7 +5652,7 @@
       "name": "Quản lý kho hàng",
       "role": "Quản lý phòng",
       "icon": "📦",
-      "iconImg": "/api/img?path=images/quan_ly_kho_hang/icon.jpg",
+      "iconImg": "assets/icons/quan_ly_kho_hang.png",
       "description": "Quản lý tổng hợp kho hàng phòng — duyệt, phân công, thống kê",
       "status": "draft",
       "attributes": {
