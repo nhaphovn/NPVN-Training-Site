@@ -628,51 +628,57 @@
     "chat_nha_pho": [
       {
         "id": "cnp001",
-        "kw": ["vào chat nhà phố", "icon chat", "tìm chat", "mở chat nhà phố"],
+        "kw": ["vào chat nhà phố", "icon chat", "tìm chat", "mở chat nhà phố", "chat ở đâu", "nhắn tin ở đâu", "icon bong bóng", "chat app nhà phố", "bong bóng chat"],
         "a": "Hàng icon tính năng trang chủ → icon bong bóng 💬 là Chat.\n\nBấm để vào danh sách hội thoại — badge đỏ khi có tin chưa đọc.",
         "steps": [1]
       },
       {
         "id": "cnp002",
-        "kw": ["gửi ảnh chat", "đính kèm ảnh chat", "gửi hình nhắn tin"],
+        "kw": ["gửi ảnh chat", "đính kèm ảnh chat", "gửi hình nhắn tin", "gửi hình chat", "ảnh trong nhắn tin", "chụp ảnh chat", "đính kèm hình"],
         "a": "Bấm icon + hoặc icon ảnh bên trái ô nhập → chọn 'Thư viện ảnh' hoặc 'Máy ảnh' để chụp trực tiếp.",
         "steps": [5]
       },
       {
         "id": "cnp003",
-        "kw": ["nhóm chat", "chat nhóm", "tab nhóm chat", "xem nhóm"],
-        "a": "Trong danh sách chat → bấm tab 'Nhóm chat' → xem tất cả nhóm đang tham gia.\n\nBấm nút 'Tạo nhóm' để tạo nhóm mới. Quản trị viên nhóm mới có quyền quản lý thành viên (BR-49).",
+        "kw": ["nhóm chat", "chat nhóm", "tab nhóm chat", "xem nhóm", "tạo nhóm chat", "vào nhóm chat", "danh sách nhóm", "tạo nhóm mới"],
+        "a": "Trong danh sách chat → bấm tab 'Nhóm chat' → xem tất cả nhóm đang tham gia.\n\nBấm nút 'Tạo nhóm' để tạo nhóm mới — bất kỳ ai cũng tạo được. Người tạo nhóm tự động thành quản trị viên.",
         "steps": [6, 7]
       },
       {
         "id": "cnp004",
-        "kw": ["kênh thông báo chat", "kênh mặc định", "thông báo công ty chat", "kênh một chiều"],
+        "kw": ["kênh thông báo chat", "kênh mặc định", "thông báo công ty chat", "kênh một chiều", "không gửi được trong kênh", "kênh chỉ đọc", "icon loa chat"],
         "a": "Kênh có icon loa 📢 là kênh thông báo chính thức từ công ty — chỉ đọc, không gửi được.\n\nLiên hệ quản lý trực tiếp nếu cần phản hồi về thông báo.",
         "steps": [8]
       },
       {
         "id": "cnp005",
-        "kw": ["tìm kiếm chat", "tìm tin nhắn cũ", "search trong chat"],
+        "kw": ["tìm kiếm chat", "tìm tin nhắn cũ", "search trong chat", "tìm người trong chat", "tìm cuộc trò chuyện", "tìm hội thoại"],
         "a": "Bấm ô tìm kiếm đầu màn hình → nhập tên người, tên nhóm hoặc từ khóa để lọc hội thoại.",
         "steps": [9]
       },
       {
         "id": "cnp006",
-        "kw": ["chat mới với đồng nghiệp", "bắt đầu hội thoại mới", "nhắn tin đồng nghiệp lần đầu"],
+        "kw": ["chat mới với đồng nghiệp", "bắt đầu hội thoại mới", "nhắn tin đồng nghiệp lần đầu", "nhắn tin cho ai đó", "chat với đồng nghiệp", "bắt đầu chat mới", "tạo hội thoại mới", "nhắn tin mới"],
         "a": "Bấm icon bút hoặc + góc trên phải → nhập tên hoặc SĐT đồng nghiệp → chọn tên → màn hình chat mở ra.",
         "steps": [10]
       },
       {
         "id": "cnp007",
-        "kw": ["mention tag đồng nghiệp", "@mention nhóm chat", "gọi tên trong nhóm"],
+        "kw": ["mention tag đồng nghiệp", "@mention nhóm chat", "gọi tên trong nhóm", "tag trong nhóm", "@tag ai đó", "mention ai đó"],
         "a": "Gõ @ rồi nhập tên đồng nghiệp trong nhóm chat để mention — người đó nhận thông báo riêng.",
         "steps": [7]
       },
       {
         "id": "cnp008",
-        "kw": ["reply tin nhắn", "trả lời tin nhắn chat", "react emoji chat"],
+        "kw": ["reply tin nhắn", "trả lời tin nhắn chat", "react emoji chat", "giữ tin nhắn", "phản ứng tin nhắn", "copy tin nhắn", "long press tin nhắn"],
         "a": "Giữ ngón tay vào tin nhắn → menu hiện ra: Reply (trả lời), React emoji, Copy nội dung.",
         "steps": [3]
+      },
+      {
+        "id": "cnp009",
+        "kw": ["gửi tin nhắn", "nhập tin nhắn", "cách nhắn tin", "nhắn tin thế nào", "gõ tin nhắn", "soạn tin nhắn"],
+        "a": "Bấm vào ô nhập liệu phía dưới màn hình chat → gõ nội dung → bấm nút gửi (mũi tên xanh).\n\nGiữ ngón tay vào tin nhắn đã gửi để Reply, React emoji hoặc Copy.",
+        "steps": [4]
       }
     ],
     "bang_tin": [

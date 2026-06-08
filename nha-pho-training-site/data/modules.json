@@ -3912,7 +3912,7 @@
           "ttPos": "bottom",
           "ttTitle": "Tab Nhóm Chat",
           "ttText": "Chọn tab Nhóm để xem tất cả nhóm",
-          "tip": "Nhóm chat được tạo bởi quản lý phòng — thành viên không thể tự tạo nhóm.",
+          "tip": "Bất kỳ ai cũng có thể tạo nhóm mới. Người tạo nhóm tự động trở thành quản trị viên và có quyền quản lý thành viên (BR-49).",
           "guide": [
             {
               "title": "Chuyển sang tab Nhóm",
