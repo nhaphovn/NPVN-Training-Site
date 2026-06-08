@@ -1,65 +1,60 @@
 /**
- * admin-patch.js v4
+ * admin-patch.js v2 — Inject vào cuối admin-x7q9.html (trước </body>)
  *
- * v4 thêm:
- *   • Token UI — nút 🔑 góc trên phải, nhập ADMIN_UPLOAD_TOKEN một lần/session
- *   • Token lưu sessionStorage, dùng cho mọi upload + save call
- *   • upload.js giờ fail-closed nên bắt buộc cần token khi env var đã set
+ * v2 thay đổi:
+ *   • Error handling rõ ràng: phân biệt 404 / 500 / env missing / network
+ *   • Không crash khi response không phải JSON
+ *   • Hiển thị error message cụ thể trong toast
  *
- * v3:
- *   • Panel "📤 Upload ảnh" — drag & drop trực tiếp lên Blob từ admin
- *   • Fix: lưu proxy URL (/api/img?path=...) thay vì raw blob URL
- *   • Fix: dùng ?module=&key= API thay vì parse filename
- *   • handleMediaUpload vẫn hoạt động cho step-level upload
+ * Cách thêm: paste <script src="admin-patch.js"></script> trước </body>
  */
 
 (function() {
 'use strict';
 
-const UPLOAD_API = '/api/upload';
-const SAVE_API   = '/api/save';
-const TOKEN_KEY  = 'nhapho_admin_token';
+// ── Config ──────────────────────────────────────────────────────────
+const UPLOAD_API  = '/api/upload';
+const SAVE_API    = '/api/save';
+const ADMIN_TOKEN = '';  // chỉ điền nếu set ADMIN_SAVE_TOKEN env var
 
-function getToken() {
-  return sessionStorage.getItem(TOKEN_KEY) || '';
-}
-
-// ── Robust fetch ────────────────────────────────────────────────────
+// ── Robust fetch — phân biệt rõ các loại lỗi ────────────────────────
 async function fetchJson(url, opts = {}) {
   let res;
-  try { res = await fetch(url, opts); }
-  catch (err) { throw new Error(`Network fail: ${err.message}`); }
+  try {
+    res = await fetch(url, opts);
+  } catch (err) {
+    throw new Error(`Network fail: ${err.message}`);
+  }
 
+  // Đọc body dưới dạng text trước
   const text = await res.text();
+
+  // Status >= 400: server lỗi
   if (!res.ok) {
+    // Thử parse JSON, nếu không được thì dùng text
     let detail;
     try {
       detail = JSON.parse(text);
       throw new Error(`[${res.status}] ${detail.message || detail.error || text.slice(0,200)}`);
     } catch (e) {
-      if (e.message.startsWith('[')) throw e;
-      if (text.startsWith('<!DOCTYPE') || text.startsWith('<html'))
-        throw new Error(`[${res.status}] API chưa deploy tại ${url}`);
+      if (e.message.startsWith('[')) throw e; // rethrow our error
+      // Không phải JSON → có thể là HTML 404
+      if (text.startsWith('<!DOCTYPE') || text.startsWith('<html')) {
+        throw new Error(`[${res.status}] API endpoint không tồn tại tại ${url} — kiểm tra api/save.js đã deploy chưa`);
+      }
       throw new Error(`[${res.status}] ${text.slice(0,200)}`);
     }
   }
-  try { return JSON.parse(text); }
-  catch (e) { throw new Error(`Response không phải JSON: ${text.slice(0,200)}`); }
+
+  // Status 2xx: parse JSON
+  try {
+    return JSON.parse(text);
+  } catch (e) {
+    throw new Error(`Response không phải JSON: ${text.slice(0,200)}`);
+  }
 }
 
-// ── Upload 1 file lên Blob, trả proxyUrl ───────────────────────────
-async function uploadToBlob(file, moduleId, key) {
-  const safeKey = key.toLowerCase().replace(/[^a-z0-9_\-]/g, '_');
-  const url = `${UPLOAD_API}?module=${encodeURIComponent(moduleId)}&key=${encodeURIComponent(safeKey)}`;
-  const token = getToken();
-  const headers = { 'Content-Type': file.type || 'image/jpeg' };
-  if (token) headers['x-admin-token'] = token;
-  const data = await fetchJson(url, { method: 'POST', headers, body: file });
-  // v3: prefer proxyUrl, fall back to constructing it from pathname
-  return data.proxyUrl || `/api/img?path=${data.pathname}`;
-}
-
-// ── 1. Patch step-level upload (existing handleMediaUpload) ─────────
+// ── 1. Upload ảnh lên Blob ──────────────────────────────────────────
 const _origHandleMediaUpload = window.handleMediaUpload || window.handleImageUpload;
 
 window.handleMediaUpload = window.handleImageUpload = async function(file, row, moduleId) {
@@ -71,30 +66,26 @@ window.handleMediaUpload = window.handleImageUpload = async function(file, row, 
   const key       = keyInput?.value?.trim();
   if (!key || !moduleId || moduleId === '_new') return;
 
+  const filename = `${moduleId}_${key}.jpg`.toLowerCase().replace(/[^a-z0-9_\-.]/g, '_');
+
   try {
-    const proxyUrl = await uploadToBlob(file, moduleId, key);
-    if (pathInput) pathInput.value = proxyUrl;
-    patchImages(moduleId, key, proxyUrl);
-    if (window.toast) window.toast(`☁️ Uploaded: ${key}`, 'success');
+    const headers = { 'Content-Type': file.type };
+    if (ADMIN_TOKEN) headers['x-admin-token'] = ADMIN_TOKEN;
+
+    const data = await fetchJson(`${UPLOAD_API}?filename=${encodeURIComponent(filename)}`, {
+      method: 'POST', headers, body: file,
+    });
+
+    if (pathInput) pathInput.value = data.url;
+    patchPreviewWithBlobUrl(moduleId, key, data.url);
+    if (window.toast) window.toast(`☁️ Blob: ${key}`, 'success');
   } catch (err) {
-    console.warn('[patch] upload failed:', err.message);
-    const hint = err.message.includes('401') ? ' — Bấm 🔑 góc dưới phải để nhập token' : '';
-    if (window.toast) window.toast(`⚠️ Upload fail: ${err.message}${hint}`, 'warning');
+    console.warn('[patch] Blob upload failed:', err.message);
+    if (window.toast) window.toast(`⚠️ Local OK, Blob fail: ${err.message}`, 'warning');
   }
 };
 
-// ── 2. renderPreview — hiện proxy URL (bắt đầu bằng /api/) ─────────
-
-// MutationObserver: wire step upload zone whenever #step-img-drop appears in DOM
-const _stepDropObserver = new MutationObserver(() => injectStepUpload());
-// start observing after DOM is ready
-function _startStepObserver() {
-  const target = document.getElementById('form-panel') || document.body;
-  _stepDropObserver.observe(target, { childList: true, subtree: true });
-}
-if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', _startStepObserver);
-else _startStepObserver();
-
+// ── 2. Preview phone hiển thị Blob URL ngay ─────────────────────────
 const _origRenderPreview = window.renderPreview;
 window.renderPreview = function() {
   if (_origRenderPreview) _origRenderPreview.call(this);
@@ -103,20 +94,19 @@ window.renderPreview = function() {
     if (!phoneBg) return;
     const STATE = window.STATE;
     if (!STATE?.step || !STATE?.module) return;
+
     const imgKey  = STATE.step.img || STATE.step.imgKey || '';
     const imgPath = (STATE.module.images || {})[imgKey] || '';
-    // Handle both proxy paths (/api/img?...) and full https URLs
-    const isResolvable = imgPath.startsWith('/api/') || imgPath.startsWith('http');
-    if (isResolvable && phoneBg.src !== imgPath && !phoneBg.src.endsWith(imgPath)) {
+
+    if (imgPath.startsWith('http') && phoneBg.src !== imgPath) {
       phoneBg.src = imgPath;
-      const ph = document.getElementById('no-img-placeholder');
-      if (ph) ph.hidden = true;
+      const placeholder = document.getElementById('no-img-placeholder');
+      if (placeholder) placeholder.hidden = true;
     }
-  } catch(e) {}
-  updatePublishBadge();
+  } catch(e) { /* ignore */ }
 };
 
-function patchImages(moduleId, key, url) {
+function patchPreviewWithBlobUrl(moduleId, key, url) {
   try {
     const STATE = window.STATE;
     if (STATE?.module && STATE?.moduleId === moduleId) {
@@ -124,26 +114,10 @@ function patchImages(moduleId, key, url) {
       STATE.module.images[key] = url;
       if (window.renderPreview) window.renderPreview();
     }
-  } catch(e) {}
+  } catch(e) { /* ignore */ }
 }
 
 // ── 3. Nút "🚀 Lưu lên site" ────────────────────────────────────────
-function syncSaveButton() {
-  const btn = document.getElementById('btn-save-live');
-  if (!btn) return;
-  const dirty = window.STATE?.dirty === true;
-  btn.disabled = !dirty;
-  if (dirty) {
-    btn.style.background = '#00A651';
-    btn.style.color      = 'white';
-    btn.style.cursor     = 'pointer';
-  } else {
-    btn.style.background = '#D5D5D5';
-    btn.style.color      = '#707070';
-    btn.style.cursor     = 'not-allowed';
-  }
-}
-
 function injectSaveButton() {
   const exportBtn = document.getElementById('btn-export-zip') ||
                     document.querySelector('[id*="export"]') ||
@@ -156,10 +130,10 @@ function injectSaveButton() {
   btn.className = exportBtn.className;
   btn.title = 'Commit modules.json lên GitHub → Vercel auto-deploy';
   btn.innerHTML = '🚀 Lưu lên site';
-  btn.style.cssText = 'background:#D5D5D5;color:#707070;border:none;margin-left:6px;padding:6px 14px;border-radius:8px;font-weight:600;font-size:.82rem;cursor:not-allowed';
-  btn.disabled = true;
-  btn.addEventListener('mouseenter', () => { if (!btn.disabled) btn.style.background = '#007A3D'; });
-  btn.addEventListener('mouseleave', () => { if (!btn.disabled) btn.style.background = '#00A651'; });
+  btn.style.cssText = 'background:#00A651;color:white;border:none;margin-left:6px;padding:6px 14px;border-radius:8px;font-weight:600;font-size:.82rem;cursor:pointer';
+  btn.addEventListener('mouseenter', () => btn.style.background = '#007A3D');
+  btn.addEventListener('mouseleave', () => btn.style.background = '#00A651');
+
   exportBtn.parentNode.insertBefore(btn, exportBtn.nextSibling);
   btn.addEventListener('click', saveToGithub);
 }
@@ -173,227 +147,64 @@ async function saveToGithub() {
   const origText = btn.innerHTML;
   btn.innerHTML = '⏳ Đang lưu...';
   btn.disabled = true;
+
   STATE.data.lastUpdated = new Date().toISOString().split('T')[0];
   const content = JSON.stringify(STATE.data, null, 2);
-  const token = getToken();
+
   const headers = { 'Content-Type': 'application/json' };
-  if (token) headers['x-admin-token'] = token;
+  if (ADMIN_TOKEN) headers['x-admin-token'] = ADMIN_TOKEN;
 
   try {
     const data = await fetchJson(SAVE_API, {
       method: 'POST', headers,
-      body: JSON.stringify({ content, message: `content: update via admin ${new Date().toISOString().slice(0,16)}` }),
+      body: JSON.stringify({
+        content,
+        message: `content: update via admin ${new Date().toISOString().slice(0,16)}`,
+      }),
     });
+
     btn.innerHTML = '✅ Đã lưu!';
     btn.style.background = '#2e7d32';
-    if (window.STATE) window.STATE.dirty = false;
     if (window.toast) window.toast('🚀 Commit OK — Vercel deploy ~1 phút', 'success');
-    if (data.commit) console.log('[patch] commit:', data.commit);
-    setTimeout(() => { btn.innerHTML = origText; syncSaveButton(); }, 4000);
+    if (data.commit) console.log('[patch] commit URL:', data.commit);
+
+    setTimeout(() => {
+      btn.innerHTML = origText;
+      btn.style.background = '#00A651';
+      btn.disabled = false;
+    }, 4000);
+
   } catch (err) {
-    btn.innerHTML = origText; btn.style.background = '#00A651'; btn.disabled = false;
+    btn.innerHTML = origText;
+    btn.style.background = '#00A651';
+    btn.disabled = false;
+
+    // Hiển thị error chi tiết
     const msg = err.message || String(err);
+    console.error('[patch] save failed:', msg);
+
+    // Diagnose common issues
     let diagnosis = '';
-    if (msg.includes('404') || msg.includes('không tồn tại')) diagnosis = '\n\n💡 api/save.js chưa deploy.';
-    else if (msg.includes('not_configured')) diagnosis = '\n\n💡 Chưa set GITHUB_TOKEN / GITHUB_REPO trên Vercel.';
-    else if (msg.includes('401') || msg.includes('unauthorized')) diagnosis = '\n\n💡 GITHUB_TOKEN sai hoặc hết hạn.';
+    if (msg.includes('không tồn tại') || msg.includes('404')) {
+      diagnosis = '\n\n💡 api/save.js chưa deploy. Push lên GitHub và đợi Vercel deploy.';
+    } else if (msg.includes('not_configured')) {
+      diagnosis = '\n\n💡 Vercel env vars chưa set: GITHUB_TOKEN, GITHUB_REPO';
+    } else if (msg.includes('unauthorized') || msg.includes('401')) {
+      diagnosis = '\n\n💡 Token sai. Check GITHUB_TOKEN có quyền Contents: Read+Write';
+    } else if (msg.includes('Network')) {
+      diagnosis = '\n\n💡 Mất mạng hoặc browser block. Kiểm tra Network tab DevTools.';
+    }
+
     alert('❌ Lỗi lưu:\n\n' + msg + diagnosis);
   }
 }
 
-// ── 5. Per-step image upload ─────────────────────────────────────────
-
-async function handleStepImgFile(file) {
-  const STATE = window.STATE;
-  const moduleId = STATE?.moduleId;
-  const stepIdx  = STATE?.stepIdx;
-  if (!moduleId || stepIdx == null || !file) return;
-
-  // Auto-name: {module}_b{NN}_{basename}
-  const stepNum  = String(stepIdx + 1).padStart(2, '0');
-  const baseName = file.name.replace(/\.[^.]+$/, '').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
-  const key      = `b${stepNum}_${baseName}`;
-
-  const drop = document.getElementById('step-img-drop');
-  if (drop) { drop.textContent = '⏳ Đang upload...'; drop.classList.remove('over'); }
-
-  try {
-    const proxyUrl = await uploadToBlob(file, moduleId, key);
-
-    if (!STATE.module.images) STATE.module.images = {};
-    STATE.module.images[key] = proxyUrl;
-    if (STATE.step) { STATE.step.img = key; STATE.step.imgKey = key; }
-
-    const dirtyDot = document.getElementById('dirty-dot');
-    if (dirtyDot) dirtyDot.style.display = 'block';
-    STATE.dirty = true;
-
-    if (window.renderForm)    window.renderForm();
-    if (window.renderPreview) window.renderPreview();
-    if (window.toast) window.toast(`☁️ ${key}`, 'success');
-  } catch (err) {
-    const d = document.getElementById('step-img-drop');
-    if (d) d.innerHTML = `❌ ${err.message}<input type="file" id="step-img-file" accept="image/*" hidden>`;
-    const hint = err.message.includes('401') ? ' — Bấm 🔑 góc dưới phải để nhập token' : '';
-    if (window.toast) window.toast(`⚠️ Upload thất bại: ${err.message}${hint}`, 'warning');
-  }
+// ── Boot ──────────────────────────────────────────────────────────
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', injectSaveButton);
+} else {
+  setTimeout(injectSaveButton, 800);
 }
-
-function injectStepUpload() {
-  const drop      = document.getElementById('step-img-drop');
-  const fileInput = document.getElementById('step-img-file');
-  if (!drop || !fileInput || drop.dataset.wired) return;
-  drop.dataset.wired = '1';
-
-  drop.addEventListener('click', e => { if (e.target !== fileInput) fileInput.click(); });
-  drop.addEventListener('dragover',  e => { e.preventDefault(); drop.classList.add('over'); });
-  drop.addEventListener('dragleave', () => drop.classList.remove('over'));
-  drop.addEventListener('drop', e => {
-    e.preventDefault(); drop.classList.remove('over');
-    const f = e.dataTransfer.files[0];
-    if (f && f.type.startsWith('image/')) handleStepImgFile(f);
-  });
-  fileInput.addEventListener('change', e => {
-    const f = e.target.files[0];
-    if (f) handleStepImgFile(f);
-    fileInput.value = '';
-  });
-}
-
-// ── 6. Publish badge + button ─────────────────────────────────────────
-function updatePublishBadge() {
-  const badge = document.getElementById('module-status-badge');
-  const btn   = document.getElementById('btn-publish');
-  if (!badge || !btn) return;
-  const STATE  = window.STATE;
-  const mod    = STATE?.data?.modules?.[STATE?.moduleId];
-  const status = mod?.status || '';
-  badge.className = `status-badge status-${status}`;
-  badge.textContent = status === 'live' ? '● LIVE' : status === 'draft' ? 'DRAFT' : status.toUpperCase();
-  badge.hidden = !status;
-  btn.hidden = status !== 'draft';
-}
-
-function injectPublishBadge() {
-  if (document.getElementById('module-status-badge')) return;
-  const editBtn = document.getElementById('btn-edit-module');
-  if (!editBtn) { setTimeout(injectPublishBadge, 500); return; }
-
-  // Inject CSS
-  const style = document.createElement('style');
-  style.textContent = `
-    .status-badge {
-      display: inline-block;
-      font-size: 11px;
-      padding: 2px 7px;
-      border-radius: 10px;
-      font-weight: 700;
-      vertical-align: middle;
-      margin-left: 6px;
-    }
-    .status-badge.status-draft { background: #F59E0B; color: #fff; }
-    .status-badge.status-live  { background: #00A651; color: #fff; }
-    #btn-publish {
-      background: #00A651;
-      color: #fff;
-      border: none;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      margin-left: 6px;
-      vertical-align: middle;
-    }
-    #btn-publish:hover { background: #007A3D; }
-  `;
-  document.head.appendChild(style);
-
-  // Badge element
-  const badge = document.createElement('span');
-  badge.id = 'module-status-badge';
-  badge.className = 'status-badge';
-  badge.hidden = true;
-  editBtn.after(badge);
-
-  // Publish button element
-  const btn = document.createElement('button');
-  btn.id = 'btn-publish';
-  btn.textContent = '▶ Publish';
-  btn.hidden = true;
-  badge.after(btn);
-
-  btn.addEventListener('click', async () => {
-    const STATE = window.STATE;
-    const moduleId = STATE?.moduleId;
-    const mod = STATE?.data?.modules?.[moduleId];
-    if (!mod) return;
-    const name = mod.name || moduleId;
-    if (!confirm(`Publish «${name}»?\nStatus sẽ đổi từ draft → live và tự lưu lên site.`)) return;
-    mod.status = 'live';
-    updatePublishBadge();
-    await saveToGithub();
-  });
-
-  updatePublishBadge();
-}
-
-// ── Token UI ─────────────────────────────────────────────────────────
-function injectTokenUI() {
-  if (document.getElementById('patch-token-btn')) return;
-
-  const style = document.createElement('style');
-  style.textContent = `
-    #patch-token-btn {
-      position: fixed; bottom: 16px; right: 16px; z-index: 9999;
-      background: #fff; border: 1px solid #ddd; border-radius: 8px;
-      padding: 6px 12px; font-size: 12px; font-weight: 600; cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0,0,0,.12); color: #444;
-    }
-    #patch-token-btn.has-token { border-color: #00A651; color: #00A651; }
-    #patch-token-btn:hover { background: #f5f5f5; }
-  `;
-  document.head.appendChild(style);
-
-  const btn = document.createElement('button');
-  btn.id = 'patch-token-btn';
-  updateTokenBtn(btn);
-  btn.addEventListener('click', () => {
-    const current = getToken();
-    const val = prompt('Nhập ADMIN_UPLOAD_TOKEN (để trống = xoá):', current);
-    if (val === null) return;
-    if (val.trim()) {
-      sessionStorage.setItem(TOKEN_KEY, val.trim());
-      if (window.toast) window.toast('🔑 Token đã lưu cho session này', 'success');
-    } else {
-      sessionStorage.removeItem(TOKEN_KEY);
-      if (window.toast) window.toast('Token đã xoá', 'warning');
-    }
-    updateTokenBtn(btn);
-  });
-  document.body.appendChild(btn);
-}
-
-function updateTokenBtn(btn) {
-  const has = !!getToken();
-  btn.textContent = has ? '🔑 Token ✓' : '🔑 Nhập token';
-  btn.classList.toggle('has-token', has);
-  btn.title = has ? 'Token đã set — bấm để thay đổi' : 'Chưa có token — upload sẽ bị 401';
-}
-
-// ── Boot ─────────────────────────────────────────────────────────────
-let _syncInterval = null;
-function boot() {
-  injectSaveButton();
-  injectPublishBadge();
-  injectTokenUI();
-  if (_syncInterval) clearInterval(_syncInterval);
-  _syncInterval = setInterval(syncSaveButton, 600);
-}
-
-if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
-else setTimeout(boot, 800);
-
-console.log('[admin-patch v3] Loaded ✅');
+console.log('[admin-patch v2] Loaded ✅');
 
 })();

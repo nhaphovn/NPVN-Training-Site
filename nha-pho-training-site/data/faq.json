@@ -5,17 +5,17 @@
     {
       "id": "g001",
       "kw": ["đăng nhập", "login", "otp", "vào app", "mở app", "đăng nhâp"],
-      "a": "Mở App Nhà Phố → nhập số điện thoại → nhận mã OTP qua SMS → nhập mã để vào."
+      "a": "Mở App Nhà Phố → nhập số điện thoại → nhập mật khẩu → đăng nhập bằng tài khoản khonhapho.com."
     },
     {
       "id": "g002",
       "kw": ["không nhận được otp", "otp không về", "otp lâu", "chờ otp mãi", "otp không nhận"],
-      "a": "Kiểm tra sóng điện thoại và chờ 60 giây trước khi thử lại.\n\nNếu vẫn không nhận được OTP, liên hệ bộ phận hỗ trợ qua hotline 1900 0266."
+      "a": "Kiểm tra sóng điện thoại và chờ 60 giây trước khi thử lại.\n\nNếu vẫn không nhận được OTP, liên hệ Ban Công nghệ Tập đoàn hoặc Thư ký để được hỗ trợ."
     },
     {
       "id": "g003",
       "kw": ["app nhà phố là gì", "dùng để làm gì", "nhà phố việt nam", "giới thiệu app"],
-      "a": "App Nhà Phố Việt Nam là nền tảng BĐS nội bộ của công ty — dùng để đăng tin, tìm hàng, dẫn khách và quản lý kho."
+      "a": "App Nhà Phố Việt Nam là nền tảng BĐS nội bộ của Tập đoàn Nhà Phố — dùng để đăng tin, tìm hàng, quản lý kho hàng và tương tác nhân sự."
     },
     {
       "id": "g004",
@@ -25,17 +25,17 @@
     {
       "id": "g005",
       "kw": ["hotline", "hỗ trợ", "liên hệ", "support", "1900 0266", "gọi hỗ trợ"],
-      "a": "Hotline hỗ trợ: 1900 0266 (giờ hành chính).\n\nHoặc liên hệ qua nhóm Zalo nội bộ của chi nhánh bạn."
+      "a": "Liên hệ Ban Công nghệ Tập đoàn để phản ánh các vấn đề kỹ thuật.\n\nHoặc liên hệ các Thư ký để được hỗ trợ nhanh nhất."
     },
     {
       "id": "g006",
       "kw": ["quên mật khẩu", "đổi mật khẩu", "reset password", "không vào được"],
-      "a": "App đăng nhập bằng SĐT + OTP — không có mật khẩu cố định.\n\nNếu không vào được, kiểm tra lại SĐT đăng ký hoặc liên hệ admin hệ thống."
+      "a": "App Nhà Phố đăng nhập bằng SĐT + mật khẩu.\n\nQuên mật khẩu: nhập SĐT → nhận OTP → đặt mật khẩu mới.\nKhông vào được, liên hệ Ban Công nghệ hoặc Thư ký để hỗ trợ."
     },
     {
       "id": "g007",
       "kw": ["tài khoản bị khóa", "tài khoản lỗi", "bị khóa tài khoản"],
-      "a": "Liên hệ bộ phận IT hoặc admin hệ thống qua hotline 1900 0266 để được mở khóa tài khoản."
+      "a": "Liên hệ Ban Công nghệ Tập đoàn để phản ánh các vấn đề kỹ thuật.\n\nHoặc liên hệ các Thư ký để được hỗ trợ nhanh nhất."
     },
     {
       "id": "g008",
@@ -45,7 +45,7 @@
     {
       "id": "g009",
       "kw": ["hv được xem gì", "học viên quyền hạn", "chuyên viên quyền", "giới hạn tài khoản", "hạn mức xem"],
-      "a": "Học viên/Chuyên viên thấy tin dưới 35 tỷ trong Kho tài nguyên — đây là giới hạn phân quyền mặc định."
+      "a": "Phân quyền xem kho dựa theo số buổi điểm danh QR:\n• HV 0–5 buổi: rất hạn chế hoặc không xem được\n• HV 6+ buổi: xem tin dưới 9 tỷ\n• CV 12+ buổi: xem toàn bộ kho"
     },
     {
       "id": "g010",
@@ -99,7 +99,7 @@
       {
         "id": "dt008",
         "kw": ["nhà cấp 4", "c4", "nhập tầng cấp 4", "số tầng đặc biệt", "đất không có tầng"],
-        "a": "Nhà cấp 4: nhập số tầng là 'c4' hoặc '1'.\n\nĐất không có nhà: nhập 'd' hoặc '0'.",
+        "a": "Nhà cấp 4: nhập 'c4' vào ô số tầng.",
         "steps": [6]
       },
       {
@@ -111,7 +111,7 @@
       {
         "id": "dt010",
         "kw": ["dc1 dc2 dc1a", "loại hợp đồng đăng tin", "hợp đồng dc"],
-        "a": "Chọn ĐC1, ĐC2 hoặc ĐC1A theo thỏa thuận với công ty khi ký hợp đồng.\n\nLoại hợp đồng KHÔNG sửa được sau khi duyệt.",
+        "a": "ĐC = Đầu Chủ (hợp đồng ký với chủ nhà):\n• ĐC1: ký trực tiếp với chủ nhà / người có quyền pháp lý\n• ĐC2: ký với người đại diện (không phải chủ nhà trực tiếp)\n• ĐC1A: ký lại với chủ nhà đã có ĐC khác, nhưng giá tốt hơn\n\nChọn đúng loại theo thực tế ký kết. Loại hợp đồng KHÔNG sửa được sau khi duyệt.",
         "steps": [7]
       },
       {
@@ -178,13 +178,13 @@
       {
         "id": "lk001",
         "kw": ["vào kho tài nguyên", "kho tài nguyên ở đâu", "tìm kho", "mở kho tài nguyên"],
-        "a": "Hàng icon đầu trang chủ — icon ngoài cùng bên trái, label 'Kho tài nguyên'.\n\nCũng vào được qua menu: bấm avatar góc phải → chọn Kho tài nguyên.",
+        "a": "Hàng icon đầu trang chủ → bấm 'Lọc kho' hoặc 'Kho tài nguyên' để vào.",
         "steps": [1]
       },
       {
         "id": "lk002",
         "kw": ["hv thấy tin nào", "học viên xem được tin nào", "dưới 35 tỷ", "giới hạn kho hv"],
-        "a": "HV/CV chỉ thấy tin dưới 35 tỷ trong Kho tài nguyên — đây là giới hạn phân quyền mặc định của hệ thống.",
+        "a": "Phân quyền xem kho theo số buổi điểm danh QR:\n• HV 6+ buổi: xem tin dưới 9 tỷ\n• CV 12+ buổi: xem toàn bộ kho\nĐiểm danh đủ buổi → tự động mở khóa kho theo cấp.",
         "steps": [1]
       },
       {
@@ -232,7 +232,7 @@
       {
         "id": "lk010",
         "kw": ["lọc chi nhánh", "xem hàng team", "xem hàng chi nhánh", "chi nhánh mặc định"],
-        "a": "Hệ thống tự điền chi nhánh bạn đang thuộc vào.\n\nĐể trống Chi nhánh = xem toàn công ty. Chọn chi nhánh khác = chỉ xem hàng của chi nhánh đó.",
+        "a": "Để trống Chi nhánh = xem toàn công ty. Chọn chi nhánh cụ thể = chỉ xem hàng của chi nhánh đó.",
         "steps": [11]
       },
       {
@@ -244,7 +244,7 @@
       {
         "id": "lk012",
         "kw": ["hiện trạng màu", "bán mạnh hạ chào", "tạm dừng đã bán", "màu trạng thái tin"],
-        "a": "Hiện trạng màu sắc trong bảng: Bán mạnh (trắng) | Hạ chào (xanh) | Tạm dừng (đỏ viền) | Đã bán (đỏ đậm)."
+        "a": "Cột Hiện trạng trong bảng hiển thị trạng thái BĐS: Bán mạnh, Hạ chào, Tạm dừng, Đã bán. Màu sắc cụ thể tùy theo giao diện App hiện tại."
       },
       {
         "id": "lk013",
@@ -436,7 +436,7 @@
       {
         "id": "kcp001",
         "kw": ["vào kho cá nhân", "quản lý kho đầu chủ", "kho tin cá nhân", "tìm kho cá nhân"],
-        "a": "Bấm avatar góc phải trang chủ → menu cá nhân mở ra → cuộn xuống tìm 'Quản lý kho' → bấm vào.",
+        "a": "Sidebar → Quản lý kho hàng → Kho cá nhân.",
         "steps": [1, 2]
       },
       {
@@ -448,7 +448,7 @@
       {
         "id": "kcp003",
         "kw": ["xem tin chờ duyệt kho", "tin đang chờ kho", "theo dõi duyệt tin"],
-        "a": "Tab Chờ duyệt liệt kê tất cả tin đang trong hàng đợi kiểm duyệt — xem được chi tiết nhưng KHÔNG sửa được khi đang chờ.",
+        "a": "Tab Chờ duyệt liệt kê tất cả tin đang trong hàng đợi kiểm duyệt — có thể xem và sửa tin đang chờ.",
         "steps": [4]
       },
       {
@@ -532,7 +532,7 @@
       {
         "id": "qlk002",
         "kw": ["thêm khách hàng mới", "tạo khách mới ql", "hồ sơ khách mới"],
-        "a": "Bấm nút + góc trên phải → form nhập thông tin mở ra.\n\n5 trường bắt buộc: Tên, SĐT, khu vực muốn mua, loại hình BĐS, ngân sách tối đa.",
+        "a": "Bấm nút + góc trên phải → form nhập thông tin mở ra.\n\n6 trường bắt buộc: Họ và tên, CMND/CCCD, Năm sinh, Tài chính tối đa (≥ 200 triệu), Thành phố, Quận/Huyện.\nSĐT, loại hình và các tiêu chí khác là tùy chọn.",
         "steps": [12]
       },
       {
@@ -578,7 +578,7 @@
       {
         "id": "tcc001",
         "kw": ["tin chính chủ là gì", "chính chủ", "tin từ chủ nhà trực tiếp"],
-        "a": "Tin chính chủ là BĐS đăng trực tiếp bởi chủ nhà từ các nền tảng khác — không qua môi giới.\n\nThường có giá tốt hơn vì không có phí trung gian.",
+        "a": "Tin chính chủ là BĐS do chủ nhà tự đăng, không qua hệ thống hợp đồng Đầu chủ.\n\nĐầu chủ có thể phản hồi hoặc lưu tin chính chủ để theo dõi.",
         "steps": [2, 3]
       },
       {
@@ -616,7 +616,7 @@
       {
         "id": "cnp003",
         "kw": ["nhóm chat", "chat nhóm", "tab nhóm chat", "xem nhóm"],
-        "a": "Trong danh sách chat → bấm tab 'Nhóm' → xem tất cả nhóm đang tham gia.\n\nNhóm chat do quản lý phòng tạo — thành viên không tự tạo nhóm được.",
+        "a": "Trong danh sách chat → bấm tab 'Nhóm chat' → xem tất cả nhóm đang tham gia.\n\nBấm nút 'Tạo nhóm' để tạo nhóm mới. Quản trị viên nhóm mới có quyền quản lý thành viên (BR-49).",
         "steps": [6, 7]
       },
       {
