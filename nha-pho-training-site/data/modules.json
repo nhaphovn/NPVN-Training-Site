@@ -1,6 +1,6 @@
 {
-  "version": "v12",
-  "lastUpdated": "2026-06-05",
+  "version": "v13",
+  "lastUpdated": "2026-06-08",
   "brand": {
     "name": "Nhà Phố Việt Nam",
     "app": "App Nhà Phố",
@@ -97,6 +97,11 @@
               "body": "Sau khi bấm, form đăng tin mở ra ngay lập tức.",
               "note": "Cũng có nút Đăng tin trong màn hình Kho tài nguyên góc trên phải."
             }
+          ],
+          "suggestedQ": [
+            "Đăng tin ở đâu?",
+            "Nút Đăng tin ở hàng mấy?",
+            "Có nút Đăng tin ở kho không?"
           ]
         },
         {
@@ -131,6 +136,11 @@
               "body": "Nếu không dùng nhân bản, bỏ qua bước này và điền form từ đầu.",
               "note": "Nhân bản rất hữu ích khi đăng nhiều căn trong cùng dự án/khu vực."
             }
+          ],
+          "suggestedQ": [
+            "Nhân bản tin là gì?",
+            "Cách copy tin cũ nhanh?",
+            "Tiết kiệm được bao nhiêu thời gian?"
           ]
         },
         {
@@ -165,6 +175,11 @@
               "body": "Loại hình và Đặc điểm sẽ quyết định các trường thông số nhà xuất hiện bên dưới.",
               "note": "KHÔNG thể thay đổi Loại hình sau khi tin được duyệt — chọn kỹ trước khi tiếp tục."
             }
+          ],
+          "suggestedQ": [
+            "Chọn loại hình sai có sửa được không?",
+            "Thổ cư khác chung cư thế nào?",
+            "Đặc điểm BĐS là gì?"
           ]
         },
         {
@@ -199,6 +214,11 @@
               "body": "Điền ngõ, hẻm, số nhà, số phòng vào ô \"Nhập ngõ, hẻm, số nhà\".",
               "note": "Nhà trong ngõ: Ngõ + số + Tên đường. VD: Ngõ 107 Trần Khát Chân."
             }
+          ],
+          "suggestedQ": [
+            "Chọn quận phường thế nào?",
+            "Không tìm thấy đường phải làm gì?",
+            "Nhà trong ngõ nhập địa chỉ ra sao?"
           ]
         },
         {
@@ -233,6 +253,11 @@
               "body": "Gõ: Ngõ + số ngõ + Tên đường. VD: \"Ngõ 107 Trần Khát Chân\".",
               "note": "Địa chỉ chính xác giúp chuyên viên khảo sát nhanh và tăng độ tin cậy của tin đăng."
             }
+          ],
+          "suggestedQ": [
+            "Nhà trong ngõ nhập địa chỉ kiểu gì?",
+            "Cú pháp ngõ đúng là gì?",
+            "Dự án chung cư nhập địa chỉ thế nào?"
           ]
         },
         {
@@ -267,6 +292,11 @@
               "body": "Với Chung cư: chọn dự án, số tầng, phòng ngủ, WC. Hệ thống hiển thị đúng fields theo loại hình.",
               "note": "Điền chính xác vì thông số nhà ảnh hưởng đến khả năng khách tìm thấy tin trong kho."
             }
+          ],
+          "suggestedQ": [
+            "Diện tích sổ và thực tế khác nhập thế nào?",
+            "Nhà cấp 4 nhập số tầng bao nhiêu?",
+            "Đất không có tầng nhập gì?"
           ]
         },
         {
@@ -301,6 +331,11 @@
               "body": "Nhập % chia cho đối tác môi giới nếu có. Chỉ áp dụng BĐS có giá từ 20 tỷ trở lên.",
               "note": "Loại hợp đồng KHÔNG thể thay đổi sau khi tin được duyệt."
             }
+          ],
+          "suggestedQ": [
+            "ĐC1, ĐC2, ĐC1A khác nhau thế nào?",
+            "Hoa hồng điền bao nhiêu phần trăm?",
+            "Cầu đối tác áp dụng khi nào?"
           ]
         },
         {
@@ -335,6 +370,11 @@
               "body": "Nội dung tốt giúp chuyên viên tư vấn đúng với khách, tăng tỷ lệ chốt deal.",
               "note": "Không cần quá dài — 3-5 câu rõ ràng về ưu điểm chính là đủ."
             }
+          ],
+          "suggestedQ": [
+            "Tiêu đề có tự động điền không?",
+            "Nội dung mô tả cần viết gì?",
+            "Bao nhiêu câu là đủ?"
           ]
         },
         {
@@ -369,6 +409,11 @@
               "body": "Số điện thoại chủ sở hữu BĐS. Bảo mật hoàn toàn. KHÔNG sửa được sau duyệt.",
               "note": "Điền chính xác để tránh bị từ chối duyệt và bảo vệ quyền lợi của bạn."
             }
+          ],
+          "suggestedQ": [
+            "Serial sổ có bị lộ không?",
+            "Chuyên viên có thấy SĐT chủ nhà không?",
+            "Pháp lý ảnh hưởng gì đến tin?"
           ]
         },
         {
@@ -403,6 +448,11 @@
               "body": "Ảnh sổ đỏ, HĐ trích thưởng. Audio ghi âm thỏa thuận pháp lý nếu cần.",
               "note": "Upload xong chờ dấu ✓ mới được thoát màn hình — thoát sớm ảnh bị mất."
             }
+          ],
+          "suggestedQ": [
+            "Upload tối đa bao nhiêu ảnh?",
+            "Phải chờ gì trước khi thoát?",
+            "Video tối đa bao nhiêu MB?"
           ]
         },
         {
@@ -437,6 +487,11 @@
               "body": "Push notification khi duyệt hoặc từ chối kèm lý do cụ thể.",
               "note": "Đảm bảo bật thông báo cho App Nhà Phố trong cài đặt điện thoại."
             }
+          ],
+          "suggestedQ": [
+            "Bao lâu thì tin được duyệt?",
+            "Tin bị từ chối phải làm gì?",
+            "Sau khi bấm Đăng tin xảy ra gì?"
           ]
         }
       ],
@@ -509,6 +564,11 @@
               "body": "Hệ thống mở màn hình Kho tài nguyên với tab Danh sách mặc định.",
               "note": "HV chỉ thấy tin dưới 35 tỷ — đây là giới hạn phân quyền."
             }
+          ],
+          "suggestedQ": [
+            "Kho tài nguyên ở đâu?",
+            "Học viên xem được tin nào?",
+            "Có cách khác vào kho không?"
           ]
         },
         {
@@ -543,6 +603,11 @@
               "body": "Bán mạnh (trắng) | Hạ chào (xanh) | Tạm dừng (đỏ viền) | Đã bán (đỏ).",
               "note": "Bấm vào hàng bất kỳ để xem chi tiết tin đăng đó."
             }
+          ],
+          "suggestedQ": [
+            "Tab Danh sách hiển thị gì?",
+            "Màu hiện trạng có ý nghĩa gì?",
+            "Mặc định sắp xếp theo thứ tự nào?"
           ]
         },
         {
@@ -577,6 +642,11 @@
               "body": "Kéo đến vừa đủ hiện cột Địa chỉ + Giá + Thông số trong 1 màn hình — tối ưu nhất để lướt nhanh.",
               "note": "Xem bước tiếp theo để biết cách tùy chỉnh cột hiển thị."
             }
+          ],
+          "suggestedQ": [
+            "Vuốt ngang để xem cột nào?",
+            "Cột Giá ở đâu trong bảng?",
+            "Cách kéo danh sách xem đủ thông tin?"
           ]
         },
         {
@@ -611,6 +681,11 @@
               "body": "Bấm icon lưu (🔖) để lưu vào bộ sưu tập. Bấm icon đặt lịch (⏰) để đặt lịch xem nhà.",
               "note": "Dùng tính năng Ẩn cột (bước tiếp) để tùy chỉnh cột theo nhu cầu của bạn."
             }
+          ],
+          "suggestedQ": [
+            "Vị trí tối ưu kéo đến đâu?",
+            "Kéo đến đâu thì thấy cột Giá?",
+            "Làm sao lưu tin từ danh sách?"
           ]
         },
         {
@@ -645,6 +720,11 @@
               "body": "Gạt toggle xanh = hiện cột đó | Toggle xám = ẩn cột đó khỏi danh sách.",
               "note": "Cài đặt ẩn cột được lưu cho phiên hiện tại."
             }
+          ],
+          "suggestedQ": [
+            "Nút Ẩn cột ở đâu?",
+            "Ẩn cột nào được?",
+            "Cài đặt cột có lưu lại không?"
           ]
         },
         {
@@ -679,6 +759,10 @@
               "body": "Bấm nút Đặt lại (màu xanh cuối bảng) để khôi phục về cài đặt gốc.",
               "note": "Cột Quận và Giá đang ẩn mặc định trong ảnh — gạt lên để hiện nếu cần."
             }
+          ],
+          "suggestedQ": [
+            "Cách ẩn cột trong bảng kho?",
+            "Đặt lại cột về mặc định thế nào?"
           ]
         },
         {
@@ -713,6 +797,10 @@
               "body": "Bấm vào icon G.Chú (🗒) của từng tin để thêm/sửa ghi chú riêng.",
               "note": "Ghi chú giúp bạn nhớ lý do lưu tin — rất hữu ích khi manage nhiều tin cùng lúc."
             }
+          ],
+          "suggestedQ": [
+            "Tab Đã lưu hiển thị tin gì?",
+            "Cách ghi chú tin đã lưu trong kho?"
           ]
         },
         {
@@ -747,6 +835,10 @@
               "body": "Thích ❤️ | Bình luận 💬 | Chia sẻ | Lưu 🔖 | Đặt lịch ⏰ | Báo cáo dẫn khách.",
               "note": "Bấm vào ảnh hoặc tên đầu chủ để xem toàn bộ chi tiết tin đăng."
             }
+          ],
+          "suggestedQ": [
+            "Tab Chi tiết khác gì tab Danh sách?",
+            "Có thể lưu tin ngay trên feed không?"
           ]
         },
         {
@@ -781,6 +873,10 @@
               "body": "Để trống tiêu chí nào = hệ thống không lọc theo tiêu chí đó, hiển thị toàn bộ.",
               "note": "Lọc theo Chi nhánh/Phòng ban/Cá nhân để tập trung vào hàng của team mình."
             }
+          ],
+          "suggestedQ": [
+            "Nút Lọc kho nằm ở đâu?",
+            "Không lọc thì kho hiển thị tin nào?"
           ]
         },
         {
@@ -815,6 +911,10 @@
               "body": "Giá tối thiểu + Giá tối đa (đơn vị Tỷ). Hoặc chọn Khoảng giá có sẵn.",
               "note": "Chọn Đặc điểm BĐS để lọc theo Mặt phố, Trong ngõ, Lô góc... nếu khách có yêu cầu cụ thể."
             }
+          ],
+          "suggestedQ": [
+            "Cách lọc theo quận và đường phố?",
+            "Nên lọc tỉnh trước hay quận trước?"
           ]
         },
         {
@@ -849,6 +949,10 @@
               "body": "Sau khi chọn Chi nhánh, có thể lọc tiếp theo Phòng ban hoặc cá nhân cụ thể.",
               "note": "Xem hàng của chi nhánh khác giúp đối chiếu giá, tìm hàng phù hợp cho khách."
             }
+          ],
+          "suggestedQ": [
+            "Lọc theo chi nhánh để làm gì?",
+            "Để trống chi nhánh thì xem được gì?"
           ]
         },
         {
@@ -883,6 +987,10 @@
               "body": "Bấm nút Lọc (xanh, cuối màn hình) để áp dụng tiêu chí. Bấm Đặt lại để xóa hết và về mặc định.",
               "note": "Tiêu chí lọc bị mất khi chuyển tab — đây là hành vi đã được ghi nhận và fix (IS_12)."
             }
+          ],
+          "suggestedQ": [
+            "Cách lọc theo phòng ban hoặc cá nhân?",
+            "Bấm nút nào để áp dụng bộ lọc?"
           ]
         }
       ],
@@ -958,6 +1066,10 @@
               "body": "Bấm lại icon đỏ để bỏ lưu — tin bị xóa khỏi tất cả bộ sưu tập.",
               "note": "Tin đã lưu hiển thị trong tab Đã lưu và trong Bộ sưu tập (icon Bộ sưu tập trên bottom nav)."
             }
+          ],
+          "suggestedQ": [
+            "Cách lưu tin vào bộ sưu tập?",
+            "Bấm lại icon đỏ thì tin đi đâu?"
           ]
         },
         {
@@ -992,6 +1104,10 @@
               "body": "Sau khi lưu ghi chú, icon G.Chú chuyển sang màu cam đậm — dễ nhận biết tin nào đã ghi chú.",
               "note": "Rất hữu ích khi đi khảo sát — chụp ảnh thực tế + ghi chú trực tiếp vào tin ngay tại chỗ."
             }
+          ],
+          "suggestedQ": [
+            "Cách ghi chú nhanh cho tin đã lưu?",
+            "Icon ghi chú màu cam nghĩa là gì?"
           ]
         },
         {
@@ -1026,6 +1142,10 @@
               "body": "Sau khi lưu, icon Ghi chú trên card cũng được kích hoạt — bấm để thêm ghi chú ngay.",
               "note": "Tương tự lưu từ Danh sách — icon đỏ = đã lưu, có thể ghi chú đi kèm."
             }
+          ],
+          "suggestedQ": [
+            "Lưu tin từ feed Chi tiết thế nào?",
+            "Lưu từ feed có khác lưu từ danh sách không?"
           ]
         },
         {
@@ -1060,6 +1180,10 @@
               "body": "Bấm '+ Tạo bộ sưu tập' → nhập tên → BST mới xuất hiện ngay trong popup.",
               "note": "Bấm 'Xong' để hoàn tất. Tin lưu vào BST nào không chọn sẽ về Mặc định."
             }
+          ],
+          "suggestedQ": [
+            "Không chọn bộ sưu tập thì tin lưu ở đâu?",
+            "Cách tạo nhanh BST mới khi đang lưu tin?"
           ]
         },
         {
@@ -1094,6 +1218,10 @@
               "body": "Bấm nút 'Xong' màu xanh góc phải dưới — tin được lưu vào tất cả BST đã tick.",
               "note": "Bấm X để đóng popup mà không lưu. Tin sẽ không được lưu vào BST nào."
             }
+          ],
+          "suggestedQ": [
+            "Một tin có lưu vào nhiều BST được không?",
+            "Bấm Xong rồi thì tin lưu vào đâu?"
           ]
         },
         {
@@ -1128,6 +1256,10 @@
               "body": "Bấm nút 'Tạo' màu xanh để tạo. Bấm 'Đóng' để hủy. BST mới xuất hiện ngay trong danh sách.",
               "note": "Nên tạo BST theo chiến lược: theo khu vực, theo giá, theo khách cụ thể..."
             }
+          ],
+          "suggestedQ": [
+            "Cách tạo bộ sưu tập mới?",
+            "Nên đặt tên BST theo kiểu nào?"
           ]
         },
         {
@@ -1162,6 +1294,10 @@
               "body": "Bấm 'Xóa bộ sưu tập' → xác nhận. BST bị xóa, tin vẫn còn trong BST Mặc định.",
               "note": "BST Mặc định không thể xóa. Chỉ xóa được BST do người dùng tạo."
             }
+          ],
+          "suggestedQ": [
+            "Xóa bộ sưu tập có mất tin bên trong không?",
+            "Cách sửa hoặc xóa một BST?"
           ]
         },
         {
@@ -1196,6 +1332,10 @@
               "body": "Bấm nút 'Lưu' màu xanh để cập nhật. Bấm 'Đóng' để hủy toàn bộ thay đổi.",
               "note": ""
             }
+          ],
+          "suggestedQ": [
+            "Cách đổi tên và ảnh đại diện BST?",
+            "Đặt ảnh đại diện BST theo gì cho dễ nhớ?"
           ]
         },
         {
@@ -1230,6 +1370,10 @@
               "body": "Bấm nút 'Ghi chú' bên phải mỗi tin để xem/thêm ghi chú đi kèm.",
               "note": "Ghi chú màu xanh = đã có ghi chú. Ghi chú xám = chưa có nội dung."
             }
+          ],
+          "suggestedQ": [
+            "Cách sắp xếp tin trong bộ sưu tập?",
+            "Lọc theo giá thấp nhất ở đâu?"
           ]
         },
         {
@@ -1264,6 +1408,10 @@
               "body": "Bấm 'Gỡ bỏ' màu đỏ → tin bị xóa khỏi BST hiện tại ngay lập tức.",
               "note": "Gỡ bỏ KHÔNG bỏ lưu tin — tin vẫn trong BST Mặc định và các BST khác nếu có."
             }
+          ],
+          "suggestedQ": [
+            "Gỡ tin khỏi BST có mất lưu không?",
+            "Cách gỡ bỏ tin khỏi bộ sưu tập?"
           ]
         },
         {
@@ -1298,6 +1446,10 @@
               "body": "Bấm nút 'Lưu' màu xanh để lưu ghi chú + ảnh. Bấm 'Đóng' để hủy không lưu.",
               "note": "Ảnh trong ghi chú rất hữu ích: chụp mặt ngõ, tình trạng thực tế, ảnh đo đạc..."
             }
+          ],
+          "suggestedQ": [
+            "Ghi chú BST tải tối đa bao nhiêu ảnh?",
+            "Ghi chú có lưu được ảnh khảo sát không?"
           ]
         },
         {
@@ -1332,6 +1484,10 @@
               "body": "Bấm icon G.Chú để ghi chú. Bấm icon lịch để đặt lịch. Bấm Xem để xem chi tiết.",
               "note": "Tin có icon G.Chú màu cam = đã có ghi chú. Bấm vào để đọc lại nội dung đã ghi."
             }
+          ],
+          "suggestedQ": [
+            "Tab Đã lưu khác Bộ sưu tập thế nào?",
+            "Tab Đã lưu hiển thị tin theo BST không?"
           ]
         }
       ],
@@ -1402,6 +1558,10 @@
               "title": "Bấm để vào danh sách",
               "body": "Màn hình danh sách lịch hẹn hiện ra với các tab trạng thái khác nhau."
             }
+          ],
+          "suggestedQ": [
+            "Tìm nút Đặt lịch ở đâu trên trang chủ?",
+            "Còn cách nào khác để vào Đặt lịch không?"
           ]
         },
         {
@@ -1433,6 +1593,10 @@
               "title": "Bấm vào lịch để xem chi tiết",
               "body": "Chọn bất kỳ lịch hẹn nào để xem đầy đủ thông tin và các tùy chọn thao tác."
             }
+          ],
+          "suggestedQ": [
+            "Danh sách lịch hẹn có những trạng thái nào?",
+            "Tab Chờ duyệt hiển thị lịch như thế nào?"
           ]
         },
         {
@@ -1464,6 +1628,10 @@
               "title": "Form đặt lịch mở ra",
               "body": "Thông tin BĐS đã được điền sẵn — chỉ cần chọn ngày giờ và ghi chú nếu cần."
             }
+          ],
+          "suggestedQ": [
+            "Cách đặt lịch ngay từ Kho tài nguyên?",
+            "Đặt lịch từ feed Chi tiết thế nào?"
           ]
         },
         {
@@ -1495,6 +1663,10 @@
               "title": "Thêm ghi chú và gửi",
               "body": "Ghi chú thêm yêu cầu nếu cần, rồi bấm 'Gửi yêu cầu' để đặt lịch chờ đầu chủ xác nhận."
             }
+          ],
+          "suggestedQ": [
+            "Nên chọn giờ nào để đầu chủ xác nhận nhanh?",
+            "Cách chọn ngày giờ và gửi yêu cầu đặt lịch?"
           ]
         },
         {
@@ -1526,6 +1698,10 @@
               "title": "Chuẩn bị trước khi dẫn khách",
               "body": "Liên hệ đầu chủ trước 1–2 tiếng để xác nhận lại — tránh tình huống đầu chủ vắng nhà."
             }
+          ],
+          "suggestedQ": [
+            "Làm sao biết đầu chủ đã xác nhận lịch?",
+            "Lịch đã xác nhận hiển thị thông tin gì?"
           ]
         },
         {
@@ -1557,6 +1733,10 @@
               "title": "Xác nhận hủy",
               "body": "Bấm Xác nhận — lịch chuyển sang trạng thái Đã hủy và đầu chủ nhận thông báo ngay."
             }
+          ],
+          "suggestedQ": [
+            "Cách thu hồi lịch hẹn đã đặt?",
+            "Nên thu hồi lịch trước giờ hẹn bao lâu?"
           ]
         },
         {
@@ -1588,6 +1768,10 @@
               "title": "Dùng để báo cáo hoạt động",
               "body": "Lịch sử giúp tổng hợp số lần dẫn khách trong tháng — hữu ích cho báo cáo với quản lý."
             }
+          ],
+          "suggestedQ": [
+            "Xem lại lịch sử lịch hẹn ở đâu?",
+            "Lịch sử lịch hẹn dùng để làm gì?"
           ]
         }
       ],
@@ -1655,6 +1839,10 @@
               "title": "Vào danh sách lịch hẹn",
               "body": "Bấm vào thông báo lịch hẹn để chuyển thẳng sang màn hình quản lý lịch hẹn."
             }
+          ],
+          "suggestedQ": [
+            "Làm sao nhận thông báo yêu cầu hẹn mới?",
+            "Bấm vào đâu để xem yêu cầu lịch hẹn?"
           ]
         },
         {
@@ -1686,6 +1874,10 @@
               "title": "Bấm vào để xem chi tiết",
               "body": "Chọn yêu cầu bất kỳ để xem đầy đủ và thực hiện Xác nhận hoặc Từ chối."
             }
+          ],
+          "suggestedQ": [
+            "Tab Chờ xác nhận hiển thị thông tin gì?",
+            "Nên phản hồi yêu cầu hẹn trong bao lâu?"
           ]
         },
         {
@@ -1717,6 +1909,10 @@
               "title": "Chuyên viên nhận thông báo",
               "body": "Hệ thống tự gửi push notification cho chuyên viên biết lịch đã được duyệt."
             }
+          ],
+          "suggestedQ": [
+            "Cách xác nhận lịch hẹn cho chuyên viên?",
+            "Sau khi xác nhận, chuyên viên có biết không?"
           ]
         },
         {
@@ -1748,6 +1944,10 @@
               "title": "Xác nhận từ chối",
               "body": "Bấm Gửi để hoàn tất — chuyên viên nhận thông báo kèm lý do và có thể đặt lịch khác."
             }
+          ],
+          "suggestedQ": [
+            "Cách từ chối lịch hẹn và ghi lý do?",
+            "Vì sao nên nhập lý do cụ thể từ chối?"
           ]
         },
         {
@@ -1779,6 +1979,10 @@
               "title": "Chuyên viên nhận thông báo hủy",
               "body": "Hệ thống tự gửi thông báo ngay cho chuyên viên — họ sẽ thông báo lại cho khách."
             }
+          ],
+          "suggestedQ": [
+            "Cách thu hồi lịch hẹn đã xác nhận?",
+            "Thu hồi lịch chuyên viên có biết không?"
           ]
         }
       ],
@@ -1847,6 +2051,10 @@
               "title": "Danh sách mặc định",
               "body": "Mặc định hiển thị khách đang active — khách hold ẩn xuống dưới hoặc sang tab riêng."
             }
+          ],
+          "suggestedQ": [
+            "Tìm tính năng Khách cần mua gấp ở đâu?",
+            "Danh sách khách gấp mặc định hiển thị gì?"
           ]
         },
         {
@@ -1878,6 +2086,10 @@
               "title": "Liên hệ nhanh",
               "body": "Bấm SĐT để gọi trực tiếp hoặc nhắn tin — không cần lưu số thủ công."
             }
+          ],
+          "suggestedQ": [
+            "Xem chi tiết khách gấp có những thông tin gì?",
+            "Cách liên hệ nhanh với khách cần mua gấp?"
           ]
         },
         {
@@ -1909,6 +2121,10 @@
               "title": "Lưu và thêm vào danh sách",
               "body": "Bấm Lưu — khách xuất hiện ngay trong danh sách và có thể ghim để ưu tiên xử lý."
             }
+          ],
+          "suggestedQ": [
+            "Cách tạo hồ sơ khách cần mua gấp?",
+            "Cần điền những thông tin gì khi tạo khách gấp?"
           ]
         },
         {
@@ -1940,6 +2156,10 @@
               "title": "Lưu thay đổi",
               "body": "Cập nhật các trường cần đổi rồi bấm Lưu — thông tin được cập nhật ngay lập tức."
             }
+          ],
+          "suggestedQ": [
+            "Cách sửa thông tin khách cần mua gấp?",
+            "Sửa xong thì bấm gì để lưu lại?"
           ]
         },
         {
@@ -1971,6 +2191,10 @@
               "title": "Khách bị xóa khỏi danh sách",
               "body": "Sau khi xóa, hồ sơ khách biến mất hoàn toàn và không thể khôi phục."
             }
+          ],
+          "suggestedQ": [
+            "Cách xóa khách cần mua gấp?",
+            "Xóa khách rồi có khôi phục lại được không?"
           ]
         },
         {
@@ -2002,6 +2226,10 @@
               "title": "Bỏ ghim khi không cần",
               "body": "Thực hiện lại thao tác ghim → chọn 'Bỏ ghim' — khách trở về vị trí bình thường trong danh sách."
             }
+          ],
+          "suggestedQ": [
+            "Ghim khách ưu tiên để làm gì?",
+            "Cách ghim và bỏ ghim khách gấp?"
           ]
         },
         {
@@ -2033,6 +2261,10 @@
               "title": "Kích hoạt lại khi khách sẵn sàng",
               "body": "Khi khách liên hệ lại, vào tab Hold → bấm menu → chọn 'Kích hoạt' để đưa về danh sách chính."
             }
+          ],
+          "suggestedQ": [
+            "Hold khách nghĩa là gì?",
+            "Khách hold còn hiện ở danh sách chính không?"
           ]
         }
       ],
@@ -2103,6 +2335,10 @@
               "title": "Menu cá nhân mở ra",
               "body": "Danh sách tính năng và quản lý tài khoản hiện ra — cuộn xuống để tìm mục Quản lý kho."
             }
+          ],
+          "suggestedQ": [
+            "Vào Kho cá nhân từ đâu?",
+            "Menu cá nhân nằm ở vị trí nào?"
           ]
         },
         {
@@ -2134,6 +2370,10 @@
               "title": "Màn hình kho cá nhân",
               "body": "Hiển thị toàn bộ tin đăng của bạn phân theo trạng thái: Chờ duyệt, Đã duyệt, Từ chối, Thùng rác."
             }
+          ],
+          "suggestedQ": [
+            "Quản lý kho nằm ở mục nào trong menu?",
+            "Kho cá nhân có những tab trạng thái gì?"
           ]
         },
         {
@@ -2165,6 +2405,10 @@
               "title": "Tab Thùng rác",
               "body": "Tin đã xóa — có thể khôi phục hoặc xóa vĩnh viễn từ đây."
             }
+          ],
+          "suggestedQ": [
+            "4 tab trong kho cá nhân là gì?",
+            "Tab Thùng rác dùng để làm gì?"
           ]
         },
         {
@@ -2196,6 +2440,10 @@
               "title": "Thao tác được phép",
               "body": "Tin đang chờ duyệt có thể xem lại chi tiết nhưng KHÔNG sửa được — phải chờ kết quả duyệt."
             }
+          ],
+          "suggestedQ": [
+            "Tin chờ duyệt theo dõi ở đâu?",
+            "Tin đang chờ duyệt có sửa được không?"
           ]
         },
         {
@@ -2227,6 +2475,10 @@
               "title": "Xóa vĩnh viễn",
               "body": "Bấm 'Xóa vĩnh viễn' để xóa hoàn toàn — thao tác này không thể hoàn tác."
             }
+          ],
+          "suggestedQ": [
+            "Cách khôi phục tin từ thùng rác?",
+            "Khôi phục tin xong tin chuyển về trạng thái nào?"
           ]
         },
         {
@@ -2258,6 +2510,10 @@
               "title": "Thao tác trên tin đã duyệt",
               "body": "Có thể Sửa một số trường, Tạm dừng hoặc Xóa tin. Không thể đổi Loại hình hay Pháp lý."
             }
+          ],
+          "suggestedQ": [
+            "Tin đã duyệt có sửa được những gì?",
+            "Trạng thái Bán mạnh, Hạ chào nghĩa là gì?"
           ]
         },
         {
@@ -2289,6 +2545,10 @@
               "title": "Nộp lại để duyệt",
               "body": "Sau khi sửa, bấm 'Nộp lại' — tin quay về tab Chờ duyệt và vào hàng đợi kiểm duyệt lại."
             }
+          ],
+          "suggestedQ": [
+            "Tin bị từ chối thì xử lý thế nào?",
+            "Cách nộp lại tin sau khi sửa?"
           ]
         },
         {
@@ -2320,6 +2580,10 @@
               "title": "Áp dụng và xem kết quả",
               "body": "Bấm Lọc để áp dụng — danh sách cập nhật ngay. Bấm Đặt lại để xóa toàn bộ tiêu chí."
             }
+          ],
+          "suggestedQ": [
+            "Cách lọc tin trong kho cá nhân?",
+            "Lọc theo những tiêu chí nào?"
           ]
         },
         {
@@ -2351,6 +2615,10 @@
               "title": "Thao tác từ trang chi tiết",
               "body": "Sửa tin, Tạm dừng, Xóa — tất cả thao tác có thể thực hiện trực tiếp từ màn hình chi tiết."
             }
+          ],
+          "suggestedQ": [
+            "Xem thống kê lượt xem tin ở đâu?",
+            "Có thể sửa tin ngay từ trang chi tiết không?"
           ]
         }
       ],
@@ -2418,6 +2686,10 @@
               "title": "Bấm để vào kho",
               "body": "Màn hình kho hàng tự do mở ra — hiển thị toàn bộ BĐS công khai trong hệ thống."
             }
+          ],
+          "suggestedQ": [
+            "Kho hàng tự do là gì?",
+            "Tìm Kho hàng tự do ở đâu trên trang chủ?"
           ]
         },
         {
@@ -2449,6 +2721,10 @@
               "title": "Bấm vào hàng để xem chi tiết",
               "body": "Chọn bất kỳ BĐS nào trong danh sách để mở panel hoặc trang chi tiết đầy đủ."
             }
+          ],
+          "suggestedQ": [
+            "Vuốt ngang bảng để xem cột nào?",
+            "Bấm vào hàng để xem được gì?"
           ]
         },
         {
@@ -2480,6 +2756,10 @@
               "title": "Bấm Lọc để áp dụng",
               "body": "Nút Lọc màu xanh cuối bảng — bấm để áp dụng. Bấm Đặt lại để xóa toàn bộ tiêu chí."
             }
+          ],
+          "suggestedQ": [
+            "Cách lọc BĐS trong kho hàng tự do?",
+            "Nên lọc tỉnh thành trước hay quận trước?"
           ]
         },
         {
@@ -2511,6 +2791,10 @@
               "title": "Đặt lại về mặc định",
               "body": "Bấm nút 'Đặt lại' cuối panel để khôi phục cấu hình cột mặc định ban đầu."
             }
+          ],
+          "suggestedQ": [
+            "Cách ẩn bớt cột trong kho hàng tự do?",
+            "Đặt lại cột về mặc định ở đâu?"
           ]
         },
         {
@@ -2542,6 +2826,10 @@
               "title": "Thao tác nhanh từ panel",
               "body": "Lưu vào bộ sưu tập, đặt lịch xem nhà, xem tin đầy đủ — không cần thoát ra danh sách."
             }
+          ],
+          "suggestedQ": [
+            "Panel chi tiết hiện thông tin gì?",
+            "Có thể đặt lịch ngay từ panel chi tiết không?"
           ]
         },
         {
@@ -2573,6 +2861,10 @@
               "title": "Đặt lịch từ trang tin",
               "body": "Nút 'Đặt lịch' ở cuối trang — bấm để mở form hẹn xem nhà với đầu chủ ngay lập tức."
             }
+          ],
+          "suggestedQ": [
+            "Trang tin đầy đủ có nội dung gì?",
+            "Đặt lịch xem nhà từ trang tin thế nào?"
           ]
         }
       ],
@@ -2639,6 +2931,10 @@
               "title": "Menu cá nhân mở ra",
               "body": "Danh sách tính năng và tài khoản — cuộn để tìm mục Quản lý phòng."
             }
+          ],
+          "suggestedQ": [
+            "Mã giới thiệu nằm ở mục nào trong menu?",
+            "Vào menu cá nhân từ đâu?"
           ]
         },
         {
@@ -2670,6 +2966,10 @@
               "title": "Các mục con",
               "body": "Trong Quản lý phòng có: Tin hoạt động, Mã giới thiệu và các tính năng quản lý khác."
             }
+          ],
+          "suggestedQ": [
+            "Quản lý phòng có những mục con nào?",
+            "Mã giới thiệu thuộc nhóm tính năng nào?"
           ]
         },
         {
@@ -2701,6 +3001,10 @@
               "title": "Nội dung màn hình",
               "body": "Danh sách các mã giới thiệu đã tạo, số lần được dùng và trạng thái active/inactive."
             }
+          ],
+          "suggestedQ": [
+            "Tin hoạt động trong Quản lý phòng có gì?",
+            "Vào Tin hoạt động bằng cách nào?"
           ]
         },
         {
@@ -2732,6 +3036,10 @@
               "title": "Chia sẻ mã nhanh",
               "body": "Bấm icon chia sẻ bên cạnh mã để copy hoặc gửi trực tiếp qua Zalo/Viber."
             }
+          ],
+          "suggestedQ": [
+            "Cách xem thống kê ai đã dùng mã giới thiệu?",
+            "Chia sẻ mã giới thiệu cho khách thế nào?"
           ]
         },
         {
@@ -2763,6 +3071,10 @@
               "title": "Lưu và chia sẻ",
               "body": "Bấm Lưu — mã xuất hiện ngay trong danh sách và sẵn sàng để chia sẻ cho khách hàng."
             }
+          ],
+          "suggestedQ": [
+            "Cách tạo mã giới thiệu mới?",
+            "Nên đặt tên mã giới thiệu theo kiểu nào?"
           ]
         }
       ],
@@ -2837,6 +3149,10 @@
               "title": "Cuộn tìm mục Quản lý khách",
               "body": "Menu cá nhân mở ra — cuộn xuống để tìm mục Tài khoản cá nhân hoặc Quản lý khách."
             }
+          ],
+          "suggestedQ": [
+            "Quản lý khách nằm ở đâu trong menu?",
+            "Vào menu cá nhân bằng cách nào?"
           ]
         },
         {
@@ -2868,6 +3184,10 @@
               "title": "Màn hình Quản lý khách",
               "body": "Màn hình danh sách khách mở ra với 2 tab: Đang tìm nhà và Đã mua."
             }
+          ],
+          "suggestedQ": [
+            "Màn hình Quản lý khách có những tab nào?",
+            "Quản lý khách nằm ở đâu trong tài khoản?"
           ]
         },
         {
@@ -2899,6 +3219,10 @@
               "title": "Bấm vào khách để xem chi tiết",
               "body": "Chọn bất kỳ khách để xem đầy đủ nhu cầu, lịch sử tương tác và hàng phù hợp."
             }
+          ],
+          "suggestedQ": [
+            "Tab Đang tìm nhà hiển thị thông tin gì?",
+            "Cách sắp xếp khách theo ngày cập nhật?"
           ]
         },
         {
@@ -2930,6 +3254,10 @@
               "title": "Chăm sóc sau mua",
               "body": "Duy trì liên hệ với khách đã mua — họ có thể giới thiệu khách mới hoặc mua thêm trong tương lai."
             }
+          ],
+          "suggestedQ": [
+            "Tab Đã mua dùng để lưu thông tin gì?",
+            "Vì sao nên giữ liên lạc với khách đã mua?"
           ]
         },
         {
@@ -2961,6 +3289,10 @@
               "title": "Thao tác Chuyển trạng thái",
               "body": "Nếu khách đã mua có nhu cầu mua thêm — chọn 'Chuyển sang Đang tìm' để theo dõi lại."
             }
+          ],
+          "suggestedQ": [
+            "Có thể chuyển khách đã mua về Đang tìm không?",
+            "Bấm giữ vào khách đã mua để làm gì?"
           ]
         },
         {
@@ -2992,6 +3324,10 @@
               "title": "Đánh dấu Đã mua",
               "body": "Khi khách chốt giao dịch — chọn 'Đánh dấu Đã mua' để chuyển khách sang tab Đã mua."
             }
+          ],
+          "suggestedQ": [
+            "Cách đánh dấu khách đã mua?",
+            "Menu thao tác khách đang tìm có gì?"
           ]
         },
         {
@@ -3023,6 +3359,10 @@
               "title": "Lưu cập nhật",
               "body": "Bấm 'Lưu' — thông tin khách được cập nhật ngay. Lịch sử thay đổi được ghi lại tự động."
             }
+          ],
+          "suggestedQ": [
+            "Cách sửa thông tin khách hàng?",
+            "Sửa xong cần bấm gì để lưu?"
           ]
         },
         {
@@ -3054,6 +3394,10 @@
               "title": "Đặt lịch xem nhà từ đây",
               "body": "Bấm vào BĐS phù hợp → chọn 'Đặt lịch' để hẹn xem nhà ngay từ màn hình này."
             }
+          ],
+          "suggestedQ": [
+            "Cách xem hàng phù hợp với khách?",
+            "Hệ thống khớp hàng dựa trên tiêu chí gì?"
           ]
         },
         {
@@ -3085,6 +3429,10 @@
               "title": "Áp dụng và xem kết quả",
               "body": "Bấm Lọc để áp dụng — danh sách BĐS cập nhật ngay theo tiêu chí đã chọn thêm."
             }
+          ],
+          "suggestedQ": [
+            "Cách lọc thêm trong danh sách hàng phù hợp?",
+            "Lọc theo những tiêu chí nào trong hàng phù hợp?"
           ]
         },
         {
@@ -3116,6 +3464,10 @@
               "title": "Xem lại lịch sử căn đã xem",
               "body": "Tab hoặc bộ lọc 'Đã xem' trong màn hình hàng phù hợp — liệt kê tất cả căn khách đã được dẫn."
             }
+          ],
+          "suggestedQ": [
+            "Đánh dấu căn đã xem để làm gì?",
+            "Xem lại lịch sử căn đã dẫn khách ở đâu?"
           ]
         },
         {
@@ -3147,6 +3499,10 @@
               "title": "Lưu ghi chú",
               "body": "Bấm Lưu — ghi chú được lưu kèm thời gian và tên người nhập, hiển thị trong lịch sử khách."
             }
+          ],
+          "suggestedQ": [
+            "Cách ghi chú thông tin về khách?",
+            "Ghi chú khách lưu lại những gì?"
           ]
         },
         {
@@ -3178,6 +3534,10 @@
               "title": "Lưu và phân công CV",
               "body": "Bấm Lưu — hồ sơ khách tạo xong. Phân công CV phụ trách nếu cần ngay trên màn hình này."
             }
+          ],
+          "suggestedQ": [
+            "Cách thêm khách hàng mới vào hệ thống?",
+            "Cần điền những thông tin nào khi thêm khách?"
           ]
         },
         {
@@ -3209,6 +3569,10 @@
               "title": "Tìm theo tiêu chí nâng cao",
               "body": "Bấm 'Lọc nâng cao' để tìm theo khu vực, ngân sách, CV phụ trách hoặc trạng thái khách."
             }
+          ],
+          "suggestedQ": [
+            "Cách tìm kiếm khách theo tên hoặc SĐT?",
+            "Lọc nâng cao tìm khách theo tiêu chí gì?"
           ]
         }
       ],
@@ -3273,6 +3637,10 @@
               "title": "Tìm mục Thông báo vụ chốt",
               "body": "Cuộn trong menu cá nhân — tìm mục 'Thông báo vụ chốt' hoặc 'Vụ chốt' rồi bấm vào."
             }
+          ],
+          "suggestedQ": [
+            "Thông báo vụ chốt nằm ở đâu trong menu?",
+            "Vào mục Thông báo vụ chốt thế nào?"
           ]
         },
         {
@@ -3304,6 +3672,10 @@
               "title": "Bấm để xem chi tiết",
               "body": "Chọn bất kỳ vụ chốt để xem đầy đủ thông tin, ảnh minh chứng và ghi chú đi kèm."
             }
+          ],
+          "suggestedQ": [
+            "Danh sách vụ chốt hiển thị thông tin gì?",
+            "Xem chi tiết một vụ chốt thế nào?"
           ]
         },
         {
@@ -3335,6 +3707,10 @@
               "title": "Gửi thông báo cho team",
               "body": "Bấm 'Đăng thông báo' — toàn bộ team nhận thông báo về vụ chốt thành công."
             }
+          ],
+          "suggestedQ": [
+            "Cách tạo thông báo vụ chốt mới?",
+            "Vì sao nên đăng thông báo sớm sau khi chốt?"
           ]
         }
       ],
@@ -3405,6 +3781,10 @@
               "title": "Menu cá nhân mở ra",
               "body": "Danh sách tính năng và tài khoản hiện ra — cuộn để tìm mục Quản lý kho / Tin chính chủ."
             }
+          ],
+          "suggestedQ": [
+            "Tin chính chủ nằm ở mục nào trong menu?",
+            "Vào menu cá nhân bằng cách nào?"
           ]
         },
         {
@@ -3436,6 +3816,10 @@
               "title": "Về Tin chính chủ",
               "body": "Đây là các tin BĐS đăng trực tiếp bởi chủ nhà từ các nền tảng khác — không qua môi giới."
             }
+          ],
+          "suggestedQ": [
+            "Tin chính chủ là gì?",
+            "Khác gì so với tin đăng qua môi giới?"
           ]
         },
         {
@@ -3467,6 +3851,10 @@
               "title": "Bấm để xem chi tiết",
               "body": "Chọn bất kỳ tin nào để xem đầy đủ thông tin, ảnh và thông tin liên hệ chủ nhà."
             }
+          ],
+          "suggestedQ": [
+            "Danh sách tin chính chủ sắp xếp theo gì?",
+            "Bấm vào tin chính chủ để xem gì?"
           ]
         },
         {
@@ -3498,6 +3886,10 @@
               "title": "Bỏ lưu nếu không cần",
               "body": "Bấm lại icon lưu trên tin đã lưu — tin bị xóa khỏi tab Đã lưu ngay lập tức."
             }
+          ],
+          "suggestedQ": [
+            "Cách lưu tin chính chủ để theo dõi?",
+            "Bỏ lưu tin chính chủ thế nào?"
           ]
         },
         {
@@ -3529,6 +3921,10 @@
               "title": "Lưu ghi chú",
               "body": "Bấm Lưu — ghi chú gắn với tin đó và hiện lại mỗi khi mở tin này."
             }
+          ],
+          "suggestedQ": [
+            "Cách ghi chú cho tin chính chủ?",
+            "Nên ghi chú gì sau khi liên hệ chủ nhà?"
           ]
         },
         {
@@ -3560,6 +3956,10 @@
               "title": "Áp dụng và xem kết quả",
               "body": "Bấm Lọc để áp dụng — danh sách cập nhật ngay. Bấm Đặt lại để xóa tiêu chí."
             }
+          ],
+          "suggestedQ": [
+            "Cách lọc tin chính chủ theo khu vực?",
+            "Lọc theo những tiêu chí nào?"
           ]
         },
         {
@@ -3591,6 +3991,10 @@
               "title": "Mở trang đầy đủ",
               "body": "Bấm 'Xem đầy đủ' hoặc tiêu đề tin để mở trang chi tiết với album ảnh và mô tả đầy đủ."
             }
+          ],
+          "suggestedQ": [
+            "Tin nhanh hiển thị thông tin gì?",
+            "Có thể gọi cho chủ nhà từ đây không?"
           ]
         },
         {
@@ -3622,6 +4026,10 @@
               "title": "Gửi phản hồi",
               "body": "Bấm Gửi — chủ nhà nhận thông báo và có thể trả lời trong App hoặc qua SĐT liên hệ."
             }
+          ],
+          "suggestedQ": [
+            "Cách gửi phản hồi cho chủ nhà?",
+            "Nên hỏi chủ nhà những gì trong phản hồi?"
           ]
         },
         {
@@ -3653,6 +4061,10 @@
               "title": "Tiếp tục trao đổi",
               "body": "Gõ tin nhắn tiếp theo vào ô nhập phía dưới — có thể trao đổi qua lại trực tiếp trong App."
             }
+          ],
+          "suggestedQ": [
+            "Làm sao biết chủ nhà đã trả lời?",
+            "Xem nội dung phản hồi của chủ nhà ở đâu?"
           ]
         }
       ],
@@ -3757,7 +4169,11 @@
               "body": "Sau khi bấm, màn hình danh sách hội thoại mở ra ngay."
             }
           ],
-          "img": "b01_kho"
+          "img": "b01_kho",
+          "suggestedQ": [
+            "Tìm icon Chat ở đâu trên trang chủ?",
+            "Làm sao biết có tin nhắn chưa đọc?"
+          ]
         },
         {
           "id": 2,
@@ -3791,7 +4207,11 @@
               "body": "Bấm vào ô tìm kiếm phía trên — nhập tên người hoặc nội dung để lọc."
             }
           ],
-          "img": "b02_m"
+          "img": "b02_m",
+          "suggestedQ": [
+            "Danh sách hội thoại sắp xếp theo gì?",
+            "Phân biệt chat cá nhân và nhóm thế nào?"
+          ]
         },
         {
           "id": 3,
@@ -3825,7 +4245,11 @@
               "body": "Giữ ngón tay vào một tin nhắn để Reply/React/Copy mà không cần gõ lại."
             }
           ],
-          "img": "b03_3"
+          "img": "b03_3",
+          "suggestedQ": [
+            "Cách xem lại lịch sử tin nhắn cũ?",
+            "Giữ tin nhắn để làm gì?"
+          ]
         },
         {
           "id": 4,
@@ -3859,7 +4283,11 @@
               "body": "Bấm icon mặt cười bên trái ô nhập để chọn emoji hoặc sticker."
             }
           ],
-          "img": "b04_nh"
+          "img": "b04_nh",
+          "suggestedQ": [
+            "Cách gửi tin nhắn trong chat?",
+            "Tìm emoji và sticker ở đâu?"
+          ]
         },
         {
           "id": 5,
@@ -3893,7 +4321,11 @@
               "body": "Chọn 'Máy ảnh' để chụp ngay và gửi trong cuộc trò chuyện."
             }
           ],
-          "img": "b05_n"
+          "img": "b05_n",
+          "suggestedQ": [
+            "Cách gửi ảnh trong cuộc trò chuyện?",
+            "Có thể chụp ảnh trực tiếp để gửi không?"
+          ]
         },
         {
           "id": 6,
@@ -3927,7 +4359,11 @@
               "body": "Bấm vào tên nhóm để vào nhóm chat và xem tin nhắn."
             }
           ],
-          "img": "b06_untitled"
+          "img": "b06_untitled",
+          "suggestedQ": [
+            "Cách xem danh sách nhóm chat?",
+            "Ai có quyền tạo nhóm chat mới?"
+          ]
         },
         {
           "id": 7,
@@ -3961,7 +4397,11 @@
               "body": "Gõ @ rồi nhập tên đồng nghiệp để mention — người đó nhận thông báo riêng."
             }
           ],
-          "img": "b07_2"
+          "img": "b07_2",
+          "suggestedQ": [
+            "Cách @mention đồng nghiệp trong nhóm?",
+            "Nhắn trong nhóm khác chat cá nhân không?"
+          ]
         },
         {
           "id": 8,
@@ -3995,7 +4435,11 @@
               "body": "Kênh mặc định là một chiều — bạn không thể gửi tin. Liên hệ quản lý nếu cần hỏi."
             }
           ],
-          "img": "b08_mess"
+          "img": "b08_mess",
+          "suggestedQ": [
+            "Kênh thông báo dùng để làm gì?",
+            "Vì sao không gửi được tin trong kênh mặc định?"
+          ]
         },
         {
           "id": 9,
@@ -4029,7 +4473,11 @@
               "body": "Nhập từ khóa để tìm trong lịch sử — kết quả hiển thị theo đoạn chat chứa từ đó."
             }
           ],
-          "img": "b09_t_m_ki_m"
+          "img": "b09_t_m_ki_m",
+          "suggestedQ": [
+            "Cách tìm kiếm tin nhắn cũ?",
+            "Tìm theo tên hay theo nội dung tin nhắn?"
+          ]
         },
         {
           "id": 10,
@@ -4062,6 +4510,10 @@
               "title": "Bấm để chat",
               "body": "Chọn tên người từ kết quả → màn hình chat mở ra sẵn sàng nhập nội dung."
             }
+          ],
+          "suggestedQ": [
+            "Cách bắt đầu cuộc trò chuyện mới?",
+            "Tìm đồng nghiệp để nhắn tin lần đầu thế nào?"
           ]
         }
       ],
@@ -4136,7 +4588,11 @@
               "body": "Màn hình QR Code của bạn mở ra — vừa xem được vừa quét được."
             }
           ],
-          "img": "b01_1"
+          "img": "b01_1",
+          "suggestedQ": [
+            "Tìm icon QR Code ở đâu?",
+            "QR Code dùng để làm gì?"
+          ]
         },
         {
           "id": 2,
@@ -4170,7 +4626,11 @@
               "body": "QR có hạn sử dụng — luôn dùng QR hiển thị trực tiếp thay vì ảnh chụp."
             }
           ],
-          "img": "b02_2"
+          "img": "b02_2",
+          "suggestedQ": [
+            "QR cá nhân dùng để kết nối thế nào?",
+            "Vì sao không nên chụp màn hình mã QR?"
+          ]
         },
         {
           "id": 3,
@@ -4204,7 +4664,11 @@
               "body": "App nhận mã ngay — không cần bấm thêm. Màn hình kết quả hiện ra trong 1-2 giây."
             }
           ],
-          "img": "b04_2"
+          "img": "b04_2",
+          "suggestedQ": [
+            "Cách quét QR của đồng nghiệp?",
+            "Cần làm gì để quét QR thành công?"
+          ]
         },
         {
           "id": 4,
@@ -4238,7 +4702,11 @@
               "body": "Bấm 'Nhắn tin' để mở Chat Nhà Phố với đồng nghiệp đó ngay lập tức."
             }
           ],
-          "img": "b05_5"
+          "img": "b05_5",
+          "suggestedQ": [
+            "Sau khi quét QR thì làm gì tiếp?",
+            "Có thể nhắn tin ngay sau khi quét QR không?"
+          ]
         }
       ],
       "quality": {
@@ -4319,7 +4787,11 @@
               "body": "Bài thông báo chính thức có nhãn 'Thông báo' — bài chia sẻ cá nhân không có nhãn đặc biệt."
             }
           ],
-          "img": "b01_1"
+          "img": "b01_1",
+          "suggestedQ": [
+            "Tab Bảng tin nằm ở đâu?",
+            "Phân biệt bài thông báo và bài chia sẻ?"
+          ]
         },
         {
           "id": 2,
@@ -4352,6 +4824,10 @@
               "title": "Cuộn để tải thêm",
               "body": "Cuộn xuống hết danh sách — app tự tải thêm bài cũ hơn."
             }
+          ],
+          "suggestedQ": [
+            "Làm sao biết bài đăng nào chưa đọc?",
+            "Cuộn xuống thì có tải thêm bài cũ không?"
           ]
         },
         {
@@ -4386,7 +4862,11 @@
               "body": "Cuộn xuống cuối bài để xem phần bình luận và tham gia thảo luận."
             }
           ],
-          "img": "b03_3"
+          "img": "b03_3",
+          "suggestedQ": [
+            "Cách mở xem chi tiết một bài đăng?",
+            "Xem ảnh đính kèm trong bài thế nào?"
+          ]
         },
         {
           "id": 4,
@@ -4420,7 +4900,11 @@
               "body": "Bấm Gửi — bình luận xuất hiện ngay bên dưới và tác giả bài nhận thông báo."
             }
           ],
-          "img": "b04_4"
+          "img": "b04_4",
+          "suggestedQ": [
+            "Cách bình luận một bài trên bảng tin?",
+            "Bình luận xong tác giả có nhận thông báo không?"
+          ]
         },
         {
           "id": 5,
@@ -4454,7 +4938,11 @@
               "body": "Bấm lại icon đã chọn để bỏ phản ứng."
             }
           ],
-          "img": "b05_5"
+          "img": "b05_5",
+          "suggestedQ": [
+            "Cách thả tim hoặc phản ứng bài đăng?",
+            "Chọn phản ứng khác ngoài like thế nào?"
+          ]
         },
         {
           "id": 6,
@@ -4488,7 +4976,11 @@
               "body": "Chọn 'Chia sẻ khác' để gửi qua Zalo, copy link hoặc các kênh ngoài app."
             }
           ],
-          "img": "b06_3"
+          "img": "b06_3",
+          "suggestedQ": [
+            "Cách chia sẻ bài đăng cho đồng nghiệp?",
+            "Chia sẻ bài ra ngoài app thế nào?"
+          ]
         },
         {
           "id": 7,
@@ -4522,7 +5014,11 @@
               "body": "Chọn 'Chia sẻ khác' để gửi qua Zalo, copy link hoặc các kênh ngoài app."
             }
           ],
-          "img": "b06_6"
+          "img": "b06_6",
+          "suggestedQ": [
+            "Cách chia sẻ bài đăng qua Chat Nhà Phố?",
+            "Bài chia sẻ có kèm link xem trước không?"
+          ]
         },
         {
           "id": 8,
@@ -4556,7 +5052,11 @@
               "body": "Chọn 'Chia sẻ khác' để gửi qua Zalo, copy link hoặc các kênh ngoài app."
             }
           ],
-          "img": "b08_7"
+          "img": "b08_7",
+          "suggestedQ": [
+            "Cách chia sẻ bài đăng ra Zalo hoặc copy link?",
+            "Chia sẻ bài đăng có những lựa chọn nào?"
+          ]
         }
       ],
       "quality": {
@@ -4633,7 +5133,11 @@
               "body": "Hàng trong danh sách tự cập nhật trạng thái — giá mới, bán xong, rút tin."
             }
           ],
-          "img": "b01_1"
+          "img": "b01_1",
+          "suggestedQ": [
+            "Tab Kho bạn quan tâm nằm ở đâu?",
+            "Danh sách quan tâm có tự cập nhật không?"
+          ]
         },
         {
           "id": 2,
@@ -4667,7 +5171,11 @@
               "body": "Bấm icon sắp xếp để đổi thứ tự theo giá, thời gian thêm, hoặc trạng thái."
             }
           ],
-          "img": "b02_2"
+          "img": "b02_2",
+          "suggestedQ": [
+            "Trạng thái tin trong Kho quan tâm gồm những gì?",
+            "Cách sắp xếp danh sách hàng quan tâm?"
+          ]
         },
         {
           "id": 3,
@@ -4701,7 +5209,11 @@
               "body": "Bấm số điện thoại hoặc icon chat để liên hệ trực tiếp với đầu chủ."
             }
           ],
-          "img": "b03_3"
+          "img": "b03_3",
+          "suggestedQ": [
+            "Xem chi tiết hàng quan tâm thì có gì?",
+            "Cách liên hệ đầu chủ từ tin quan tâm?"
+          ]
         },
         {
           "id": 4,
@@ -4735,7 +5247,11 @@
               "body": "Toast nhỏ 'Đã thêm vào Quan tâm' xuất hiện dưới màn hình trong 2 giây."
             }
           ],
-          "img": "b04_4"
+          "img": "b04_4",
+          "suggestedQ": [
+            "Cách thêm tin vào Kho quan tâm?",
+            "Thêm vào Quan tâm được từ những màn hình nào?"
+          ]
         },
         {
           "id": 5,
@@ -4769,7 +5285,11 @@
               "body": "Toast nhỏ 'Đã thêm vào Quan tâm' xuất hiện dưới màn hình trong 2 giây."
             }
           ],
-          "img": "b05_5"
+          "img": "b05_5",
+          "suggestedQ": [
+            "Bấm icon nào để thêm vào Kho quan tâm?",
+            "Làm sao biết đã thêm vào Quan tâm thành công?"
+          ]
         },
         {
           "id": 6,
@@ -4803,7 +5323,11 @@
               "body": "Toast nhỏ 'Đã thêm vào Quan tâm' xuất hiện dưới màn hình trong 2 giây."
             }
           ],
-          "img": "b06_6"
+          "img": "b06_6",
+          "suggestedQ": [
+            "Thêm vào Quan tâm từ kết quả tìm kiếm?",
+            "Icon bookmark đổi màu khi nào?"
+          ]
         }
       ],
       "quality": {
@@ -4882,7 +5406,11 @@
               "body": "Cuộn trong menu để tìm nhóm 'Tin hoạt động' — thường có icon 📋."
             }
           ],
-          "img": "b01_1"
+          "img": "b01_1",
+          "suggestedQ": [
+            "Tin hoạt động nằm ở mục nào trong menu?",
+            "Bấm avatar để mở menu cá nhân thế nào?"
+          ]
         },
         {
           "id": 2,
@@ -4916,7 +5444,11 @@
               "body": "Cuộn trong menu để tìm nhóm 'Tin hoạt động' — thường có icon 📋."
             }
           ],
-          "img": "b02_1"
+          "img": "b02_1",
+          "suggestedQ": [
+            "Tìm nhóm Tin hoạt động trong menu ở đâu?",
+            "Nhóm Tin hoạt động có icon gì?"
+          ]
         },
         {
           "id": 3,
@@ -4950,7 +5482,11 @@
               "body": "Mỗi mục trong nhóm có icon riêng giúp nhận biết nhanh loại feed."
             }
           ],
-          "img": "b03_2"
+          "img": "b03_2",
+          "suggestedQ": [
+            "Nhóm Tin hoạt động có những feed nào?",
+            "Nên xem feed Tất cả hay Phòng ban?"
+          ]
         },
         {
           "id": 4,
@@ -4984,7 +5520,11 @@
               "body": "Cuộn xuống cuối màn hình để tải thêm hoạt động cũ hơn."
             }
           ],
-          "img": "b04_4"
+          "img": "b04_4",
+          "suggestedQ": [
+            "Feed hoạt động nhóm hiển thị những gì?",
+            "Cách xem hoạt động riêng của một thành viên?"
+          ]
         },
         {
           "id": 5,
@@ -5018,7 +5558,11 @@
               "body": "Cuộn xuống cuối màn hình để tải thêm hoạt động cũ hơn."
             }
           ],
-          "img": "b04_4"
+          "img": "b04_4",
+          "suggestedQ": [
+            "Mỗi card hoạt động ghi lại sự kiện gì?",
+            "Cuộn xuống có tải thêm hoạt động cũ không?"
+          ]
         },
         {
           "id": 6,
@@ -5052,7 +5596,11 @@
               "body": "Cuộn xuống phần bình luận để nhận xét hoặc chúc mừng đồng nghiệp."
             }
           ],
-          "img": "b05_5"
+          "img": "b05_5",
+          "suggestedQ": [
+            "Cách xem chi tiết một hoạt động?",
+            "Có thể bình luận vào hoạt động không?"
+          ]
         },
         {
           "id": 7,
@@ -5086,7 +5634,11 @@
               "body": "Bấm Áp dụng — feed cập nhật ngay chỉ hiện loại đã chọn."
             }
           ],
-          "img": "b07_7"
+          "img": "b07_7",
+          "suggestedQ": [
+            "Cách lọc hoạt động theo loại?",
+            "Lọc theo Tin đăng, Hợp đồng hay Lịch hẹn?"
+          ]
         }
       ],
       "quality": {
@@ -5161,7 +5713,11 @@
               "body": "Cuộn trong menu để tìm nhóm 'Quản lý phòng' hoặc 'Quản lý nhóm'."
             }
           ],
-          "img": "b01_1"
+          "img": "b01_1",
+          "suggestedQ": [
+            "Quản lý phòng-nhóm nằm ở đâu trong menu?",
+            "Tài khoản nào có quyền vào mục này?"
+          ]
         },
         {
           "id": 2,
@@ -5195,7 +5751,11 @@
               "body": "Header mỗi card có số tin đang rao, số deal tháng này của phòng đó."
             }
           ],
-          "img": "b02_2"
+          "img": "b02_2",
+          "suggestedQ": [
+            "Danh sách phòng hiển thị thông tin gì?",
+            "Bấm vào một phòng để xem được gì?"
+          ]
         },
         {
           "id": 3,
@@ -5228,6 +5788,10 @@
               "title": "Bấm vào thành viên",
               "body": "Mở profile riêng — xem lịch sử hoạt động chi tiết và thống kê cá nhân."
             }
+          ],
+          "suggestedQ": [
+            "Xem danh sách thành viên ở tab nào?",
+            "Badge xanh và xám khác nhau thế nào?"
           ]
         },
         {
@@ -5261,6 +5825,10 @@
               "title": "Xác nhận thêm",
               "body": "Chọn người → bấm Xác nhận → họ nhận thông báo và được thêm vào phòng."
             }
+          ],
+          "suggestedQ": [
+            "Cách thêm thành viên mới vào phòng?",
+            "Tìm người để thêm bằng SĐT hay tên?"
           ]
         },
         {
@@ -5294,6 +5862,10 @@
               "title": "Xác nhận thay đổi",
               "body": "Bấm Lưu — thay đổi có hiệu lực ngay, người dùng nhận thông báo về quyền mới."
             }
+          ],
+          "suggestedQ": [
+            "Cách phân quyền cho thành viên?",
+            "Mỗi phòng có được nhiều Trưởng nhóm không?"
           ]
         },
         {
@@ -5327,6 +5899,10 @@
               "title": "Cài đặt nhóm",
               "body": "Bấm vào nhóm → Cài đặt: thêm/xóa thành viên, đổi tên, ghim nhóm, thông báo."
             }
+          ],
+          "suggestedQ": [
+            "Cách tạo nhóm chat cho phòng?",
+            "Ai có quyền tạo nhóm chat trong phòng?"
           ]
         },
         {
@@ -5360,6 +5936,10 @@
               "title": "Xem chi tiết theo thành viên",
               "body": "Cuộn xuống bảng ranking — xem đóng góp cụ thể của từng thành viên."
             }
+          ],
+          "suggestedQ": [
+            "Xem báo cáo phòng ở tab nào?",
+            "Báo cáo phòng có những thông tin gì?"
           ]
         },
         {
@@ -5393,6 +5973,10 @@
               "title": "Phân bổ cho thành viên",
               "body": "Có thể đặt KPI chung cho phòng hoặc phân bổ riêng cho từng thành viên."
             }
+          ],
+          "suggestedQ": [
+            "Cách đặt chỉ tiêu KPI cho phòng?",
+            "Có thể phân bổ KPI riêng cho từng người không?"
           ]
         }
       ],
@@ -5473,7 +6057,11 @@
               "body": "Mở màn hình tài khoản với đầy đủ thông tin cá nhân của bạn."
             }
           ],
-          "img": "b01_1"
+          "img": "b01_1",
+          "suggestedQ": [
+            "Vào Tài khoản cá nhân từ đâu?",
+            "Tìm mục Tài khoản trong menu thế nào?"
+          ]
         },
         {
           "id": 2,
@@ -5507,7 +6095,11 @@
               "body": "Bấm nút Chỉnh sửa hoặc biểu tượng bút ✏️ để cập nhật thông tin."
             }
           ],
-          "img": "b02_2"
+          "img": "b02_2",
+          "suggestedQ": [
+            "Hồ sơ cá nhân hiển thị thông tin gì?",
+            "Vì sao nên kiểm tra hồ sơ thường xuyên?"
+          ]
         },
         {
           "id": 3,
@@ -5541,7 +6133,11 @@
               "body": "Bấm Lưu hoặc Xác nhận góc trên phải — thông tin cập nhật ngay sau khi lưu."
             }
           ],
-          "img": "b03_3"
+          "img": "b03_3",
+          "suggestedQ": [
+            "Cách chỉnh sửa thông tin tài khoản?",
+            "Sửa xong cần bấm gì để lưu?"
+          ]
         },
         {
           "id": 4,
@@ -5575,7 +6171,11 @@
               "body": "Chọn 'Chụp ảnh' → chụp ngay → cắt khung → Lưu ảnh đại diện mới."
             }
           ],
-          "img": "b04_2"
+          "img": "b04_2",
+          "suggestedQ": [
+            "Cách đổi ảnh đại diện?",
+            "Có thể chụp ảnh mới ngay trong app không?"
+          ]
         },
         {
           "id": 5,
@@ -5609,7 +6209,11 @@
               "body": "Bật OTP qua SĐT — mỗi lần đăng nhập mới cần thêm mã OTP từ tin nhắn."
             }
           ],
-          "img": "b05_5"
+          "img": "b05_5",
+          "suggestedQ": [
+            "Cách đổi mật khẩu tài khoản?",
+            "Bật xác thực 2 lớp ở đâu?"
+          ]
         },
         {
           "id": 6,
@@ -5643,7 +6247,11 @@
               "body": "Lần sau vào app: nhập SĐT → nhận OTP → đăng nhập bình thường."
             }
           ],
-          "img": "b07_7"
+          "img": "b07_7",
+          "suggestedQ": [
+            "Cách đăng xuất khỏi tài khoản?",
+            "Đăng nhập lại sau khi đăng xuất cần gì?"
+          ]
         }
       ],
       "quality": {
@@ -5718,7 +6326,11 @@
               "body": "Danh sách tính năng quản lý kho mở ra — gồm nhiều mục con."
             }
           ],
-          "img": "b01_1"
+          "img": "b01_1",
+          "suggestedQ": [
+            "Quản lý kho hàng nằm ở đâu trong menu?",
+            "Mục này dành cho tài khoản nào?"
+          ]
         },
         {
           "id": 2,
@@ -5752,7 +6364,11 @@
               "body": "Danh sách tính năng quản lý kho mở ra — gồm nhiều mục con."
             }
           ],
-          "img": "b02_1"
+          "img": "b02_1",
+          "suggestedQ": [
+            "Vào Quản lý kho hàng bằng cách nào?",
+            "Danh sách tính năng quản lý kho gồm những gì?"
+          ]
         },
         {
           "id": 3,
@@ -5786,7 +6402,11 @@
               "body": "Các tab: Đang rao / Chờ duyệt / Đã bán / Thùng rác — bấm để lọc nhanh."
             }
           ],
-          "img": "b03_2"
+          "img": "b03_2",
+          "suggestedQ": [
+            "Kho hàng toàn phòng hiển thị tin của ai?",
+            "Cách lọc kho theo từng thành viên?"
+          ]
         },
         {
           "id": 4,
@@ -5819,6 +6439,10 @@
               "title": "Duyệt hoặc từ chối",
               "body": "Bấm 'Duyệt' để đăng tin công khai. Bấm 'Từ chối' → nhập lý do → gửi cho CV."
             }
+          ],
+          "suggestedQ": [
+            "Cách duyệt hoặc từ chối tin của thành viên?",
+            "Vì sao nên ghi lý do khi từ chối tin?"
           ]
         },
         {
@@ -5852,6 +6476,10 @@
               "title": "Xác nhận phân công",
               "body": "Bấm Xác nhận — CV được thông báo và tin xuất hiện trong danh sách công việc của họ."
             }
+          ],
+          "suggestedQ": [
+            "Cách phân công hàng cho chuyên viên?",
+            "Nên chọn CV nào để phân công?"
           ]
         },
         {
@@ -5885,6 +6513,10 @@
               "title": "Áp dụng và xem kết quả",
               "body": "Bấm Lọc để áp dụng — kho hiển thị chỉ tin khớp tiêu chí đã chọn."
             }
+          ],
+          "suggestedQ": [
+            "Cách lọc kho hàng để tìm hàng phù hợp khách?",
+            "Lọc kho hàng theo những tiêu chí nào?"
           ]
         },
         {
@@ -5918,6 +6550,10 @@
               "title": "So sánh theo tháng",
               "body": "Chọn tháng khác để so sánh — theo dõi xu hướng kho tăng giảm theo thời gian."
             }
+          ],
+          "suggestedQ": [
+            "Xem thống kê kho hàng ở tab nào?",
+            "Biểu đồ thống kê kho hiển thị gì?"
           ]
         },
         {
@@ -5951,6 +6587,10 @@
               "title": "Gửi cho Ban quản lý",
               "body": "Sau khi tải về, chia sẻ qua email hoặc Zalo cho trưởng phòng/ban giám đốc."
             }
+          ],
+          "suggestedQ": [
+            "Cách xuất báo cáo kho hàng?",
+            "Xuất báo cáo dạng Excel hay PDF?"
           ]
         }
       ],

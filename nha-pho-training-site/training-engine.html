@@ -691,6 +691,33 @@ aside.sidebar {
   transform: none;
 }
 
+/* Suggested question chips — shown above input, updated per step */
+.chat-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 6px 10px 2px;
+  min-height: 0;
+}
+.chat-chips:empty { padding: 0; }
+.chat-chip {
+  font-size: 11.5px;
+  padding: 3px 10px;
+  border: 1.5px solid #00A651;
+  border-radius: 20px;
+  background: #fff;
+  color: #00A651;
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 1.5;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  transition: background 0.15s, color 0.15s;
+}
+.chat-chip:hover {
+  background: #00A651;
+  color: #fff;
+}
+
 /* API key entered hint at top of message area */
 .api-key-hint {
   font-size: 11px; color: var(--text-3);
@@ -1144,6 +1171,9 @@ body.embed-mode .module-header { border-radius: 0; }
 
         <!-- Suggestion chips -->
         <div class="chat-suggest" id="chat-suggest" hidden></div>
+
+        <!-- Step-based suggested question chips -->
+        <div id="chat-chips" class="chat-chips" aria-label="Gợi ý câu hỏi"></div>
 
         <!-- Input — always enabled -->
         <form class="chat-form" id="chat-form" onsubmit="event.preventDefault(); sendChat();">
@@ -1982,8 +2012,11 @@ function renderStep() {
   document.getElementById('btn-next').textContent = (idx === total - 1) ? '✓ Hoàn thành' : 'Tiếp →';
   document.getElementById('btn-next-m').textContent = (idx === total - 1) ? '✓ Hoàn thành' : 'Tiếp →';
 
-  // Suggest chips
+  // Suggest chips (static fallback list)
   renderChatSuggest(s);
+
+  // Step-based suggested question chips (from step.suggestedQ)
+  renderChatChips(s.suggestedQ || []);
 }
 
 function getScale() {
@@ -2012,6 +2045,28 @@ function renderChatSuggest(step) {
   });
 }
 
+function renderChatChips(questions) {
+  const container = document.getElementById('chat-chips');
+  if (!container) return;
+  container.innerHTML = '';
+  if (!questions || !questions.length) return;
+  for (const q of questions) {
+    const btn = document.createElement('button');
+    btn.className = 'chat-chip';
+    btn.type = 'button';
+    btn.textContent = q;
+    btn.addEventListener('click', () => {
+      const input = document.getElementById('chat-input');
+      if (!input) return;
+      input.value = q;
+      input.dispatchEvent(new Event('input'));
+      const sendBtn = document.getElementById('chat-send');
+      if (sendBtn && !sendBtn.disabled) sendBtn.click();
+    });
+    container.appendChild(btn);
+  }
+}
+
 function clearChat() {
   STATE.history = [];
   document.getElementById('chat-messages').innerHTML = '';
@@ -2033,9 +2088,21 @@ function addBotMsg(text, cls = '') {
 let FAQ = null;
 
 const MODULE_LABELS = {
-  dang_tin:   'Hướng dẫn Đăng tin',
-  loc_kho:    'Hướng dẫn Lọc kho tài nguyên',
-  bo_suu_tap: 'Hướng dẫn Bộ sưu tập',
+  dang_tin:          'Hướng dẫn Đăng tin',
+  loc_kho:           'Hướng dẫn Lọc kho tài nguyên',
+  bo_suu_tap:        'Hướng dẫn Bộ sưu tập',
+  dat_lich_dau_khach:'Hướng dẫn Đặt lịch dẫn khách',
+  lich_hen_dau_chu:  'Hướng dẫn Lịch hẹn (Đầu chủ)',
+  khach_can_mua_gap: 'Hướng dẫn Khách cần mua gấp',
+  kho_ca_nhan:       'Hướng dẫn Kho cá nhân',
+  kho_hang_tu_do:    'Hướng dẫn Kho hàng tự do',
+  ma_gioi_thieu:     'Hướng dẫn Mã giới thiệu',
+  quan_ly_khach:     'Hướng dẫn Quản lý khách',
+  thong_bao_vu_chot: 'Hướng dẫn Thông báo vụ chốt',
+  tin_chinh_chu:     'Hướng dẫn Tin chính chủ',
+  chat_nha_pho:      'Hướng dẫn Chat Nhà Phố',
+  bang_tin:          'Hướng dẫn Bảng tin',
+  qr_code:           'Hướng dẫn QR Code',
 };
 
 async function loadFAQ() {
@@ -2053,9 +2120,50 @@ function normVi(str) {
     .replace(/\s+/g, ' ').trim();
 }
 
+// Query synonym expansion — maps normalized Vietnamese variants to canonical FAQ keyword forms
+// Apply to user query BEFORE matching so FAQ coverage is wider without adding keywords manually
+const QUERY_SYNONYMS = [
+  // Đăng tin variants
+  [/\btao tin\b/g, 'dang tin'],
+  [/\bdang bai\b/g, 'dang tin'],
+  [/\bdang bds\b/g, 'dang tin'],
+  [/\bpost tin\b/g, 'dang tin'],
+  // Lọc / tìm
+  [/\btim kiem\b/g, 'loc'],
+  [/\bsearch\b/g, 'loc'],
+  [/\btra cuu\b/g, 'tim'],
+  // Chat / nhắn tin
+  [/\bnhan tin\b/g, 'chat nhan tin'],
+  [/\bgui tin\b/g, 'chat gui tin'],
+  // Bộ sưu tập
+  [/\bbst\b/g, 'bo suu tap'],
+  [/\bcollection\b/g, 'bo suu tap'],
+  // Đặt lịch
+  [/\bdat hen\b/g, 'dat lich'],
+  [/\bhen xem nha\b/g, 'dat lich xem nha'],
+  [/\blam hen\b/g, 'dat lich'],
+  // Question patterns — normalize to match FAQ phrasing
+  [/\blam sao\b/g, 'cach'],
+  [/\bnhu the nao\b/g, 'cach'],
+  [/\bvao dau\b/g, 'o dau'],
+  [/\bcho nao\b/g, 'o dau'],
+  // Kho variants
+  [/\bkho tai nguyen\b/g, 'kho'],
+  [/\bkho hang\b/g, 'kho'],
+  // QR
+  [/\bquet ma\b/g, 'qr'],
+  [/\bma qr\b/g, 'qr'],
+];
+
+function expandQuery(normalized) {
+  let r = normalized;
+  for (const [pat, rep] of QUERY_SYNONYMS) r = r.replace(pat, rep);
+  return r;
+}
+
 function matchFAQ(question, moduleId, stepId, threshold = 2) {
   if (!FAQ) return null;
-  const q = normVi(question);
+  const q = expandQuery(normVi(question));
 
   // Pass 1: global + current module (step bonus applies)
   const primaryItems = [...(FAQ.global || []), ...(FAQ.modules?.[moduleId] || [])];
