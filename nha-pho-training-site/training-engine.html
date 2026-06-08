@@ -2032,6 +2032,12 @@ function addBotMsg(text, cls = '') {
    ============================================================ */
 let FAQ = null;
 
+const MODULE_LABELS = {
+  dang_tin:   'Hướng dẫn Đăng tin',
+  loc_kho:    'Hướng dẫn Lọc kho tài nguyên',
+  bo_suu_tap: 'Hướng dẫn Bộ sưu tập',
+};
+
 async function loadFAQ() {
   try {
     const res = await fetch('/data/faq.json');
@@ -2050,19 +2056,37 @@ function normVi(str) {
 function matchFAQ(question, moduleId, stepId, threshold = 2) {
   if (!FAQ) return null;
   const q = normVi(question);
-  const items = [...(FAQ.global || []), ...(FAQ.modules?.[moduleId] || [])];
+
+  // Pass 1: global + current module (step bonus applies)
+  const primaryItems = [...(FAQ.global || []), ...(FAQ.modules?.[moduleId] || [])];
   let best = null, bestScore = 0;
-  for (const item of items) {
+  for (const item of primaryItems) {
     let kwScore = 0;
     for (const kw of (item.kw || [])) {
       const kwn = normVi(kw);
       if (q.includes(kwn)) kwScore += kwn.split(' ').length * 2;
     }
-    if (kwScore === 0) continue; // keyword match required — step bonus alone cannot trigger a result
+    if (kwScore === 0) continue;
     const score = kwScore + (item.steps?.includes(stepId) ? 2 : 0);
     if (score > bestScore) { bestScore = score; best = item; }
   }
-  return bestScore >= threshold ? { item: best, score: bestScore } : null;
+  if (bestScore >= threshold) return { item: best, score: bestScore, crossModule: null };
+
+  // Pass 2: other modules (no step bonus — cross-module question)
+  let crossModId = null;
+  for (const [mid, items] of Object.entries(FAQ.modules || {})) {
+    if (mid === moduleId) continue;
+    for (const item of items) {
+      let kwScore = 0;
+      for (const kw of (item.kw || [])) {
+        const kwn = normVi(kw);
+        if (q.includes(kwn)) kwScore += kwn.split(' ').length * 2;
+      }
+      if (kwScore === 0) continue;
+      if (kwScore > bestScore) { bestScore = kwScore; best = item; crossModId = mid; }
+    }
+  }
+  return bestScore >= threshold ? { item: best, score: bestScore, crossModule: crossModId } : null;
 }
 
 // Client-side LLM daily quota (server enforces hard limit too)
@@ -2130,8 +2154,13 @@ async function sendChat() {
   const faqHit = matchFAQ(q, STATE.moduleId, stepId);
   if (faqHit) {
     await new Promise(r => setTimeout(r, 350)); // natural typing feel
-    addBotMsg(faqHit.item.a);
-    STATE.history.push({ role: 'assistant', content: faqHit.item.a });
+    let answer = faqHit.item.a;
+    if (faqHit.crossModule) {
+      const label = MODULE_LABELS[faqHit.crossModule] || faqHit.crossModule;
+      answer += `\n\n→ Xem hướng dẫn chi tiết trong "${label}" trên trang chủ nhé!`;
+    }
+    addBotMsg(answer);
+    STATE.history.push({ role: 'assistant', content: answer });
     sendBtn.disabled = false;
     input.focus();
     return;
@@ -2142,7 +2171,9 @@ async function sendChat() {
     await new Promise(r => setTimeout(r, 300));
     const fallback = matchFAQ(q, STATE.moduleId, stepId, 1);
     if (fallback) {
-      addBotMsg(fallback.item.a + '\n\n(Bạn đã dùng hết 20 lượt hỏi hôm nay — đây là câu gần nhất từ FAQ.)');
+      let msg = fallback.item.a;
+      if (fallback.crossModule) msg += `\n\n→ Xem hướng dẫn chi tiết trong "${MODULE_LABELS[fallback.crossModule] || fallback.crossModule}" trên trang chủ nhé!`;
+      addBotMsg(msg + '\n\n(Bạn đã dùng hết 20 lượt hỏi hôm nay — đây là câu gần nhất từ FAQ.)');
     } else {
       addErrMsg('Bạn đã dùng hết 20 lượt hỏi hôm nay. Hỏi tiếp qua nhóm hỗ trợ hoặc quay lại ngày mai nhé!');
     }
@@ -2157,7 +2188,9 @@ async function sendChat() {
     await new Promise(r => setTimeout(r, 300));
     const fallback = matchFAQ(q, STATE.moduleId, stepId, 1);
     if (fallback) {
-      addBotMsg(fallback.item.a + '\n\n(Chat hỗ trợ đang tạm gián đoạn — gợi ý từ FAQ.)');
+      let msg = fallback.item.a;
+      if (fallback.crossModule) msg += `\n\n→ Xem hướng dẫn chi tiết trong "${MODULE_LABELS[fallback.crossModule] || fallback.crossModule}" trên trang chủ nhé!`;
+      addBotMsg(msg + '\n\n(Chat hỗ trợ đang tạm gián đoạn — gợi ý từ FAQ.)');
     } else {
       addErrMsg('Chat hỗ trợ đang tạm gián đoạn. Thử lại sau vài phút hoặc hỏi qua nhóm Zalo nhé!');
     }

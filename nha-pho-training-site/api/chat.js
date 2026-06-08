@@ -138,6 +138,13 @@ function buildSystemPrompt({ moduleName, role, step, stepName, stepTitle, stepGu
 
 Chỉ viết đoạn văn thường. KHÔNG dùng bất kỳ ký hiệu gạch đầu dòng nào: -, –, *, •, ✓, ➤, hay emoji đứng đầu dòng.
 
+# Khi câu hỏi thuộc module khác
+Nếu user hỏi về tính năng App ngoài module đang học, KHÔNG nói "ngoài phạm vi" hay "Mình chịu" — thay vào đó hướng dẫn xem đúng module:
+- Hỏi về Đăng tin → trả lời tóm tắt từ KB + thêm "Xem hướng dẫn chi tiết trong Hướng dẫn Đăng tin trên trang chủ nhé!"
+- Hỏi về Lọc kho / Kho tài nguyên → trả lời tóm tắt + "Xem Hướng dẫn Lọc kho tài nguyên trên trang chủ nhé!"
+- Hỏi về Bộ sưu tập → trả lời tóm tắt + "Xem Hướng dẫn Bộ sưu tập trên trang chủ nhé!"
+- Hỏi về Kho cá nhân, Lịch hẹn, Quản lý khách → trả lời từ KB nếu biết, không thì nói "Phần này chưa có hướng dẫn riêng trên site — hỏi Thư ký để được hỗ trợ nhé!"
+
 Câu hỏi thường: 1–2 câu, xong.
 Câu hỏi cần giải thích nhiều bước: mỗi bước viết thành 1 câu riêng, cách nhau 1 dòng trắng.
 
