@@ -365,14 +365,12 @@ export default async function handler(req, res) {
         upstreamMsg = parsed?.error?.message || parsed?.message || '';
       } catch {}
       const isCreditLow = upstreamMsg.toLowerCase().includes('credit balance');
-      const friendly = anthropicRes.status === 401
-        ? 'API key sai hoặc hết hạn — báo PM check Anthropic console nhé! 🔑'
-        : anthropicRes.status === 404
-        ? 'Model name không tồn tại — báo PM check biến MODEL_NAME nhé! 🤖'
-        : anthropicRes.status === 429
-        ? 'Anthropic đang giới hạn tốc độ, thử lại sau 30 giây nhé! 🐢'
-        : isCreditLow
-        ? 'Trợ lý cần nạp thêm "xăng" rồi 😅 báo PM nạp credit Anthropic giúp nhé! ⛽'
+      // User-facing message — never leak internal ops details (API key/model/credit) to end users.
+      // Internal diagnosis stays in upstreamDetail (server logs / admin only).
+      const friendly = anthropicRes.status === 429
+        ? 'Trợ lý hơi đông khách 🐢 chờ chút rồi hỏi lại nhé!'
+        : (anthropicRes.status === 401 || anthropicRes.status === 404 || isCreditLow)
+        ? 'Trợ lý đang tạm nghỉ bảo trì 🔧 hỏi qua nhóm hỗ trợ giúp bạn nhanh hơn lúc này!'
         : 'Trợ lý gặp sự cố nhẹ 🔧 thử lại sau 30 giây nhé!';
       return json(res, {
         error: 'upstream',
