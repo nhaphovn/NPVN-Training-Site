@@ -2053,12 +2053,13 @@ function matchFAQ(question, moduleId, stepId, threshold = 2) {
   const items = [...(FAQ.global || []), ...(FAQ.modules?.[moduleId] || [])];
   let best = null, bestScore = 0;
   for (const item of items) {
-    let score = 0;
+    let kwScore = 0;
     for (const kw of (item.kw || [])) {
       const kwn = normVi(kw);
-      if (q.includes(kwn)) score += kwn.split(' ').length * 2;
+      if (q.includes(kwn)) kwScore += kwn.split(' ').length * 2;
     }
-    if (item.steps?.includes(stepId)) score += 2;
+    if (kwScore === 0) continue; // keyword match required — step bonus alone cannot trigger a result
+    const score = kwScore + (item.steps?.includes(stepId) ? 2 : 0);
     if (score > bestScore) { bestScore = score; best = item; }
   }
   return bestScore >= threshold ? { item: best, score: bestScore } : null;

@@ -177,7 +177,7 @@
       },
       {
         "id": "dt017",
-        "kw": ["bao lâu được duyệt", "thời gian duyệt tin", "khi nào tin được duyệt", "24 giờ duyệt"],
+        "kw": ["bao lâu được duyệt", "thời gian duyệt tin", "khi nào tin được duyệt", "24 giờ duyệt", "duyệt hàng bao lâu", "hàng bao lâu lên", "bao lâu lên kho", "khi nào lên kho"],
         "a": "Tin được kiểm duyệt trong 24h sau khi bấm Đăng tin.\n\nBạn nhận push notification khi duyệt (tin live) hoặc từ chối (kèm lý do). Quá 24h liên hệ bộ phận hỗ trợ duyệt hàng.",
         "steps": [11]
       },
@@ -202,7 +202,7 @@
     "loc_kho": [
       {
         "id": "lk001",
-        "kw": ["vào kho tài nguyên", "kho tài nguyên ở đâu", "tìm kho", "mở kho tài nguyên"],
+        "kw": ["vào kho tài nguyên", "kho tài nguyên ở đâu", "tìm kho", "mở kho tài nguyên", "xem kho tài nguyên", "truy cập kho tài nguyên", "kho tài nguyên menu", "kho tài nguyên cá nhân"],
         "a": "Hàng icon đầu trang chủ → bấm 'Lọc kho' hoặc 'Kho tài nguyên' để vào.",
         "steps": [1]
       },
@@ -320,7 +320,7 @@
       },
       {
         "id": "bst006",
-        "kw": ["tạo bộ sưu tập", "tạo bst mới", "bộ sưu tập mới", "thêm bst"],
+        "kw": ["tạo bộ sưu tập", "tạo bst mới", "bộ sưu tập mới", "thêm bst", "bộ sưu tập ở đâu", "vào bộ sưu tập", "mở bộ sưu tập", "lưu bộ sưu tập ở đâu"],
         "a": "Bottom nav → tab Bộ sưu tập → cuộn xuống cuối → bấm 'Tạo bộ sưu tập'.\n\nNhập tên BST ngắn gọn theo chủ đề (ví dụ: 'Cầu Giấy 3-5 tỷ') → bấm Tạo.",
         "steps": [6]
       },
