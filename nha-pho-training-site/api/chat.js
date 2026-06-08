@@ -9,6 +9,17 @@
 //   DAILY_TOKEN_GLOBAL   (optional, default 500000 tokens/day)
 //   MODEL_NAME (optional, default 'claude-haiku-4-5-20251001')
 
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
+// Load KB once at module cold start — stays in memory for process lifetime
+let KB_CONTENT = '';
+try {
+  KB_CONTENT = readFileSync(join(process.cwd(), 'data/kb/nhapho.md'), 'utf8');
+} catch (e) {
+  console.warn('[chat] KB not loaded:', e.message);
+}
+
 const ANTHROPIC_KEY     = process.env.ANTHROPIC_API_KEY;
 const UPSTASH_URL       = process.env.UPSTASH_REDIS_REST_URL;
 const UPSTASH_TOKEN     = process.env.UPSTASH_REDIS_REST_TOKEN;
@@ -160,7 +171,11 @@ Nhấn nút Đăng tin ở màn hình chính.
 - TỪ CHỐI ngay và lịch sự mọi câu hỏi tục tĩu, bậy bạ, xúc phạm, vi phạm thuần phong mỹ tục — trả lời: "Mình không thể hỗ trợ nội dung này. Bạn có câu hỏi nào về app không?"
 - KHÔNG tham gia bất kỳ nội dung kỳ thị, bạo lực, khiêu dâm hoặc vi phạm pháp luật`;
 
-  return basePrompt + (knowledgeSection ? '\n\n' + knowledgeSection : '');
+  const kbSection = KB_CONTENT
+    ? `# KNOWLEDGE BASE — NGUỒN SỰ THẬT DUY NHẤT\n\nKhi trả lời, LUÔN ưu tiên thông tin từ Knowledge Base sau. KHÔNG bịa số liệu, quy trình, hay chức năng không có trong KB.\n\n${KB_CONTENT}`
+    : '';
+
+  return basePrompt + (kbSection ? '\n\n' + kbSection : '') + (knowledgeSection ? '\n\n' + knowledgeSection : '');
 }
 
 // Add cache_control to the second-to-last message so conversation history is cached.
@@ -327,7 +342,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         model: MODEL,
-        max_tokens: 300,
+        max_tokens: 400,
         system: [{ type: 'text', text: systemPrompt, cache_control: { type: 'ephemeral' } }],
         messages: cacheMessages(cleanMessages.slice(-8)),
       }),

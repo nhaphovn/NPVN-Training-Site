@@ -51,6 +51,31 @@
       "id": "g010",
       "kw": ["tải app", "cài app", "download app", "cài đặt app"],
       "a": "Tải App Nhà Phố trên App Store (iOS) hoặc Google Play (Android) — tìm 'Nhà Phố Việt Nam'."
+    },
+    {
+      "id": "g011",
+      "kw": ["điểm danh", "check-in", "qr check in", "quét qr buổi học", "điểm danh buổi học", "điểm danh họp"],
+      "a": "Quét mã QR buổi học hoặc buổi họp để điểm danh — hệ thống cộng dồn số buổi tự động.\nMốc 6 buổi: xem được kho BĐS dưới 9 tỷ. Mốc 12 buổi: xem toàn bộ kho."
+    },
+    {
+      "id": "g012",
+      "kw": ["hv cv khác nhau", "học viên chuyên viên", "hv là gì", "cv là gì", "vai trò", "chức danh"],
+      "a": "HV (Học viên): thành viên mới đang đào tạo, quyền xem kho hạn chế theo số buổi học.\nCV (Chuyên viên): môi giới chính thức, đủ 12 buổi điểm danh, xem toàn bộ kho tài nguyên.\nĐC (Đầu chủ): ký hợp đồng với chủ nhà, đăng tin và quản lý kho cá nhân."
+    },
+    {
+      "id": "g013",
+      "kw": ["bao nhiêu buổi học", "mấy buổi học", "điều kiện xem kho", "mở khóa kho", "kho bị khóa"],
+      "a": "Kho tài nguyên mở khóa theo số buổi điểm danh QR:\n• 0–5 buổi: không xem hoặc rất hạn chế\n• 6+ buổi: xem tin dưới 9 tỷ\n• 12+ buổi: xem toàn bộ kho\nĐiểm danh mỗi buổi học và buổi họp để tích lũy."
+    },
+    {
+      "id": "g014",
+      "kw": ["báo cáo dẫn khách", "báo cáo xem nhà", "gửi báo cáo", "report dẫn khách"],
+      "a": "Vào trang chi tiết tin → bấm icon Báo cáo dẫn khách → điền tên khách, CCCD khách, ngày dẫn, kết quả → bấm Gửi.\nTên và CCCD phải trùng với khách đã tạo trong Quản lý khách để hệ thống tự khớp."
+    },
+    {
+      "id": "g015",
+      "kw": ["tìm kiếm trong app", "search app", "thanh tìm kiếm", "từ khóa tìm kiếm"],
+      "a": "Mọi thanh tìm kiếm trong App đều tự động cắt bỏ dấu cách đầu/cuối và khoảng trắng thừa — không cần nhập chính xác từng ký tự."
     }
   ],
   "modules": {
