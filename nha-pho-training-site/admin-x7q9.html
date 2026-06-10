@@ -2196,6 +2196,26 @@ function renderForm() {
     pushHistory('Thêm guide item');
     renderGuideItems();
   });
+
+  // Step image drop zone
+  const stepDrop = $('step-img-drop');
+  const stepFile = $('step-img-file');
+  if (stepDrop && stepFile) {
+    stepDrop.addEventListener('click', () => stepFile.click());
+    stepDrop.addEventListener('dragover', (e) => { e.preventDefault(); stepDrop.classList.add('over'); });
+    stepDrop.addEventListener('dragleave', () => stepDrop.classList.remove('over'));
+    stepDrop.addEventListener('drop', async (e) => {
+      e.preventDefault();
+      stepDrop.classList.remove('over');
+      const file = e.dataTransfer.files[0];
+      if (file) await handleStepImgUpload(file);
+    });
+    stepFile.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (file) await handleStepImgUpload(file);
+      stepFile.value = '';
+    });
+  }
 }
 
 async function updateStepImgStatus() {
@@ -2582,7 +2602,7 @@ function openModuleModal(editing) {
       if (f) await handleIconUpload(f);
       newFile.value = '';
     });
-    iconPreview.addEventListener('click', () => document.getElementById('mm-icon-file')?.click(), { once: true });
+    iconPreview.onclick = () => document.getElementById('mm-icon-file')?.click();
     // Drag-drop on zone
     iconZone.ondragover = (e) => { e.preventDefault(); iconZone.classList.add('dragover'); };
     iconZone.ondragleave = () => iconZone.classList.remove('dragover');
@@ -2797,6 +2817,25 @@ async function handleMediaUpload(file, row, moduleId) {
 
 // Backward-compat alias
 const handleImageUpload = handleMediaUpload;
+
+async function handleStepImgUpload(file) {
+  if (!file.type.startsWith('image/')) { toast('File phải là ảnh', 'error'); return; }
+  const imgKey = STATE.step?.img || STATE.step?.imgKey;
+  if (!imgKey) { toast('Chọn ảnh key cho bước này trước', 'error'); return; }
+  const drop = $('step-img-drop');
+  const origHtml = drop.innerHTML;
+  drop.innerHTML = '⏳ Đang xử lý...';
+  try {
+    const { blob, width, height } = await processImageFile(file, 390);
+    await imgDbPut(`${STATE.moduleId}/${imgKey}`, blob);
+    drop.innerHTML = origHtml;
+    toast(`✓ Ảnh ${imgKey} (${width}×${height}px) đã lưu`, 'success');
+    await updateStepImgStatus();
+  } catch (e) {
+    drop.innerHTML = origHtml;
+    toast('Lỗi xử lý ảnh: ' + e.message, 'error');
+  }
+}
 
 /* ============================================================
    ICON IMAGE PROCESSING — center-crop to 128×128 square

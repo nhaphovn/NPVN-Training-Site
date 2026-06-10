@@ -1,6 +1,6 @@
 {
   "version": "v13",
-  "lastUpdated": "2026-06-08",
+  "lastUpdated": "2026-06-10",
   "brand": {
     "name": "Nhà Phố Việt Nam",
     "app": "App Nhà Phố",
@@ -3309,7 +3309,7 @@
           },
           "ttPos": "top",
           "ttTitle": "Bấm giữ để mở menu",
-          "ttText": "Bấm giữ khách đang tìm để xem thao tác: sửa, ghi chú, đánh dấu đã mua",
+          "ttText": "Bấm giữ để xem thao tác: sửa, ghi chú, đánh dấu đã mua",
           "tip": "",
           "guide": [
             {
@@ -5541,8 +5541,8 @@
             "h": 65
           },
           "ttPos": "right",
-          "ttTitle": "Bấm dấu + để mở form nhập thông báo vụ chốt",
-          "ttText": "Cuộn để xem hoạt động mới nhất của cả nhóm",
+          "ttTitle": "Tạo bài viết",
+          "ttText": "Bấm dấu + để tạo thông báo vụ chốt mới",
           "tip": "Mỗi hoạt động có dấu thời gian — giúp theo dõi nhịp làm việc của cả nhóm.",
           "guide": [
             {
@@ -6347,7 +6347,7 @@
             "h": 81
           },
           "ttPos": "right",
-          "ttTitle": "Bấm icon quản lý phòng nhóm",
+          "ttTitle": "Quản lý phòng nhóm",
           "ttText": "Bấm avatar → tìm nhóm Quản lý kho hàng trong menu",
           "tip": "",
           "guide": [
