@@ -2370,20 +2370,31 @@ function renderPreview() {
   if (phoneVid) { phoneVid.hidden = true; phoneVid.removeAttribute('src'); }
   phoneBg.hidden = false;
 
-  // Image
+  // Image — check IndexedDB first (locally uploaded), fall back to declared path
   const imgKey = mediaKey;
-  const imgPath = (STATE.module.images || {})[imgKey];
-  if (imgPath) {
-    const url = STATE.imageBaseUrl + imgPath;
-    if (phoneBg.dataset.src !== url) {
+  imgDbGet(`${STATE.moduleId}/${imgKey}`).then(blob => {
+    if (blob) {
+      if (phoneBg._blobUrl) URL.revokeObjectURL(phoneBg._blobUrl);
+      const url = URL.createObjectURL(blob);
+      phoneBg._blobUrl = url;
       phoneBg.dataset.src = url;
       phoneBg.src = url;
+      placeholder.hidden = true;
+    } else {
+      const imgPath = (STATE.module.images || {})[imgKey];
+      if (imgPath) {
+        const url = STATE.imageBaseUrl + imgPath;
+        if (phoneBg.dataset.src !== url) {
+          phoneBg.dataset.src = url;
+          phoneBg.src = url;
+        }
+        placeholder.hidden = true;
+      } else {
+        phoneBg.src = '';
+        placeholder.hidden = false;
+      }
     }
-    placeholder.hidden = true;
-  } else {
-    phoneBg.src = '';
-    placeholder.hidden = false;
-  }
+  });
 
   // ScrollY
   const scrollY = Math.max(0, s.scrollY || 0);
@@ -2831,6 +2842,7 @@ async function handleStepImgUpload(file) {
     drop.innerHTML = origHtml;
     toast(`✓ Ảnh ${imgKey} (${width}×${height}px) đã lưu`, 'success');
     await updateStepImgStatus();
+    renderPreview();
   } catch (e) {
     drop.innerHTML = origHtml;
     toast('Lỗi xử lý ảnh: ' + e.message, 'error');
