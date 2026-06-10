@@ -2831,8 +2831,33 @@ const handleImageUpload = handleMediaUpload;
 
 async function handleStepImgUpload(file) {
   if (!file.type.startsWith('image/')) { toast('File phải là ảnh', 'error'); return; }
-  const imgKey = STATE.step?.img || STATE.step?.imgKey;
-  if (!imgKey) { toast('Chọn ảnh key cho bước này trước', 'error'); return; }
+  let imgKey = STATE.step?.img || STATE.step?.imgKey;
+
+  // Auto-create image key if none set (new module / step without a key)
+  if (!imgKey) {
+    if (!STATE.moduleId || !STATE.step) { toast('Chọn module và bước trước', 'error'); return; }
+    // Derive key from step number, ensure unique
+    const base = `b${String((STATE.stepIdx || 0) + 1).padStart(2, '0')}`;
+    const imgs = STATE.module.images || {};
+    let candidate = base;
+    let n = 1;
+    while (imgs[candidate]) candidate = `${base}_${n++}`;
+    imgKey = candidate;
+    if (!STATE.module.images) STATE.module.images = {};
+    STATE.module.images[imgKey] = `/images/${STATE.moduleId}/${imgKey}.jpg`;
+    STATE.step.imgKey = imgKey;
+    setDirty(true);
+    // Update the select live so UI stays consistent
+    const sel = document.querySelector('#form-content [data-field="imgKey"]');
+    if (sel) {
+      const opt = document.createElement('option');
+      opt.value = imgKey;
+      opt.textContent = `${imgKey} → /images/${STATE.moduleId}/${imgKey}.jpg`;
+      opt.selected = true;
+      sel.appendChild(opt);
+    }
+  }
+
   const drop = $('step-img-drop');
   const origHtml = drop.innerHTML;
   drop.innerHTML = '⏳ Đang xử lý...';
