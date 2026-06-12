@@ -994,7 +994,7 @@
           ]
         }
       ],
-      "iconImg": "/api/img?path=images/tai_app/icon.jpg",
+      "iconImg": "assets/icons/kho_tai_nguyen.png",
       "status": "live",
       "attributes": {
         "industry": "real_estate",
@@ -5728,12 +5728,12 @@
           "imgKey": "b02_2",
           "scrollY": 0,
           "hs": {
-            "x": 11,
-            "y": 91,
-            "w": 374,
-            "h": 317
+            "x": 16,
+            "y": 200,
+            "w": 358,
+            "h": 200
           },
-          "ttPos": "bottom",
+          "ttPos": "right",
           "ttTitle": "Phòng quản lý",
           "ttText": "Xem tất cả phòng và nhóm bạn có quyền quản lý",
           "tip": "",
@@ -6611,229 +6611,325 @@
       "steps": [
         {
           "id": 1,
-          "name": "Bước 1",
-          "desc": "",
+          "name": "Chọn Quản lý phòng",
+          "desc": "Mục Quản lý phòng trong menu",
           "title": "Bước 1 — ",
           "sub": "",
           "imgKey": "b01",
           "scrollY": 0,
           "hs": {
-            "x": 2,
-            "y": 91,
-            "w": 401,
-            "h": 482
+            "x": 3,
+            "y": 456,
+            "w": 192,
+            "h": 95
           },
           "ttPos": "right",
-          "ttTitle": "",
-          "ttText": "",
-          "tip": "",
-          "guide": []
-        }
-      ]
-    },
-    "tai_app": {
-      "name": "Hướng dẫn tải App cho Android",
-      "role": "Học viên / Chuyên viên",
-      "icon": "📘",
-      "iconImg": "/api/img?path=images/tai_app_ios/icon.jpg",
-      "description": "",
-      "images": {
-        "b01": "/images/tai_app/b01.jpg",
-        "b01_1": "/images/tai_app/b01_1.jpg",
-        "b04": "/images/tai_app/b04.jpg"
-      },
-      "steps": [
-        {
-          "id": 1,
-          "name": "Tìm kiếm Ứng dụng Google Play",
-          "desc": "Gõ Nhà Phố Việt Nam",
-          "title": "Bước 1 — ",
-          "sub": "",
-          "imgKey": "b01_1",
-          "scrollY": 0,
-          "hs": {
-            "x": 9,
-            "y": 42,
-            "w": 373,
-            "h": 89
-          },
-          "ttPos": "bottom",
-          "ttTitle": "Nhập ô Tìm kiếm",
-          "ttText": "Gõ tìm Nhà Phố Việt Nam",
+          "ttTitle": "Mục Quản lý phòng",
+          "ttText": "Bấm Quản lý phòng để xem các tính năng quản lý",
           "tip": "",
           "guide": []
         },
         {
           "id": 2,
-          "name": "Tải App Nhà Phố Việt Nam",
-          "desc": "Kết quả tìm kiếm thấy App Nhà Phố Việt Nam",
-          "title": "Bước 2 — ",
+          "name": "Chọn Quản lý thành viên",
+          "desc": "Mục Quản lý thành viên trong list",
+          "title": "Bước 1 — ",
           "sub": "",
           "imgKey": "b01",
           "scrollY": 0,
           "hs": {
-            "x": 14,
-            "y": 146,
-            "w": 367,
-            "h": 358
+            "x": 5,
+            "y": 142,
+            "w": 362,
+            "h": 49
           },
           "ttPos": "bottom",
-          "ttTitle": "Ứng dụng Nhà Phố Việt Nam",
-          "ttText": "Giao diện ứng dụng, logo và tên Nhà Phố Việt Nam",
+          "ttTitle": "Mục Quản lý thành viên",
+          "ttText": "Bấm Quản lý thành viên để xem danh sách",
           "tip": "",
           "guide": []
         },
         {
           "id": 3,
-          "name": "Cài đặt App",
-          "desc": "Cài đặt App Nhà Phố Việt Nam",
-          "title": "Bước 3 — ",
+          "name": "Lọc",
+          "desc": "Bộ lọc chức danh, nhóm",
+          "title": "Bước 2 — ",
           "sub": "",
           "imgKey": "b01",
           "scrollY": 0,
           "hs": {
-            "x": 237,
-            "y": 153,
-            "w": 140,
-            "h": 78
+            "x": 0,
+            "y": 143,
+            "w": 82,
+            "h": 54
           },
-          "ttPos": "left",
-          "ttTitle": "Bấm nút Cài đặt",
-          "ttText": "Bấm Cài đặt để tải và cài đặt ứng dụng",
+          "ttPos": "right",
+          "ttTitle": "Nút Lọc",
+          "ttText": "Bấm Lọc để chọn chức danh, nhóm",
           "tip": "",
           "guide": []
         },
         {
           "id": 4,
-          "name": "Đăng nhập và dùng App",
-          "desc": "Giao diện đăng nhập App Nhà Phố Việt Nam",
-          "title": "Bước 4 — ",
+          "name": "Nút ba chấm ( Đang hợp tác )",
+          "desc": "Bấm nút ba chấm mở form xem,sửa tài khoản...",
+          "title": "Bước 2 — ",
           "sub": "",
-          "imgKey": "b04",
-          "scrollY": 0,
+          "imgKey": "b01",
+          "scrollY": 54,
           "hs": {
-            "x": 13,
-            "y": 321,
-            "w": 364,
-            "h": 129
+            "x": 6,
+            "y": 628,
+            "w": 378,
+            "h": 294
           },
-          "ttPos": "bottom",
-          "ttTitle": "Đăng nhập",
-          "ttText": "Đăng nhập bằng tài khoản khonhapho.com",
+          "ttPos": "top",
+          "ttTitle": "Nút ba chấm",
+          "ttText": "Chọn xem,sửa tài khoản...",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 5,
+          "name": "Nút ba chấm ( Sắp hết hạn )",
+          "desc": "Bấm nút ba chấm mở form xem,sửa tài khoản...",
+          "title": "Bước 2 — ",
+          "sub": "",
+          "imgKey": "b01",
+          "scrollY": 54,
+          "hs": {
+            "x": 6,
+            "y": 628,
+            "w": 378,
+            "h": 294
+          },
+          "ttPos": "top",
+          "ttTitle": "Nút ba chấm",
+          "ttText": "Chọn xem,sửa tài khoản...",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 6,
+          "name": "Nút ba chấm ( Đã khóa )",
+          "desc": "Bấm nút ba chấm mở form mở tài khoản",
+          "title": "Bước 2 — ",
+          "sub": "",
+          "imgKey": "b01",
+          "scrollY": 54,
+          "hs": {
+            "x": 6,
+            "y": 628,
+            "w": 378,
+            "h": 294
+          },
+          "ttPos": "top",
+          "ttTitle": "Nút ba chấm",
+          "ttText": "Chọn mở tài khoản",
           "tip": "",
           "guide": []
         }
       ]
     },
-    "tai_app_ios": {
-      "name": "Hướng dẫn tải App cho iPhone",
-      "role": "Học viên / Chuyên viên",
+    "quan_ly_khach_cua_chuyen_vien": {
+      "name": "QL khách của CV",
+      "role": "Quản lý phòng",
       "icon": "📘",
-      "iconImg": "/api/img?path=images/tai_app_ios/icon.jpg",
       "description": "",
       "images": {
-        "b01": "/images/tai_app_ios/b01.jpg",
-        "b02": "/images/tai_app_ios/b02.jpg",
-        "b05": "/images/tai_app_ios/b05.jpg"
+        "b01": "/images/quan_ly_khach_cua_chuyen_vien/b01.jpg",
+        "b02": "/images/quan_ly_khach_cua_chuyen_vien/b02.jpg"
       },
       "steps": [
         {
           "id": 1,
-          "name": "Nhập tìm kiếm ứng dụng Apple Store",
-          "desc": "Nhập tìm kiếm ứng dụng TestFlight",
+          "name": "Vào Menu cá nhân",
+          "desc": "Avatar góc phải → menu quản lý",
           "title": "Bước 1 — ",
           "sub": "",
           "imgKey": "b01",
           "scrollY": 0,
           "hs": {
-            "x": 13,
-            "y": 468,
-            "w": 370,
-            "h": 83
+            "x": 3,
+            "y": 464,
+            "w": 198,
+            "h": 74
           },
-          "ttPos": "top",
-          "ttTitle": "Nhập ô tìm kiếm Apple Store",
-          "ttText": "Nhập tìm kiếm TestFlight",
+          "ttPos": "right",
+          "ttTitle": "Avatar quản lý",
+          "ttText": "Bấm icon quản lý phòng nhóm",
           "tip": "",
           "guide": []
         },
         {
           "id": 2,
-          "name": "Kết quả tìm kiếm ứng dụng",
-          "desc": "Giao diện ứng dụng TestFlight iOS",
+          "name": "Danh sách phòng",
+          "desc": "Các phòng và nhóm bạn đang quản lý",
+          "title": "Bước 2 — ",
+          "sub": "",
+          "imgKey": "b02",
+          "scrollY": 0,
+          "hs": {
+            "x": 0,
+            "y": 181,
+            "w": 383,
+            "h": 51
+          },
+          "ttPos": "bottom",
+          "ttTitle": "Phòng quản lý",
+          "ttText": "Chọn quản lý khách của chuyên viên",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 3,
+          "name": "Mở bộ lọc",
+          "desc": "Bấm Lọc để nhập tiêu chí",
+          "title": "Bước 3 — ",
+          "sub": "",
+          "imgKey": "b01",
+          "scrollY": 0,
+          "hs": {
+            "x": 0,
+            "y": 73,
+            "w": 80,
+            "h": 80
+          },
+          "ttPos": "right",
+          "ttTitle": "Nút Lọc",
+          "ttText": "Bấm để mở lọc  nhập các tiêu chí",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 4,
+          "name": "Chọn tiêu chí",
+          "desc": "Chọn tiêu chí, tỉnh/thành phố...",
+          "title": "Bước 3 — ",
+          "sub": "",
+          "imgKey": "b01",
+          "scrollY": 0,
+          "hs": {
+            "x": 5,
+            "y": 48,
+            "w": 387,
+            "h": 400
+          },
+          "ttPos": "bottom",
+          "ttTitle": "Nút Lọc",
+          "ttText": "Bấm lọc để hiện thị ",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 5,
+          "name": "Bấm icon xem",
+          "desc": "Xem chi tiết thông tin khách hàng ",
+          "title": "Bước 5 — ",
+          "sub": "",
+          "imgKey": "b01",
+          "scrollY": 0,
+          "hs": {
+            "x": 6,
+            "y": 30,
+            "w": 419,
+            "h": 559
+          },
+          "ttPos": "bottom",
+          "ttTitle": " icon xem",
+          "ttText": "chi tiết thông tin khách hàng ",
+          "tip": "",
+          "guide": []
+        }
+      ]
+    },
+    "quan_ly_bao_cao_cua_chuyen_vien": {
+      "name": "QL báo cáo của CV",
+      "role": "Quản lý phòng",
+      "icon": "📘",
+      "description": "",
+      "images": {
+        "b01": "/images/quan_ly_bao_cao_cua_chuyen_vien/b01.jpg",
+        "b02": "/images/quan_ly_bao_cao_cua_chuyen_vien/b02.jpg"
+      },
+      "steps": [
+        {
+          "id": 1,
+          "name": "Vào Menu cá nhân ",
+          "desc": "Avatar góc phải → mở menu cá nhân",
+          "title": "Bước 1 — ",
+          "sub": "",
+          "imgKey": "b01",
+          "scrollY": 0,
+          "hs": {
+            "x": 14,
+            "y": 465,
+            "w": 181,
+            "h": 78
+          },
+          "ttPos": "right",
+          "ttTitle": "Avatar cá nhân",
+          "ttText": "Bấm icon để vào quản lý phòng nhóm",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 2,
+          "name": "Danh sách phòng",
+          "desc": "Chọn QL báo cáo của CV",
           "title": "Bước 2 — ",
           "sub": "",
           "imgKey": "b02",
           "scrollY": 0,
           "hs": {
             "x": 8,
-            "y": 438,
-            "w": 373,
-            "h": 392
+            "y": 228,
+            "w": 367,
+            "h": 49
           },
-          "ttPos": "right",
-          "ttTitle": "Giao diện ứng dụng TestFight",
-          "ttText": "Giao diện ứng dụng chữ TestFight và logo màu xanh",
+          "ttPos": "bottom",
+          "ttTitle": "Phòng quản lý",
+          "ttText": "Danh sách báo cáo",
           "tip": "",
           "guide": []
         },
         {
           "id": 3,
-          "name": "Tải và cài đặt ứng dụng",
-          "desc": "Tải và cài đặt ứng dụng TestFlight",
+          "name": "Báo cáo của CV",
+          "desc": "QL báo cáo của CV",
           "title": "Bước 3 — ",
           "sub": "",
           "imgKey": "b01",
           "scrollY": 0,
           "hs": {
-            "x": 298,
-            "y": 447,
-            "w": 85,
-            "h": 58
+            "x": 2,
+            "y": 46,
+            "w": 385,
+            "h": 380
           },
-          "ttPos": "right",
-          "ttTitle": "Bấm icon Cài đặt ứng dụng",
-          "ttText": "Tải và cài đặt TestFlight",
+          "ttPos": "bottom",
+          "ttTitle": "Danh sách ",
+          "ttText": "Xem tất cả danh sách báo cáo của CV",
           "tip": "",
           "guide": []
         },
         {
           "id": 4,
-          "name": "Tải App Nhà Phố Việt Nam",
-          "desc": "Tải App Nhà Phố Việt Nam  từ web khonhapho.com",
-          "title": "Bước 4 — ",
+          "name": "Báo cáo của CV",
+          "desc": "QL báo cáo của CV",
+          "title": "Bước 3 — ",
           "sub": "",
-          "imgKey": "",
+          "imgKey": "b01",
           "scrollY": 0,
           "hs": {
-            "x": 58,
-            "y": 426,
-            "w": 286,
-            "h": 80
+            "x": 0,
+            "y": 38,
+            "w": 373,
+            "h": 715
           },
           "ttPos": "bottom",
-          "ttTitle": "Mở khonhapho.com thầy popup",
-          "ttText": "Bấm tải ứng dụng để cài đặt App Nhà Phố Việt Nam",
-          "tip": "",
-          "guide": []
-        },
-        {
-          "id": 5,
-          "name": "Cài đặt và Đăng nhập",
-          "desc": "Đăng nhập App Nhà Phố Việt Nam bằng tài khoản khonhapho.com",
-          "title": "Bước 5 — ",
-          "sub": "",
-          "imgKey": "b05",
-          "scrollY": 0,
-          "hs": {
-            "x": 14,
-            "y": 324,
-            "w": 364,
-            "h": 128
-          },
-          "ttPos": "bottom",
-          "ttTitle": "Đăng nhập",
-          "ttText": "Nhập tài khoản khonhapho.com để đăng nhập",
+          "ttTitle": "Báo cáo dẫn khách",
+          "ttText": "Chi tiết báo cáo dẫn khách",
           "tip": "",
           "guide": []
         }
@@ -6841,9 +6937,8 @@
     }
   },
   "featured": [
-    "tai_app",
-    "tai_app_ios",
     "dang_tin",
-    "loc_kho"
+    "loc_kho",
+    "bo_suu_tap"
   ]
 }
