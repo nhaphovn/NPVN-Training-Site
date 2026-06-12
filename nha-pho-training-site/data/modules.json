@@ -994,7 +994,7 @@
           ]
         }
       ],
-      "iconImg": "assets/icons/kho_tai_nguyen.png",
+      "iconImg": "/api/img?path=images/tai_app/icon.jpg",
       "status": "live",
       "attributes": {
         "industry": "real_estate",
@@ -6630,11 +6630,104 @@
           "guide": []
         }
       ]
+    },
+    "tai_app": {
+      "name": "Hướng dẫn tải App cho Android",
+      "role": "Học viên / Chuyên viên",
+      "icon": "📘",
+      "iconImg": "/api/img?path=images/tai_app/icon.jpg",
+      "description": "",
+      "images": {
+        "b01": "/images/tai_app/b01.jpg"
+      },
+      "steps": [
+        {
+          "id": 1,
+          "name": "Bước 1",
+          "desc": "",
+          "title": "Bước 1 — ",
+          "sub": "",
+          "imgKey": "b01",
+          "scrollY": 0,
+          "hs": {
+            "x": 9,
+            "y": 42,
+            "w": 373,
+            "h": 89
+          },
+          "ttPos": "right",
+          "ttTitle": "",
+          "ttText": "",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 2,
+          "name": "Bước 2",
+          "desc": "",
+          "title": "Bước 2 — ",
+          "sub": "",
+          "imgKey": "b01",
+          "scrollY": 0,
+          "hs": {
+            "x": 14,
+            "y": 146,
+            "w": 367,
+            "h": 358
+          },
+          "ttPos": "right",
+          "ttTitle": "",
+          "ttText": "",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 3,
+          "name": "Bước 3",
+          "desc": "",
+          "title": "Bước 3 — ",
+          "sub": "",
+          "imgKey": "b01",
+          "scrollY": 0,
+          "hs": {
+            "x": 237,
+            "y": 153,
+            "w": 140,
+            "h": 78
+          },
+          "ttPos": "right",
+          "ttTitle": "",
+          "ttText": "",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 4,
+          "name": "Bước 4",
+          "desc": "",
+          "title": "Bước 4 — ",
+          "sub": "",
+          "imgKey": "b01",
+          "scrollY": 0,
+          "hs": {
+            "x": 13,
+            "y": 321,
+            "w": 364,
+            "h": 129
+          },
+          "ttPos": "right",
+          "ttTitle": "",
+          "ttText": "",
+          "tip": "",
+          "guide": []
+        }
+      ]
     }
   },
   "featured": [
     "dang_tin",
     "loc_kho",
-    "bo_suu_tap"
+    "bo_suu_tap",
+    "tai_app"
   ]
 }
