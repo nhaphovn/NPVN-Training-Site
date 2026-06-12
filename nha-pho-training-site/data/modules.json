@@ -6639,7 +6639,8 @@
       "description": "",
       "images": {
         "b01": "/images/tai_app/b01.jpg",
-        "b01_1": "/images/tai_app/b01_1.jpg"
+        "b01_1": "/images/tai_app/b01_1.jpg",
+        "b04": "/images/tai_app/b04.jpg"
       },
       "steps": [
         {
@@ -6708,7 +6709,7 @@
           "desc": "",
           "title": "Bước 4 — ",
           "sub": "",
-          "imgKey": "",
+          "imgKey": "b04",
           "scrollY": 0,
           "hs": {
             "x": 13,
