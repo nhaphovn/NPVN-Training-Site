@@ -6638,7 +6638,8 @@
       "iconImg": "/api/img?path=images/tai_app/icon.jpg",
       "description": "",
       "images": {
-        "b01": "/images/tai_app/b01.jpg"
+        "b01": "/images/tai_app/b01.jpg",
+        "b01_1": "/images/tai_app/b01_1.jpg"
       },
       "steps": [
         {
@@ -6647,7 +6648,7 @@
           "desc": "",
           "title": "Bước 1 — ",
           "sub": "",
-          "imgKey": "",
+          "imgKey": "b01_1",
           "scrollY": 0,
           "hs": {
             "x": 9,
