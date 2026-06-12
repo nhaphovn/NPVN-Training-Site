@@ -6611,21 +6611,121 @@
       "steps": [
         {
           "id": 1,
-          "name": "Bước 1",
-          "desc": "",
+          "name": "Chọn Quản lý phòng",
+          "desc": "Mục Quản lý phòng trong menu",
           "title": "Bước 1 — ",
           "sub": "",
           "imgKey": "b01",
           "scrollY": 0,
           "hs": {
-            "x": 100,
-            "y": 200,
-            "w": 80,
-            "h": 80
+            "x": 3,
+            "y": 456,
+            "w": 192,
+            "h": 95
           },
           "ttPos": "right",
-          "ttTitle": "",
-          "ttText": "",
+          "ttTitle": "Mục Quản lý phòng",
+          "ttText": "Bấm Quản lý phòng để xem các tính năng quản lý",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 2,
+          "name": "Chọn Quản lý thành viên",
+          "desc": "Mục Quản lý thành viên trong list",
+          "title": "Bước 1 — ",
+          "sub": "",
+          "imgKey": "b01",
+          "scrollY": 0,
+          "hs": {
+            "x": 5,
+            "y": 142,
+            "w": 362,
+            "h": 49
+          },
+          "ttPos": "bottom",
+          "ttTitle": "Mục Quản lý thành viên",
+          "ttText": "Bấm Quản lý thành viên để xem danh sách",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 3,
+          "name": "Lọc",
+          "desc": "Bộ lọc chức danh, nhóm",
+          "title": "Bước 2 — ",
+          "sub": "",
+          "imgKey": "b01",
+          "scrollY": 0,
+          "hs": {
+            "x": 0,
+            "y": 143,
+            "w": 82,
+            "h": 54
+          },
+          "ttPos": "right",
+          "ttTitle": "Nút Lọc",
+          "ttText": "Bấm Lọc để chọn chức danh, nhóm",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 4,
+          "name": "Nút ba chấm ( Đang hợp tác )",
+          "desc": "Bấm nút ba chấm mở form xem,sửa tài khoản...",
+          "title": "Bước 2 — ",
+          "sub": "",
+          "imgKey": "b01",
+          "scrollY": 54,
+          "hs": {
+            "x": 6,
+            "y": 628,
+            "w": 378,
+            "h": 294
+          },
+          "ttPos": "top",
+          "ttTitle": "Nút ba chấm",
+          "ttText": "Chọn xem,sửa tài khoản...",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 5,
+          "name": "Nút ba chấm ( Sắp hết hạn )",
+          "desc": "Bấm nút ba chấm mở form xem,sửa tài khoản...",
+          "title": "Bước 2 — ",
+          "sub": "",
+          "imgKey": "b01",
+          "scrollY": 54,
+          "hs": {
+            "x": 6,
+            "y": 628,
+            "w": 378,
+            "h": 294
+          },
+          "ttPos": "top",
+          "ttTitle": "Nút ba chấm",
+          "ttText": "Chọn xem,sửa tài khoản...",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 6,
+          "name": "Nút ba chấm ( Đã khóa )",
+          "desc": "Bấm nút ba chấm mở form mở tài khoản",
+          "title": "Bước 2 — ",
+          "sub": "",
+          "imgKey": "b01",
+          "scrollY": 54,
+          "hs": {
+            "x": 6,
+            "y": 628,
+            "w": 378,
+            "h": 294
+          },
+          "ttPos": "top",
+          "ttTitle": "Nút ba chấm",
+          "ttText": "Chọn mở tài khoản",
           "tip": "",
           "guide": []
         }
