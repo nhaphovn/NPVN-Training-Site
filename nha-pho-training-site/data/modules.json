@@ -6645,8 +6645,8 @@
       "steps": [
         {
           "id": 1,
-          "name": "Bước 1",
-          "desc": "",
+          "name": "Tìm kiếm Ứng dụng Google Play",
+          "desc": "Gõ Nhà Phố Việt Nam",
           "title": "Bước 1 — ",
           "sub": "",
           "imgKey": "b01_1",
@@ -6657,16 +6657,16 @@
             "w": 373,
             "h": 89
           },
-          "ttPos": "right",
-          "ttTitle": "",
-          "ttText": "",
+          "ttPos": "bottom",
+          "ttTitle": "Nhập ô Tìm kiếm",
+          "ttText": "Gõ tìm Nhà Phố Việt Nam",
           "tip": "",
           "guide": []
         },
         {
           "id": 2,
-          "name": "Bước 2",
-          "desc": "",
+          "name": "Tải App Nhà Phố Việt Nam",
+          "desc": "Kết quả tìm kiếm thấy App Nhà Phố Việt Nam",
           "title": "Bước 2 — ",
           "sub": "",
           "imgKey": "b01",
@@ -6677,16 +6677,16 @@
             "w": 367,
             "h": 358
           },
-          "ttPos": "right",
-          "ttTitle": "",
-          "ttText": "",
+          "ttPos": "bottom",
+          "ttTitle": "Ứng dụng Nhà Phố Việt Nam",
+          "ttText": "Giao diện ứng dụng, logo và tên Nhà Phố Việt Nam",
           "tip": "",
           "guide": []
         },
         {
           "id": 3,
-          "name": "Bước 3",
-          "desc": "",
+          "name": "Cài đặt App",
+          "desc": "Cài đặt App Nhà Phố Việt Nam",
           "title": "Bước 3 — ",
           "sub": "",
           "imgKey": "b01",
@@ -6697,16 +6697,16 @@
             "w": 140,
             "h": 78
           },
-          "ttPos": "right",
-          "ttTitle": "",
-          "ttText": "",
+          "ttPos": "left",
+          "ttTitle": "Bấm nút Cài đặt",
+          "ttText": "Bấm Cài đặt để tải và cài đặt ứng dụng",
           "tip": "",
           "guide": []
         },
         {
           "id": 4,
-          "name": "Bước 4",
-          "desc": "",
+          "name": "Đăng nhập và dùng App",
+          "desc": "Giao diện đăng nhập App Nhà Phố Việt Nam",
           "title": "Bước 4 — ",
           "sub": "",
           "imgKey": "b04",
@@ -6717,9 +6717,9 @@
             "w": 364,
             "h": 129
           },
-          "ttPos": "right",
-          "ttTitle": "",
-          "ttText": "",
+          "ttPos": "bottom",
+          "ttTitle": "Đăng nhập",
+          "ttText": "Đăng nhập bằng tài khoản khonhapho.com",
           "tip": "",
           "guide": []
         }
