@@ -1468,6 +1468,8 @@ function goToStep(idx) {
   if (idx < 0 || idx >= STATE.steps.length) return;
   STATE.currentStep = idx;
   renderStep();
+  // Mobile: scroll back to phone frame so user sees new step, header stays hidden
+  if (window.innerWidth < 768) window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 function nextStep() {
   const completingStep = STATE.currentStep;
@@ -2364,11 +2366,6 @@ function escapeHtml(str) {
   if (!hdr) return;
 
   function isMobile() { return window.innerWidth < 768; }
-
-  // Mobile: show header briefly on load then hide after first scroll-down
-  if (isMobile()) {
-    hdr.classList.add('header-visible');
-  }
 
   let lastY = 0;
   let ticking = false;
