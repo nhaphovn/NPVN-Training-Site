@@ -495,7 +495,7 @@
           ]
         }
       ],
-      "iconImg": "/api/img?path=images/tai_app_android/icon.jpg",
+      "iconImg": "assets/icons/dang_tin.png",
       "status": "live",
       "attributes": {
         "industry": "real_estate",
@@ -6939,7 +6939,6 @@
       "name": "Tải App Nhà Phố cho Android",
       "role": "Học viên / Chuyên viên",
       "icon": "📘",
-      "iconImg": "/api/img?path=images/tai_app_android/icon.png",
       "description": "",
       "images": {
         "b01": "/images/tai_app_android/b01.jpg",
@@ -7028,7 +7027,8 @@
           "tip": "",
           "guide": []
         }
-      ]
+      ],
+      "iconImg": "/api/img?path=images/tai_app_android/icon.png"
     }
   },
   "featured": [
