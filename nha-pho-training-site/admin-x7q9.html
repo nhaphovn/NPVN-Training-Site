@@ -1456,6 +1456,9 @@ async function processImageFile(file, targetWidth) {
   const ctx = canvas.getContext('2d');
   ctx.imageSmoothingEnabled = true;
   ctx.imageSmoothingQuality = 'high';
+  // Fill white so PNG transparent areas don't become black in JPEG output
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, w, h);
   ctx.drawImage(img, 0, 0, w, h);
   // Convert to JPG blob (quality 0.85)
   const blob = await new Promise((resolve, reject) => {
@@ -3011,8 +3014,9 @@ async function processIconFile(file) {
   const sx = Math.floor((sw - side) / 2);
   const sy = Math.floor((sh - side) / 2);
   ctx.drawImage(img, sx, sy, side, side, 0, 0, SIZE, SIZE);
+  // Output PNG to preserve transparency (JPEG would turn transparent pixels black)
   const blob = await new Promise((resolve, reject) => {
-    canvas.toBlob((b) => b ? resolve(b) : reject(new Error('Convert failed')), 'image/jpeg', 0.90);
+    canvas.toBlob((b) => b ? resolve(b) : reject(new Error('Convert failed')), 'image/png');
   });
   return blob;
 }
@@ -3051,10 +3055,11 @@ async function handleIconUpload(file) {
   // Try Vercel Blob upload
   status.textContent = 'Đang upload lên Blob...';
   try {
-    const result = await uploadToBlob(iconBlob, mid, 'icon', false);
-    // Store iconImg in module state
-    if (STATE.module) STATE.module.iconImg = result.proxyUrl;
-    // Also update the hidden field we'll read in saveModuleModal
+    const result = await uploadToBlob(iconBlob, mid, 'icon.png', false);
+    // Only update STATE.module when editing an existing module (mmEditingId set).
+    // For new modules STATE.module still points to the previously active module — don't touch it.
+    if (mmEditingId && STATE.module) STATE.module.iconImg = result.proxyUrl;
+    // Always update the dataset field read by saveModuleModal
     document.getElementById('mm-icon-zone').dataset.iconImg = result.proxyUrl;
     preview.innerHTML = `<img src="${localUrl}" alt="icon"><div class="uploaded-badge"></div>`;
     status.className = 'icon-status ok';
@@ -3062,7 +3067,7 @@ async function handleIconUpload(file) {
     setDirty(true);
   } catch (blobErr) {
     // Keep local blob URL as a placeholder path — will be included in ZIP export
-    const localPath = `/api/img?path=images/${mid}/icon.jpg`;
+    const localPath = `/api/img?path=images/${mid}/icon.png`;
     document.getElementById('mm-icon-zone').dataset.iconImg = localPath;
     status.className = 'icon-status warn';
     status.textContent = '⚠ Lưu local (' + blobErr.message.slice(0, 60) + ')';
@@ -3083,7 +3088,10 @@ function getBlobToken() {
 }
 
 async function uploadToBlob(blobData, moduleId, key, isVideo) {
-  const ct = isVideo ? (blobData.type || 'video/mp4') : 'image/jpeg';
+  // Use the blob's own MIME type so PNG icons keep image/png (not image/jpeg)
+  const ct = isVideo
+    ? (blobData.type || 'video/mp4')
+    : (blobData.type && blobData.type.startsWith('image/') ? blobData.type : 'image/jpeg');
   const url = `/api/upload?module=${encodeURIComponent(moduleId)}&key=${encodeURIComponent(key)}`;
   const headers = { 'Content-Type': ct };
   const token = getBlobToken();
