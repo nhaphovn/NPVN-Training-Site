@@ -495,7 +495,7 @@
           ]
         }
       ],
-      "iconImg": "assets/icons/dang_tin.png",
+      "iconImg": "/api/img?path=images/tai_app_android/icon.jpg",
       "status": "live",
       "attributes": {
         "industry": "real_estate",
@@ -6930,6 +6930,101 @@
           "ttPos": "bottom",
           "ttTitle": "Báo cáo dẫn khách",
           "ttText": "Chi tiết báo cáo dẫn khách",
+          "tip": "",
+          "guide": []
+        }
+      ]
+    },
+    "tai_app_android": {
+      "name": "Tải App Nhà Phố cho Android",
+      "role": "Học viên / Chuyên viên",
+      "icon": "📘",
+      "iconImg": "/api/img?path=images/tai_app_android/icon.jpg",
+      "description": "",
+      "images": {
+        "b01": "/images/tai_app_android/b01.jpg",
+        "b02": "/images/tai_app_android/b02.jpg",
+        "b03": "/images/tai_app_android/b03.jpg",
+        "b04": "/images/tai_app_android/b04.jpg"
+      },
+      "steps": [
+        {
+          "id": 1,
+          "name": "Tìm App Nhà Phố Việt Nam",
+          "desc": "Tìm kiếm ứng dụng trên CHPlay cho Android",
+          "title": "Bước 1 — ",
+          "sub": "",
+          "imgKey": "b01",
+          "scrollY": 0,
+          "hs": {
+            "x": 11,
+            "y": 37,
+            "w": 370,
+            "h": 103
+          },
+          "ttPos": "bottom",
+          "ttTitle": "TÌm App Nhà Phố",
+          "ttText": "Nhập Nhà Phố Việt Nam tại tìm kiếm ứng dụng CHPlay",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 2,
+          "name": "App Nhà Phố Việt Nam trên CHPlay",
+          "desc": "Kết quả tìm App Nhà Phố Việt Nam logo thương hiệu màu xanh",
+          "title": "Bước 2 — ",
+          "sub": "",
+          "imgKey": "b02",
+          "scrollY": 0,
+          "hs": {
+            "x": 11,
+            "y": 146,
+            "w": 364,
+            "h": 354
+          },
+          "ttPos": "bottom",
+          "ttTitle": "App Nhà Phố Việt Nam",
+          "ttText": "Kết quả tìm kiếm App tên Nhà Phố Việt Nam logo Nhà Phố màu xanh",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 3,
+          "name": "Tải và Cài đặt App",
+          "desc": "Bấm nút Cài đặt tại Ứng dụng Nhà Phố Việt Nam",
+          "title": "Bước 3 — ",
+          "sub": "",
+          "imgKey": "b03",
+          "scrollY": 0,
+          "hs": {
+            "x": 242,
+            "y": 152,
+            "w": 131,
+            "h": 73
+          },
+          "ttPos": "left",
+          "ttTitle": "Bâm nút Cài đặt",
+          "ttText": "Bấm Cài đặt để Tải và Cài đặt App Nhà Phố",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 4,
+          "name": "Mở App và Đăng nhập tài khoản",
+          "desc": "Đăng nhập App Nhà Phố bằng tài khoản khonhapho.com",
+          "title": "Bước 4 — ",
+          "sub": "",
+          "imgKey": "b04",
+          "scrollY": 0,
+          "hs": {
+            "x": 11,
+            "y": 320,
+            "w": 369,
+            "h": 134
+          },
+          "ttPos": "bottom",
+          "ttTitle": "Đăng nhập và sử dụng App",
+          "ttText": "Đăng nhập với tài khoản khonhapho.com",
           "tip": "",
           "guide": []
         }
