@@ -495,7 +495,7 @@
           ]
         }
       ],
-      "iconImg": "assets/icons/dang_tin.png",
+      "iconImg": "/api/img?path=images/tai_app_android/icon.jpg",
       "status": "live",
       "attributes": {
         "industry": "real_estate",
@@ -6939,7 +6939,8 @@
       "name": "Tải App Nhà Phố cho Android",
       "role": "Học viên / Chuyên viên",
       "icon": "📘",
-      "description": "Hướng dẫn tải và cài đặt App Nhà Phố Việt Nam trên điện thoại Android",
+      "iconImg": "/api/img?path=images/tai_app_android/icon.jpg",
+      "description": "",
       "images": {
         "b01": "/images/tai_app_android/b01.jpg",
         "b02": "/images/tai_app_android/b02.jpg",
@@ -6962,19 +6963,10 @@
             "h": 103
           },
           "ttPos": "bottom",
-          "ttTitle": "Tìm App Nhà Phố",
+          "ttTitle": "TÌm App Nhà Phố",
           "ttText": "Nhập Nhà Phố Việt Nam tại tìm kiếm ứng dụng CHPlay",
           "tip": "",
-          "guide": [
-            {
-              "title": "Mở CH Play",
-              "body": "Tìm icon CH Play trên điện thoại Android → bấm mở."
-            },
-            {
-              "title": "Tìm kiếm ứng dụng",
-              "body": "Bấm ô tìm kiếm phía trên → nhập \"Nhà Phố Việt Nam\" → bấm Tìm kiếm."
-            }
-          ]
+          "guide": []
         },
         {
           "id": 2,
@@ -6994,17 +6986,7 @@
           "ttTitle": "App Nhà Phố Việt Nam",
           "ttText": "Kết quả tìm kiếm App tên Nhà Phố Việt Nam logo Nhà Phố màu xanh",
           "tip": "",
-          "guide": [
-            {
-              "title": "Nhận diện App đúng",
-              "body": "Tên ứng dụng: Nhà Phố Việt Nam — logo hình tòa nhà màu xanh lá.",
-              "note": "Chọn đúng App của Tập đoàn Nhà Phố, không nhầm với app tên tương tự khác."
-            },
-            {
-              "title": "Vào trang chi tiết",
-              "body": "Bấm vào ứng dụng Nhà Phố Việt Nam để mở trang cài đặt trên CH Play."
-            }
-          ]
+          "guide": []
         },
         {
           "id": 3,
@@ -7021,20 +7003,10 @@
             "h": 73
           },
           "ttPos": "left",
-          "ttTitle": "Bấm nút Cài đặt",
+          "ttTitle": "Bâm nút Cài đặt",
           "ttText": "Bấm Cài đặt để Tải và Cài đặt App Nhà Phố",
           "tip": "",
-          "guide": [
-            {
-              "title": "Bấm Cài đặt",
-              "body": "Bấm nút \"Cài đặt\" màu xanh → điện thoại tự động tải và cài App."
-            },
-            {
-              "title": "Chờ cài xong",
-              "body": "Chờ đến khi nút chuyển thành \"Mở\" là cài đặt hoàn tất.",
-              "note": "Cần kết nối Wi-Fi hoặc 4G trong quá trình tải."
-            }
-          ]
+          "guide": []
         },
         {
           "id": 4,
@@ -7054,188 +7026,14 @@
           "ttTitle": "Đăng nhập và sử dụng App",
           "ttText": "Đăng nhập với tài khoản khonhapho.com",
           "tip": "",
-          "guide": [
-            {
-              "title": "Mở App Nhà Phố",
-              "body": "Bấm nút \"Mở\" trên CH Play hoặc bấm icon App Nhà Phố trên màn hình chính."
-            },
-            {
-              "title": "Đăng nhập tài khoản",
-              "body": "Nhập số điện thoại đã đăng ký trên khonhapho.com → nhập mật khẩu → bấm Đăng nhập."
-            }
-          ]
-        }
-      ],
-      "iconImg": "/api/img?path=images/tai_app_android/icon.png"
-    },
-    "tai_app_ios": {
-      "name": "Tải App Nhà Phố cho iOS",
-      "role": "Học viên / Chuyên viên",
-      "icon": "📘",
-      "iconImg": "/api/img?path=images/tai_app_ios/icon.png",
-      "description": "Hướng dẫn tải và cài đặt App Nhà Phố Việt Nam trên iPhone / iPad qua TestFlight",
-      "images": {
-        "b01": "/images/tai_app_ios/b01.jpg",
-        "b02": "/images/tai_app_ios/b02.jpg",
-        "b03": "/images/tai_app_ios/b03.jpg",
-        "b05": "/images/tai_app_ios/b05.jpg",
-        "b04": "/images/tai_app_ios/b04.jpg"
-      },
-      "steps": [
-        {
-          "id": 1,
-          "name": "Tìm ứng dụng TestFlight",
-          "desc": "Nhập \"TestFlight\" tại ô tìm kiếm ứng dụng",
-          "title": "Bước 1 — ",
-          "sub": "",
-          "imgKey": "b01",
-          "scrollY": 0,
-          "hs": {
-            "x": 5,
-            "y": 477,
-            "w": 380,
-            "h": 64
-          },
-          "ttPos": "top",
-          "ttTitle": "Tìm kiếm TestFlight",
-          "ttText": "Nhập \"TestFlight\" để tìm kiếm ứng dụng",
-          "tip": "",
-          "guide": [
-            {
-              "title": "Mở App Store",
-              "body": "Tìm icon App Store (hình chữ A màu xanh) → bấm mở."
-            },
-            {
-              "title": "Tìm TestFlight",
-              "body": "Bấm ô tìm kiếm → nhập \"TestFlight\" → bấm Search.",
-              "note": "TestFlight là ứng dụng của Apple, bắt buộc phải cài trước khi cài App Nhà Phố trên iOS."
-            }
-          ]
-        },
-        {
-          "id": 2,
-          "name": "Ứng dụng TestFlight trên iOS",
-          "desc": "Ứng dụng TestFlight trên iOS",
-          "title": "Bước 2 — ",
-          "sub": "",
-          "imgKey": "b02",
-          "scrollY": 0,
-          "hs": {
-            "x": 6,
-            "y": 426,
-            "w": 379,
-            "h": 117
-          },
-          "ttPos": "top",
-          "ttTitle": "Ứng dụng TestFlight",
-          "ttText": "Tên ứng dụng \"TestFlight\" logo màu xanh dương của Apple",
-          "tip": "",
-          "guide": [
-            {
-              "title": "Nhận diện đúng",
-              "body": "Tên ứng dụng: TestFlight — icon màu xanh dương, nhà phát hành: Apple."
-            },
-            {
-              "title": "Vào trang chi tiết",
-              "body": "Bấm vào TestFlight để mở trang cài đặt trong App Store."
-            }
-          ]
-        },
-        {
-          "id": 3,
-          "name": "Tải và Cài đặt TestFlight",
-          "desc": "Tải và Cài đặt",
-          "title": "Bước 3 — ",
-          "sub": "",
-          "imgKey": "b03",
-          "scrollY": 0,
-          "hs": {
-            "x": 307,
-            "y": 442,
-            "w": 75,
-            "h": 62
-          },
-          "ttPos": "left",
-          "ttTitle": "Bấm nút để tải xuống",
-          "ttText": "Tải và Cài đặt \"TestFlight\" để chạy App Nhà Phố",
-          "tip": "",
-          "guide": [
-            {
-              "title": "Bấm Nhận / Cài đặt",
-              "body": "Bấm nút \"Nhận\" (nếu chưa cài) hoặc icon tải xuống để cài TestFlight."
-            },
-            {
-              "title": "Xác nhận tải xuống",
-              "body": "Xác nhận bằng Face ID, Touch ID hoặc mật khẩu Apple ID khi được yêu cầu."
-            }
-          ]
-        },
-        {
-          "id": 4,
-          "name": "Mở trình duyệt vào khonhapho.com",
-          "desc": "Tải App Nhà phố Việt Nam thông qua khonhapho.com",
-          "title": "Bước 4 — ",
-          "sub": "",
-          "imgKey": "b04",
-          "scrollY": 0,
-          "hs": {
-            "x": 8,
-            "y": 601,
-            "w": 373,
-            "h": 187
-          },
-          "ttPos": "top",
-          "ttTitle": "Tải ứng dụng ngay",
-          "ttText": "Mở khonhapho.com trên điện thoại và tải ứng dụng",
-          "tip": "",
-          "guide": [
-            {
-              "title": "Mở trình duyệt Safari",
-              "body": "Mở Safari hoặc Chrome → nhập khonhapho.com → bấm Go."
-            },
-            {
-              "title": "Tải App Nhà Phố",
-              "body": "Tìm nút tải ứng dụng iOS → bấm để mở link TestFlight cài App Nhà Phố Việt Nam.",
-              "note": "Cần đã cài TestFlight ở bước trước — link sẽ mở thẳng vào TestFlight."
-            }
-          ]
-        },
-        {
-          "id": 5,
-          "name": "Mở App Nhà Phố và Đăng nhập",
-          "desc": "Đăng nhập App bằng tài khoản khonhapho.com",
-          "title": "Bước 5 — ",
-          "sub": "",
-          "imgKey": "b05",
-          "scrollY": 0,
-          "hs": {
-            "x": 11,
-            "y": 320,
-            "w": 368,
-            "h": 127
-          },
-          "ttPos": "bottom",
-          "ttTitle": "Nhập Tài khoản",
-          "ttText": "Đăng nhập bằng tài khoản khonhapho.com và nhập mật khẩu",
-          "tip": "",
-          "guide": [
-            {
-              "title": "Mở App Nhà Phố",
-              "body": "Sau khi cài qua TestFlight, bấm \"Mở\" hoặc tìm icon App Nhà Phố trên màn hình chính."
-            },
-            {
-              "title": "Đăng nhập tài khoản",
-              "body": "Nhập số điện thoại đã đăng ký trên khonhapho.com → nhập mật khẩu → bấm Đăng nhập."
-            }
-          ]
+          "guide": []
         }
       ]
     }
   },
   "featured": [
-    "tai_app_android",
-    "tai_app_ios",
     "dang_tin",
-    "loc_kho"
+    "loc_kho",
+    "bo_suu_tap"
   ]
 }
