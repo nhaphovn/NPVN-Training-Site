@@ -7059,8 +7059,8 @@
             "h": 64
           },
           "ttPos": "top",
-          "ttTitle": "Tìm kiếm TsstFlight",
-          "ttText": "Nhập \"TestFlight\" để tìm kiếm",
+          "ttTitle": "Tìm kiếm TestFlight",
+          "ttText": "Nhập \"TestFlight\" để tìm kiếm ứng dụng",
           "tip": "",
           "guide": []
         },
@@ -7119,7 +7119,7 @@
             "h": 187
           },
           "ttPos": "top",
-          "ttTitle": "Tải ứng dụng Nhà Phố",
+          "ttTitle": "Tải ứng dụng ngay",
           "ttText": "Mở khonhapho.com trên điện thoại và tải ứng dụng",
           "tip": "",
           "guide": []
