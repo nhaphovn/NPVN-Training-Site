@@ -36,7 +36,7 @@ export default async function handler(req, res) {
     });
   }
 
-  const { content, message: commitMsg } = req.body || {};
+  const { content, message: commitMsg, expectedLastUpdated } = req.body || {};
 
   if (!content) {
     return res.status(400).json({ error: 'content_required', message: 'Thiếu content' });
@@ -63,13 +63,19 @@ export default async function handler(req, res) {
     'User-Agent':    'nhapho-training-admin',
   };
 
-  // 1. Get current SHA (cần để update)
+  // 1. Get current SHA + lastUpdated (cần SHA để update; lastUpdated để detect conflict)
   let sha = null;
+  let serverLastUpdated = null;
   try {
     const getRes = await fetch(GH_API + `?ref=${GITHUB_BRANCH}`, { headers });
     if (getRes.ok) {
       const data = await getRes.json();
       sha = data.sha;
+      // Decode content để lấy lastUpdated cho conflict detection
+      try {
+        const decoded = Buffer.from(data.content.replace(/\n/g, ''), 'base64').toString('utf8');
+        serverLastUpdated = JSON.parse(decoded).lastUpdated || null;
+      } catch (_) { /* bỏ qua nếu không decode được */ }
     } else if (getRes.status !== 404) {
       const err = await getRes.text();
       return res.status(502).json({ error: 'github_get_failed', message: err.slice(0, 300) });
@@ -78,10 +84,20 @@ export default async function handler(req, res) {
     return res.status(502).json({ error: 'github_network', message: e.message });
   }
 
-  // 2. Encode content → base64
+  // 2. Conflict detection — từ chối nếu data đã bị thay đổi từ máy khác
+  if (expectedLastUpdated && serverLastUpdated && expectedLastUpdated !== serverLastUpdated) {
+    return res.status(409).json({
+      error:   'conflict',
+      message: `Data đã bị thay đổi từ máy khác kể từ lúc bạn mở admin. Vui lòng reload trang để lấy bản mới nhất, sau đó làm lại thay đổi và publish.`,
+      serverLastUpdated,
+      yourLastUpdated: expectedLastUpdated,
+    });
+  }
+
+  // 3. Encode content → base64
   const encoded = Buffer.from(content, 'utf8').toString('base64');
 
-  // 3. PUT
+  // 4. PUT
   const putBody = {
     message: commitMsg || `content: update modules.json via admin ${new Date().toISOString().slice(0,16)}`,
     content: encoded,

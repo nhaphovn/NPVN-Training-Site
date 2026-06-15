@@ -1065,6 +1065,7 @@ const STATE = {
   mode: 'hotspot',      // 'hotspot' | 'view'
   imageBaseUrl: '',     // optional override for image paths
   selectedSteps: new Set(),  // multi-select for bulk ops
+  loadedAt: null,       // lastUpdated của server lúc load — dùng để detect concurrent edit conflict
 };
 
 /* History stack — each entry is { label, snapshot, moduleId, stepIdx } */
@@ -1709,6 +1710,7 @@ function loadFromFile(file) {
       const data = JSON.parse(e.target.result);
       if (!data.modules) throw new Error('JSON không có key "modules"');
       STATE.data = data;
+      STATE.loadedAt = data.lastUpdated || null;
       STATE.moduleId = Object.keys(data.modules)[0] || null;
       STATE.module = STATE.moduleId ? data.modules[STATE.moduleId] : null;
       STATE.stepIdx = 0;
@@ -1753,24 +1755,29 @@ async function publishToGithub() {
   btn.disabled = true;
   btn.textContent = '⏳ Đang publish...';
   try {
-    STATE.data.lastUpdated = new Date().toISOString().slice(0, 10);
+    const now = new Date().toISOString();
+    STATE.data.lastUpdated = now;
     const content = JSON.stringify(STATE.data, null, 2);
     const res = await fetch('/api/save', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         content,
-        message: `content: update modules.json via admin ${new Date().toISOString().slice(0, 16)}`,
+        message: `content: update modules.json via admin ${now.slice(0, 16)}`,
+        expectedLastUpdated: STATE.loadedAt,
       }),
     });
     const json = await res.json();
     if (res.ok && json.ok) {
+      STATE.loadedAt = now; // cập nhật token sau khi publish thành công
       setDirty(false);
       await clearDraft();
       toast('✓ Publish thành công! Vercel đang deploy (~1 phút)', 'success');
     } else {
       const msg = json.message || json.error || `HTTP ${res.status}`;
-      if (res.status === 500 && json.error === 'not_configured') {
+      if (res.status === 409) {
+        toast('⚠ CONFLICT: Data đã bị thay đổi từ máy khác! Reload trang để lấy bản mới nhất, sau đó làm lại thay đổi.', 'error');
+      } else if (res.status === 500 && json.error === 'not_configured') {
         toast('⚠ Chưa cài GITHUB_TOKEN trong Vercel env vars — liên hệ DevSecOps', 'error');
       } else {
         toast(`Lỗi publish: ${msg}`, 'error');
@@ -3353,6 +3360,7 @@ async function bootApp() {
 
   if (useData) {
     STATE.data = useData;
+    STATE.loadedAt = serverData?.lastUpdated || null; // luôn dùng server version, kể cả khi restore draft
     STATE.moduleId = Object.keys(useData.modules)[0] || null;
     STATE.module = STATE.moduleId ? useData.modules[STATE.moduleId] : null;
     STATE.stepIdx = 0;
