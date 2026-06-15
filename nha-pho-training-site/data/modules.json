@@ -6862,8 +6862,8 @@
           "imgKey": "b01",
           "scrollY": 0,
           "hs": {
-            "x": 9,
-            "y": 460,
+            "x": 14,
+            "y": 465,
             "w": 181,
             "h": 78
           },
@@ -7029,12 +7029,129 @@
         }
       ],
       "iconImg": "/api/img?path=images/tai_app_android/icon.png"
+    },
+    "tai_app_ios": {
+      "name": "Tải App Nhà Phố cho iOS",
+      "role": "Học viên / Chuyên viên",
+      "icon": "📘",
+      "iconImg": "/api/img?path=images/tai_app_ios/icon.png",
+      "description": "",
+      "images": {
+        "b01": "/images/tai_app_ios/b01.jpg",
+        "b02": "/images/tai_app_ios/b02.jpg",
+        "b03": "/images/tai_app_ios/b03.jpg",
+        "b05": "/images/tai_app_ios/b05.jpg",
+        "b04": "/images/tai_app_ios/b04.jpg"
+      },
+      "steps": [
+        {
+          "id": 1,
+          "name": "Tìm ứng dụng TestFlight",
+          "desc": "Nhập \"TestFlight\" tại ô tìm kiếm ứng dụng",
+          "title": "Bước 1 — ",
+          "sub": "",
+          "imgKey": "b01",
+          "scrollY": 0,
+          "hs": {
+            "x": 5,
+            "y": 477,
+            "w": 380,
+            "h": 64
+          },
+          "ttPos": "top",
+          "ttTitle": "Tìm kiếm TsstFlight",
+          "ttText": "Nhập \"TestFlight\" để tìm kiếm",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 2,
+          "name": "Ứng dụng TestFlight trên iOS",
+          "desc": "Ứng dụng TestFilght trên iOS",
+          "title": "Bước 2 — ",
+          "sub": "",
+          "imgKey": "b02",
+          "scrollY": 0,
+          "hs": {
+            "x": 6,
+            "y": 426,
+            "w": 379,
+            "h": 117
+          },
+          "ttPos": "top",
+          "ttTitle": "Ứng dụng TestFight",
+          "ttText": "Tên ứng dụng \"TestFight\" logo màu xanh",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 3,
+          "name": "Tải và Cài đặt TestFilght",
+          "desc": "Tải và Cài đặt",
+          "title": "Bước 3 — ",
+          "sub": "",
+          "imgKey": "b03",
+          "scrollY": 0,
+          "hs": {
+            "x": 307,
+            "y": 442,
+            "w": 75,
+            "h": 62
+          },
+          "ttPos": "left",
+          "ttTitle": "Bấm nút để tải xuống",
+          "ttText": "Tải và Cài đặt \"TestFight\" để chạy App Nhà Phố",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 4,
+          "name": "Mở trình duyện vào khonhapho.com",
+          "desc": "Tải App Nhà phố Việt Nam thông qua khonhapho.com",
+          "title": "Bước 4 — ",
+          "sub": "",
+          "imgKey": "b04",
+          "scrollY": 0,
+          "hs": {
+            "x": 8,
+            "y": 601,
+            "w": 373,
+            "h": 187
+          },
+          "ttPos": "top",
+          "ttTitle": "Tải ứng dụng Nhà Phố",
+          "ttText": "Mở khonhapho.com trên điện thoại và tải ứng dụng",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 5,
+          "name": "Mở App Nhà Phố và Đăng nhập",
+          "desc": "Đăng nhập App bằng tài khoản khonhapho.com",
+          "title": "Bước 5 — ",
+          "sub": "",
+          "imgKey": "b05",
+          "scrollY": 0,
+          "hs": {
+            "x": 11,
+            "y": 320,
+            "w": 368,
+            "h": 127
+          },
+          "ttPos": "bottom",
+          "ttTitle": "Nhập Tài khoản",
+          "ttText": "Đăng nhập bằng tài khoản khonhapho.com và nhập mật khẩu",
+          "tip": "",
+          "guide": []
+        }
+      ]
     }
   },
   "featured": [
     "dang_tin",
     "loc_kho",
     "bo_suu_tap",
-    "tai_app_android"
+    "tai_app_android",
+    "tai_app_ios"
   ]
 }
