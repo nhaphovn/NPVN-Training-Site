@@ -2985,10 +2985,20 @@ async function handleStepImgUpload(file) {
 }
 
 /* ============================================================
-   ICON IMAGE PROCESSING — center-crop to 128×128 square
+   ICON IMAGE PROCESSING
+   PNG/WebP: upload gốc không qua canvas (giữ nguyên transparency).
+   JPEG: qua canvas để crop vuông, output JPEG (không có alpha).
    ============================================================ */
 async function processIconFile(file) {
   if (!file.type.startsWith('image/')) throw new Error('File phải là ảnh');
+  if (file.size > 5 * 1024 * 1024) throw new Error('Icon quá lớn (max 5MB)');
+
+  // PNG and WebP support transparency — bypass canvas to avoid black background
+  if (file.type === 'image/png' || file.type === 'image/webp') {
+    return file; // File is a Blob; uploadToBlob will use file.type directly
+  }
+
+  // JPEG has no alpha — safe to process through canvas for center-crop
   const dataUrl = await new Promise((resolve, reject) => {
     const r = new FileReader();
     r.onload = () => resolve(r.result);
@@ -3007,18 +3017,17 @@ async function processIconFile(file) {
   const ctx = canvas.getContext('2d');
   ctx.imageSmoothingEnabled = true;
   ctx.imageSmoothingQuality = 'high';
-  // Center-crop: fit largest square in center
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, SIZE, SIZE);
   const sw = img.naturalWidth;
   const sh = img.naturalHeight;
   const side = Math.min(sw, sh);
   const sx = Math.floor((sw - side) / 2);
   const sy = Math.floor((sh - side) / 2);
   ctx.drawImage(img, sx, sy, side, side, 0, 0, SIZE, SIZE);
-  // Output PNG to preserve transparency (JPEG would turn transparent pixels black)
-  const blob = await new Promise((resolve, reject) => {
-    canvas.toBlob((b) => b ? resolve(b) : reject(new Error('Convert failed')), 'image/png');
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((b) => b ? resolve(b) : reject(new Error('Convert failed')), 'image/jpeg', 0.90);
   });
-  return blob;
 }
 
 async function handleIconUpload(file) {
@@ -3054,8 +3063,11 @@ async function handleIconUpload(file) {
 
   // Try Vercel Blob upload
   status.textContent = 'Đang upload lên Blob...';
+  // Derive extension from the blob's actual MIME type
+  const iconExt = iconBlob.type === 'image/webp' ? 'webp' : iconBlob.type === 'image/png' ? 'png' : 'jpg';
+  const iconKey = `icon.${iconExt}`;
   try {
-    const result = await uploadToBlob(iconBlob, mid, 'icon.png', false);
+    const result = await uploadToBlob(iconBlob, mid, iconKey, false);
     // Only update STATE.module when editing an existing module (mmEditingId set).
     // For new modules STATE.module still points to the previously active module — don't touch it.
     if (mmEditingId && STATE.module) STATE.module.iconImg = result.proxyUrl;
@@ -3067,7 +3079,7 @@ async function handleIconUpload(file) {
     setDirty(true);
   } catch (blobErr) {
     // Keep local blob URL as a placeholder path — will be included in ZIP export
-    const localPath = `/api/img?path=images/${mid}/icon.png`;
+    const localPath = `/api/img?path=images/${mid}/${iconKey}`;
     document.getElementById('mm-icon-zone').dataset.iconImg = localPath;
     status.className = 'icon-status warn';
     status.textContent = '⚠ Lưu local (' + blobErr.message.slice(0, 60) + ')';
