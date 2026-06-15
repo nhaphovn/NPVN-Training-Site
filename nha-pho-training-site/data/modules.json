@@ -1041,12 +1041,12 @@
           "title": "Bước 1 — Lưu tin từ tab Danh sách",
           "sub": "Trong tab Danh sách kho tài nguyên, bấm icon 🔖 ở cột đầu tiên để lưu tin quan tâm",
           "imgKey": "b01_list",
-          "scrollY": 166,
+          "scrollY": 15,
           "hs": {
             "x": 2,
             "y": 246,
-            "w": 31,
-            "h": 570
+            "w": 37,
+            "h": 120
           },
           "ttPos": "right",
           "ttTitle": "Icon Lưu tin",
@@ -1079,12 +1079,12 @@
           "title": "Bước 2 — Ghi chú tin từ Danh sách",
           "sub": "Với tin đã lưu (icon đỏ), bấm icon 🗒 cột G.Chú để thêm ghi chú nhanh",
           "imgKey": "b01_list",
-          "scrollY": 223,
+          "scrollY": 15,
           "hs": {
-            "x": 63,
-            "y": 303,
-            "w": 64,
-            "h": 33
+            "x": 68,
+            "y": 269,
+            "w": 53,
+            "h": 96
           },
           "ttPos": "right",
           "ttTitle": "Icon Ghi chú",
@@ -1120,9 +1120,9 @@
           "scrollY": 1230,
           "hs": {
             "x": 233,
-            "y": 1310,
+            "y": 1301,
             "w": 120,
-            "h": 39
+            "h": 48
           },
           "ttPos": "left",
           "ttTitle": "Icon Lưu trên feed",
@@ -1155,7 +1155,7 @@
           "title": "Bước 4 — Chọn Bộ sưu tập khi lưu tin",
           "sub": "Sau khi bấm icon Lưu, popup xuất hiện để chọn BST — lưu Mặc định hoặc chọn BST cụ thể",
           "imgKey": "b02_bst",
-          "scrollY": 296,
+          "scrollY": 0,
           "hs": {
             "x": 20,
             "y": 376,
@@ -1193,7 +1193,7 @@
           "title": "Bước 5 — Lưu tin vào BST cụ thể",
           "sub": "Tick vào BST muốn lưu — có thể chọn nhiều BST cùng lúc — rồi bấm Xong",
           "imgKey": "b02_bst",
-          "scrollY": 368,
+          "scrollY": 0,
           "hs": {
             "x": 20,
             "y": 448,
@@ -1231,7 +1231,7 @@
           "title": "Bước 6 — Tạo Bộ sưu tập mới",
           "sub": "Vào màn hình Bộ sưu tập → bấm 'Tạo bộ sưu tập' → nhập tên → bấm Tạo",
           "imgKey": "b03_tao",
-          "scrollY": 253,
+          "scrollY": 0,
           "hs": {
             "x": 9,
             "y": 333,
@@ -1269,7 +1269,7 @@
           "title": "Bước 7 — Sửa & Xóa Bộ sưu tập",
           "sub": "Bấm giữ vào BST hoặc bấm nút 3 chấm (···) để xem tùy chọn Sửa và Xóa",
           "imgKey": "b04_menu",
-          "scrollY": 339,
+          "scrollY": 70,
           "hs": {
             "x": 17,
             "y": 419,
@@ -1307,7 +1307,7 @@
           "title": "Bước 8 — Sửa Bộ sưu tập",
           "sub": "Màn hình Sửa BST: đổi ảnh đại diện, đổi tên, rồi bấm Lưu để cập nhật",
           "imgKey": "b05_sua",
-          "scrollY": 275,
+          "scrollY": 0,
           "hs": {
             "x": 118,
             "y": 355,
@@ -1383,7 +1383,7 @@
           "title": "Bước 10 — Gỡ tin khỏi Bộ sưu tập",
           "sub": "Bấm giữ vào tin hoặc bấm nút 3 chấm (···) → chọn 'Gỡ bỏ' để xóa tin khỏi BST này",
           "imgKey": "b07_xoa",
-          "scrollY": 621,
+          "scrollY": 15,
           "hs": {
             "x": 18,
             "y": 701,
@@ -1421,7 +1421,7 @@
           "title": "Bước 11 — Ghi chú và tải ảnh cho tin đã lưu",
           "sub": "Màn hình Ghi chú: nhập text, tải tối đa 6 ảnh (rất hữu ích khi đi khảo sát), rồi bấm Lưu",
           "imgKey": "b08_ghi",
-          "scrollY": 26,
+          "scrollY": 0,
           "hs": {
             "x": 3,
             "y": 106,
@@ -1459,12 +1459,12 @@
           "title": "Bước 12 — Xem tab Đã lưu trong Kho tài nguyên",
           "sub": "Tab Đã lưu trong Kho tài nguyên hiển thị tất cả tin đã bấm lưu — toàn bộ, không phân BST",
           "imgKey": "b09_daluu",
-          "scrollY": 64,
+          "scrollY": 0,
           "hs": {
             "x": 232,
             "y": 138,
-            "w": 138,
-            "h": 41
+            "w": 150,
+            "h": 55
           },
           "ttPos": "left",
           "ttTitle": "Tab Đã lưu",
