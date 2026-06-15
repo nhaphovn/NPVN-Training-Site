@@ -118,7 +118,9 @@ function patchPreviewWithBlobUrl(moduleId, key, url) {
 }
 
 // ── 3. Nút "🚀 Lưu lên site" ────────────────────────────────────────
+// Skip injection if the native #btn-publish already exists in the HTML
 function injectSaveButton() {
+  if (document.getElementById('btn-publish')) return; // native button handles this
   const exportBtn = document.getElementById('btn-export-zip') ||
                     document.querySelector('[id*="export"]') ||
                     document.querySelector('.btn-primary');
