@@ -4,77 +4,164 @@
   "global": [
     {
       "id": "g001",
-      "kw": ["đăng nhập", "login", "otp", "vào app", "mở app", "đăng nhâp"],
+      "kw": [
+        "đăng nhập",
+        "login",
+        "otp",
+        "vào app",
+        "mở app",
+        "đăng nhâp"
+      ],
       "a": "Mở App Nhà Phố → nhập số điện thoại → nhập mật khẩu → đăng nhập bằng tài khoản khonhapho.com."
     },
     {
       "id": "g002",
-      "kw": ["không nhận được otp", "otp không về", "otp lâu", "chờ otp mãi", "otp không nhận"],
+      "kw": [
+        "không nhận được otp",
+        "otp không về",
+        "otp lâu",
+        "chờ otp mãi",
+        "otp không nhận"
+      ],
       "a": "Kiểm tra sóng điện thoại và chờ 60 giây trước khi thử lại.\n\nNếu vẫn không nhận được OTP, liên hệ Ban Công nghệ Tập đoàn hoặc Thư ký để được hỗ trợ."
     },
     {
       "id": "g003",
-      "kw": ["app nhà phố là gì", "dùng để làm gì", "nhà phố việt nam", "giới thiệu app"],
+      "kw": [
+        "app nhà phố là gì",
+        "dùng để làm gì",
+        "nhà phố việt nam",
+        "giới thiệu app"
+      ],
       "a": "App Nhà Phố Việt Nam là nền tảng BĐS nội bộ của Tập đoàn Nhà Phố — dùng để đăng tin, tìm hàng, quản lý kho hàng và tương tác nhân sự."
     },
     {
       "id": "g004",
-      "kw": ["bật thông báo", "push notification", "thông báo không về", "không nhận thông báo", "tắt thông báo"],
+      "kw": [
+        "bật thông báo",
+        "push notification",
+        "thông báo không về",
+        "không nhận thông báo",
+        "tắt thông báo"
+      ],
       "a": "Vào Cài đặt điện thoại → Ứng dụng → App Nhà Phố → Thông báo → Bật tất cả.\n\nBật thông báo để không bỏ lỡ lịch hẹn và kết quả duyệt tin."
     },
     {
       "id": "g005",
-      "kw": ["hotline", "hỗ trợ", "liên hệ", "support", "1900 0266", "gọi hỗ trợ"],
+      "kw": [
+        "hotline",
+        "hỗ trợ",
+        "liên hệ",
+        "support",
+        "1900 0266",
+        "gọi hỗ trợ"
+      ],
       "a": "Liên hệ Ban Công nghệ Tập đoàn để phản ánh các vấn đề kỹ thuật.\n\nHoặc liên hệ các Thư ký để được hỗ trợ nhanh nhất."
     },
     {
       "id": "g006",
-      "kw": ["quên mật khẩu", "đổi mật khẩu", "reset password", "không vào được"],
+      "kw": [
+        "quên mật khẩu",
+        "đổi mật khẩu",
+        "reset password",
+        "không vào được"
+      ],
       "a": "App Nhà Phố đăng nhập bằng SĐT + mật khẩu.\n\nQuên mật khẩu: nhập SĐT → nhận OTP → đặt mật khẩu mới.\nKhông vào được, liên hệ Ban Công nghệ hoặc Thư ký để hỗ trợ."
     },
     {
       "id": "g007",
-      "kw": ["tài khoản bị khóa", "tài khoản lỗi", "bị khóa tài khoản"],
+      "kw": [
+        "tài khoản bị khóa",
+        "tài khoản lỗi",
+        "bị khóa tài khoản"
+      ],
       "a": "Liên hệ Ban Công nghệ Tập đoàn để phản ánh các vấn đề kỹ thuật.\n\nHoặc liên hệ các Thư ký để được hỗ trợ nhanh nhất."
     },
     {
       "id": "g008",
-      "kw": ["avatar", "ảnh đại diện", "đổi ảnh", "cập nhật thông tin cá nhân", "thông tin tài khoản"],
+      "kw": [
+        "avatar",
+        "ảnh đại diện",
+        "đổi ảnh",
+        "cập nhật thông tin cá nhân",
+        "thông tin tài khoản"
+      ],
       "a": "Bấm avatar góc phải trang chủ → Tài khoản cá nhân → chỉnh sửa thông tin và ảnh đại diện."
     },
     {
       "id": "g009",
-      "kw": ["hv được xem gì", "học viên quyền hạn", "chuyên viên quyền", "giới hạn tài khoản", "hạn mức xem"],
+      "kw": [
+        "hv được xem gì",
+        "học viên quyền hạn",
+        "chuyên viên quyền",
+        "giới hạn tài khoản",
+        "hạn mức xem"
+      ],
       "a": "Phân quyền xem kho dựa theo số buổi điểm danh QR:\n• HV 0–5 buổi: rất hạn chế hoặc không xem được\n• HV 6+ buổi: xem tin dưới 9 tỷ\n• CV 12+ buổi: xem toàn bộ kho"
     },
     {
       "id": "g010",
-      "kw": ["tải app", "cài app", "download app", "cài đặt app"],
+      "kw": [
+        "tải app",
+        "cài app",
+        "download app",
+        "cài đặt app"
+      ],
       "a": "Tải App Nhà Phố trên App Store (iOS) hoặc Google Play (Android) — tìm 'Nhà Phố Việt Nam'."
     },
     {
       "id": "g011",
-      "kw": ["điểm danh", "check-in", "qr check in", "quét qr buổi học", "điểm danh buổi học", "điểm danh họp"],
+      "kw": [
+        "điểm danh",
+        "check-in",
+        "qr check in",
+        "quét qr buổi học",
+        "điểm danh buổi học",
+        "điểm danh họp"
+      ],
       "a": "Quét mã QR buổi học hoặc buổi họp để điểm danh — hệ thống cộng dồn số buổi tự động.\nMốc 6 buổi: xem được kho BĐS dưới 9 tỷ. Mốc 12 buổi: xem toàn bộ kho."
     },
     {
       "id": "g012",
-      "kw": ["hv cv khác nhau", "học viên chuyên viên", "hv là gì", "cv là gì", "vai trò", "chức danh"],
+      "kw": [
+        "hv cv khác nhau",
+        "học viên chuyên viên",
+        "hv là gì",
+        "cv là gì",
+        "vai trò",
+        "chức danh"
+      ],
       "a": "HV (Học viên): thành viên mới đang đào tạo, quyền xem kho hạn chế theo số buổi học.\nCV (Chuyên viên): môi giới chính thức, đủ 12 buổi điểm danh, xem toàn bộ kho tài nguyên.\nĐC (Đầu chủ): ký hợp đồng với chủ nhà, đăng tin và quản lý kho cá nhân."
     },
     {
       "id": "g013",
-      "kw": ["bao nhiêu buổi học", "mấy buổi học", "điều kiện xem kho", "mở khóa kho", "kho bị khóa"],
+      "kw": [
+        "bao nhiêu buổi học",
+        "mấy buổi học",
+        "điều kiện xem kho",
+        "mở khóa kho",
+        "kho bị khóa"
+      ],
       "a": "Kho tài nguyên mở khóa theo số buổi điểm danh QR:\n• 0–5 buổi: không xem hoặc rất hạn chế\n• 6+ buổi: xem tin dưới 9 tỷ\n• 12+ buổi: xem toàn bộ kho\nĐiểm danh mỗi buổi học và buổi họp để tích lũy."
     },
     {
       "id": "g014",
-      "kw": ["báo cáo dẫn khách", "báo cáo xem nhà", "gửi báo cáo", "report dẫn khách"],
+      "kw": [
+        "báo cáo dẫn khách",
+        "báo cáo xem nhà",
+        "gửi báo cáo",
+        "report dẫn khách"
+      ],
       "a": "Vào trang chi tiết tin → bấm icon Báo cáo dẫn khách → điền tên khách, CCCD khách, ngày dẫn, kết quả → bấm Gửi.\nTên và CCCD phải trùng với khách đã tạo trong Quản lý khách để hệ thống tự khớp."
     },
     {
       "id": "g015",
-      "kw": ["tìm kiếm trong app", "search app", "thanh tìm kiếm", "từ khóa tìm kiếm"],
+      "kw": [
+        "tìm kiếm trong app",
+        "search app",
+        "thanh tìm kiếm",
+        "từ khóa tìm kiếm"
+      ],
       "a": "Mọi thanh tìm kiếm trong App đều tự động cắt bỏ dấu cách đầu/cuối và khoảng trắng thừa — không cần nhập chính xác từng ký tự."
     }
   ],
@@ -82,642 +169,1449 @@
     "dang_tin": [
       {
         "id": "dt001",
-        "kw": ["đăng tin ở đâu", "tìm nút đăng tin", "nút đăng tin", "vào đăng tin", "mở form đăng tin"],
+        "kw": [
+          "đăng tin ở đâu",
+          "tìm nút đăng tin",
+          "nút đăng tin",
+          "vào đăng tin",
+          "mở form đăng tin"
+        ],
         "a": "Hàng icon đầu trang chủ — icon thứ 4 từ trái là Đăng tin (hình tờ giấy có dấu +).\n\nCũng có nút Đăng tin trong màn hình Kho tài nguyên góc trên phải.",
-        "steps": [1]
+        "steps": [
+          1
+        ]
       },
       {
         "id": "dt002",
-        "kw": ["nhân bản", "copy tin", "sao chép tin", "chọn tin cũ", "nhân bản tin"],
+        "kw": [
+          "nhân bản",
+          "copy tin",
+          "sao chép tin",
+          "chọn tin cũ",
+          "nhân bản tin"
+        ],
         "a": "Ngay khi mở form đăng tin, bấm nút 'Chọn tin' (màu xanh góc trên phải) → chọn tin cũ để copy toàn bộ thông tin.\n\nNhân bản tiết kiệm 80% thời gian khi đăng nhiều tin cùng loại và khu vực.",
-        "steps": [2]
+        "steps": [
+          2
+        ]
       },
       {
         "id": "dt003",
-        "kw": ["loại hình", "thổ cư", "chung cư", "dự án", "đặc điểm bđs", "chọn loại hình"],
+        "kw": [
+          "loại hình",
+          "thổ cư",
+          "chung cư",
+          "dự án",
+          "đặc điểm bđs",
+          "chọn loại hình"
+        ],
         "a": "Chọn Loại hình (Thổ cư / Chung cư / Dự án) trước, rồi mới chọn Đặc điểm chi tiết bên dưới.\n\nLoại hình quyết định toàn bộ thông số nhà xuất hiện — KHÔNG thể thay đổi sau khi tin được duyệt.",
-        "steps": [3]
+        "steps": [
+          3
+        ]
       },
       {
         "id": "dt004",
-        "kw": ["không sửa được", "không thay đổi được", "sau khi duyệt không sửa", "trường nào không sửa"],
+        "kw": [
+          "không sửa được",
+          "không thay đổi được",
+          "sau khi duyệt không sửa",
+          "trường nào không sửa"
+        ],
         "a": "Những trường KHÔNG sửa được sau khi tin được duyệt: Loại hình, Đặc điểm, Loại hợp đồng (ĐC1/ĐC2/ĐC1A), Serial sổ, SĐT chủ nhà."
       },
       {
         "id": "dt005",
-        "kw": ["nhà trong ngõ", "địa chỉ ngõ", "địa chỉ hẻm", "cú pháp ngõ", "nhập địa chỉ ngõ"],
+        "kw": [
+          "nhà trong ngõ",
+          "địa chỉ ngõ",
+          "địa chỉ hẻm",
+          "cú pháp ngõ",
+          "nhập địa chỉ ngõ"
+        ],
         "a": "Nhà trong ngõ dùng cú pháp: Ngõ + số ngõ + Tên đường.\n\nVí dụ: nhập 'Ngõ 107 Trần Khát Chân' vào ô 'Nhập ngõ, hẻm, số nhà'.",
-        "steps": [4, 5]
+        "steps": [
+          4,
+          5
+        ]
       },
       {
         "id": "dt006",
-        "kw": ["chọn quận", "chọn phường", "dropdown địa chỉ", "dropdown tự lọc", "chọn đường phố"],
+        "kw": [
+          "chọn quận",
+          "chọn phường",
+          "dropdown địa chỉ",
+          "dropdown tự lọc",
+          "chọn đường phố"
+        ],
         "a": "Chọn từ trên xuống: Thành phố → Quận/Huyện → Phường → Đường/Phố.\n\nDropdown tự lọc — phải chọn cấp trên trước, cấp dưới mới cập nhật theo.",
-        "steps": [4]
+        "steps": [
+          4
+        ]
       },
       {
         "id": "dt007",
-        "kw": ["diện tích sổ thực tế", "diện tích khác nhau", "dấu gạch chéo diện tích", "sổ và thực tế"],
+        "kw": [
+          "diện tích sổ thực tế",
+          "diện tích khác nhau",
+          "dấu gạch chéo diện tích",
+          "sổ và thực tế"
+        ],
         "a": "Nếu diện tích sổ và thực tế khác nhau, dùng dấu / (slash).\n\nVí dụ: nhập '34/78' = sổ 34m² nhưng thực tế sử dụng 78m².",
-        "steps": [6]
+        "steps": [
+          6
+        ]
       },
       {
         "id": "dt008",
-        "kw": ["nhà cấp 4", "c4", "nhập tầng cấp 4", "số tầng đặc biệt", "đất không có tầng"],
+        "kw": [
+          "nhà cấp 4",
+          "c4",
+          "nhập tầng cấp 4",
+          "số tầng đặc biệt",
+          "đất không có tầng"
+        ],
         "a": "Nhà cấp 4: nhập 'c4' vào ô số tầng.",
-        "steps": [6]
+        "steps": [
+          6
+        ]
       },
       {
         "id": "dt009",
-        "kw": ["hoa hồng bao nhiêu", "phần trăm hoa hồng", "điền hoa hồng"],
+        "kw": [
+          "hoa hồng bao nhiêu",
+          "phần trăm hoa hồng",
+          "điền hoa hồng"
+        ],
         "a": "Điền % hoa hồng bạn cam kết cho chuyên viên dẫn khách thành công.\n\nHoa hồng rõ ràng và hấp dẫn giúp thu hút chuyên viên tích cực hơn.",
-        "steps": [7]
+        "steps": [
+          7
+        ]
       },
       {
         "id": "dt010",
-        "kw": ["dc1 dc2 dc1a", "loại hợp đồng đăng tin", "hợp đồng dc"],
+        "kw": [
+          "dc1 dc2 dc1a",
+          "loại hợp đồng đăng tin",
+          "hợp đồng dc"
+        ],
         "a": "ĐC = Đầu Chủ (hợp đồng ký với chủ nhà):\n• ĐC1: ký trực tiếp với chủ nhà / người có quyền pháp lý\n• ĐC2: ký với người đại diện (không phải chủ nhà trực tiếp)\n• ĐC1A: ký lại với chủ nhà đã có ĐC khác, nhưng giá tốt hơn\n\nChọn đúng loại theo thực tế ký kết. Loại hợp đồng KHÔNG sửa được sau khi duyệt.",
-        "steps": [7]
+        "steps": [
+          7
+        ]
       },
       {
         "id": "dt011",
-        "kw": ["cầu đối tác", "20 tỷ đối tác", "hoa hồng đối tác"],
+        "kw": [
+          "cầu đối tác",
+          "20 tỷ đối tác",
+          "hoa hồng đối tác"
+        ],
         "a": "Cầu đối tác chỉ áp dụng BĐS từ 20 tỷ trở lên — điền % chia cho môi giới đối tác nếu có nhu cầu hợp tác.",
-        "steps": [7]
+        "steps": [
+          7
+        ]
       },
       {
         "id": "dt012",
-        "kw": ["tiêu đề tự động", "tiêu đề tin đăng", "nhập nội dung mô tả"],
+        "kw": [
+          "tiêu đề tự động",
+          "tiêu đề tin đăng",
+          "nhập nội dung mô tả"
+        ],
         "a": "Hệ thống tự sinh tiêu đề từ thông tin đã nhập — có thể chỉnh sửa nếu muốn.\n\nPhần Nội dung: mô tả ưu điểm BĐS (vị trí, tiện ích, tình trạng nhà) — 3-5 câu rõ ràng là đủ.",
-        "steps": [8]
+        "steps": [
+          8
+        ]
       },
       {
         "id": "dt013",
-        "kw": ["serial sổ", "số sổ đỏ", "mã số sổ", "bảo mật serial sổ"],
+        "kw": [
+          "serial sổ",
+          "số sổ đỏ",
+          "mã số sổ",
+          "bảo mật serial sổ"
+        ],
         "a": "Serial sổ là mã số trên sổ đỏ/hồng — được công ty bảo mật hoàn toàn, chuyên viên không thấy.\n\nĐiền đúng để tránh bị từ chối duyệt. Serial sổ KHÔNG sửa được sau duyệt.",
-        "steps": [9]
+        "steps": [
+          9
+        ]
       },
       {
         "id": "dt014",
-        "kw": ["sdt chủ nhà", "số điện thoại chủ nhà bảo mật", "chuyên viên thấy sdt không", "lộ thông tin"],
+        "kw": [
+          "sdt chủ nhà",
+          "số điện thoại chủ nhà bảo mật",
+          "chuyên viên thấy sdt không",
+          "lộ thông tin"
+        ],
         "a": "SĐT chủ nhà được bảo mật hoàn toàn — chuyên viên không thấy.\n\nĐây là thông tin nội bộ để công ty xác minh pháp lý và bảo vệ quyền lợi của bạn.",
-        "steps": [9]
+        "steps": [
+          9
+        ]
       },
       {
         "id": "dt015",
-        "kw": ["upload ảnh", "tối đa bao nhiêu ảnh", "giới hạn ảnh", "upload video"],
+        "kw": [
+          "upload ảnh",
+          "tối đa bao nhiêu ảnh",
+          "giới hạn ảnh",
+          "upload video"
+        ],
         "a": "Ảnh thực tế: tối đa 12 ảnh. Video: tối đa 4 file (≤50MB/file).\n\nẢnh pháp lý: tối đa 20. Audio ghi âm: tối đa 4 file.",
-        "steps": [10]
+        "steps": [
+          10
+        ]
       },
       {
         "id": "dt016",
-        "kw": ["chờ dấu tích", "upload xong chưa", "thoát sớm mất ảnh", "ảnh bị mất"],
+        "kw": [
+          "chờ dấu tích",
+          "upload xong chưa",
+          "thoát sớm mất ảnh",
+          "ảnh bị mất"
+        ],
         "a": "Chờ dấu ✓ xuất hiện bên cạnh mỗi file trước khi thoát khỏi màn hình.\n\nThoát sớm khi ảnh đang upload sẽ làm mất ảnh đó.",
-        "steps": [10]
+        "steps": [
+          10
+        ]
       },
       {
         "id": "dt017",
-        "kw": ["bao lâu được duyệt", "thời gian duyệt tin", "khi nào tin được duyệt", "24 giờ duyệt", "duyệt hàng bao lâu", "hàng bao lâu lên", "bao lâu lên kho", "khi nào lên kho"],
+        "kw": [
+          "bao lâu được duyệt",
+          "thời gian duyệt tin",
+          "khi nào tin được duyệt",
+          "24 giờ duyệt",
+          "duyệt hàng bao lâu",
+          "hàng bao lâu lên",
+          "bao lâu lên kho",
+          "khi nào lên kho"
+        ],
         "a": "Tin được kiểm duyệt trong 24h sau khi bấm Đăng tin.\n\nBạn nhận push notification khi duyệt (tin live) hoặc từ chối (kèm lý do). Quá 24h liên hệ bộ phận hỗ trợ duyệt hàng.",
-        "steps": [11]
+        "steps": [
+          11
+        ]
       },
       {
         "id": "dt018",
-        "kw": ["tin bị từ chối", "lý do từ chối", "tại sao từ chối tin"],
+        "kw": [
+          "tin bị từ chối",
+          "lý do từ chối",
+          "tại sao từ chối tin"
+        ],
         "a": "Vào Kho cá nhân → tab Từ chối → bấm 'Xem lý do' để đọc phản hồi từ bộ phận kiểm duyệt.\n\nSửa đúng điểm bị trả → bấm 'Nộp lại' để vào hàng đợi duyệt lại."
       },
       {
         "id": "dt019",
-        "kw": ["sau khi bấm đăng tin", "tin chờ duyệt", "trạng thái tin", "tin live chưa"],
+        "kw": [
+          "sau khi bấm đăng tin",
+          "tin chờ duyệt",
+          "trạng thái tin",
+          "tin live chưa"
+        ],
         "a": "Sau khi bấm Đăng tin, tin chuyển sang 'Chờ duyệt' ngay — chưa live trên kho.\n\nTin được live sau khi qua kiểm duyệt trong 24h.",
-        "steps": [11]
+        "steps": [
+          11
+        ]
       },
       {
         "id": "dt020",
-        "kw": ["loại pháp lý", "sổ đỏ sổ hồng", "chọn pháp lý"],
+        "kw": [
+          "loại pháp lý",
+          "sổ đỏ sổ hồng",
+          "chọn pháp lý"
+        ],
         "a": "Chọn đúng loại pháp lý thực tế: Sổ đỏ, Sổ hồng, hoặc Giấy tờ khác.\n\nPháp lý ảnh hưởng đến độ tin cậy và khả năng khách quan tâm tin đăng.",
-        "steps": [9]
+        "steps": [
+          9
+        ]
       }
     ],
     "loc_kho": [
       {
         "id": "lk001",
-        "kw": ["vào kho tài nguyên", "kho tài nguyên ở đâu", "tìm kho", "mở kho tài nguyên", "xem kho tài nguyên", "truy cập kho tài nguyên", "kho tài nguyên menu", "kho tài nguyên cá nhân"],
+        "kw": [
+          "vào kho tài nguyên",
+          "kho tài nguyên ở đâu",
+          "tìm kho",
+          "mở kho tài nguyên",
+          "xem kho tài nguyên",
+          "truy cập kho tài nguyên",
+          "kho tài nguyên menu",
+          "kho tài nguyên cá nhân"
+        ],
         "a": "Hàng icon đầu trang chủ → bấm 'Lọc kho' hoặc 'Kho tài nguyên' để vào.",
-        "steps": [1]
+        "steps": [
+          1
+        ]
       },
       {
         "id": "lk002",
-        "kw": ["hv thấy tin nào", "học viên xem được tin nào", "dưới 35 tỷ", "giới hạn kho hv"],
+        "kw": [
+          "hv thấy tin nào",
+          "học viên xem được tin nào",
+          "dưới 35 tỷ",
+          "giới hạn kho hv"
+        ],
         "a": "Phân quyền xem kho theo số buổi điểm danh QR:\n• HV 6+ buổi: xem tin dưới 9 tỷ\n• CV 12+ buổi: xem toàn bộ kho\nĐiểm danh đủ buổi → tự động mở khóa kho theo cấp.",
-        "steps": [1]
+        "steps": [
+          1
+        ]
       },
       {
         "id": "lk003",
-        "kw": ["tab danh sách", "xem dạng bảng", "bảng dữ liệu kho", "mặc định kho"],
+        "kw": [
+          "tab danh sách",
+          "xem dạng bảng",
+          "bảng dữ liệu kho",
+          "mặc định kho"
+        ],
         "a": "Tab Danh sách (tab đầu tiên) hiển thị tin dạng bảng ngang — mỗi hàng là 1 tin đăng.\n\nMặc định sắp xếp theo Tin nổi bật.",
-        "steps": [2]
+        "steps": [
+          2
+        ]
       },
       {
         "id": "lk004",
-        "kw": ["vuốt ngang kho", "kéo sang phải kho", "xem cột giá", "cột ẩn bên phải"],
+        "kw": [
+          "vuốt ngang kho",
+          "kéo sang phải kho",
+          "xem cột giá",
+          "cột ẩn bên phải"
+        ],
         "a": "Đặt ngón tay lên bảng dữ liệu → kéo sang phải để thấy cột Giá, Tr/m², Đầu chủ, SĐT.\n\nVị trí tối ưu: kéo đến khi thấy Địa chỉ + Thông số + Giá vừa đủ 1 màn hình.",
-        "steps": [3, 4]
+        "steps": [
+          3,
+          4
+        ]
       },
       {
         "id": "lk005",
-        "kw": ["ẩn cột", "tùy chỉnh cột", "toggle cột", "bật tắt cột kho"],
+        "kw": [
+          "ẩn cột",
+          "tùy chỉnh cột",
+          "toggle cột",
+          "bật tắt cột kho"
+        ],
         "a": "Bấm nút 'Ẩn cột' trong toolbar (icon mắt gạch chéo) → toggle xanh = hiện / toggle xám = ẩn.\n\nThay đổi áp dụng ngay. Bấm 'Đặt lại' để khôi phục cài đặt gốc.",
-        "steps": [5, 6]
+        "steps": [
+          5,
+          6
+        ]
       },
       {
         "id": "lk006",
-        "kw": ["tab đã lưu kho", "tin đã lưu kho tài nguyên", "bookmark kho"],
+        "kw": [
+          "tab đã lưu kho",
+          "tin đã lưu kho tài nguyên",
+          "bookmark kho"
+        ],
         "a": "Tab thứ 3 trong Kho tài nguyên — hiển thị tất cả tin bạn đã bấm lưu (icon 🔖 đỏ).\n\nKhác với màn hình Bộ sưu tập: Tab Đã lưu là tổng hợp, không phân loại theo BST.",
-        "steps": [7]
+        "steps": [
+          7
+        ]
       },
       {
         "id": "lk007",
-        "kw": ["tab chi tiết kho", "feed kho", "lướt feed kho", "xem ảnh tin kho"],
+        "kw": [
+          "tab chi tiết kho",
+          "feed kho",
+          "lướt feed kho",
+          "xem ảnh tin kho"
+        ],
         "a": "Tab Chi tiết (tab thứ 2) hiển thị tin dạng feed cuộn — xem ảnh đẹp và thông tin đầy đủ từng căn.\n\nTin nổi bật nhất (nhiều tương tác) lên đầu feed.",
-        "steps": [8]
+        "steps": [
+          8
+        ]
       },
       {
         "id": "lk008",
-        "kw": ["bộ lọc kho", "lọc kho tài nguyên", "mở lọc", "panel lọc kho"],
+        "kw": [
+          "bộ lọc kho",
+          "lọc kho tài nguyên",
+          "mở lọc",
+          "panel lọc kho"
+        ],
         "a": "Bấm nút 'Lọc' (icon phễu, nút đầu tiên bên trái toolbar) → panel lọc mở ra.\n\nCó thể lọc: Hiện trạng, Loại hình, Tỉnh/TP, Quận, Đường, Giá, Đặc điểm, Chi nhánh, Phòng ban.",
-        "steps": [9]
+        "steps": [
+          9
+        ]
       },
       {
         "id": "lk009",
-        "kw": ["lọc theo quận", "lọc địa chỉ kho", "chọn tỉnh quận", "dropdown lọc địa chỉ"],
+        "kw": [
+          "lọc theo quận",
+          "lọc địa chỉ kho",
+          "chọn tỉnh quận",
+          "dropdown lọc địa chỉ"
+        ],
         "a": "Chọn từ trên xuống: Tỉnh/TP → Quận/Huyện → Đường/Phố.\n\nKhông bỏ qua cấp trên rồi chọn cấp dưới — dropdown tự lọc theo thứ tự.",
-        "steps": [10]
+        "steps": [
+          10
+        ]
       },
       {
         "id": "lk010",
-        "kw": ["lọc chi nhánh", "xem hàng team", "xem hàng chi nhánh", "chi nhánh mặc định"],
+        "kw": [
+          "lọc chi nhánh",
+          "xem hàng team",
+          "xem hàng chi nhánh",
+          "chi nhánh mặc định"
+        ],
         "a": "Để trống Chi nhánh = xem toàn công ty. Chọn chi nhánh cụ thể = chỉ xem hàng của chi nhánh đó.",
-        "steps": [11]
+        "steps": [
+          11
+        ]
       },
       {
         "id": "lk011",
-        "kw": ["lọc phòng ban", "lọc cá nhân", "tài khoản cụ thể kho", "áp dụng lọc"],
+        "kw": [
+          "lọc phòng ban",
+          "lọc cá nhân",
+          "tài khoản cụ thể kho",
+          "áp dụng lọc"
+        ],
         "a": "Sau khi chọn Chi nhánh, lọc tiếp theo Phòng ban hoặc gõ tên tài khoản cụ thể.\n\nBấm nút Lọc màu xanh cuối màn hình để áp dụng. Bấm Đặt lại để xóa toàn bộ tiêu chí.",
-        "steps": [12]
+        "steps": [
+          12
+        ]
       },
       {
         "id": "lk012",
-        "kw": ["hiện trạng màu", "bán mạnh hạ chào", "tạm dừng đã bán", "màu trạng thái tin"],
+        "kw": [
+          "hiện trạng màu",
+          "bán mạnh hạ chào",
+          "tạm dừng đã bán",
+          "màu trạng thái tin"
+        ],
         "a": "Cột Hiện trạng trong bảng hiển thị trạng thái BĐS: Bán mạnh, Hạ chào, Tạm dừng, Đã bán. Màu sắc cụ thể tùy theo giao diện App hiện tại."
       },
       {
         "id": "lk013",
-        "kw": ["đặt lịch từ kho", "icon lịch danh sách", "đặt hẹn từ kho"],
+        "kw": [
+          "đặt lịch từ kho",
+          "icon lịch danh sách",
+          "đặt hẹn từ kho"
+        ],
         "a": "Trong Tab Danh sách, bấm icon ⏰ ở cột Đặt lịch của tin muốn hẹn → form đặt lịch mở ra với thông tin BĐS sẵn sàng."
       },
       {
         "id": "lk014",
-        "kw": ["lưu tin kho", "icon bookmark danh sách", "bấm lưu kho"],
+        "kw": [
+          "lưu tin kho",
+          "icon bookmark danh sách",
+          "bấm lưu kho"
+        ],
         "a": "Cột đầu tiên bên trái trong Tab Danh sách là icon 🔖 xám — bấm để lưu, icon chuyển đỏ ngay lập tức.\n\nTin lưu xuất hiện trong Tab Đã lưu và trong màn hình Bộ sưu tập."
       },
       {
         "id": "lk015",
-        "kw": ["ghi chú kho", "icon ghi chú g.chú", "ghi chú tin trong kho"],
+        "kw": [
+          "ghi chú kho",
+          "icon ghi chú g.chú",
+          "ghi chú tin trong kho"
+        ],
         "a": "Cột G.Chú chỉ dùng được khi tin đã lưu (icon 🔖 đỏ).\n\nBấm icon G.Chú → nhập text + tải ảnh (tối đa 6) → bấm Lưu. Icon cam = đã có ghi chú."
       }
     ],
     "bo_suu_tap": [
       {
         "id": "bst001",
-        "kw": ["lưu tin bst", "bấm lưu", "cách lưu tin", "lưu vào bộ sưu tập"],
+        "kw": [
+          "lưu tin bst",
+          "bấm lưu",
+          "cách lưu tin",
+          "lưu vào bộ sưu tập"
+        ],
         "a": "Từ Tab Danh sách: bấm icon 🔖 ở cột đầu → icon chuyển đỏ = đã lưu.\n\nTừ Tab Chi tiết (feed): bấm icon 🔖 trên card → popup chọn Bộ sưu tập xuất hiện.",
-        "steps": [1, 3]
+        "steps": [
+          1,
+          3
+        ]
       },
       {
         "id": "bst002",
-        "kw": ["bỏ lưu tin", "hủy lưu", "xóa khỏi lưu", "unmark lưu"],
+        "kw": [
+          "bỏ lưu tin",
+          "hủy lưu",
+          "xóa khỏi lưu",
+          "unmark lưu"
+        ],
         "a": "Bấm lại icon đỏ 🔖 để bỏ lưu — tin bị xóa khỏi TẤT CẢ bộ sưu tập ngay lập tức.\n\nKhác với 'Gỡ bỏ' (chỉ xóa khỏi 1 BST cụ thể).",
-        "steps": [1]
+        "steps": [
+          1
+        ]
       },
       {
         "id": "bst003",
-        "kw": ["ghi chú tin đã lưu", "icon ghi chú bst", "thêm ghi chú tin lưu", "g.chú bst"],
+        "kw": [
+          "ghi chú tin đã lưu",
+          "icon ghi chú bst",
+          "thêm ghi chú tin lưu",
+          "g.chú bst"
+        ],
         "a": "Tin phải được lưu (icon đỏ) trước. Bấm icon 🗒 ở cột G.Chú → nhập text + tải tối đa 6 ảnh → bấm Lưu.\n\nIcon cam = đã có ghi chú. Rất hữu ích khi đi khảo sát thực tế.",
-        "steps": [2, 11]
+        "steps": [
+          2,
+          11
+        ]
       },
       {
         "id": "bst004",
-        "kw": ["chọn bộ sưu tập khi lưu", "popup bst", "lưu vào bst nào", "không chọn bst"],
+        "kw": [
+          "chọn bộ sưu tập khi lưu",
+          "popup bst",
+          "lưu vào bst nào",
+          "không chọn bst"
+        ],
         "a": "Sau khi bấm lưu, popup 'Thêm vào bộ sưu tập' xuất hiện.\n\nKhông chọn BST nào = tin vào BST Mặc định. Tick vào BST cụ thể để lưu vào đó.",
-        "steps": [4]
+        "steps": [
+          4
+        ]
       },
       {
         "id": "bst005",
-        "kw": ["lưu nhiều bst", "lưu vào nhiều bộ sưu tập", "một tin nhiều bst", "chọn nhiều bst"],
+        "kw": [
+          "lưu nhiều bst",
+          "lưu vào nhiều bộ sưu tập",
+          "một tin nhiều bst",
+          "chọn nhiều bst"
+        ],
         "a": "Tick chọn nhiều BST trong popup → bấm Xong — tin được lưu vào tất cả BST đã tick cùng lúc.",
-        "steps": [5]
+        "steps": [
+          5
+        ]
       },
       {
         "id": "bst006",
-        "kw": ["tạo bộ sưu tập", "tạo bst mới", "bộ sưu tập mới", "thêm bst", "bộ sưu tập ở đâu", "vào bộ sưu tập", "mở bộ sưu tập", "lưu bộ sưu tập ở đâu"],
+        "kw": [
+          "tạo bộ sưu tập",
+          "tạo bst mới",
+          "bộ sưu tập mới",
+          "thêm bst",
+          "bộ sưu tập ở đâu",
+          "vào bộ sưu tập",
+          "mở bộ sưu tập",
+          "lưu bộ sưu tập ở đâu"
+        ],
         "a": "Bottom nav → tab Bộ sưu tập → cuộn xuống cuối → bấm 'Tạo bộ sưu tập'.\n\nNhập tên BST ngắn gọn theo chủ đề (ví dụ: 'Cầu Giấy 3-5 tỷ') → bấm Tạo.",
-        "steps": [6]
+        "steps": [
+          6
+        ]
       },
       {
         "id": "bst007",
-        "kw": ["xóa bộ sưu tập", "xóa bst", "xóa bst có mất tin không"],
+        "kw": [
+          "xóa bộ sưu tập",
+          "xóa bst",
+          "xóa bst có mất tin không"
+        ],
         "a": "Xóa BST CHỈ xóa BST đó — tin bên trong KHÔNG bị xóa, vẫn còn trong BST Mặc định và các BST khác.\n\nBST Mặc định không thể xóa.",
-        "steps": [7]
+        "steps": [
+          7
+        ]
       },
       {
         "id": "bst008",
-        "kw": ["sửa bst", "đổi tên bst", "bấm giữ bst", "3 chấm bst", "đổi ảnh bst"],
+        "kw": [
+          "sửa bst",
+          "đổi tên bst",
+          "bấm giữ bst",
+          "3 chấm bst",
+          "đổi ảnh bst"
+        ],
         "a": "Bấm giữ vào tên BST ~1 giây HOẶC bấm 3 chấm (···) → chọn 'Sửa bộ sưu tập'.\n\nCó thể đổi tên, đổi ảnh đại diện rồi bấm Lưu.",
-        "steps": [7, 8]
+        "steps": [
+          7,
+          8
+        ]
       },
       {
         "id": "bst009",
-        "kw": ["gỡ bỏ tin bst", "gỡ tin khỏi bst", "xóa tin khỏi bst", "xóa khỏi bộ sưu tập"],
+        "kw": [
+          "gỡ bỏ tin bst",
+          "gỡ tin khỏi bst",
+          "xóa tin khỏi bst",
+          "xóa khỏi bộ sưu tập"
+        ],
         "a": "Bấm giữ tin hoặc bấm 3 chấm (···) → chọn 'Gỡ bỏ'.\n\nGỡ bỏ chỉ xóa tin khỏi BST này — tin vẫn còn trong BST khác và tab Đã lưu.",
-        "steps": [10]
+        "steps": [
+          10
+        ]
       },
       {
         "id": "bst010",
-        "kw": ["sắp xếp tin bst", "lọc sắp xếp bst", "mới nhất cũ nhất bst", "giá thấp nhất"],
+        "kw": [
+          "sắp xếp tin bst",
+          "lọc sắp xếp bst",
+          "mới nhất cũ nhất bst",
+          "giá thấp nhất"
+        ],
         "a": "Trong BST có dropdown sắp xếp ở đầu danh sách: Tin mới nhất | Cũ nhất | Giá cao nhất | Giá thấp nhất.",
-        "steps": [9]
+        "steps": [
+          9
+        ]
       },
       {
         "id": "bst011",
-        "kw": ["bao nhiêu ảnh ghi chú", "ảnh trong ghi chú", "tải ảnh ghi chú bst"],
+        "kw": [
+          "bao nhiêu ảnh ghi chú",
+          "ảnh trong ghi chú",
+          "tải ảnh ghi chú bst"
+        ],
         "a": "Ghi chú hỗ trợ text + tối đa 6 ảnh đính kèm.\n\nChụp ảnh tại chỗ khảo sát + ghi chú ngay → không quên thông tin sau khi về.",
-        "steps": [11]
+        "steps": [
+          11
+        ]
       },
       {
         "id": "bst012",
-        "kw": ["tab đã lưu kho vs bst", "khác nhau giữa đã lưu và bst", "tab đã lưu trong kho"],
+        "kw": [
+          "tab đã lưu kho vs bst",
+          "khác nhau giữa đã lưu và bst",
+          "tab đã lưu trong kho"
+        ],
         "a": "Tab 'Đã lưu' trong Kho tài nguyên = TỔNG HỢP tất cả tin đã lưu, không phân BST.\n\nMàn hình Bộ sưu tập = phân loại theo từng BST cụ thể bạn đã tạo.",
-        "steps": [12]
+        "steps": [
+          12
+        ]
       }
     ],
     "dat_lich_dau_khach": [
       {
         "id": "dl001",
-        "kw": ["đặt lịch dẫn khách", "vào đặt lịch", "icon đặt lịch trang chủ", "mở đặt lịch"],
+        "kw": [
+          "đặt lịch dẫn khách",
+          "vào đặt lịch",
+          "icon đặt lịch trang chủ",
+          "mở đặt lịch"
+        ],
         "a": "Hàng icon tính năng trang chủ → tìm icon Đặt lịch (hình lịch).\n\nHoặc vào trực tiếp từ card tin trong Kho tài nguyên — bấm icon ⏰ ở cột Đặt lịch.",
-        "steps": [1]
+        "steps": [
+          1
+        ]
       },
       {
         "id": "dl002",
-        "kw": ["trạng thái lịch hẹn", "tab lịch hẹn", "chờ duyệt lịch", "xác nhận lịch"],
+        "kw": [
+          "trạng thái lịch hẹn",
+          "tab lịch hẹn",
+          "chờ duyệt lịch",
+          "xác nhận lịch"
+        ],
         "a": "3 tab trạng thái lịch hẹn: Chờ duyệt (chờ đầu chủ xác nhận) | Đã xác nhận | Đã hủy.",
-        "steps": [2]
+        "steps": [
+          2
+        ]
       },
       {
         "id": "dl003",
-        "kw": ["chọn ngày giờ hẹn", "form đặt lịch", "khung giờ dẫn khách", "gửi yêu cầu lịch"],
+        "kw": [
+          "chọn ngày giờ hẹn",
+          "form đặt lịch",
+          "khung giờ dẫn khách",
+          "gửi yêu cầu lịch"
+        ],
         "a": "Chọn ngày trên lịch → chọn khung giờ → thêm ghi chú nếu cần → bấm 'Gửi yêu cầu'.\n\nNên chọn giờ hành chính (8h–17h) để đầu chủ xác nhận nhanh hơn.",
-        "steps": [4]
+        "steps": [
+          4
+        ]
       },
       {
         "id": "dl004",
-        "kw": ["khi nào biết lịch được duyệt", "thông báo lịch xác nhận", "đầu chủ xác nhận chưa"],
+        "kw": [
+          "khi nào biết lịch được duyệt",
+          "thông báo lịch xác nhận",
+          "đầu chủ xác nhận chưa"
+        ],
         "a": "App gửi push notification ngay khi đầu chủ xác nhận hoặc từ chối.\n\nBật thông báo App để không bỏ lỡ — liên hệ đầu chủ trước 1–2 tiếng trước giờ hẹn để xác nhận lại.",
-        "steps": [5]
+        "steps": [
+          5
+        ]
       },
       {
         "id": "dl005",
-        "kw": ["thu hồi lịch", "hủy lịch đã đặt", "cancel lịch dẫn khách"],
+        "kw": [
+          "thu hồi lịch",
+          "hủy lịch đã đặt",
+          "cancel lịch dẫn khách"
+        ],
         "a": "Vào danh sách lịch hẹn → bấm vào lịch cần hủy → bấm 'Thu hồi lịch' → xác nhận.\n\nNên thu hồi trước ít nhất 2 tiếng để đầu chủ kịp chuẩn bị.",
-        "steps": [6]
+        "steps": [
+          6
+        ]
       },
       {
         "id": "dl006",
-        "kw": ["lịch sử lịch hẹn", "xem lại lịch cũ", "lịch sử dẫn khách"],
+        "kw": [
+          "lịch sử lịch hẹn",
+          "xem lại lịch cũ",
+          "lịch sử dẫn khách"
+        ],
         "a": "Tab Lịch sử hiển thị toàn bộ lịch hẹn từ trước — trạng thái: Đã xem, Đã hủy, Không xem được.\n\nDùng bộ lọc ngày để thu hẹp khoảng thời gian cần xem.",
-        "steps": [7]
+        "steps": [
+          7
+        ]
       }
     ],
     "lich_hen_dau_chu": [
       {
         "id": "lhdc001",
-        "kw": ["nhận thông báo lịch hẹn", "chuông lịch hẹn đầu chủ", "yêu cầu hẹn mới"],
+        "kw": [
+          "nhận thông báo lịch hẹn",
+          "chuông lịch hẹn đầu chủ",
+          "yêu cầu hẹn mới"
+        ],
         "a": "App gửi push notification khi chuyên viên đặt lịch dẫn khách xem nhà của bạn.\n\nBấm chuông góc trên phải → bấm thông báo lịch hẹn để vào xem và xử lý.",
-        "steps": [1]
+        "steps": [
+          1
+        ]
       },
       {
         "id": "lhdc002",
-        "kw": ["xác nhận lịch hẹn đầu chủ", "duyệt lịch cho chuyên viên", "đồng ý lịch hẹn"],
+        "kw": [
+          "xác nhận lịch hẹn đầu chủ",
+          "duyệt lịch cho chuyên viên",
+          "đồng ý lịch hẹn"
+        ],
         "a": "Mở danh sách lịch hẹn → bấm vào yêu cầu → kiểm tra ngày giờ và tên chuyên viên → bấm 'Xác nhận' màu xanh.\n\nChuyên viên nhận thông báo ngay sau khi bạn xác nhận.",
-        "steps": [3]
+        "steps": [
+          3
+        ]
       },
       {
         "id": "lhdc003",
-        "kw": ["từ chối lịch hẹn đầu chủ", "không duyệt lịch", "lý do từ chối lịch"],
+        "kw": [
+          "từ chối lịch hẹn đầu chủ",
+          "không duyệt lịch",
+          "lý do từ chối lịch"
+        ],
         "a": "Bấm 'Từ chối' → nhập lý do cụ thể (bận, nhà đang sửa, không phù hợp giờ) → bấm Gửi.\n\nLý do rõ ràng giúp chuyên viên đặt lại lịch phù hợp hơn.",
-        "steps": [4]
+        "steps": [
+          4
+        ]
       },
       {
         "id": "lhdc004",
-        "kw": ["thu hồi lịch đã xác nhận", "đầu chủ hủy lịch", "hủy lịch đã duyệt"],
+        "kw": [
+          "thu hồi lịch đã xác nhận",
+          "đầu chủ hủy lịch",
+          "hủy lịch đã duyệt"
+        ],
         "a": "Vào tab Đã xác nhận → mở chi tiết lịch → bấm 'Thu hồi' → xác nhận hủy.\n\nHệ thống tự gửi thông báo cho chuyên viên ngay — thu hồi sớm nhất có thể để họ kịp thông báo khách.",
-        "steps": [5]
+        "steps": [
+          5
+        ]
       }
     ],
     "khach_can_mua_gap": [
       {
         "id": "kcmg001",
-        "kw": ["tạo khách cần mua gấp", "thêm khách hot", "khách cần mua gấp", "tạo hồ sơ khách gấp"],
+        "kw": [
+          "tạo khách cần mua gấp",
+          "thêm khách hot",
+          "khách cần mua gấp",
+          "tạo hồ sơ khách gấp"
+        ],
         "a": "Bấm icon Khách cần mua gấp trên trang chủ → bấm nút + → điền thông tin.\n\nBắt buộc: tên, SĐT, khu vực mua, loại hình BĐS, ngân sách tối đa.",
-        "steps": [1, 3]
+        "steps": [
+          1,
+          3
+        ]
       },
       {
         "id": "kcmg002",
-        "kw": ["ghim khách", "khách ưu tiên", "pin khách lên đầu"],
+        "kw": [
+          "ghim khách",
+          "khách ưu tiên",
+          "pin khách lên đầu"
+        ],
         "a": "Bấm giữ vào khách ~1 giây HOẶC bấm 3 chấm (···) → chọn 'Ghim'.\n\nKhách ghim xuất hiện đầu danh sách với icon 📌 — chỉ ghim khách thực sự gấp để tác dụng ưu tiên có giá trị.",
-        "steps": [6]
+        "steps": [
+          6
+        ]
       },
       {
         "id": "kcmg003",
-        "kw": ["hold khách", "tạm dừng khách", "khách chưa mua ngay", "ẩn khách"],
+        "kw": [
+          "hold khách",
+          "tạm dừng khách",
+          "khách chưa mua ngay",
+          "ẩn khách"
+        ],
         "a": "Bấm 3 chấm (···) hoặc bấm giữ → chọn 'Hold' → khách chuyển sang trạng thái Hold (ẩn khỏi danh sách chính).\n\nKhi khách liên hệ lại → vào tab Hold → bấm menu → chọn 'Kích hoạt' để đưa về danh sách.",
-        "steps": [7]
+        "steps": [
+          7
+        ]
       },
       {
         "id": "kcmg004",
-        "kw": ["xóa khách gấp", "xóa hồ sơ khách hot"],
+        "kw": [
+          "xóa khách gấp",
+          "xóa hồ sơ khách hot"
+        ],
         "a": "Vào chi tiết khách → bấm Xóa → xác nhận. Hoặc bấm giữ trong danh sách → chọn Xóa.\n\nXóa không khôi phục được — chắc chắn trước khi xác nhận.",
-        "steps": [5]
+        "steps": [
+          5
+        ]
       },
       {
         "id": "kcmg005",
-        "kw": ["sửa thông tin khách gấp", "cập nhật nhu cầu khách", "đổi ngân sách khách"],
+        "kw": [
+          "sửa thông tin khách gấp",
+          "cập nhật nhu cầu khách",
+          "đổi ngân sách khách"
+        ],
         "a": "Bấm vào khách → bấm 'Sửa' (icon bút chì) → chỉnh các trường cần đổi → bấm Lưu.",
-        "steps": [4]
+        "steps": [
+          4
+        ]
       }
     ],
     "kho_ca_nhan": [
       {
         "id": "kcp001",
-        "kw": ["vào kho cá nhân", "quản lý kho đầu chủ", "kho tin cá nhân", "tìm kho cá nhân"],
+        "kw": [
+          "vào kho cá nhân",
+          "quản lý kho đầu chủ",
+          "kho tin cá nhân",
+          "tìm kho cá nhân"
+        ],
         "a": "Sidebar → Quản lý kho hàng → Kho cá nhân.",
-        "steps": [1, 2]
+        "steps": [
+          1,
+          2
+        ]
       },
       {
         "id": "kcp002",
-        "kw": ["4 tab kho cá nhân", "tab trạng thái kho", "các tab kho cá nhân"],
+        "kw": [
+          "4 tab kho cá nhân",
+          "tab trạng thái kho",
+          "các tab kho cá nhân"
+        ],
         "a": "Kho cá nhân có 4 tab: Chờ duyệt | Đã duyệt | Từ chối | Thùng rác.\n\nMỗi tab là 1 trạng thái của tin đăng bạn đã tạo.",
-        "steps": [3]
+        "steps": [
+          3
+        ]
       },
       {
         "id": "kcp003",
-        "kw": ["xem tin chờ duyệt kho", "tin đang chờ kho", "theo dõi duyệt tin"],
+        "kw": [
+          "xem tin chờ duyệt kho",
+          "tin đang chờ kho",
+          "theo dõi duyệt tin"
+        ],
         "a": "Tab Chờ duyệt liệt kê tất cả tin đang trong hàng đợi kiểm duyệt — có thể xem và sửa tin đang chờ.",
-        "steps": [4]
+        "steps": [
+          4
+        ]
       },
       {
         "id": "kcp004",
-        "kw": ["thùng rác kho", "tin đã xóa", "khôi phục tin đã xóa", "xóa vĩnh viễn"],
+        "kw": [
+          "thùng rác kho",
+          "tin đã xóa",
+          "khôi phục tin đã xóa",
+          "xóa vĩnh viễn"
+        ],
         "a": "Tab Thùng rác chứa tin đã xóa.\n\nKhôi phục: bấm vào tin → chọn 'Khôi phục' → tin về Chờ duyệt và cần duyệt lại.\n\nXóa vĩnh viễn: không thể hoàn tác.",
-        "steps": [5]
+        "steps": [
+          5
+        ]
       },
       {
         "id": "kcp005",
-        "kw": ["tin đã duyệt kho", "tin đang live", "sửa tin đã duyệt", "tin active"],
+        "kw": [
+          "tin đã duyệt kho",
+          "tin đang live",
+          "sửa tin đã duyệt",
+          "tin active"
+        ],
         "a": "Tab Đã duyệt: tin đang live trên kho — chuyên viên thấy và có thể đặt lịch xem nhà.\n\nCó thể sửa một số trường, nhưng Loại hình, Pháp lý, Serial sổ KHÔNG sửa được.",
-        "steps": [6]
+        "steps": [
+          6
+        ]
       },
       {
         "id": "kcp006",
-        "kw": ["tin bị từ chối kho", "nộp lại tin", "sửa tin bị từ chối kho cá nhân"],
+        "kw": [
+          "tin bị từ chối kho",
+          "nộp lại tin",
+          "sửa tin bị từ chối kho cá nhân"
+        ],
         "a": "Tab Từ chối → bấm 'Xem lý do' → sửa đúng điểm bị phản hồi → bấm 'Nộp lại'.\n\nTin quay về Chờ duyệt và vào hàng đợi duyệt lại.",
-        "steps": [7]
+        "steps": [
+          7
+        ]
       },
       {
         "id": "kcp007",
-        "kw": ["lọc kho cá nhân", "tìm tin kho cá nhân", "bộ lọc kho riêng"],
+        "kw": [
+          "lọc kho cá nhân",
+          "tìm tin kho cá nhân",
+          "bộ lọc kho riêng"
+        ],
         "a": "Bấm nút Lọc (icon phễu) trong kho cá nhân → lọc theo Loại hình, Địa chỉ, Khoảng giá, Ngày đăng.",
-        "steps": [8]
+        "steps": [
+          8
+        ]
       },
       {
         "id": "kcp008",
-        "kw": ["thống kê lượt xem tin", "tin được xem nhiều không", "theo dõi tin"],
+        "kw": [
+          "thống kê lượt xem tin",
+          "tin được xem nhiều không",
+          "theo dõi tin"
+        ],
         "a": "Bấm vào tin trong kho → xem thống kê: số lượt xem, lượt lưu và số lịch hẹn đã đặt với tin đó.",
-        "steps": [9]
+        "steps": [
+          9
+        ]
       }
     ],
     "kho_hang_tu_do": [
       {
         "id": "khtd001",
-        "kw": ["kho hàng tự do là gì", "kho tự do khác kho tài nguyên", "so sánh hai kho"],
+        "kw": [
+          "kho hàng tự do là gì",
+          "kho tự do khác kho tài nguyên",
+          "so sánh hai kho"
+        ],
         "a": "Kho tài nguyên: hàng nội bộ công ty (có thể đặt lịch, phân quyền chi nhánh).\n\nKho hàng tự do: BĐS công khai toàn hệ thống — browse không giới hạn chi nhánh.",
-        "steps": [1]
+        "steps": [
+          1
+        ]
       },
       {
         "id": "khtd002",
-        "kw": ["lọc kho tự do", "bộ lọc kho hàng tự do", "lọc tìm kiếm kho tự do"],
+        "kw": [
+          "lọc kho tự do",
+          "bộ lọc kho hàng tự do",
+          "lọc tìm kiếm kho tự do"
+        ],
         "a": "Bấm nút Lọc (icon phễu) → chọn Loại hình, Tỉnh/TP, Quận, Đường, Khoảng giá → bấm Lọc màu xanh để áp dụng.",
-        "steps": [3]
+        "steps": [
+          3
+        ]
       },
       {
         "id": "khtd003",
-        "kw": ["panel chi tiết kho tự do", "xem nhanh tin", "bấm vào tin kho tự do"],
+        "kw": [
+          "panel chi tiết kho tự do",
+          "xem nhanh tin",
+          "bấm vào tin kho tự do"
+        ],
         "a": "Bấm vào tin trong danh sách → panel chi tiết trượt ra với ảnh, thông số, giá và SĐT đầu chủ.\n\nTừ panel có thể lưu BST, đặt lịch, xem trang tin đầy đủ.",
-        "steps": [5]
+        "steps": [
+          5
+        ]
       }
     ],
     "ma_gioi_thieu": [
       {
         "id": "mgt001",
-        "kw": ["tạo mã giới thiệu", "mã giới thiệu mới", "referral code"],
+        "kw": [
+          "tạo mã giới thiệu",
+          "mã giới thiệu mới",
+          "referral code"
+        ],
         "a": "Bấm avatar → Quản lý phòng → Tin hoạt động → bấm nút + → nhập tên mã → bấm Lưu.\n\nĐặt tên mã có ý nghĩa (theo khu vực, đợt) để dễ theo dõi sau này.",
-        "steps": [1, 2, 3, 5]
+        "steps": [
+          1,
+          2,
+          3,
+          5
+        ]
       },
       {
         "id": "mgt002",
-        "kw": ["chia sẻ mã giới thiệu", "copy mã referral", "gửi mã cho khách"],
+        "kw": [
+          "chia sẻ mã giới thiệu",
+          "copy mã referral",
+          "gửi mã cho khách"
+        ],
         "a": "Bấm icon chia sẻ bên cạnh mã → copy hoặc gửi trực tiếp qua Zalo/Viber/SMS.",
-        "steps": [4]
+        "steps": [
+          4
+        ]
       },
       {
         "id": "mgt003",
-        "kw": ["xem thống kê mã", "theo dõi mã giới thiệu", "ai đã dùng mã"],
+        "kw": [
+          "xem thống kê mã",
+          "theo dõi mã giới thiệu",
+          "ai đã dùng mã"
+        ],
         "a": "Bấm vào mã trong danh sách → xem chi tiết: ai đã dùng mã, thời gian đăng ký, hoa hồng liên quan.",
-        "steps": [4]
+        "steps": [
+          4
+        ]
       }
     ],
     "quan_ly_khach": [
       {
         "id": "qlk001",
-        "kw": ["vào quản lý khách", "quản lý khách ở đâu", "mở quản lý khách"],
+        "kw": [
+          "vào quản lý khách",
+          "quản lý khách ở đâu",
+          "mở quản lý khách"
+        ],
         "a": "Bấm avatar góc phải → Tài khoản cá nhân → Quản lý khách.\n\nMàn hình danh sách khách mở ra với 2 tab: Đang tìm nhà và Đã mua.",
-        "steps": [1, 2]
+        "steps": [
+          1,
+          2
+        ]
       },
       {
         "id": "qlk002",
-        "kw": ["thêm khách hàng mới", "tạo khách mới ql", "hồ sơ khách mới"],
+        "kw": [
+          "thêm khách hàng mới",
+          "tạo khách mới ql",
+          "hồ sơ khách mới"
+        ],
         "a": "Bấm nút + góc trên phải → form nhập thông tin mở ra.\n\n6 trường bắt buộc: Họ và tên, CMND/CCCD, Năm sinh, Tài chính tối đa (≥ 200 triệu), Thành phố, Quận/Huyện.\nSĐT, loại hình và các tiêu chí khác là tùy chọn.",
-        "steps": [12]
+        "steps": [
+          12
+        ]
       },
       {
         "id": "qlk003",
-        "kw": ["xem hàng phù hợp khách", "hệ thống tự khớp hàng", "match bds cho khách"],
+        "kw": [
+          "xem hàng phù hợp khách",
+          "hệ thống tự khớp hàng",
+          "match bds cho khách"
+        ],
         "a": "Từ chi tiết khách → bấm 'Xem hàng phù hợp' → hệ thống tự tìm BĐS khớp khu vực, loại hình, khoảng giá.\n\nBấm vào BĐS phù hợp → 'Đặt lịch' để hẹn xem nhà ngay từ màn hình này.",
-        "steps": [8, 9]
+        "steps": [
+          8,
+          9
+        ]
       },
       {
         "id": "qlk004",
-        "kw": ["đánh dấu đã mua", "chuyển khách sang đã mua", "khách chốt giao dịch"],
+        "kw": [
+          "đánh dấu đã mua",
+          "chuyển khách sang đã mua",
+          "khách chốt giao dịch"
+        ],
         "a": "Bấm giữ vào khách đang tìm → chọn 'Đánh dấu Đã mua' → khách chuyển sang tab Đã mua.",
-        "steps": [6]
+        "steps": [
+          6
+        ]
       },
       {
         "id": "qlk005",
-        "kw": ["căn đã xem quản lý khách", "đánh dấu đã xem nhà", "tránh dẫn lại căn"],
+        "kw": [
+          "căn đã xem quản lý khách",
+          "đánh dấu đã xem nhà",
+          "tránh dẫn lại căn"
+        ],
         "a": "Trong màn hình hàng phù hợp → bấm 'Đã xem' trên BĐS → ghi vào lịch sử.\n\nGiúp tránh dẫn khách xem lại căn họ đã từ chối.",
-        "steps": [10]
+        "steps": [
+          10
+        ]
       },
       {
         "id": "qlk006",
-        "kw": ["tìm kiếm khách", "tìm khách theo tên sdt", "search khách"],
+        "kw": [
+          "tìm kiếm khách",
+          "tìm khách theo tên sdt",
+          "search khách"
+        ],
         "a": "Bấm ô tìm kiếm phía trên danh sách → nhập tên hoặc SĐT → hệ thống lọc ngay.\n\nBấm 'Lọc nâng cao' để tìm theo khu vực, ngân sách hoặc CV phụ trách.",
-        "steps": [13]
+        "steps": [
+          13
+        ]
       }
     ],
     "thong_bao_vu_chot": [
       {
         "id": "tbvc001",
-        "kw": ["thông báo vụ chốt", "tạo vụ chốt", "báo deal thành công", "công bố deal"],
+        "kw": [
+          "thông báo vụ chốt",
+          "tạo vụ chốt",
+          "báo deal thành công",
+          "công bố deal"
+        ],
         "a": "Bấm avatar → Thông báo vụ chốt → bấm + → điền tên CV, BĐS đã bán, giá chốt, ngày chốt → bấm 'Đăng thông báo'.\n\nToàn bộ team nhận thông báo ngay lập tức.",
-        "steps": [1, 3]
+        "steps": [
+          1,
+          3
+        ]
       },
       {
         "id": "tbvc002",
-        "kw": ["xem danh sách vụ chốt", "xem deal team", "lịch sử vụ chốt"],
+        "kw": [
+          "xem danh sách vụ chốt",
+          "xem deal team",
+          "lịch sử vụ chốt"
+        ],
         "a": "Danh sách vụ chốt liệt kê các deal thành công trong team, sắp theo thời gian mới nhất.\n\nBấm vào từng vụ chốt để xem đầy đủ thông tin, ảnh minh chứng.",
-        "steps": [2]
+        "steps": [
+          2
+        ]
       }
     ],
     "tin_chinh_chu": [
       {
         "id": "tcc001",
-        "kw": ["tin chính chủ là gì", "chính chủ", "tin từ chủ nhà trực tiếp"],
+        "kw": [
+          "tin chính chủ là gì",
+          "chính chủ",
+          "tin từ chủ nhà trực tiếp"
+        ],
         "a": "Tin chính chủ là BĐS do chủ nhà tự đăng, không qua hệ thống hợp đồng Đầu chủ.\n\nĐầu chủ có thể phản hồi hoặc lưu tin chính chủ để theo dõi.",
-        "steps": [2, 3]
+        "steps": [
+          2,
+          3
+        ]
       },
       {
         "id": "tcc002",
-        "kw": ["gửi phản hồi chủ nhà", "liên hệ chủ nhà tin chính chủ", "hỏi chủ nhà"],
+        "kw": [
+          "gửi phản hồi chủ nhà",
+          "liên hệ chủ nhà tin chính chủ",
+          "hỏi chủ nhà"
+        ],
         "a": "Trong trang chi tiết tin → bấm 'Phản hồi' hoặc 'Liên hệ chủ nhà' → nhập câu hỏi ngắn gọn → bấm Gửi.\n\nChủ nhà nhận thông báo và trả lời trong App hoặc qua SĐT liên hệ.",
-        "steps": [8]
+        "steps": [
+          8
+        ]
       },
       {
         "id": "tcc003",
-        "kw": ["lưu tin chính chủ", "bookmark tin chính chủ", "theo dõi tin chính chủ"],
+        "kw": [
+          "lưu tin chính chủ",
+          "bookmark tin chính chủ",
+          "theo dõi tin chính chủ"
+        ],
         "a": "Bấm icon lưu trên tin → xuất hiện trong tab Đã lưu của màn hình Tin chính chủ để theo dõi dễ dàng.",
-        "steps": [4]
+        "steps": [
+          4
+        ]
       },
       {
         "id": "tcc004",
-        "kw": ["lọc tin chính chủ", "tìm tin chính chủ", "bộ lọc chính chủ"],
+        "kw": [
+          "lọc tin chính chủ",
+          "tìm tin chính chủ",
+          "bộ lọc chính chủ"
+        ],
         "a": "Bấm nút Lọc → chọn Tỉnh/TP, Quận/Huyện, Loại hình, Khoảng giá → bấm Lọc để áp dụng.",
-        "steps": [6]
+        "steps": [
+          6
+        ]
       }
     ],
     "chat_nha_pho": [
       {
         "id": "cnp001",
-        "kw": ["vào chat nhà phố", "icon chat", "tìm chat", "mở chat nhà phố", "chat ở đâu", "nhắn tin ở đâu", "icon bong bóng", "chat app nhà phố", "bong bóng chat"],
+        "kw": [
+          "vào chat nhà phố",
+          "icon chat",
+          "tìm chat",
+          "mở chat nhà phố",
+          "chat ở đâu",
+          "nhắn tin ở đâu",
+          "icon bong bóng",
+          "chat app nhà phố",
+          "bong bóng chat"
+        ],
         "a": "Hàng icon tính năng trang chủ → icon bong bóng 💬 là Chat.\n\nBấm để vào danh sách hội thoại — badge đỏ khi có tin chưa đọc.",
-        "steps": [1]
+        "steps": [
+          1
+        ]
       },
       {
         "id": "cnp002",
-        "kw": ["gửi ảnh chat", "đính kèm ảnh chat", "gửi hình nhắn tin", "gửi hình chat", "ảnh trong nhắn tin", "chụp ảnh chat", "đính kèm hình"],
+        "kw": [
+          "gửi ảnh chat",
+          "đính kèm ảnh chat",
+          "gửi hình nhắn tin",
+          "gửi hình chat",
+          "ảnh trong nhắn tin",
+          "chụp ảnh chat",
+          "đính kèm hình"
+        ],
         "a": "Bấm icon + hoặc icon ảnh bên trái ô nhập → chọn 'Thư viện ảnh' hoặc 'Máy ảnh' để chụp trực tiếp.",
-        "steps": [5]
+        "steps": [
+          5
+        ]
       },
       {
         "id": "cnp003",
-        "kw": ["nhóm chat", "chat nhóm", "tab nhóm chat", "xem nhóm", "tạo nhóm chat", "vào nhóm chat", "danh sách nhóm", "tạo nhóm mới"],
+        "kw": [
+          "nhóm chat",
+          "chat nhóm",
+          "tab nhóm chat",
+          "xem nhóm",
+          "tạo nhóm chat",
+          "vào nhóm chat",
+          "danh sách nhóm",
+          "tạo nhóm mới"
+        ],
         "a": "Trong danh sách chat → bấm tab 'Nhóm chat' → xem tất cả nhóm đang tham gia.\n\nBấm nút 'Tạo nhóm' để tạo nhóm mới — bất kỳ ai cũng tạo được. Người tạo nhóm tự động thành quản trị viên.",
-        "steps": [6, 7]
+        "steps": [
+          6,
+          7
+        ]
       },
       {
         "id": "cnp004",
-        "kw": ["kênh thông báo chat", "kênh mặc định", "thông báo công ty chat", "kênh một chiều", "không gửi được trong kênh", "kênh chỉ đọc", "icon loa chat"],
+        "kw": [
+          "kênh thông báo chat",
+          "kênh mặc định",
+          "thông báo công ty chat",
+          "kênh một chiều",
+          "không gửi được trong kênh",
+          "kênh chỉ đọc",
+          "icon loa chat"
+        ],
         "a": "Kênh có icon loa 📢 là kênh thông báo chính thức từ công ty — chỉ đọc, không gửi được.\n\nLiên hệ quản lý trực tiếp nếu cần phản hồi về thông báo.",
-        "steps": [8]
+        "steps": [
+          8
+        ]
       },
       {
         "id": "cnp005",
-        "kw": ["tìm kiếm chat", "tìm tin nhắn cũ", "search trong chat", "tìm người trong chat", "tìm cuộc trò chuyện", "tìm hội thoại"],
+        "kw": [
+          "tìm kiếm chat",
+          "tìm tin nhắn cũ",
+          "search trong chat",
+          "tìm người trong chat",
+          "tìm cuộc trò chuyện",
+          "tìm hội thoại"
+        ],
         "a": "Bấm ô tìm kiếm đầu màn hình → nhập tên người, tên nhóm hoặc từ khóa để lọc hội thoại.",
-        "steps": [9]
+        "steps": [
+          9
+        ]
       },
       {
         "id": "cnp006",
-        "kw": ["chat mới với đồng nghiệp", "bắt đầu hội thoại mới", "nhắn tin đồng nghiệp lần đầu", "nhắn tin cho ai đó", "chat với đồng nghiệp", "bắt đầu chat mới", "tạo hội thoại mới", "nhắn tin mới"],
+        "kw": [
+          "chat mới với đồng nghiệp",
+          "bắt đầu hội thoại mới",
+          "nhắn tin đồng nghiệp lần đầu",
+          "nhắn tin cho ai đó",
+          "chat với đồng nghiệp",
+          "bắt đầu chat mới",
+          "tạo hội thoại mới",
+          "nhắn tin mới"
+        ],
         "a": "Bấm icon bút hoặc + góc trên phải → nhập tên hoặc SĐT đồng nghiệp → chọn tên → màn hình chat mở ra.",
-        "steps": [10]
+        "steps": [
+          10
+        ]
       },
       {
         "id": "cnp007",
-        "kw": ["mention tag đồng nghiệp", "@mention nhóm chat", "gọi tên trong nhóm", "tag trong nhóm", "@tag ai đó", "mention ai đó"],
+        "kw": [
+          "mention tag đồng nghiệp",
+          "@mention nhóm chat",
+          "gọi tên trong nhóm",
+          "tag trong nhóm",
+          "@tag ai đó",
+          "mention ai đó"
+        ],
         "a": "Gõ @ rồi nhập tên đồng nghiệp trong nhóm chat để mention — người đó nhận thông báo riêng.",
-        "steps": [7]
+        "steps": [
+          7
+        ]
       },
       {
         "id": "cnp008",
-        "kw": ["reply tin nhắn", "trả lời tin nhắn chat", "react emoji chat", "giữ tin nhắn", "phản ứng tin nhắn", "copy tin nhắn", "long press tin nhắn"],
+        "kw": [
+          "reply tin nhắn",
+          "trả lời tin nhắn chat",
+          "react emoji chat",
+          "giữ tin nhắn",
+          "phản ứng tin nhắn",
+          "copy tin nhắn",
+          "long press tin nhắn"
+        ],
         "a": "Giữ ngón tay vào tin nhắn → menu hiện ra: Reply (trả lời), React emoji, Copy nội dung.",
-        "steps": [3]
+        "steps": [
+          3
+        ]
       },
       {
         "id": "cnp009",
-        "kw": ["gửi tin nhắn", "nhập tin nhắn", "cách nhắn tin", "nhắn tin thế nào", "gõ tin nhắn", "soạn tin nhắn"],
+        "kw": [
+          "gửi tin nhắn",
+          "nhập tin nhắn",
+          "cách nhắn tin",
+          "nhắn tin thế nào",
+          "gõ tin nhắn",
+          "soạn tin nhắn"
+        ],
         "a": "Bấm vào ô nhập liệu phía dưới màn hình chat → gõ nội dung → bấm nút gửi (mũi tên xanh).\n\nGiữ ngón tay vào tin nhắn đã gửi để Reply, React emoji hoặc Copy.",
-        "steps": [4]
+        "steps": [
+          4
+        ]
       }
     ],
     "bang_tin": [
       {
         "id": "bt001",
-        "kw": ["vào bảng tin", "tab bảng tin", "bảng tin ở đâu"],
+        "kw": [
+          "vào bảng tin",
+          "tab bảng tin",
+          "bảng tin ở đâu"
+        ],
         "a": "Bottom navigation trang chủ → bấm tab Bảng tin (icon loa hoặc bài đăng) để xem feed thông báo nội bộ.",
-        "steps": [1]
+        "steps": [
+          1
+        ]
       },
       {
         "id": "bt002",
-        "kw": ["bình luận bài bảng tin", "comment bài đăng", "nhập bình luận"],
+        "kw": [
+          "bình luận bài bảng tin",
+          "comment bài đăng",
+          "nhập bình luận"
+        ],
         "a": "Mở bài đăng → cuộn xuống cuối → bấm ô bình luận → nhập nội dung → bấm Gửi.",
-        "steps": [4]
+        "steps": [
+          4
+        ]
       },
       {
         "id": "bt003",
-        "kw": ["like bài bảng tin", "phản ứng bài đăng", "react bài bảng tin", "tim bài"],
+        "kw": [
+          "like bài bảng tin",
+          "phản ứng bài đăng",
+          "react bài bảng tin",
+          "tim bài"
+        ],
         "a": "Bấm nhanh icon like/tim để like. Giữ ngón tay vào icon → bảng emoji phản ứng hiện ra để chọn cảm xúc khác.",
-        "steps": [5]
+        "steps": [
+          5
+        ]
       },
       {
         "id": "bt004",
-        "kw": ["chia sẻ bài bảng tin", "share bài", "chia sẻ thông báo"],
+        "kw": [
+          "chia sẻ bài bảng tin",
+          "share bài",
+          "chia sẻ thông báo"
+        ],
         "a": "Mở bài đăng → bấm icon Chia sẻ → chọn kênh muốn chia sẻ (Chat Nhà Phố, copy link, Zalo...)."
       }
     ],
     "qr_code": [
       {
         "id": "qr001",
-        "kw": ["qr code cá nhân", "mã qr của tôi", "xem qr", "chia sẻ qr"],
+        "kw": [
+          "qr code cá nhân",
+          "mã qr của tôi",
+          "xem qr",
+          "chia sẻ qr"
+        ],
         "a": "Hàng icon tính năng → bấm icon QR (ô vuông kẻ sọc) → màn hình QR cá nhân mở ra.\n\nCho đồng nghiệp quét để kết nối — không chụp màn hình vì QR có hạn sử dụng định kỳ.",
-        "steps": [1, 2]
+        "steps": [
+          1,
+          2
+        ]
       },
       {
         "id": "qr002",
-        "kw": ["quét qr đồng nghiệp", "scan qr", "quét mã qr", "kết nối qua qr"],
+        "kw": [
+          "quét qr đồng nghiệp",
+          "scan qr",
+          "quét mã qr",
+          "kết nối qua qr"
+        ],
         "a": "Màn hình QR → tab Quét → hướng camera vào mã QR của đồng nghiệp → App nhận mã tự động.\n\nSau khi quét: chọn 'Kết nối' hoặc 'Nhắn tin' ngay lập tức.",
-        "steps": [4, 5]
+        "steps": [
+          4,
+          5
+        ]
+      }
+    ],
+    "tai_app_android": [
+      {
+        "id": "taa001",
+        "kw": [
+          "tải app android",
+          "cài app android",
+          "download android",
+          "chplay nhà phố",
+          "google play nhà phố",
+          "cài đặt android",
+          "cài app điện thoại android"
+        ],
+        "a": "Mở CH Play → tìm \"Nhà Phố Việt Nam\" → bấm Cài đặt.\n\nSau khi cài xong, mở App → đăng nhập bằng số điện thoại và mật khẩu trên khonhapho.com.",
+        "steps": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "taa002",
+        "kw": [
+          "không tìm thấy app android",
+          "không thấy app trên chplay",
+          "chplay không có app nhà phố",
+          "app nhà phố android không có"
+        ],
+        "a": "Tìm đúng tên \"Nhà Phố Việt Nam\" (có dấu) trên CH Play — logo hình tòa nhà màu xanh lá.\n\nKiểm tra kết nối mạng nếu không tải được. Liên hệ Ban Công nghệ nếu vẫn không tìm thấy.",
+        "steps": [
+          2
+        ]
+      }
+    ],
+    "tai_app_ios": [
+      {
+        "id": "tai001",
+        "kw": [
+          "tải app ios",
+          "cài app iphone",
+          "download ios",
+          "testflight nhà phố",
+          "app nhà phố iphone",
+          "cài đặt ios",
+          "cài app ipad"
+        ],
+        "a": "App Nhà Phố trên iOS cài qua TestFlight — 3 bước:\n1. Mở App Store → tìm và cài TestFlight (ứng dụng của Apple)\n2. Mở trình duyệt → vào khonhapho.com → bấm link tải iOS\n3. Mở App Nhà Phố qua TestFlight → đăng nhập.",
+        "steps": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "id": "tai002",
+        "kw": [
+          "testflight là gì",
+          "tại sao cần testflight",
+          "testflight ios nhà phố",
+          "testflight để làm gì"
+        ],
+        "a": "TestFlight là ứng dụng của Apple dùng để phân phối App beta / nội bộ ngoài App Store chính thức.\n\nApp Nhà Phố Việt Nam phân phối qua TestFlight vì đây là App nội bộ của Tập đoàn — không phải App công khai trên App Store.",
+        "steps": [
+          1
+        ]
+      },
+      {
+        "id": "tai003",
+        "kw": [
+          "link testflight nhà phố",
+          "link tải app ios",
+          "không có link testflight",
+          "link tải nhà phố ios",
+          "vào đâu để tải ios"
+        ],
+        "a": "Vào khonhapho.com bằng trình duyệt trên điện thoại iOS → tìm nút tải ứng dụng iOS → bấm để mở link TestFlight.\n\nLưu ý: phải cài TestFlight trước, link mới mở được.",
+        "steps": [
+          4
+        ]
       }
     ]
   }
