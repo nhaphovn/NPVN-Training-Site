@@ -59,6 +59,7 @@
       "name": "Đăng tin BĐS",
       "role": "Đầu chủ",
       "icon": "📝",
+      "iconImg": "assets/icons/dang_tin.png",
       "description": "Toàn bộ quy trình đăng tin từ trang chủ đến gửi duyệt",
       "images": {
         "home": "/api/img?path=images/dang_tin/home.jpg",
@@ -495,7 +496,6 @@
           ]
         }
       ],
-      "iconImg": "/api/img?path=images/tai_app_android/icon.jpg",
       "status": "live",
       "attributes": {
         "industry": "real_estate",
@@ -6939,7 +6939,6 @@
       "name": "Tải App Nhà Phố cho Android",
       "role": "Học viên / Chuyên viên",
       "icon": "📘",
-      "iconImg": "/api/img?path=images/tai_app_android/icon.jpg",
       "description": "",
       "images": {
         "b01": "/images/tai_app_android/b01.jpg",
