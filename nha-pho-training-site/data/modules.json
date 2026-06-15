@@ -6676,14 +6676,14 @@
           "title": "Bước 2 — ",
           "sub": "",
           "imgKey": "b01",
-          "scrollY": 54,
+          "scrollY": 0,
           "hs": {
-            "x": 6,
-            "y": 628,
-            "w": 378,
-            "h": 294
+            "x": 343,
+            "y": 390,
+            "w": 49,
+            "h": 41
           },
-          "ttPos": "top",
+          "ttPos": "left",
           "ttTitle": "Nút ba chấm",
           "ttText": "Chọn xem,sửa tài khoản...",
           "tip": "",
