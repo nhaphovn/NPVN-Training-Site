@@ -2981,8 +2981,27 @@ async function handleStepImgUpload(file) {
   try {
     const { blob, width, height } = await processImageFile(file, 390);
     await imgDbPut(`${STATE.moduleId}/${imgKey}`, blob);
-    drop.innerHTML = origHtml;
-    toast(`✓ Ảnh ${imgKey} (${width}×${height}px) đã lưu`, 'success');
+
+    // Upload lên Vercel Blob và cập nhật path trong modules.json
+    drop.innerHTML = '⏳ Đang upload...';
+    try {
+      const result = await uploadToBlob(blob, STATE.moduleId, imgKey, false);
+      if (!STATE.module.images) STATE.module.images = {};
+      STATE.module.images[imgKey] = result.proxyUrl;
+      setDirty(true);
+      // Cập nhật text trong select để UI nhất quán
+      const sel = document.querySelector('#form-content [data-field="imgKey"]');
+      if (sel) {
+        const opt = [...sel.options].find(o => o.value === imgKey);
+        if (opt) opt.textContent = `${imgKey} → ${result.proxyUrl}`;
+      }
+      drop.innerHTML = origHtml;
+      toast(`✓ Ảnh ${imgKey} (${width}×${height}px) đã lên Blob ✓`, 'success');
+    } catch (blobErr) {
+      drop.innerHTML = origHtml;
+      toast(`⚠ Lưu local OK — Blob thất bại: ${blobErr.message.slice(0, 80)}`, 'warning');
+    }
+
     await updateStepImgStatus();
     renderPreview();
   } catch (e) {
