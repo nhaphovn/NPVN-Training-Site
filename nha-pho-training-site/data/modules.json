@@ -1,6 +1,6 @@
 {
   "version": "v13",
-  "lastUpdated": "2026-06-16T11:58:39.628Z",
+  "lastUpdated": "2026-06-16T11:59:33.493Z",
   "brand": {
     "name": "Nhà Phố Việt Nam",
     "app": "App Nhà Phố",
@@ -7078,11 +7078,11 @@
       "iconImg": "/api/img?path=images/tai_app_ios/icon.png",
       "description": "Hướng dẫn tải và cài đặt App Nhà Phố Việt Nam trên iPhone / iPad qua TestFlight",
       "images": {
-        "b01": "/images/tai_app_ios/b01.jpg",
-        "b02": "/images/tai_app_ios/b02.jpg",
-        "b03": "/images/tai_app_ios/b03.jpg",
-        "b05": "/images/tai_app_ios/b05.jpg",
-        "b04": "/images/tai_app_ios/b04.jpg"
+        "b01": "/api/img?path=images/tai_app_ios/b01.jpg",
+        "b02": "/api/img?path=images/tai_app_ios/b02.jpg",
+        "b03": "/api/img?path=images/tai_app_ios/b03.jpg",
+        "b05": "/api/img?path=images/tai_app_ios/b05.jpg",
+        "b04": "/api/img?path=images/tai_app_ios/b04.jpg"
       },
       "steps": [
         {
