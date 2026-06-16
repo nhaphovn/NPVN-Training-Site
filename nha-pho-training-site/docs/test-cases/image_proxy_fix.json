@@ -201,32 +201,53 @@
     },
     {
       "id": "TC-10",
-      "title": "All three live content modules (dang_tin, loc_kho, bo_suu_tap) display images without any broken image",
+      "title": "ALL live content modules display images without any broken image — run in incognito browser",
       "type": "ui",
       "severity": "critical",
-      "tags": ["module:training_engine", "phase:post-fix", "e2e"],
+      "tags": ["module:training_engine", "phase:post-fix", "e2e", "regression"],
       "preconditions": [
         "Fix is deployed",
         "BLOB_READ_WRITE_TOKEN is set",
-        "All 19 image paths registered in modules.json for the three modules are present on Blob",
-        "dang_tin: images/dang_tin/home.jpg, images/dang_tin/form.jpg (2 images)",
-        "loc_kho: images/loc_kho/home.jpg, images/loc_kho/b02.jpg, images/loc_kho/b04.jpg, images/loc_kho/b06a.jpg, images/loc_kho/b06s.jpg, images/loc_kho/b07.jpg, images/loc_kho/b08.jpg (7 images)",
-        "bo_suu_tap: images/bo_suu_tap/b01_list.jpg, images/bo_suu_tap/b01_feed.jpg, images/bo_suu_tap/b02_bst.jpg, images/bo_suu_tap/b03_tao.jpg, images/bo_suu_tap/b04_menu.jpg, images/bo_suu_tap/b05_sua.jpg, images/bo_suu_tap/b06_tin.jpg, images/bo_suu_tap/b07_xoa.jpg, images/bo_suu_tap/b08_ghi.jpg, images/bo_suu_tap/b09_daluu.jpg (10 images)"
+        "Use Chrome Incognito (Ctrl+Shift+N) — NOT the browser that was used in admin. Incognito has no IndexedDB cache, which is the only environment that exposes missing Blob uploads.",
+        "All images for modules below must have proxyUrl (/api/img?path=...) in modules.json — verify by checking production modules.json before running"
+      ],
+      "moduleList": [
+        "dang_tin (11 steps, 2 imgs)",
+        "loc_kho (12 steps, 7 imgs)",
+        "bo_suu_tap (12 steps, 10 imgs)",
+        "dat_lich_dau_khach (7 steps, 7 imgs)",
+        "lich_hen_dau_chu (5 steps, 5 imgs)",
+        "khach_can_mua_gap (7 steps, 7 imgs)",
+        "kho_ca_nhan (9 steps, 9 imgs)",
+        "kho_hang_tu_do (6 steps, 6 imgs)",
+        "ma_gioi_thieu (5 steps, 5 imgs)",
+        "quan_ly_khach (13 steps, 13 imgs)",
+        "thong_bao_vu_chot (3 steps, 3 imgs)",
+        "tin_chinh_chu (9 steps, 9 imgs)",
+        "chat_nha_pho (10 steps, 23 imgs)",
+        "qr_code (4 steps, 9 imgs)",
+        "bang_tin (8 steps, 14 imgs)",
+        "kho_quan_tam (6 steps, 12 imgs)",
+        "tin_hoat_dong (7 steps, 13 imgs)",
+        "quan_ly_phong_nhom (8 steps, 10 imgs)",
+        "tai_khoan_ca_nhan (6 steps, 13 imgs)",
+        "quan_ly_kho_hang (8 steps, 10 imgs)",
+        "tai_app_android (4 steps, 4 imgs)",
+        "tai_app_ios (5 steps, 5 imgs)"
       ],
       "steps": [
-        "Open Chrome DevTools, go to Network tab, filter by 'Img' type",
-        "Navigate to /training-engine.html?module=dang_tin",
-        "Click through all steps (1 to 11). For each step, verify the phone screen shows an image (not broken). Note any step where image is broken.",
-        "Navigate to /training-engine.html?module=loc_kho",
-        "Click through all steps (1 to 12). Note any broken images.",
-        "Navigate to /training-engine.html?module=bo_suu_tap",
-        "Click through all steps (1 to 12). Note any broken images.",
-        "In DevTools Network tab, verify no /api/img request returned a 4xx or 5xx status code"
+        "Mở Chrome Incognito (Ctrl+Shift+N) — KHÔNG dùng browser đã mở admin",
+        "Mở DevTools → Network tab → filter 'Img'",
+        "Với MỖI module trong danh sách moduleList: navigate đến /training-engine.html?module=[id]",
+        "Click qua từng step. Ghi lại bất kỳ step nào ảnh bị trắng/broken",
+        "Sau khi xong mỗi module, kiểm tra Network tab: có request /api/img nào trả 404/502 không",
+        "Điền kết quả vào cột actual: PASS / FAIL [step N: mô tả lỗi]"
       ],
-      "expected": "Zero broken images across all steps of all three modules. Every /api/img request in the Network tab shows HTTP 200 (or 302 followed by 200). No requests show HTTP 401, 403, 404, or 502 for paths that exist on Blob.",
+      "expected": "Zero broken images across ALL steps of ALL modules. Every /api/img request shows HTTP 200. No 401, 403, 404, or 502 for image paths that have been uploaded.",
       "actual": null,
       "status": "pending",
-      "notes": "If a specific image is missing from Blob (i.e., was never uploaded), the 404 from /api/img is expected and should be treated as a content gap — not a proxy bug. Document any 404s separately. Only proxy failures (401/403 on existing blobs, or 502) are failures for this test case."
+      "notes": "THAY ĐỔI SO VỚI PHIÊN BẢN CŨ: (1) Mở rộng từ 3 module gốc sang TẤT CẢ module có images. (2) Bắt buộc dùng incognito — browser có IndexedDB từ admin sẽ che giấu bug ảnh thiếu Blob. (3) Cập nhật moduleList mỗi khi thêm module mới. Nếu module nào chưa có ảnh Blob (content gap), ghi chú riêng và KHÔNG tính là lỗi proxy — nhưng phải báo cho PM biết trước release.",
+      "updatePolicy": "Mỗi khi thêm module mới vào modules.json, thêm vào moduleList và chạy lại TC-10 trước khi release. Xem UPL-007 trong admin_image_upload.json để biết checklist đầy đủ."
     }
   ],
   "pass_criteria": {

@@ -1,0 +1,229 @@
+{
+  "feature": "admin_image_upload",
+  "version": "1.0",
+  "createdAt": "2026-06-16",
+  "createdBy": "qa-reviewer",
+  "testPlan": "docs/test-plans/admin_image_upload.md",
+  "postMortem": "Bug tai_app_android/tai_app_ios: handleStepImgUpload chỉ lưu IndexedDB, không upload Blob → proxyUrl không được ghi vào modules.json → ảnh 404 trên mọi browser không có IndexedDB",
+  "cases": [
+    {
+      "id": "UPL-001",
+      "title": "Step Drop Zone: upload ảnh → toast xác nhận 'đã lên Blob'",
+      "luong": "A",
+      "priority": "P0",
+      "preconditions": [
+        "Admin đang mở module có ít nhất 1 step với imgKey đã set",
+        "Step đang được chọn trong danh sách bên trái",
+        "DevTools Network tab đang mở, filter 'Fetch/XHR'"
+      ],
+      "steps": [
+        "Chọn 1 step bất kỳ có imgKey",
+        "Kéo file ảnh (.jpg hoặc .png) vào ô drop zone 'Kéo ảnh vào đây' trong panel bên phải",
+        "Quan sát toast notification góc trên phải",
+        "Quan sát Network tab trong DevTools"
+      ],
+      "expected": "Toast hiển thị '✓ Ảnh [key] (WxHpx) đã lên Blob ✓' với màu xanh. KHÔNG được là '✓ Ảnh đã lưu' (thiếu chữ Blob). Network tab có request POST /api/upload trả HTTP 200.",
+      "failSignal": "Toast chỉ nói 'đã lưu' không có 'Blob' → Blob upload không xảy ra → bug chưa fix",
+      "status": "pending",
+      "actual": null
+    },
+    {
+      "id": "UPL-002",
+      "title": "Step Drop Zone: sau upload, STATE.module.images[key] = proxyUrl dạng /api/img?path=...",
+      "luong": "A",
+      "priority": "P0",
+      "preconditions": [
+        "UPL-001 đã pass (ảnh vừa được upload qua step drop zone)",
+        "DevTools Console đang mở"
+      ],
+      "steps": [
+        "Sau khi UPL-001 hoàn thành (toast 'đã lên Blob')",
+        "Mở DevTools Console",
+        "Gõ lệnh: STATE.module.images",
+        "Tìm key của step vừa upload (ví dụ: 'b01', 'b02', ...)",
+        "Quan sát giá trị của key đó"
+      ],
+      "expected": "Giá trị là '/api/img?path=images/[moduleId]/[key].jpg'. KHÔNG được là '/images/[moduleId]/[key].jpg' (static path gây 404).",
+      "failSignal": "Giá trị là '/images/...' → uploadToBlob chưa được gọi hoặc STATE.module.images chưa được cập nhật",
+      "status": "pending",
+      "actual": null
+    },
+    {
+      "id": "UPL-003",
+      "title": "Step Drop Zone: step chưa có imgKey → tự tạo key mới + proxyUrl đúng",
+      "luong": "A",
+      "priority": "P0",
+      "preconditions": [
+        "Có 1 step không có img/imgKey (hoặc tạo step mới với imgKey rỗng)",
+        "DevTools Console đang mở"
+      ],
+      "steps": [
+        "Chọn step không có imgKey",
+        "Kéo file ảnh vào step drop zone",
+        "Quan sát toast",
+        "Chạy trong Console: STATE.module.images",
+        "Chạy trong Console: STATE.step.imgKey"
+      ],
+      "expected": "Toast: '✓ Ảnh b0X đã lên Blob ✓'. STATE.step.imgKey được set thành 'b0X' (auto-generated). STATE.module.images['b0X'] = '/api/img?path=images/[moduleId]/b0X.jpg'. Key mới xuất hiện trong select dropdown của imgKey.",
+      "failSignal": "STATE.module.images[key] vẫn là '/images/...' → static path, sẽ 404 sau Publish",
+      "status": "pending",
+      "actual": null
+    },
+    {
+      "id": "UPL-004",
+      "title": "Images Modal: upload ảnh → path input hiển thị proxyUrl /api/img?path=...",
+      "luong": "B",
+      "priority": "P0",
+      "preconditions": [
+        "Admin đang mở modal 'Sửa module' (click nút ⚙ hoặc Edit bên cạnh tên module)",
+        "Tab 'Ảnh' đang được chọn trong modal",
+        "Có ít nhất 1 row ảnh với key đã điền"
+      ],
+      "steps": [
+        "Trong modal 'Sửa module', tab Ảnh",
+        "Tìm row có key (ví dụ: 'home', 'b01'...)",
+        "Click nút upload hoặc kéo ảnh vào ô thumbnail của row đó",
+        "Quan sát toast",
+        "Quan sát giá trị trong ô path (input text bên cạnh key)"
+      ],
+      "expected": "Toast: '✓ Ảnh [key] đã lên Blob ✓'. Path input hiển thị '/api/img?path=images/[moduleId]/[key].jpg'. KHÔNG phải '/images/[moduleId]/[key].jpg'.",
+      "failSignal": "Path input vẫn là '/images/...' → chưa lấy proxyUrl từ uploadToBlob response",
+      "status": "pending",
+      "actual": null
+    },
+    {
+      "id": "UPL-005",
+      "title": "Sau Publish: modules.json trên GitHub chứa proxyUrl đúng cho tất cả key vừa upload",
+      "luong": "A+B",
+      "priority": "P0",
+      "preconditions": [
+        "UPL-001 hoặc UPL-004 đã pass",
+        "Có quyền đọc repo GitHub hoặc xem file modules.json trên production"
+      ],
+      "steps": [
+        "Sau khi upload ảnh (UPL-001 hoặc UPL-004), click nút 'Publish'",
+        "Chờ toast 'Publish thành công'",
+        "Mở URL: https://huongdan.khonhapho.com/data/modules.json trong browser mới",
+        "Tìm module vừa upload ảnh",
+        "Kiểm tra trường 'images' của module đó"
+      ],
+      "expected": "Tất cả key có ảnh vừa upload → giá trị là '/api/img?path=images/[moduleId]/[key].jpg'. Không có key nào còn giá trị '/images/[moduleId]/[key].jpg'.",
+      "failSignal": "modules.json trên production vẫn có '/images/...' → uploadToBlob hoặc STATE update chưa hoạt động đúng",
+      "status": "pending",
+      "actual": null
+    },
+    {
+      "id": "UPL-006",
+      "title": "Cross-browser E2E: mở training site incognito sau Publish → ảnh hiện, không 404",
+      "luong": "E2E",
+      "priority": "P0",
+      "preconditions": [
+        "UPL-005 đã pass (Publish thành công, modules.json có proxyUrl đúng)",
+        "Có browser ở chế độ incognito hoặc máy/thiết bị khác chưa từng mở admin"
+      ],
+      "steps": [
+        "Mở Chrome Incognito (Ctrl+Shift+N)",
+        "Vào https://huongdan.khonhapho.com/",
+        "Chọn module vừa upload ảnh",
+        "Mở DevTools → Network tab → filter 'Img'",
+        "Click qua từng step của module",
+        "Quan sát phone mockup và Network tab"
+      ],
+      "expected": "Mỗi step: phone mockup hiển thị ảnh screenshot thật (không phải ảnh trắng, không broken-image icon). Network tab: tất cả request /api/img?path=... trả HTTP 200. Không có request nào trả 404 hoặc 502.",
+      "failSignal": "Ảnh trắng hoặc broken icon + Network tab có 404 → proxyUrl trong modules.json sai, hoặc file chưa lên Blob",
+      "note": "Đây là test QUAN TRỌNG NHẤT. IndexedDB trong browser admin có thể che giấu bug — chỉ browser mới (không có IndexedDB) mới phản ánh đúng thực tế production.",
+      "status": "pending",
+      "actual": null
+    },
+    {
+      "id": "UPL-007",
+      "title": "New module checklist: module mới phải pass UPL-006 trước khi báo done",
+      "luong": "E2E",
+      "priority": "P0",
+      "preconditions": [
+        "Vừa tạo hoặc cập nhật module mới với ảnh",
+        "Đã Publish thành công"
+      ],
+      "steps": [
+        "Liệt kê tất cả imgKey trong module mới",
+        "Chạy UPL-006 cho module này",
+        "Ghi lại kết quả từng step: PASS / FAIL + tên key"
+      ],
+      "expected": "100% imgKey của module mới → ảnh hiện trong incognito browser. Không có 1 step nào bị trắng. Chỉ sau khi đạt 100% mới được báo done cho PM.",
+      "failSignal": "Bất kỳ step nào không có ảnh → BLOCK release, không merge, không báo xong",
+      "status": "pending",
+      "actual": null
+    },
+    {
+      "id": "UPL-008",
+      "title": "Upload Blob thất bại (BLOB_READ_WRITE_TOKEN sai) → toast warning, không crash, path không thay đổi",
+      "luong": "A",
+      "priority": "P1",
+      "preconditions": [
+        "Có thể simulate lỗi Blob bằng cách tạm thời set token sai trong môi trường test",
+        "Hoặc: chặn request /api/upload trong DevTools → Block request URL"
+      ],
+      "steps": [
+        "Trong DevTools → Network → chuột phải vào /api/upload → 'Block request URL'",
+        "Upload ảnh qua step drop zone",
+        "Quan sát toast",
+        "Kiểm tra STATE.module.images[key] trong console",
+        "Gỡ block sau khi test xong"
+      ],
+      "expected": "Toast: '⚠ Lưu local OK — Blob thất bại: ...' với màu vàng/cam (warning). Không crash. STATE.module.images[key] vẫn là giá trị cũ (không đổi thành path sai). Admin vẫn dùng được bình thường.",
+      "failSignal": "Admin crash / toast đỏ không rõ nguyên nhân / STATE.module.images[key] bị set thành path sai",
+      "status": "pending",
+      "actual": null
+    },
+    {
+      "id": "UPL-009",
+      "title": "Regression: Publish module A không xóa/đổi ảnh của module B",
+      "luong": "Regression",
+      "priority": "P1",
+      "preconditions": [
+        "Có ít nhất 2 module đều đã có ảnh Blob (proxyUrl trong modules.json)",
+        "Module B đã verify ảnh OK trước khi test"
+      ],
+      "steps": [
+        "Ghi nhận proxyUrl của module B (ví dụ: dang_tin/home)",
+        "Mở module A trong admin, sửa nội dung bất kỳ (không phải ảnh)",
+        "Publish module A",
+        "Sau Publish, mở modules.json trên production",
+        "Kiểm tra module B: proxyUrl có còn nguyên không"
+      ],
+      "expected": "Module B: tất cả proxyUrl vẫn là '/api/img?path=...' đúng như trước. Publish module A không ảnh hưởng đến images của module B.",
+      "failSignal": "images của module B bị đổi thành '/images/...' hoặc mất key → conflict trong STATE khi Publish",
+      "status": "pending",
+      "actual": null
+    },
+    {
+      "id": "UPL-010",
+      "title": "DevTools Network: POST /api/upload trả HTTP 200 với body { ok: true, proxyUrl }",
+      "luong": "A+B",
+      "priority": "P1",
+      "preconditions": [
+        "DevTools Network tab đang mở trước khi upload",
+        "Filter: Fetch/XHR"
+      ],
+      "steps": [
+        "Upload ảnh qua step drop zone hoặc Images Modal",
+        "Trong Network tab, tìm request POST đến /api/upload",
+        "Click vào request → tab Response",
+        "Đọc response body"
+      ],
+      "expected": "HTTP 200. Response body JSON có: ok=true, proxyUrl='/api/img?path=images/[moduleId]/[key].jpg', size > 0. Không có error field.",
+      "failSignal": "HTTP 401 → token sai. HTTP 500 not_configured → BLOB_READ_WRITE_TOKEN chưa set. HTTP 0 / blocked → network issue. Không có request trong Network tab → uploadToBlob chưa được gọi (bug)",
+      "status": "pending",
+      "actual": null
+    }
+  ],
+  "passCriteria": {
+    "p0_pass_rate": "100%",
+    "p1_pass_rate": ">=80%",
+    "hardBlock": [
+      "STATE.module.images[key] chứa '/images/...' sau upload (static path)",
+      "Ảnh 404 trong incognito browser sau Publish",
+      "Module mới release mà chưa pass UPL-006"
+    ]
+  }
+}
