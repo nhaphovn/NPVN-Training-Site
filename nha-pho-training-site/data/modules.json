@@ -1,6 +1,6 @@
 {
   "version": "v13",
-  "lastUpdated": "2026-06-15",
+  "lastUpdated": "2026-06-16T02:46:39.965Z",
   "brand": {
     "name": "Nhà Phố Việt Nam",
     "app": "App Nhà Phố",
@@ -4092,7 +4092,7 @@
       "name": "Chat Nhà Phố",
       "role": "Học viên / Chuyên viên",
       "icon": "💬",
-      "iconImg": "assets/icons/chat_nha_pho.png",
+      "iconImg": "/api/img?path=images/chat_nha_pho/icon.png",
       "description": "Nhắn tin trực tiếp, chat nhóm và kênh thông báo mặc định",
       "status": "live",
       "attributes": {
@@ -4527,7 +4527,7 @@
       "name": "QR Code",
       "role": "Học viên / Chuyên viên",
       "icon": "📷",
-      "iconImg": "assets/icons/qr_code.png",
+      "iconImg": "/api/img?path=images/qr_code/icon.png",
       "description": "Xem QR cá nhân, quét QR đồng nghiệp, kết nối nhanh",
       "status": "draft",
       "attributes": {
@@ -4719,7 +4719,7 @@
       "name": "Bảng tin",
       "role": "Đầu chủ",
       "icon": "📢",
-      "iconImg": "assets/icons/bang_tin.png",
+      "iconImg": "/api/img?path=images/bang_tin/icon.png",
       "description": "Xem và tương tác bảng tin nội bộ — thông báo, tin tức, chia sẻ",
       "status": "live",
       "attributes": {
@@ -5069,7 +5069,7 @@
       "name": "Kho bạn quan tâm",
       "role": "Học viên / Chuyên viên",
       "icon": "❤️",
-      "iconImg": "assets/icons/kho_quan_tam.png",
+      "iconImg": "/api/img?path=images/kho_quan_tam/icon.png",
       "description": "Theo dõi kho hàng quan tâm — bookmark, cập nhật, thông báo",
       "status": "draft",
       "attributes": {
@@ -5340,7 +5340,7 @@
       "name": "Tin hoạt động",
       "role": "Học viên / Chuyên viên",
       "icon": "📋",
-      "iconImg": "assets/icons/tin_hoat_dong.png",
+      "iconImg": "/api/img?path=images/tin_hoat_dong/icon.png",
       "description": "Theo dõi hoạt động team — giao dịch mới, cập nhật kho, tin tức nhóm",
       "status": "draft",
       "attributes": {
@@ -5651,7 +5651,7 @@
       "name": "Quản lý phòng-nhóm",
       "role": "Quản lý phòng",
       "icon": "🏢",
-      "iconImg": "assets/icons/quan_ly_phong_nhom.png",
+      "iconImg": "/api/img?path=images/quan_ly_phong_nhom/icon.png",
       "description": "Quản lý thành viên, phân quyền, nhóm chat và chỉ tiêu phòng",
       "status": "draft",
       "attributes": {
@@ -5990,7 +5990,7 @@
       "name": "Tài khoản cá nhân",
       "role": "Đầu chủ",
       "icon": "👤",
-      "iconImg": "assets/icons/tai_khoan_ca_nhan.png",
+      "iconImg": "/api/img?path=images/tai_khoan_ca_nhan/icon.png",
       "description": "Quản lý hồ sơ cá nhân — thông tin, ảnh, bảo mật, thông báo",
       "status": "draft",
       "attributes": {
@@ -6264,7 +6264,7 @@
       "name": "Quản lý kho hàng",
       "role": "Quản lý phòng",
       "icon": "📦",
-      "iconImg": "assets/icons/quan_ly_kho_hang.png",
+      "iconImg": "/api/img?path=images/quan_ly_kho_hang/icon.png",
       "description": "Quản lý tổng hợp kho hàng phòng — duyệt, phân công, thống kê",
       "status": "draft",
       "attributes": {
@@ -6729,7 +6729,8 @@
           "tip": "",
           "guide": []
         }
-      ]
+      ],
+      "iconImg": "/api/img?path=images/quan_ly_thanh_vien/icon.png"
     },
     "quan_ly_khach_cua_chuyen_vien": {
       "name": "QL khách của CV",
@@ -6841,7 +6842,8 @@
           "tip": "",
           "guide": []
         }
-      ]
+      ],
+      "iconImg": "/api/img?path=images/quan_ly_khach_cua_chuyen_vien/icon.png"
     },
     "quan_ly_bao_cao_cua_chuyen_vien": {
       "name": "QL báo cáo của CV",
@@ -6933,7 +6935,8 @@
           "tip": "",
           "guide": []
         }
-      ]
+      ],
+      "iconImg": "/api/img?path=images/quan_ly_bao_cao_cua_chuyen_vien/icon.png"
     },
     "tai_app_android": {
       "name": "Tải App Nhà Phố cho Android",
