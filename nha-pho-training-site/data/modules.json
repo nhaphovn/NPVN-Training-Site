@@ -1,6 +1,6 @@
 {
   "version": "v13",
-  "lastUpdated": "2026-06-16T11:56:36.128Z",
+  "lastUpdated": "2026-06-16T11:58:39.628Z",
   "brand": {
     "name": "Nhà Phố Việt Nam",
     "app": "App Nhà Phố",
@@ -6944,10 +6944,10 @@
       "icon": "📘",
       "description": "Hướng dẫn tải và cài đặt App Nhà Phố Việt Nam trên điện thoại Android",
       "images": {
-        "b01": "/images/tai_app_android/b01.jpg",
-        "b02": "/images/tai_app_android/b02.jpg",
-        "b03": "/images/tai_app_android/b03.jpg",
-        "b04": "/images/tai_app_android/b04.jpg"
+        "b01": "/api/img?path=images/tai_app_android/b01.jpg",
+        "b02": "/api/img?path=images/tai_app_android/b02.jpg",
+        "b03": "/api/img?path=images/tai_app_android/b03.jpg",
+        "b04": "/api/img?path=images/tai_app_android/b04.jpg"
       },
       "steps": [
         {
