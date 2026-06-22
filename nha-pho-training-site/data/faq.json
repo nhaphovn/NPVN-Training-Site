@@ -10,7 +10,9 @@
         "otp",
         "vào app",
         "mở app",
-        "đăng nhâp"
+        "đăng nhâp",
+        "cách đăng nhập app",
+        "làm sao đăng nhập"
       ],
       "a": "Mở App Nhà Phố → nhập số điện thoại → nhập mật khẩu → đăng nhập bằng tài khoản khonhapho.com."
     },
@@ -31,7 +33,9 @@
         "app nhà phố là gì",
         "dùng để làm gì",
         "nhà phố việt nam",
-        "giới thiệu app"
+        "giới thiệu app",
+        "app nhà phố dùng làm gì",
+        "app này để làm gì"
       ],
       "a": "App Nhà Phố Việt Nam là nền tảng BĐS nội bộ của Tập đoàn Nhà Phố — dùng để đăng tin, tìm hàng, quản lý kho hàng và tương tác nhân sự."
     },
@@ -54,7 +58,9 @@
         "liên hệ",
         "support",
         "1900 0266",
-        "gọi hỗ trợ"
+        "gọi hỗ trợ",
+        "ai hỗ trợ kỹ thuật",
+        "báo lỗi cho ai"
       ],
       "a": "Liên hệ Ban Công nghệ Tập đoàn để phản ánh các vấn đề kỹ thuật.\n\nHoặc liên hệ các Thư ký để được hỗ trợ nhanh nhất."
     },
@@ -64,7 +70,9 @@
         "quên mật khẩu",
         "đổi mật khẩu",
         "reset password",
-        "không vào được"
+        "không vào được",
+        "không nhớ mật khẩu",
+        "mất mật khẩu"
       ],
       "a": "App Nhà Phố đăng nhập bằng SĐT + mật khẩu.\n\nQuên mật khẩu: nhập SĐT → nhận OTP → đặt mật khẩu mới.\nKhông vào được, liên hệ Ban Công nghệ hoặc Thư ký để hỗ trợ."
     },
@@ -105,7 +113,9 @@
         "tải app",
         "cài app",
         "download app",
-        "cài đặt app"
+        "cài đặt app",
+        "tải app ở đâu",
+        "cách cài app vào điện thoại"
       ],
       "a": "Tải App Nhà Phố trên App Store (iOS) hoặc Google Play (Android) — tìm 'Nhà Phố Việt Nam'."
     },
@@ -129,7 +139,9 @@
         "hv là gì",
         "cv là gì",
         "vai trò",
-        "chức danh"
+        "chức danh",
+        "phân biệt hv và cv",
+        "khác biệt giữa hv và cv"
       ],
       "a": "HV (Học viên): thành viên mới đang đào tạo, quyền xem kho hạn chế theo số buổi học.\nCV (Chuyên viên): môi giới chính thức, đủ 12 buổi điểm danh, xem toàn bộ kho tài nguyên.\nĐC (Đầu chủ): ký hợp đồng với chủ nhà, đăng tin và quản lý kho cá nhân."
     },
@@ -247,6 +259,127 @@
       ],
       "a": "Bạn liên hệ Ban Công nghệ Tập đoàn hoặc các Thư ký để được hỗ trợ trực tiếp nhé!",
       "steps": []
+    },
+    {
+      "id": "g023",
+      "kw": [
+        "tạm biệt",
+        "bye",
+        "hẹn gặp lại",
+        "tắt chat",
+        "thôi nhé"
+      ],
+      "a": "Chào bạn, cần gì cứ quay lại hỏi nhé!",
+      "steps": []
+    },
+    {
+      "id": "g024",
+      "kw": [
+        "không hiểu",
+        "rối quá",
+        "khó quá",
+        "phức tạp quá",
+        "không hiểu gì cả"
+      ],
+      "a": "Bạn thử hỏi cụ thể hơn về bước nào hoặc tính năng nào đang khó hiểu nhé — mình sẽ trả lời đúng phần đó cho dễ theo dõi hơn.",
+      "steps": []
+    },
+    {
+      "id": "g025",
+      "kw": [
+        "app hay đó",
+        "dễ dùng quá",
+        "thích app này",
+        "app tốt đó",
+        "ưng app này"
+      ],
+      "a": "Cảm ơn bạn! Có gì thắc mắc thêm về cách dùng cứ hỏi nhé.",
+      "steps": []
+    },
+    {
+      "id": "g026",
+      "kw": [
+        "trang web này là gì",
+        "đây là trang gì",
+        "học để làm gì",
+        "sao phải học cái này",
+        "ai tạo ra trang này"
+      ],
+      "a": "Đây là trang đào tạo nội bộ giúp nhân viên Nhà Phố làm quen với App Nhà Phố Việt Nam qua các hướng dẫn từng bước có ảnh thật và chatbot hỗ trợ.",
+      "steps": []
+    },
+    {
+      "id": "g027",
+      "kw": [
+        "app chạy trên iphone không",
+        "app dùng được ipad không",
+        "app có trên máy tính không",
+        "app chạy được hệ điều hành nào"
+      ],
+      "a": "App Nhà Phố Việt Nam chạy trên điện thoại iOS và Android. Trên máy tính, bạn dùng website khonhapho.com cho các tác vụ quản trị, báo cáo.",
+      "steps": []
+    },
+    {
+      "id": "g028",
+      "kw": [
+        "app có mất tiền không",
+        "tải app có phí không",
+        "dùng app có tốn phí gì không",
+        "app miễn phí không"
+      ],
+      "a": "App Nhà Phố Việt Nam là công cụ nội bộ công ty cấp cho nhân viên sử dụng, không tốn phí gì thêm.",
+      "steps": []
+    },
+    {
+      "id": "g029",
+      "kw": [
+        "cập nhật app thế nào",
+        "app có bản mới chưa",
+        "tại sao cần update app"
+      ],
+      "a": "Android cập nhật qua CH Play như app thông thường. iOS cập nhật qua TestFlight — bạn sẽ nhận thông báo khi có bản mới, mở TestFlight để cập nhật.",
+      "steps": []
+    },
+    {
+      "id": "g030",
+      "kw": [
+        "nên học module nào trước",
+        "bắt đầu từ đâu",
+        "học theo thứ tự nào",
+        "module nào quan trọng nhất"
+      ],
+      "a": "Bạn nên học các module đúng với vai trò của mình trước (vd: Đăng tin, Lọc kho cho Chuyên viên) — các module quản lý nâng cao có thể học sau khi đã quen các tính năng cơ bản.",
+      "steps": []
+    },
+    {
+      "id": "g031",
+      "kw": [
+        "link app ở đâu",
+        "trang web khonhapho là gì",
+        "link tải app"
+      ],
+      "a": "Trang quản trị và tải app đều ở khonhapho.com — vào đó để lấy link tải app cho Android/iOS hoặc đăng nhập website quản trị.",
+      "steps": []
+    },
+    {
+      "id": "g032",
+      "kw": [
+        "đăng nhập được nhiều máy không",
+        "một tài khoản dùng được mấy máy",
+        "dùng chung tài khoản được không"
+      ],
+      "a": "Hướng dẫn không quy định giới hạn số máy — nếu gặp vấn đề khi đăng nhập nhiều thiết bị, bạn liên hệ Ban Công nghệ Tập đoàn để được hỗ trợ.",
+      "steps": []
+    },
+    {
+      "id": "g033",
+      "kw": [
+        "xin lỗi",
+        "sorry",
+        "mình hỏi nhiều quá"
+      ],
+      "a": "Không sao đâu, bạn hỏi bao nhiêu cũng được, mình ở đây để hỗ trợ!",
+      "steps": []
     }
   ],
   "modules": {
@@ -258,7 +391,9 @@
           "tìm nút đăng tin",
           "nút đăng tin",
           "vào đăng tin",
-          "mở form đăng tin"
+          "mở form đăng tin",
+          "cách đăng tin mới",
+          "bắt đầu đăng tin từ đâu"
         ],
         "a": "Hàng icon đầu trang chủ — icon thứ 4 từ trái là Đăng tin (hình tờ giấy có dấu +).\n\nCũng có nút Đăng tin trong màn hình Kho tài nguyên góc trên phải.",
         "steps": [
@@ -555,7 +690,8 @@
           "xem kho tài nguyên",
           "truy cập kho tài nguyên",
           "kho tài nguyên menu",
-          "kho tài nguyên cá nhân"
+          "kho tài nguyên cá nhân",
+          "cách vào kho tài nguyên"
         ],
         "a": "Hàng icon đầu trang chủ → bấm 'Lọc kho' hoặc 'Kho tài nguyên' để vào.",
         "steps": [
@@ -904,7 +1040,9 @@
           "bộ sưu tập ở đâu",
           "vào bộ sưu tập",
           "mở bộ sưu tập",
-          "lưu bộ sưu tập ở đâu"
+          "lưu bộ sưu tập ở đâu",
+          "cách tạo bst mới",
+          "tạo bộ sưu tập mới thế nào"
         ],
         "a": "Bottom nav → tab Bộ sưu tập → cuộn xuống cuối → bấm 'Tạo bộ sưu tập'.\n\nNhập tên BST ngắn gọn theo chủ đề (ví dụ: 'Cầu Giấy 3-5 tỷ') → bấm Tạo.",
         "steps": [
@@ -1328,7 +1466,9 @@
           "vào kho cá nhân",
           "quản lý kho đầu chủ",
           "kho tin cá nhân",
-          "tìm kho cá nhân"
+          "tìm kho cá nhân",
+          "mở kho cá nhân ở đâu",
+          "vào kho cá nhân thế nào"
         ],
         "a": "Sidebar → Quản lý kho hàng → Kho cá nhân.",
         "steps": [
@@ -1727,7 +1867,9 @@
       {
         "id": "qlk007",
         "kw": [
-          "quản lý khách nằm ở đâu trong menu"
+          "quản lý khách nằm ở đâu trong menu",
+          "vào quản lý khách thế nào",
+          "mở quản lý khách ở đâu"
         ],
         "a": "Bấm avatar góc trên phải trang chủ để mở menu cá nhân, sau đó cuộn xuống tìm mục Tài khoản cá nhân hoặc Quản lý khách.",
         "steps": [
@@ -2098,7 +2240,8 @@
       {
         "id": "cnp010",
         "kw": [
-          "làm sao biết có tin nhắn chưa đọc"
+          "làm sao biết có tin nhắn chưa đọc",
+          "biết tin nhắn mới chưa đọc cách nào"
         ],
         "a": "Trong danh sách hội thoại, các cuộc chat chưa đọc thường hiển thị nổi bật hơn (đậm hoặc có số/dấu báo) — danh sách luôn sắp xếp theo tin nhắn mới nhất lên đầu.",
         "steps": [
@@ -2509,7 +2652,8 @@
         "kw": [
           "tin hoạt động nằm ở mục nào trong menu",
           "tìm nhóm tin hoạt động trong menu ở đâu",
-          "nhóm tin hoạt động có icon gì"
+          "nhóm tin hoạt động có icon gì",
+          "xem tin hoạt động ở đâu"
         ],
         "a": "Bấm avatar góc trên phải trang chủ để mở menu cá nhân, cuộn xuống tìm nhóm \"Tin hoạt động\" — thường có icon 📋.",
         "steps": [
@@ -2612,7 +2756,8 @@
         "id": "qpn004",
         "kw": [
           "quản lý phòng-nhóm nằm ở đâu trong menu",
-          "tài khoản nào có quyền vào mục này"
+          "tài khoản nào có quyền vào mục này",
+          "vào quản lý phòng nhóm thế nào"
         ],
         "a": "Bấm avatar góc trên phải trang chủ để mở menu — chỉ tài khoản có quyền Quản lý phòng mới thấy thêm nhóm tính năng \"Quản lý phòng-nhóm\" trong menu.",
         "steps": [
@@ -2723,7 +2868,8 @@
         "id": "tkc004",
         "kw": [
           "vào tài khoản cá nhân từ đâu",
-          "tìm mục tài khoản trong menu thế nào"
+          "tìm mục tài khoản trong menu thế nào",
+          "xem tài khoản cá nhân ở đâu"
         ],
         "a": "Bấm avatar góc trên phải trang chủ, cuộn trong menu để tìm mục \"Tài khoản cá nhân\" hoặc \"Hồ sơ\" rồi bấm vào.",
         "steps": [
@@ -2815,7 +2961,8 @@
           "quản lý kho hàng nằm ở đâu trong menu",
           "mục này dành cho tài khoản nào",
           "vào quản lý kho hàng bằng cách nào",
-          "danh sách tính năng quản lý kho gồm những gì"
+          "danh sách tính năng quản lý kho gồm những gì",
+          "mở quản lý kho hàng thế nào"
         ],
         "a": "Bấm avatar góc trên phải trang chủ, cuộn trong menu để tìm nhóm \"Quản lý kho hàng\" — mục này dành riêng cho tài khoản Quản lý phòng, bấm vào sẽ thấy danh sách các tính năng quản lý kho con bên trong.",
         "steps": [
