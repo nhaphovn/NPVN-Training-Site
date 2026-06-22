@@ -4,16 +4,22 @@ run_eval.py — Nhà Phố Chatbot Evaluation Pipeline
 
 Workflow:
   1. Load test_cases.json (50 câu hỏi + expected answers)
-  2. Batch API → gửi từng câu hỏi tới chatbot (claude-sonnet-4-20250514)
-  3. LLM-as-judge → chấm điểm mỗi câu (1-5)
+  2. Gửi từng câu hỏi tới chatbot — model + system prompt PHẢI khớp production
+     (CHATBOT_MODEL mặc định đọc từ env MODEL_NAME, fallback claude-haiku-4-5-20251001;
+     system prompt port từ buildSystemPrompt() trong api/chat.js — xem cảnh báo trong code)
+  3. LLM-as-judge (JUDGE_MODEL, mạnh hơn model bị test) → chấm điểm mỗi câu (1-5)
   4. Output: score tổng + report câu fail
 
 Usage:
-  python eval/run_eval.py --key sk-ant-xxx [--kb data/KB.md] [--out eval/report.json]
+  python eval/run_eval.py --key sk-ant-xxx [--kb data/kb/nhapho.md] [--out eval/report.json]
   python eval/run_eval.py --key sk-ant-xxx --module dang_tin   # chỉ test 1 module
   python eval/run_eval.py --key sk-ant-xxx --dry-run            # xem list cases, không call API
 
-Cost estimate: ~50 calls × ~500 tokens ≈ ~$0.05 với Sonnet 4 (Batch API 50% cheaper)
+LƯU Ý (2026-06-22): test_cases.json chỉ cover 9/25 module hiện có — 16 module mới
+(kho_ca_nhan, quan_ly_khach, tai_app_android, tai_app_ios, v.v.) CHƯA có test case.
+Eval pass không có nghĩa 16 module đó đã được kiểm chứng.
+
+Cost estimate: ~50 calls × ~500 tokens ≈ ~$0.05 (Haiku rẻ hơn Sonnet 4 đáng kể)
 
 Yêu cầu: pip install anthropic
 """
@@ -30,23 +36,44 @@ from datetime import datetime
 import anthropic
 
 # ── Constants ─────────────────────────────────────────────────────────
-MODEL          = "claude-sonnet-4-20250514"
+# CHATBOT_MODEL phải khớp đúng model production trong api/chat.js (biến MODEL_NAME).
+# Nếu production đổi model, cập nhật cả 2 nơi — hoặc đọc từ env MODEL_NAME để tránh lệch.
+CHATBOT_MODEL  = os.environ.get("MODEL_NAME", "claude-haiku-4-5-20251001")
+JUDGE_MODEL    = "claude-sonnet-4-6"   # judge dùng model mạnh hơn model bị test, tránh tự chấm thiên vị
 MAX_TOKENS     = 512
 PASS_THRESHOLD = 3.5      # điểm tối thiểu để deploy
 MAX_WORKERS    = 5        # parallel calls
 RETRY_DELAY    = 2        # giây chờ khi rate limit
 
 # ── KB system prompt (inject vào chatbot) ─────────────────────────────
-KB_SYSTEM_TEMPLATE = """Bạn là trợ lý AI cho App Nhà Phố Việt Nam (khonhapho.com).
-Trả lời ngắn gọn, chính xác dựa trên knowledge base sau:
+# PHẢI giữ đồng bộ với buildSystemPrompt() trong api/chat.js — nếu sửa rule ở
+# production, sửa lại đây. Eval test sai prompt = test sai chatbot.
+# Không tự thêm thông tin (hotline, số liệu...) không có trong KB_CONTENT thật.
+KB_SYSTEM_TEMPLATE = """Bạn là chatbot hỗ trợ của App Nhà Phố — đồng nghiệp thạo app, trả lời ngắn gọn và thân thiện.
 
-{kb_content}
+# ĐỊNH DẠNG — tuân thủ tuyệt đối, không ngoại lệ
 
-Quy tắc:
-- Chỉ trả lời thông tin có trong KB
-- Nếu không có → nói "Không có thông tin này trong tài liệu"
-- Không tự bịa số liệu
-- Hotline: 1900 0266"""
+Chỉ viết đoạn văn thường. KHÔNG dùng bất kỳ ký hiệu gạch đầu dòng nào: -, –, *, •, ✓, ➤, hay emoji đứng đầu dòng.
+
+Câu hỏi thường: 1–2 câu, xong.
+Câu hỏi cần giải thích nhiều bước: mỗi bước viết thành 1 câu riêng, cách nhau 1 dòng trắng.
+
+# Vai trò
+- Trả lời nhanh điều user chưa biết hoặc không tìm thấy trong hướng dẫn
+- Chỉ trả lời thông tin có trong Knowledge Base dưới đây — không bịa
+
+# Phạm vi
+- Chỉ về App Nhà Phố Việt Nam
+- Ngoài phạm vi → từ chối vui: "Cái đó mình chịu 😅 Hỏi gì về app đi!"
+
+# Cấm tuyệt đối
+- KHÔNG bịa giá / số liệu thị trường BĐS, hotline, hay bất kỳ thông tin không có trong KB
+- KHÔNG tư vấn pháp lý, đầu tư
+- TỪ CHỐI ngay và lịch sự mọi câu hỏi tục tĩu, bậy bạ, xúc phạm
+
+# KNOWLEDGE BASE — NGUỒN SỰ THẬT DUY NHẤT
+
+{kb_content}"""
 
 # ── Judge prompt ──────────────────────────────────────────────────────
 JUDGE_PROMPT = """Bạn là giám khảo đánh giá câu trả lời của chatbot hỗ trợ App Nhà Phố.
@@ -87,7 +114,7 @@ def call_chatbot(client: anthropic.Anthropic, question: str, system: str) -> str
     for attempt in range(2):
         try:
             msg = client.messages.create(
-                model=MODEL,
+                model=CHATBOT_MODEL,
                 max_tokens=MAX_TOKENS,
                 system=system,
                 messages=[{"role": "user", "content": question}],
@@ -115,7 +142,7 @@ def call_judge(client: anthropic.Anthropic, case: dict, actual: str) -> dict:
     )
     try:
         msg = client.messages.create(
-            model=MODEL,
+            model=JUDGE_MODEL,
             max_tokens=100,
             messages=[{"role": "user", "content": prompt}],
         )
@@ -268,7 +295,8 @@ def run_eval(
     # ── Export report ──
     report = {
         "run_at":       datetime.now().isoformat(),
-        "model":        MODEL,
+        "chatbot_model": CHATBOT_MODEL,
+        "judge_model":   JUDGE_MODEL,
         "total":        len(results),
         "passed":       passed,
         "failed":       failed,
