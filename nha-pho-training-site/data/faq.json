@@ -510,6 +510,38 @@
         "steps": [
           9
         ]
+      },
+      {
+        "id": "dt021",
+        "kw": [
+          "không tìm thấy đường",
+          "không có đường trong danh sách"
+        ],
+        "a": "Chọn Thành phố trước, Quận/Huyện sẽ tự lọc theo. Nếu không thấy tên đường, gõ vài chữ đầu để hệ thống gợi ý — vẫn không có thì điền số nhà/ngõ/hẻm cụ thể vào ô \"Nhập ngõ, hẻm, số nhà\".",
+        "steps": [
+          4
+        ]
+      },
+      {
+        "id": "dt022",
+        "kw": [
+          "tiêu đề có tự động điền",
+          "nội dung mô tả cần viết gì"
+        ],
+        "a": "Tiêu đề được hệ thống tự sinh từ thông tin đã nhập, có thể chỉnh sửa nếu muốn. Nội dung mô tả nên nêu ưu điểm BĐS: vị trí, tiện ích xung quanh, tình trạng nhà, điểm nổi bật — nội dung tốt giúp chuyên viên tư vấn đúng khách, tăng tỷ lệ chốt deal.",
+        "steps": [
+          8
+        ]
+      },
+      {
+        "id": "dt023",
+        "kw": [
+          "pháp lý ảnh hưởng gì đến tin"
+        ],
+        "a": "Pháp lý (sổ đỏ/sổ hồng/giấy tờ khác) phải đúng với thực tế BĐS. Serial số sổ và SĐT chủ nhà được bảo mật hoàn toàn — chuyên viên không thấy được — và KHÔNG sửa được sau khi tin đã duyệt, nên cần điền chính xác từ đầu.",
+        "steps": [
+          9
+        ]
       }
     ],
     "loc_kho": [
@@ -697,6 +729,101 @@
           "ghi chú tin trong kho"
         ],
         "a": "Cột G.Chú chỉ dùng được khi tin đã lưu (icon 🔖 đỏ).\n\nBấm icon G.Chú → nhập text + tải ảnh (tối đa 6) → bấm Lưu. Icon cam = đã có ghi chú."
+      },
+      {
+        "id": "lk016",
+        "kw": [
+          "có cách khác vào kho không"
+        ],
+        "a": "Cách duy nhất và nhanh nhất là bấm icon Kho tài nguyên (biểu tượng kho hàng) ở hàng icon đầu tiên trên trang chủ, góc trái ngoài cùng.",
+        "steps": [
+          1
+        ]
+      },
+      {
+        "id": "lk017",
+        "kw": [
+          "mặc định sắp xếp theo thứ tự nào"
+        ],
+        "a": "Tab Danh sách mặc định sắp xếp theo Tin nổi bật. Bạn có thể đổi thứ tự bằng icon sắp xếp nếu cần xem theo giá, thời gian hoặc trạng thái.",
+        "steps": [
+          2
+        ]
+      },
+      {
+        "id": "lk018",
+        "kw": [
+          "vuốt ngang để xem cột nào",
+          "cột giá ở đâu trong bảng",
+          "cách kéo danh sách xem đủ thông tin"
+        ],
+        "a": "Đặt ngón tay lên vùng bảng dữ liệu rồi kéo sang phải — các cột hay bị ẩn là Giá (tỷ), Tr/m², Đầu chủ, SĐT, Đặc điểm. Kéo vừa đủ để thấy Địa chỉ, Phố, Thông số, Giá trong 1 màn hình là tối ưu nhất để lướt nhanh.",
+        "steps": [
+          3,
+          4
+        ]
+      },
+      {
+        "id": "lk019",
+        "kw": [
+          "vị trí tối ưu kéo đến đâu",
+          "làm sao lưu tin từ danh sách"
+        ],
+        "a": "Kéo bảng đến khi thấy Địa chỉ, Phố, Thông số, Giá trong 1 màn hình. Để lưu tin, bấm icon lưu (🔖) ngay trên hàng tin đó — hoặc icon đặt lịch (⏰) để hẹn xem nhà luôn.",
+        "steps": [
+          4
+        ]
+      },
+      {
+        "id": "lk020",
+        "kw": [
+          "cài đặt cột có lưu lại không"
+        ],
+        "a": "Có — sau khi bấm nút Ẩn cột và gạt toggle xanh/xám cho từng cột, cấu hình được giữ lại cho lần xem sau. Muốn về mặc định thì bấm nút Đặt lại ở cuối bảng.",
+        "steps": [
+          5
+        ]
+      },
+      {
+        "id": "lk021",
+        "kw": [
+          "đặt lại cột về mặc định thế nào"
+        ],
+        "a": "Bấm nút Ẩn cột để mở bảng tùy chỉnh, sau đó bấm nút \"Đặt lại\" (màu xanh, cuối bảng) để khôi phục toàn bộ cột về cấu hình gốc.",
+        "steps": [
+          6
+        ]
+      },
+      {
+        "id": "lk022",
+        "kw": [
+          "nút lọc kho nằm ở đâu"
+        ],
+        "a": "Nút Lọc nằm ở toolbar ngay dưới 3 tab, là nút đầu tiên bên trái với biểu tượng phễu lọc và chữ \"Lọc\".",
+        "steps": [
+          9
+        ]
+      },
+      {
+        "id": "lk023",
+        "kw": [
+          "nên lọc tỉnh trước hay quận trước"
+        ],
+        "a": "Chọn theo thứ tự từ trên xuống: Tỉnh/Thành phố trước, rồi Quận/Huyện, rồi Đường/Phố — dropdown sẽ tự lọc theo cấp đã chọn trước đó. Tiêu chí nào để trống thì hệ thống không lọc theo tiêu chí đó.",
+        "steps": [
+          10
+        ]
+      },
+      {
+        "id": "lk024",
+        "kw": [
+          "cách lọc theo phòng ban hoặc cá nhân",
+          "bấm nút nào để áp dụng bộ lọc"
+        ],
+        "a": "Chọn Phòng ban từ dropdown để xem hàng của 1 phòng kinh doanh cụ thể, hoặc gõ tên vào dropdown Tài khoản cá nhân để xem hàng của 1 đầu chủ/CV cụ thể. Sau khi chọn xong, bấm nút Lọc (xanh, cuối màn hình) để áp dụng — bấm Đặt lại để xóa hết tiêu chí.",
+        "steps": [
+          12
+        ]
       }
     ],
     "bo_suu_tap": [
@@ -860,6 +987,66 @@
         "steps": [
           12
         ]
+      },
+      {
+        "id": "bst013",
+        "kw": [
+          "lưu từ feed có khác lưu từ danh sách không"
+        ],
+        "a": "Cách lưu giống nhau — bấm icon 🔖 trên card tin (feed) hoặc icon lưu trên hàng tin (danh sách), popup \"Thêm vào bộ sưu tập\" hiện ra để chọn BST muốn lưu. Sau khi lưu, icon Ghi chú trên card cũng được kích hoạt để thêm ghi chú ngay.",
+        "steps": [
+          3
+        ]
+      },
+      {
+        "id": "bst014",
+        "kw": [
+          "nên đặt tên bst theo kiểu nào"
+        ],
+        "a": "Nên đặt tên ngắn gọn, dễ nhớ và theo chủ đề cụ thể (vd: \"Nhà quận 7 cho khách A\") để dễ tìm lại và phân loại khi có nhiều bộ sưu tập.",
+        "steps": [
+          6
+        ]
+      },
+      {
+        "id": "bst015",
+        "kw": [
+          "cách sửa hoặc xóa một bst"
+        ],
+        "a": "Bấm giữ vào tên bộ sưu tập khoảng 1 giây, hoặc bấm nút 3 chấm (···) góc phải BST đó — bottom sheet hiện ra với 2 lựa chọn \"Sửa bộ sưu tập\" và \"Xóa bộ sưu tập\". Khi xóa BST, tin vẫn còn trong BST Mặc định, không bị mất.",
+        "steps": [
+          7
+        ]
+      },
+      {
+        "id": "bst016",
+        "kw": [
+          "cách sắp xếp tin trong bộ sưu tập"
+        ],
+        "a": "Dùng dropdown phía trên danh sách tin trong BST, chọn: Tin mới nhất, Cũ nhất, Giá cao nhất hoặc Giá thấp nhất.",
+        "steps": [
+          9
+        ]
+      },
+      {
+        "id": "bst017",
+        "kw": [
+          "cách gỡ bỏ tin khỏi bộ sưu tập"
+        ],
+        "a": "Bấm giữ vào card tin khoảng 1 giây hoặc bấm nút 3 chấm (···) góc phải tin đó, rồi chọn \"Gỡ bỏ\" (màu đỏ) — tin bị xóa khỏi BST hiện tại ngay lập tức.",
+        "steps": [
+          10
+        ]
+      },
+      {
+        "id": "bst018",
+        "kw": [
+          "tab đã lưu khác bộ sưu tập thế nào"
+        ],
+        "a": "Tab \"Đã lưu\" trong Kho tài nguyên hiển thị TỔNG HỢP tất cả tin đã lưu, không phân theo BST nào. Bộ sưu tập thì phân loại tin theo từng nhóm/chủ đề bạn tự tạo.",
+        "steps": [
+          12
+        ]
       }
     ],
     "dat_lich_dau_khach": [
@@ -937,6 +1124,47 @@
         "steps": [
           7
         ]
+      },
+      {
+        "id": "dl007",
+        "kw": [
+          "tìm nút đặt lịch ở đâu trên trang chủ"
+        ],
+        "a": "Trên trang chủ, tìm icon lịch có label \"Đặt lịch\" trong hàng icon tính năng — bấm vào để mở danh sách lịch hẹn.",
+        "steps": [
+          1
+        ]
+      },
+      {
+        "id": "dl008",
+        "kw": [
+          "danh sách lịch hẹn có những trạng thái nào"
+        ],
+        "a": "Có 3 tab trạng thái: Chờ duyệt, Đã xác nhận và Đã hủy — bấm vào từng tab để lọc lịch theo trạng thái đó.",
+        "steps": [
+          2
+        ]
+      },
+      {
+        "id": "dl009",
+        "kw": [
+          "cách đặt lịch ngay từ kho tài nguyên"
+        ],
+        "a": "Trong danh sách Kho tài nguyên, bấm icon lịch (⏰) ở cột Đặt lịch của tin muốn hẹn xem — hoặc trên card tin trong feed, bấm nút \"Đặt lịch\" để mở form trực tiếp với thông tin BĐS đã điền sẵn.",
+        "steps": [
+          3
+        ]
+      },
+      {
+        "id": "dl010",
+        "kw": [
+          "nên chọn giờ nào để đầu chủ xác nhận nhanh",
+          "cách chọn ngày giờ và gửi yêu cầu đặt lịch"
+        ],
+        "a": "Bấm chọn ngày muốn dẫn khách (chỉ chọn được hiện tại/tương lai), rồi chọn khung giờ phù hợp với cả bạn và khách. Thêm ghi chú nếu cần rồi bấm \"Gửi yêu cầu\" — lịch sẽ chờ đầu chủ xác nhận.",
+        "steps": [
+          4
+        ]
       }
     ],
     "lich_hen_dau_chu": [
@@ -986,6 +1214,36 @@
         "a": "Vào tab Đã xác nhận → mở chi tiết lịch → bấm 'Thu hồi' → xác nhận hủy.\n\nHệ thống tự gửi thông báo cho chuyên viên ngay — thu hồi sớm nhất có thể để họ kịp thông báo khách.",
         "steps": [
           5
+        ]
+      },
+      {
+        "id": "lhdc005",
+        "kw": [
+          "bấm vào đâu để xem yêu cầu lịch hẹn"
+        ],
+        "a": "Bấm icon chuông góc trên phải trang chủ (có số đỏ báo thông báo chưa đọc), rồi bấm vào thông báo lịch hẹn để chuyển thẳng sang màn hình quản lý lịch hẹn.",
+        "steps": [
+          1
+        ]
+      },
+      {
+        "id": "lhdc006",
+        "kw": [
+          "nên phản hồi yêu cầu hẹn trong bao lâu"
+        ],
+        "a": "Hướng dẫn không quy định thời hạn cứng, nhưng nên xác nhận hoặc từ chối sớm trong tab \"Chờ xác nhận\" để chuyên viên có thời gian sắp xếp với khách hoặc đặt lịch khác.",
+        "steps": [
+          2
+        ]
+      },
+      {
+        "id": "lhdc007",
+        "kw": [
+          "vì sao nên nhập lý do cụ thể từ chối"
+        ],
+        "a": "Lý do rõ ràng (bận, nhà đang sửa, chưa phù hợp thời gian...) giúp chuyên viên hiểu tình huống và chủ động đặt lại lịch khác phù hợp hơn, tránh mất thời gian hẹn lại nhiều lần.",
+        "steps": [
+          4
         ]
       }
     ],
@@ -1050,6 +1308,16 @@
         "a": "Bấm vào khách → bấm 'Sửa' (icon bút chì) → chỉnh các trường cần đổi → bấm Lưu.",
         "steps": [
           4
+        ]
+      },
+      {
+        "id": "kcmg006",
+        "kw": [
+          "xóa khách rồi có khôi phục lại được không"
+        ],
+        "a": "Không — sau khi xác nhận xóa, hồ sơ khách biến mất hoàn toàn và không thể khôi phục lại. Nên kiểm tra kỹ trước khi bấm Xác nhận.",
+        "steps": [
+          5
         ]
       }
     ],
@@ -1153,6 +1421,78 @@
         "steps": [
           9
         ]
+      },
+      {
+        "id": "kcp009",
+        "kw": [
+          "menu cá nhân nằm ở vị trí nào"
+        ],
+        "a": "Bấm icon avatar (ảnh đại diện hoặc chữ cái đầu tên) ở góc trên phải màn hình trang chủ để mở menu cá nhân.",
+        "steps": [
+          1
+        ]
+      },
+      {
+        "id": "kcp010",
+        "kw": [
+          "quản lý kho nằm ở mục nào trong menu",
+          "kho cá nhân có những tab trạng thái gì"
+        ],
+        "a": "Trong menu cá nhân, cuộn xuống tìm mục \"Quản lý kho\" (icon nhà/kho hàng). Bấm vào sẽ thấy 4 tab trạng thái: Chờ duyệt, Đã duyệt, Từ chối, Thùng rác.",
+        "steps": [
+          2
+        ]
+      },
+      {
+        "id": "kcp011",
+        "kw": [
+          "4 tab trong kho cá nhân là gì"
+        ],
+        "a": "Chờ duyệt (tin mới đăng, chờ kiểm duyệt 24h), Đã duyệt (tin đang live), Từ chối (tin bị trả về kèm lý do để sửa), Thùng rác (tin đã xóa, có thể khôi phục).",
+        "steps": [
+          3
+        ]
+      },
+      {
+        "id": "kcp012",
+        "kw": [
+          "tin đang chờ duyệt có sửa được không"
+        ],
+        "a": "Không — tin trong tab Chờ duyệt chỉ xem lại được, không sửa được, phải chờ kết quả kiểm duyệt trước.",
+        "steps": [
+          4
+        ]
+      },
+      {
+        "id": "kcp013",
+        "kw": [
+          "cách khôi phục tin từ thùng rác",
+          "khôi phục tin xong tin chuyển về trạng thái nào"
+        ],
+        "a": "Vào tab Thùng rác, bấm vào tin cần khôi phục → chọn \"Khôi phục\" — tin sẽ chuyển về tab Chờ duyệt và cần được duyệt lại từ đầu.",
+        "steps": [
+          5
+        ]
+      },
+      {
+        "id": "kcp014",
+        "kw": [
+          "tin đã duyệt có sửa được những gì"
+        ],
+        "a": "Tin đã duyệt có thể sửa một số trường, tạm dừng hoặc xóa — nhưng KHÔNG thể đổi Loại hình hay Pháp lý sau khi đã duyệt.",
+        "steps": [
+          6
+        ]
+      },
+      {
+        "id": "kcp015",
+        "kw": [
+          "cách lọc tin trong kho cá nhân"
+        ],
+        "a": "Bấm icon phễu/nút Lọc trong kho cá nhân, chọn tiêu chí: Loại hình, Địa chỉ (tỉnh/quận/đường), Khoảng giá, Ngày đăng — rồi bấm Lọc để áp dụng. Bấm Đặt lại để xóa tiêu chí.",
+        "steps": [
+          8
+        ]
       }
     ],
     "kho_hang_tu_do": [
@@ -1190,6 +1530,50 @@
         "a": "Bấm vào tin trong danh sách → panel chi tiết trượt ra với ảnh, thông số, giá và SĐT đầu chủ.\n\nTừ panel có thể lưu BST, đặt lịch, xem trang tin đầy đủ.",
         "steps": [
           5
+        ]
+      },
+      {
+        "id": "khtd004",
+        "kw": [
+          "vuốt ngang bảng để xem cột nào",
+          "bấm vào hàng để xem được gì"
+        ],
+        "a": "Kéo ngón tay sang phải trên bảng để thấy thêm cột Giá, Tr/m², Đầu chủ, SĐT. Bấm vào bất kỳ hàng nào để mở panel hoặc trang chi tiết đầy đủ của BĐS đó.",
+        "steps": [
+          2
+        ]
+      },
+      {
+        "id": "khtd005",
+        "kw": [
+          "cách lọc bđs trong kho hàng tự do",
+          "nên lọc tỉnh thành trước hay quận trước"
+        ],
+        "a": "Bấm nút Lọc (icon phễu) trong toolbar, chọn Loại hình, rồi Tỉnh/TP → Quận/Huyện → Đường (theo thứ tự từ trên xuống) và Khoảng giá — bấm Lọc màu xanh để áp dụng.",
+        "steps": [
+          3
+        ]
+      },
+      {
+        "id": "khtd006",
+        "kw": [
+          "cách ẩn bớt cột trong kho hàng tự do",
+          "đặt lại cột về mặc định ở đâu"
+        ],
+        "a": "Bấm nút Ẩn cột (icon mắt gạch chéo) trong toolbar, gạt toggle xanh/xám cho từng cột muốn hiện/ẩn. Bấm nút \"Đặt lại\" cuối panel để khôi phục cấu hình cột mặc định.",
+        "steps": [
+          4
+        ]
+      },
+      {
+        "id": "khtd007",
+        "kw": [
+          "trang tin đầy đủ có nội dung gì",
+          "đặt lịch xem nhà từ trang tin thế nào"
+        ],
+        "a": "Trang tin đầy đủ gồm album ảnh, mô tả, bản đồ vị trí, thông số nhà, giá, hoa hồng và thông tin đầu chủ. Để đặt lịch xem nhà, bấm nút \"Đặt lịch\" ở cuối trang để mở form hẹn với đầu chủ ngay.",
+        "steps": [
+          6
         ]
       }
     ],
@@ -1231,6 +1615,37 @@
         "a": "Bấm vào mã trong danh sách → xem chi tiết: ai đã dùng mã, thời gian đăng ký, hoa hồng liên quan.",
         "steps": [
           4
+        ]
+      },
+      {
+        "id": "mgt004",
+        "kw": [
+          "vào menu cá nhân từ đâu"
+        ],
+        "a": "Bấm icon avatar (ảnh đại diện hoặc chữ cái tên) ở góc trên phải trang chủ để mở menu cá nhân.",
+        "steps": [
+          1
+        ]
+      },
+      {
+        "id": "mgt005",
+        "kw": [
+          "quản lý phòng có những mục con nào"
+        ],
+        "a": "Trong Quản lý phòng có các mục con: Tin hoạt động, Mã giới thiệu và các tính năng quản lý khác.",
+        "steps": [
+          2
+        ]
+      },
+      {
+        "id": "mgt006",
+        "kw": [
+          "tin hoạt động trong quản lý phòng có gì",
+          "vào tin hoạt động bằng cách nào"
+        ],
+        "a": "Vào menu cá nhân → Quản lý phòng → tìm và bấm mục \"Tin hoạt động\". Màn hình mở ra với danh sách các mã giới thiệu đã tạo, số lần được dùng và trạng thái active/inactive.",
+        "steps": [
+          3
         ]
       }
     ],
@@ -1307,6 +1722,109 @@
         "a": "Bấm ô tìm kiếm phía trên danh sách → nhập tên hoặc SĐT → hệ thống lọc ngay.\n\nBấm 'Lọc nâng cao' để tìm theo khu vực, ngân sách hoặc CV phụ trách.",
         "steps": [
           13
+        ]
+      },
+      {
+        "id": "qlk007",
+        "kw": [
+          "quản lý khách nằm ở đâu trong menu"
+        ],
+        "a": "Bấm avatar góc trên phải trang chủ để mở menu cá nhân, sau đó cuộn xuống tìm mục Tài khoản cá nhân hoặc Quản lý khách.",
+        "steps": [
+          1
+        ]
+      },
+      {
+        "id": "qlk008",
+        "kw": [
+          "quản lý khách nằm ở đâu trong tài khoản"
+        ],
+        "a": "Trong menu cá nhân, bấm \"Tài khoản cá nhân\" để mở rộng, sau đó tìm và bấm \"Quản lý khách\" — màn hình mở ra với 2 tab: Đang tìm nhà và Đã mua.",
+        "steps": [
+          2
+        ]
+      },
+      {
+        "id": "qlk009",
+        "kw": [
+          "cách sắp xếp khách theo ngày cập nhật"
+        ],
+        "a": "Tab \"Đang tìm nhà\" hiển thị khách kèm ngày cập nhật gần nhất — bấm vào khách bất kỳ để xem chi tiết nhu cầu, lịch sử tương tác và hàng phù hợp.",
+        "steps": [
+          3
+        ]
+      },
+      {
+        "id": "qlk010",
+        "kw": [
+          "tab đã mua dùng để lưu thông tin gì",
+          "vì sao nên giữ liên lạc với khách đã mua"
+        ],
+        "a": "Tab Đã mua lưu tên khách, BĐS đã mua, ngày chốt và CV phụ trách. Nên duy trì liên hệ vì khách đã mua có thể giới thiệu khách mới hoặc mua thêm trong tương lai.",
+        "steps": [
+          4
+        ]
+      },
+      {
+        "id": "qlk011",
+        "kw": [
+          "bấm giữ vào khách đã mua để làm gì"
+        ],
+        "a": "Bấm giữ khoảng 1 giây vào tên khách trong tab Đã mua để mở menu thao tác nhanh: Xem chi tiết, Sửa thông tin, Ghi chú, hoặc Chuyển sang Đang tìm nếu khách có nhu cầu mua thêm.",
+        "steps": [
+          5
+        ]
+      },
+      {
+        "id": "qlk012",
+        "kw": [
+          "cách đánh dấu khách đã mua",
+          "menu thao tác khách đang tìm có gì"
+        ],
+        "a": "Bấm giữ khoảng 1 giây vào tên khách trong tab Đang tìm nhà — menu hiện ra với: Xem chi tiết, Sửa thông tin, Ghi chú, Xem hàng phù hợp, và \"Đánh dấu Đã mua\" khi khách đã chốt giao dịch.",
+        "steps": [
+          6
+        ]
+      },
+      {
+        "id": "qlk013",
+        "kw": [
+          "cách sửa thông tin khách hàng",
+          "sửa xong cần bấm gì để lưu"
+        ],
+        "a": "Từ menu thao tác, chọn \"Sửa thông tin\" — form mở ra với dữ liệu hiện tại, chỉ cần sửa trường thay đổi (SĐT, địa chỉ, khu vực, ngân sách...) rồi bấm \"Lưu\" để cập nhật ngay.",
+        "steps": [
+          7
+        ]
+      },
+      {
+        "id": "qlk014",
+        "kw": [
+          "cách xem hàng phù hợp với khách"
+        ],
+        "a": "Từ chi tiết khách, bấm \"Xem hàng phù hợp\" — hệ thống tự tìm và lọc BĐS khớp khu vực, loại hình, khoảng giá và thông số đã nhập cho khách đó.",
+        "steps": [
+          8
+        ]
+      },
+      {
+        "id": "qlk015",
+        "kw": [
+          "cách lọc thêm trong danh sách hàng phù hợp"
+        ],
+        "a": "Trong màn hình hàng phù hợp, bấm Lọc để thêm tiêu chí: Hiện trạng, Đặc điểm (mặt phố/trong ngõ/lô góc), hoặc Số phòng ngủ cụ thể — bấm Lọc để áp dụng.",
+        "steps": [
+          9
+        ]
+      },
+      {
+        "id": "qlk016",
+        "kw": [
+          "đánh dấu căn đã xem để làm gì"
+        ],
+        "a": "Bấm \"Đã xem\" trên BĐS đã dẫn khách xem — hệ thống ghi lại vào lịch sử, có thể xem lại qua tab/bộ lọc \"Đã xem\" để biết khách đã được dẫn xem những căn nào.",
+        "steps": [
+          10
         ]
       }
     ],
@@ -1386,6 +1904,47 @@
         "a": "Bấm nút Lọc → chọn Tỉnh/TP, Quận/Huyện, Loại hình, Khoảng giá → bấm Lọc để áp dụng.",
         "steps": [
           6
+        ]
+      },
+      {
+        "id": "tcc005",
+        "kw": [
+          "khác gì so với tin đăng qua môi giới"
+        ],
+        "a": "Tin chính chủ là các tin BĐS đăng trực tiếp bởi chủ nhà từ các nền tảng khác, không qua môi giới — bạn có thể liên hệ trực tiếp với chủ nhà thay vì qua trung gian.",
+        "steps": [
+          2
+        ]
+      },
+      {
+        "id": "tcc006",
+        "kw": [
+          "có thể gọi cho chủ nhà từ đây không"
+        ],
+        "a": "Có — từ \"Tin nhanh\" (card tóm tắt khi bấm vào tin) bạn có thể gọi điện trực tiếp cho chủ nhà, lưu tin hoặc xem phản hồi mà không cần mở trang chi tiết.",
+        "steps": [
+          7
+        ]
+      },
+      {
+        "id": "tcc007",
+        "kw": [
+          "cách gửi phản hồi cho chủ nhà"
+        ],
+        "a": "Bấm nút \"Phản hồi\" hoặc \"Liên hệ chủ nhà\" trong trang chi tiết, nhập câu hỏi (giá có thỏa thuận không, pháp lý, lịch xem nhà...) rồi bấm Gửi — chủ nhà sẽ nhận thông báo.",
+        "steps": [
+          8
+        ]
+      },
+      {
+        "id": "tcc008",
+        "kw": [
+          "làm sao biết chủ nhà đã trả lời",
+          "xem nội dung phản hồi của chủ nhà ở đâu"
+        ],
+        "a": "App gửi push notification khi chủ nhà trả lời — bấm vào thông báo để vào màn hình hội thoại, nơi hiển thị toàn bộ trao đổi với phản hồi của chủ nhà ở cuối.",
+        "steps": [
+          9
         ]
       }
     ],
@@ -1535,6 +2094,90 @@
         "steps": [
           4
         ]
+      },
+      {
+        "id": "cnp010",
+        "kw": [
+          "làm sao biết có tin nhắn chưa đọc"
+        ],
+        "a": "Trong danh sách hội thoại, các cuộc chat chưa đọc thường hiển thị nổi bật hơn (đậm hoặc có số/dấu báo) — danh sách luôn sắp xếp theo tin nhắn mới nhất lên đầu.",
+        "steps": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "cnp011",
+        "kw": [
+          "danh sách hội thoại sắp xếp theo gì",
+          "phân biệt chat cá nhân và nhóm thế nào"
+        ],
+        "a": "Danh sách sắp xếp theo tin nhắn mới nhất lên trên cùng. Icon người = chat cá nhân, icon nhiều người = nhóm chat, icon loa = kênh thông báo.",
+        "steps": [
+          2
+        ]
+      },
+      {
+        "id": "cnp012",
+        "kw": [
+          "cách xem lại lịch sử tin nhắn cũ"
+        ],
+        "a": "Mở cuộc trò chuyện rồi cuộn lên để xem tin nhắn cũ — toàn bộ lịch sử được lưu lại. Giữ ngón tay vào một tin nhắn để Reply, React hoặc Copy nhanh.",
+        "steps": [
+          3
+        ]
+      },
+      {
+        "id": "cnp013",
+        "kw": [
+          "tìm emoji và sticker ở đâu"
+        ],
+        "a": "Bấm icon mặt cười bên trái ô nhập tin nhắn để mở bảng chọn emoji hoặc sticker.",
+        "steps": [
+          4
+        ]
+      },
+      {
+        "id": "cnp014",
+        "kw": [
+          "cách gửi ảnh trong cuộc trò chuyện",
+          "có thể chụp ảnh trực tiếp để gửi không"
+        ],
+        "a": "Bấm icon + hoặc icon ảnh bên trái ô nhập, chọn \"Thư viện ảnh\" để gửi ảnh có sẵn (chọn được nhiều ảnh), hoặc chọn \"Máy ảnh\" để chụp và gửi ngay trong cuộc trò chuyện.",
+        "steps": [
+          5
+        ]
+      },
+      {
+        "id": "cnp015",
+        "kw": [
+          "nhắn trong nhóm khác chat cá nhân không"
+        ],
+        "a": "Cách gửi giống nhau — nhập nội dung và bấm Gửi, toàn bộ thành viên nhóm sẽ nhận được. Trong nhóm, có thể gõ @ rồi tên đồng nghiệp để mention, người đó sẽ nhận thông báo riêng.",
+        "steps": [
+          7
+        ]
+      },
+      {
+        "id": "cnp016",
+        "kw": [
+          "cách tìm kiếm tin nhắn cũ",
+          "tìm theo tên hay theo nội dung tin nhắn"
+        ],
+        "a": "Bấm vào ô tìm kiếm ở đầu danh sách chat — có thể nhập tên đồng nghiệp/nhóm để lọc nhanh, hoặc nhập từ khóa để tìm trong nội dung tin nhắn, kết quả hiện ra theo đoạn chat chứa từ đó.",
+        "steps": [
+          9
+        ]
+      },
+      {
+        "id": "cnp017",
+        "kw": [
+          "cách bắt đầu cuộc trò chuyện mới"
+        ],
+        "a": "Bấm icon bút hoặc + ở góc trên phải màn hình danh sách chat, nhập tên hoặc SĐT người muốn nhắn, chọn từ kết quả để mở màn hình chat mới.",
+        "steps": [
+          10
+        ]
       }
     ],
     "bang_tin": [
@@ -1583,6 +2226,47 @@
           "chia sẻ thông báo"
         ],
         "a": "Mở bài đăng → bấm icon Chia sẻ → chọn kênh muốn chia sẻ (Chat Nhà Phố, copy link, Zalo...)."
+      },
+      {
+        "id": "bt005",
+        "kw": [
+          "làm sao biết bài đăng nào chưa đọc"
+        ],
+        "a": "Bài chưa đọc hiển thị in đậm hoặc có dấu chấm xanh bên cạnh trong danh sách bảng tin.",
+        "steps": [
+          2
+        ]
+      },
+      {
+        "id": "bt006",
+        "kw": [
+          "xem ảnh đính kèm trong bài thế nào"
+        ],
+        "a": "Mở bài chi tiết, bấm vào ảnh để phóng to, vuốt sang trái/phải để xem các ảnh tiếp theo trong bài.",
+        "steps": [
+          3
+        ]
+      },
+      {
+        "id": "bt007",
+        "kw": [
+          "cách bình luận một bài trên bảng tin",
+          "bình luận xong tác giả có nhận thông báo không"
+        ],
+        "a": "Cuộn xuống cuối bài, bấm vào ô bình luận, nhập nội dung rồi bấm Gửi — bình luận xuất hiện ngay và tác giả bài viết sẽ nhận được thông báo.",
+        "steps": [
+          4
+        ]
+      },
+      {
+        "id": "bt008",
+        "kw": [
+          "chọn phản ứng khác ngoài like thế nào"
+        ],
+        "a": "Giữ ngón tay vào icon like (❤️/👍) bên dưới bài — bảng phản ứng emoji sẽ mở ra để chọn loại phản ứng khác. Bấm lại icon đã chọn để bỏ phản ứng.",
+        "steps": [
+          5
+        ]
       }
     ],
     "qr_code": [
@@ -1612,6 +2296,36 @@
         "steps": [
           4,
           5
+        ]
+      },
+      {
+        "id": "qr003",
+        "kw": [
+          "tìm icon qr code ở đâu"
+        ],
+        "a": "Trên trang chủ, tìm icon QR (hình ô vuông kẻ sọc) trong hàng icon tính năng — bấm vào để mở màn hình QR Code của bạn.",
+        "steps": [
+          1
+        ]
+      },
+      {
+        "id": "qr004",
+        "kw": [
+          "qr cá nhân dùng để kết nối thế nào"
+        ],
+        "a": "Đưa điện thoại để đồng nghiệp quét mã QR cá nhân của bạn — họ sẽ được thêm thông tin liên lạc của bạn ngay. Lưu ý không chụp màn hình lưu lại vì QR có hạn sử dụng, nên dùng QR hiển thị trực tiếp.",
+        "steps": [
+          2
+        ]
+      },
+      {
+        "id": "qr005",
+        "kw": [
+          "cần làm gì để quét qr thành công"
+        ],
+        "a": "Bấm tab Quét QR, hướng camera vào mã QR của đồng nghiệp, giữ điện thoại thẳng và đủ sáng — app tự nhận mã trong 1-2 giây, không cần bấm thêm.",
+        "steps": [
+          3
         ]
       }
     ],
@@ -1728,6 +2442,38 @@
           1,
           2
         ]
+      },
+      {
+        "id": "kqt003",
+        "kw": [
+          "tab kho bạn quan tâm nằm ở đâu"
+        ],
+        "a": "Tìm icon tim ❤️ hoặc bookmark 🔖 ở thanh tab trang chủ — đây là tab \"Kho bạn quan tâm\".",
+        "steps": [
+          1
+        ]
+      },
+      {
+        "id": "kqt004",
+        "kw": [
+          "cách sắp xếp danh sách hàng quan tâm"
+        ],
+        "a": "Bấm icon sắp xếp trong danh sách quan tâm để đổi thứ tự theo giá, thời gian thêm vào, hoặc trạng thái tin.",
+        "steps": [
+          2
+        ]
+      },
+      {
+        "id": "kqt005",
+        "kw": [
+          "cách thêm tin vào kho quan tâm",
+          "bấm icon nào để thêm vào kho quan tâm"
+        ],
+        "a": "Tìm icon tim ❤️ hoặc bookmark 🔖 ở góc card tin trong bất kỳ màn hình danh sách nào — bấm một lần là thêm vào Kho quan tâm, icon đổi màu và có toast xác nhận.",
+        "steps": [
+          4,
+          5
+        ]
       }
     ],
     "tin_hoat_dong": [
@@ -1754,6 +2500,71 @@
           "chỉ xem tin đăng"
         ],
         "a": "Bấm icon phễu lọc góc trên phải màn hình feed → tick loại cần xem (Tin đăng / Hợp đồng / Lịch hẹn / Tất cả) → bấm Áp dụng, feed cập nhật ngay.",
+        "steps": [
+          7
+        ]
+      },
+      {
+        "id": "thd003",
+        "kw": [
+          "tin hoạt động nằm ở mục nào trong menu",
+          "tìm nhóm tin hoạt động trong menu ở đâu",
+          "nhóm tin hoạt động có icon gì"
+        ],
+        "a": "Bấm avatar góc trên phải trang chủ để mở menu cá nhân, cuộn xuống tìm nhóm \"Tin hoạt động\" — thường có icon 📋.",
+        "steps": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "thd004",
+        "kw": [
+          "nhóm tin hoạt động có những feed nào",
+          "nên xem feed tất cả hay phòng ban"
+        ],
+        "a": "Nhóm Tin hoạt động có các feed: Tất cả, Phòng ban, Cá nhân. Nên dùng \"Tất cả\" để xem toàn bộ hoạt động, hoặc chọn \"Phòng ban\"/\"Cá nhân\" khi muốn tập trung theo dõi riêng.",
+        "steps": [
+          3
+        ]
+      },
+      {
+        "id": "thd005",
+        "kw": [
+          "cách xem hoạt động riêng của một thành viên"
+        ],
+        "a": "Bấm vào tên thành viên trong card hoạt động để xem riêng các hoạt động của người đó.",
+        "steps": [
+          4
+        ]
+      },
+      {
+        "id": "thd006",
+        "kw": [
+          "cuộn xuống có tải thêm hoạt động cũ không"
+        ],
+        "a": "Có — cuộn xuống cuối màn hình feed, app sẽ tự tải thêm các hoạt động cũ hơn.",
+        "steps": [
+          5
+        ]
+      },
+      {
+        "id": "thd007",
+        "kw": [
+          "có thể bình luận vào hoạt động không"
+        ],
+        "a": "Có — bấm vào card hoạt động để mở chi tiết, cuộn xuống phần bình luận để nhận xét hoặc chúc mừng đồng nghiệp.",
+        "steps": [
+          6
+        ]
+      },
+      {
+        "id": "thd008",
+        "kw": [
+          "cách lọc hoạt động theo loại",
+          "lọc theo tin đăng hợp đồng hay lịch hẹn"
+        ],
+        "a": "Bấm icon phễu lọc góc trên phải màn hình feed, tick loại cần xem (Tin đăng / Hợp đồng / Lịch hẹn / Tất cả) rồi bấm Áp dụng — feed cập nhật ngay chỉ hiện loại đã chọn.",
         "steps": [
           7
         ]
@@ -1796,6 +2607,78 @@
           7,
           8
         ]
+      },
+      {
+        "id": "qpn004",
+        "kw": [
+          "quản lý phòng-nhóm nằm ở đâu trong menu",
+          "tài khoản nào có quyền vào mục này"
+        ],
+        "a": "Bấm avatar góc trên phải trang chủ để mở menu — chỉ tài khoản có quyền Quản lý phòng mới thấy thêm nhóm tính năng \"Quản lý phòng-nhóm\" trong menu.",
+        "steps": [
+          1
+        ]
+      },
+      {
+        "id": "qpn005",
+        "kw": [
+          "bấm vào một phòng để xem được gì"
+        ],
+        "a": "Mở chi tiết phòng sẽ thấy danh sách thành viên, KPI và hoạt động gần đây của phòng đó.",
+        "steps": [
+          2
+        ]
+      },
+      {
+        "id": "qpn006",
+        "kw": [
+          "xem danh sách thành viên ở tab nào",
+          "badge xanh và xám khác nhau thế nào"
+        ],
+        "a": "Vào tab \"Thành viên\" trong màn hình phòng để xem avatar, tên, vai trò từng người. Badge màu thường thể hiện trạng thái hoạt động — cần xem trực tiếp trong app để biết badge cụ thể đang hiển thị gì cho từng người.",
+        "steps": [
+          3
+        ]
+      },
+      {
+        "id": "qpn007",
+        "kw": [
+          "tìm người để thêm bằng sđt hay tên"
+        ],
+        "a": "Cả hai đều được — bấm nút \"+\" hoặc \"Thêm thành viên\", nhập SĐT hoặc tên nhân viên, hệ thống sẽ tìm trong database công ty.",
+        "steps": [
+          4
+        ]
+      },
+      {
+        "id": "qpn008",
+        "kw": [
+          "cách phân quyền cho thành viên"
+        ],
+        "a": "Bấm vào tên thành viên → bấm icon ⋮ hoặc \"Chỉnh sửa vai trò\" → chọn vai trò (Chuyên viên / Trưởng nhóm / Phó quản lý) → bấm Lưu. Thay đổi có hiệu lực ngay.",
+        "steps": [
+          5
+        ]
+      },
+      {
+        "id": "qpn009",
+        "kw": [
+          "báo cáo phòng có những thông tin gì"
+        ],
+        "a": "Tab Báo cáo hiển thị biểu đồ và số liệu: tổng tin đăng, deal thành công, lịch hẹn thực hiện, kèm bảng ranking đóng góp của từng thành viên.",
+        "steps": [
+          7
+        ]
+      },
+      {
+        "id": "qpn010",
+        "kw": [
+          "có thể phân bổ kpi riêng cho từng người không"
+        ],
+        "a": "Có — trong tab KPI, bạn có thể đặt chỉ tiêu chung cho cả phòng hoặc phân bổ riêng số lượng cho từng thành viên.",
+        "steps": [
+          8
+        ]
       }
     ],
     "tai_khoan_ca_nhan": [
@@ -1835,6 +2718,57 @@
         "steps": [
           6
         ]
+      },
+      {
+        "id": "tkc004",
+        "kw": [
+          "vào tài khoản cá nhân từ đâu",
+          "tìm mục tài khoản trong menu thế nào"
+        ],
+        "a": "Bấm avatar góc trên phải trang chủ, cuộn trong menu để tìm mục \"Tài khoản cá nhân\" hoặc \"Hồ sơ\" rồi bấm vào.",
+        "steps": [
+          1
+        ]
+      },
+      {
+        "id": "tkc005",
+        "kw": [
+          "vì sao nên kiểm tra hồ sơ thường xuyên"
+        ],
+        "a": "Vì khách hàng sẽ thấy thông tin tên, SĐT, chi nhánh trên hồ sơ của bạn — cần đảm bảo các thông tin này luôn khớp với thực tế.",
+        "steps": [
+          2
+        ]
+      },
+      {
+        "id": "tkc006",
+        "kw": [
+          "sửa xong cần bấm gì để lưu"
+        ],
+        "a": "Sau khi nhập thông tin mới vào trường cần sửa, bấm \"Lưu\" hoặc \"Xác nhận\" ở góc trên phải — thông tin cập nhật ngay sau khi lưu.",
+        "steps": [
+          3
+        ]
+      },
+      {
+        "id": "tkc007",
+        "kw": [
+          "có thể chụp ảnh mới ngay trong app không"
+        ],
+        "a": "Có — bấm vào ảnh đại diện hoặc icon camera, chọn \"Chụp ảnh\" để chụp ngay, cắt khung vuông/tròn rồi lưu làm ảnh đại diện mới.",
+        "steps": [
+          4
+        ]
+      },
+      {
+        "id": "tkc008",
+        "kw": [
+          "bật xác thực 2 lớp ở đâu"
+        ],
+        "a": "Vào Tài khoản → tab Bảo mật, bật OTP qua SĐT — mỗi lần đăng nhập trên máy mới sẽ cần thêm mã OTP từ tin nhắn.",
+        "steps": [
+          5
+        ]
       }
     ],
     "quan_ly_kho_hang": [
@@ -1872,6 +2806,81 @@
         "a": "Vào tab Thống kê trong Quản lý kho hàng → chọn kỳ (tuần/tháng/quý) để xem biểu đồ → bấm nút \"Xuất\" góc trên phải → chọn Excel (.xlsx) để chỉnh sửa hoặc PDF để chia sẻ/in.",
         "steps": [
           7,
+          8
+        ]
+      },
+      {
+        "id": "qkh004",
+        "kw": [
+          "quản lý kho hàng nằm ở đâu trong menu",
+          "mục này dành cho tài khoản nào",
+          "vào quản lý kho hàng bằng cách nào",
+          "danh sách tính năng quản lý kho gồm những gì"
+        ],
+        "a": "Bấm avatar góc trên phải trang chủ, cuộn trong menu để tìm nhóm \"Quản lý kho hàng\" — mục này dành riêng cho tài khoản Quản lý phòng, bấm vào sẽ thấy danh sách các tính năng quản lý kho con bên trong.",
+        "steps": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "qkh005",
+        "kw": [
+          "cách lọc kho theo từng thành viên"
+        ],
+        "a": "Trong màn hình kho phòng, bấm dropdown \"Thành viên\" để xem riêng kho của 1 chuyên viên/đầu chủ cụ thể.",
+        "steps": [
+          3
+        ]
+      },
+      {
+        "id": "qkh006",
+        "kw": [
+          "cách duyệt hoặc từ chối tin của thành viên"
+        ],
+        "a": "Vào tab Chờ duyệt, bấm vào tin để kiểm tra thông tin, ảnh, pháp lý, giá — sau đó bấm \"Duyệt\" để đăng công khai, hoặc \"Từ chối\" kèm lý do gửi lại cho CV.",
+        "steps": [
+          4
+        ]
+      },
+      {
+        "id": "qkh007",
+        "kw": [
+          "cách phân công hàng cho chuyên viên",
+          "nên chọn cv nào để phân công"
+        ],
+        "a": "Bấm vào tin trong kho phòng → chọn \"Phân công\" hoặc \"Giao cho CV\" → tìm CV phù hợp, nên chọn người đang rảnh hoặc có chuyên môn phù hợp → bấm Xác nhận.",
+        "steps": [
+          5
+        ]
+      },
+      {
+        "id": "qkh008",
+        "kw": [
+          "cách lọc kho hàng để tìm hàng phù hợp khách"
+        ],
+        "a": "Bấm icon phễu hoặc nút \"Lọc\" trong màn hình kho hàng phòng, chọn tiêu chí: loại hình, khu vực, giá, diện tích, trạng thái, thành viên phụ trách — bấm Lọc để áp dụng.",
+        "steps": [
+          6
+        ]
+      },
+      {
+        "id": "qkh009",
+        "kw": [
+          "xem thống kê kho hàng ở tab nào"
+        ],
+        "a": "Vào tab Thống kê trong màn hình quản lý kho, chọn kỳ (tuần/tháng/quý) để xem biểu đồ phân bổ tin theo trạng thái và so sánh theo tháng.",
+        "steps": [
+          7
+        ]
+      },
+      {
+        "id": "qkh010",
+        "kw": [
+          "xuất báo cáo dạng excel hay pdf"
+        ],
+        "a": "Cả hai — trong tab Thống kê, bấm nút \"Xuất\" góc trên phải, chọn Excel (.xlsx) để chỉnh sửa hoặc PDF để chia sẻ/in ấn, sau đó gửi cho Ban quản lý qua email hoặc Zalo.",
+        "steps": [
           8
         ]
       }
