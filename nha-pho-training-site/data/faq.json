@@ -163,6 +163,90 @@
         "từ khóa tìm kiếm"
       ],
       "a": "Mọi thanh tìm kiếm trong App đều tự động cắt bỏ dấu cách đầu/cuối và khoảng trắng thừa — không cần nhập chính xác từng ký tự."
+    },
+    {
+      "id": "g016",
+      "kw": [
+        "xin chào",
+        "chào bạn",
+        "hello",
+        "hi",
+        "chào",
+        "alo"
+      ],
+      "a": "Chào bạn! Mình là trợ lý hỗ trợ App Nhà Phố Việt Nam. Bạn cần hỏi gì về cách dùng app cứ hỏi nhé!",
+      "steps": []
+    },
+    {
+      "id": "g017",
+      "kw": [
+        "bạn là ai",
+        "là bot hay người",
+        "có phải bot không",
+        "chatbot hay người thật",
+        "ai trả lời mình"
+      ],
+      "a": "Mình là trợ lý tự động trả lời các câu hỏi thường gặp về App Nhà Phố Việt Nam. Nếu cần hỗ trợ sâu hơn, bạn liên hệ Ban Công nghệ Tập đoàn hoặc các Thư ký nhé!",
+      "steps": []
+    },
+    {
+      "id": "g018",
+      "kw": [
+        "cảm ơn",
+        "thanks",
+        "thank you",
+        "ok cảm ơn",
+        "oke cám ơn"
+      ],
+      "a": "Không có gì! Cần hỏi thêm gì cứ quay lại nhé.",
+      "steps": []
+    },
+    {
+      "id": "g019",
+      "kw": [
+        "giá nhà bao nhiêu",
+        "giá thị trường bất động sản",
+        "nhà này giá bao nhiêu",
+        "tư vấn giá nhà"
+      ],
+      "a": "Mình không có số liệu giá thị trường để tư vấn — bạn nên trao đổi trực tiếp với đầu chủ hoặc chuyên viên môi giới phụ trách tin đó để có thông tin chính xác nhất.",
+      "steps": []
+    },
+    {
+      "id": "g020",
+      "kw": [
+        "tư vấn pháp lý",
+        "hợp đồng có hợp lệ không",
+        "tư vấn đầu tư",
+        "nên mua nhà này không",
+        "có nên đầu tư"
+      ],
+      "a": "Mình không hỗ trợ tư vấn pháp lý hay đầu tư — bạn nên hỏi chuyên viên pháp lý hoặc môi giới phụ trách để được tư vấn đúng quy định nhé.",
+      "steps": []
+    },
+    {
+      "id": "g021",
+      "kw": [
+        "app lỗi",
+        "app bị lỗi",
+        "không hài lòng",
+        "tệ quá",
+        "dùng khó chịu",
+        "app dở quá"
+      ],
+      "a": "Cảm ơn bạn đã phản hồi! Để xử lý nhanh, bạn gửi chi tiết lỗi (kèm ảnh chụp màn hình nếu có) cho Ban Công nghệ Tập đoàn, team sẽ kiểm tra ngay.",
+      "steps": []
+    },
+    {
+      "id": "g022",
+      "kw": [
+        "muốn nói chuyện với người",
+        "gặp nhân viên hỗ trợ",
+        "cho gặp người thật",
+        "tổng đài viên"
+      ],
+      "a": "Bạn liên hệ Ban Công nghệ Tập đoàn hoặc các Thư ký để được hỗ trợ trực tiếp nhé!",
+      "steps": []
     }
   ],
   "modules": {
