@@ -1613,6 +1613,184 @@
           4
         ]
       }
+    ],
+    "kho_quan_tam": [
+      {
+        "id": "kqt001",
+        "kw": [
+          "cách thêm vào kho quan tâm",
+          "bookmark hàng",
+          "lưu hàng quan tâm",
+          "thêm vào quan tâm",
+          "icon tim bookmark"
+        ],
+        "a": "Tìm icon tim ❤️ hoặc bookmark 🔖 ở góc card tin trong bất kỳ màn hình danh sách nào — bấm một lần là thêm vào Kho quan tâm, icon đổi màu xanh/đỏ và có toast xác nhận.",
+        "steps": [
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "kqt002",
+        "kw": [
+          "kho quan tâm ở đâu",
+          "xem hàng đã lưu",
+          "danh sách quan tâm",
+          "tab quan tâm"
+        ],
+        "a": "Vào tab \"Kho bạn quan tâm\" (icon tim hoặc bookmark) trên thanh tab trang chủ. Danh sách hiển thị địa chỉ, giá, diện tích và trạng thái — tự cập nhật khi tin đổi giá hoặc bán xong.",
+        "steps": [
+          1,
+          2
+        ]
+      }
+    ],
+    "tin_hoat_dong": [
+      {
+        "id": "thd001",
+        "kw": [
+          "tin hoạt động là gì",
+          "xem hoạt động team ở đâu",
+          "feed hoạt động"
+        ],
+        "a": "Bấm avatar góc trên phải trang chủ → mở menu cá nhân → tìm nhóm \"Tin hoạt động\" (icon 📋). Trong đó có các feed: Tất cả / Phòng ban / Cá nhân — mỗi card là 1 sự kiện như đăng tin mới, ký hợp đồng, lịch hẹn.",
+        "steps": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "thd002",
+        "kw": [
+          "lọc tin hoạt động",
+          "lọc theo loại hoạt động",
+          "chỉ xem tin đăng"
+        ],
+        "a": "Bấm icon phễu lọc góc trên phải màn hình feed → tick loại cần xem (Tin đăng / Hợp đồng / Lịch hẹn / Tất cả) → bấm Áp dụng, feed cập nhật ngay.",
+        "steps": [
+          7
+        ]
+      }
+    ],
+    "quan_ly_phong_nhom": [
+      {
+        "id": "qpn001",
+        "kw": [
+          "cách thêm thành viên vào phòng",
+          "thêm thành viên mới",
+          "mời thành viên vào nhóm"
+        ],
+        "a": "Vào màn hình danh sách phòng → bấm nút \"+\" hoặc \"Thêm thành viên\" → nhập SĐT hoặc tên nhân viên → chọn người → bấm Xác nhận, họ sẽ nhận thông báo và được thêm vào phòng.",
+        "steps": [
+          4
+        ]
+      },
+      {
+        "id": "qpn002",
+        "kw": [
+          "phân quyền thành viên",
+          "đổi vai trò thành viên",
+          "cách set chuyên viên trưởng nhóm"
+        ],
+        "a": "Bấm vào tên thành viên → bấm biểu tượng ⋮ hoặc \"Chỉnh sửa vai trò\" → chọn vai trò (Chuyên viên / Trưởng nhóm / Phó quản lý) → bấm Lưu. Thay đổi có hiệu lực ngay, thành viên nhận thông báo.",
+        "steps": [
+          5
+        ]
+      },
+      {
+        "id": "qpn003",
+        "kw": [
+          "xem báo cáo phòng",
+          "đặt kpi phòng",
+          "chỉ tiêu phòng"
+        ],
+        "a": "Vào tab Báo cáo trong màn hình quản lý phòng, chọn kỳ (tuần/tháng/quý) để xem biểu đồ và ranking thành viên. Đặt KPI ở tab KPI — điền chỉ tiêu cho từng loại (tin đăng, deal, lịch hẹn) và có thể phân bổ riêng cho từng người.",
+        "steps": [
+          7,
+          8
+        ]
+      }
+    ],
+    "tai_khoan_ca_nhan": [
+      {
+        "id": "tkc001",
+        "kw": [
+          "cách đổi ảnh đại diện",
+          "đổi avatar",
+          "cập nhật ảnh hồ sơ"
+        ],
+        "a": "Vào Tài khoản cá nhân → bấm vào ảnh đại diện hoặc icon camera → chọn \"Thư viện ảnh\" (chọn ảnh có sẵn, cắt khung) hoặc \"Chụp ảnh\" (chụp mới) → Lưu.",
+        "steps": [
+          4
+        ]
+      },
+      {
+        "id": "tkc002",
+        "kw": [
+          "đổi mật khẩu",
+          "quên mật khẩu",
+          "bảo mật tài khoản",
+          "xác thực otp"
+        ],
+        "a": "Vào Tài khoản → tab Bảo mật → Đổi mật khẩu: nhập mật khẩu cũ → nhập mật khẩu mới (tối thiểu 8 ký tự, có số và chữ hoa) → Xác nhận. Có thể bật thêm xác thực OTP qua SĐT để tăng bảo mật khi đăng nhập máy mới.",
+        "steps": [
+          5
+        ]
+      },
+      {
+        "id": "tkc003",
+        "kw": [
+          "cách đăng xuất",
+          "logout app nhà phố",
+          "thoát tài khoản"
+        ],
+        "a": "Cuộn xuống cuối màn hình Tài khoản cá nhân → bấm nút Đăng xuất (màu đỏ/xám) → xác nhận một lần. Lần sau vào lại: nhập SĐT → nhận OTP → đăng nhập như bình thường.",
+        "steps": [
+          6
+        ]
+      }
+    ],
+    "quan_ly_kho_hang": [
+      {
+        "id": "qkh001",
+        "kw": [
+          "duyệt tin thành viên",
+          "cách duyệt tin trong phòng",
+          "tin chờ duyệt"
+        ],
+        "a": "Vào Quản lý kho hàng → tab Chờ duyệt → bấm vào tin để kiểm tra ảnh, pháp lý, giá → bấm \"Duyệt\" để đăng công khai, hoặc \"Từ chối\" kèm lý do gửi lại cho CV.",
+        "steps": [
+          4
+        ]
+      },
+      {
+        "id": "qkh002",
+        "kw": [
+          "phân công tin cho cv",
+          "giao tin cho chuyên viên",
+          "chuyển tin sang người khác"
+        ],
+        "a": "Bấm vào tin trong kho phòng → chọn \"Phân công\" hoặc \"Giao cho CV\" → tìm CV phù hợp (đang rảnh, đúng chuyên môn) → Xác nhận. CV sẽ nhận thông báo và tin xuất hiện trong danh sách công việc của họ.",
+        "steps": [
+          5
+        ]
+      },
+      {
+        "id": "qkh003",
+        "kw": [
+          "xuất báo cáo kho hàng",
+          "tải báo cáo excel",
+          "thống kê kho phòng"
+        ],
+        "a": "Vào tab Thống kê trong Quản lý kho hàng → chọn kỳ (tuần/tháng/quý) để xem biểu đồ → bấm nút \"Xuất\" góc trên phải → chọn Excel (.xlsx) để chỉnh sửa hoặc PDF để chia sẻ/in.",
+        "steps": [
+          7,
+          8
+        ]
+      }
     ]
   }
 }
