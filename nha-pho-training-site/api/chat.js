@@ -5,7 +5,7 @@
 //   UPSTASH_REDIS_REST_URL (optional - nếu có thì rate limit persistent)
 //   UPSTASH_REDIS_REST_TOKEN (optional)
 //   HOURLY_TOKEN_CAP     (optional, default 10000 tokens/IP/hour)
-//   DAILY_TOKEN_CAP_USER (optional, default 40000 tokens/IP/day)
+//   DAILY_TOKEN_CAP_USER (optional, default 20000 tokens/IP/day)
 //   DAILY_TOKEN_GLOBAL   (optional, default 500000 tokens/day)
 //   MODEL_NAME (optional, default 'claude-haiku-4-5-20251001')
 
