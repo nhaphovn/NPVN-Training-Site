@@ -633,13 +633,6 @@ aside.sidebar {
   animation: typingDots 1.2s infinite;
 }
 @keyframes typingDots { 50% { opacity: .35; } }
-.ask-ai-btn {
-  display: block; margin-top: 8px; padding: 7px 14px;
-  background: var(--green); color: #fff; border: none; border-radius: 10px;
-  font-size: 12.5px; font-weight: 600; cursor: pointer; white-space: nowrap;
-}
-.ask-ai-btn:hover { background: var(--green-dark); }
-.ask-ai-btn:disabled { opacity: .55; cursor: default; }
 
 /* Input bar */
 .chat-form {
@@ -708,19 +701,6 @@ aside.sidebar {
   background: #00A651;
   color: #fff;
 }
-
-/* API key entered hint at top of message area */
-.api-key-hint {
-  font-size: 11px; color: var(--text-3);
-  padding: 8px 18px; border-bottom: 1px solid var(--border);
-  background: var(--green-tint); display: flex; align-items: center; gap: 6px;
-}
-.api-key-hint button {
-  margin-left: auto; font-size: 11px; color: var(--text-2);
-  text-decoration: underline; cursor: pointer;
-}
-.api-key-hint button:hover { color: var(--green-dark); }
-.api-key-hint .key-dot { color: var(--green); }
 
 /* ============================================================
    TABLET (768-1023): hide sidebar
@@ -1141,20 +1121,14 @@ body.embed-mode .module-header { border-radius: 0; }
         <!-- Empty state — direct free chat, no API key needed -->
         <div class="chat-empty" id="chat-empty">
           <div class="empty-icon">🤖</div>
-          <h4>Hỏi chatbot về bước này</h4>
-          <p>Trả lời nhanh từ FAQ có sẵn — nếu chưa có câu trả lời, bạn có thể chủ động bấm hỏi AI.</p>
+          <h4>Hỏi về bước này</h4>
+          <p>Trợ lý hiểu rõ từng bước, trả lời nhanh các câu hỏi thường gặp.</p>
           <div class="empty-features">
-            <div><span class="check">✓</span> Trả lời tức thì các câu hỏi thường gặp</div>
-            <div><span class="check">✓</span> Bấm "Hỏi AI" khi cần giải thích sâu hơn</div>
+            <div><span class="check">✓</span> Giải thích chi tiết từng bước</div>
+            <div><span class="check">✓</span> Trả lời câu hỏi cụ thể</div>
             <div><span class="check">✓</span> Đưa ra tip + shortcut</div>
           </div>
-          <div class="empty-hint" id="empty-hint">💬 FAQ miễn phí không giới hạn — Hỏi AI có giới hạn lượt/ngày</div>
-        </div>
-
-        <!-- Remaining quota indicator (shown after first chat) -->
-        <div class="api-key-hint" id="api-key-hint" hidden>
-          <span class="key-dot">●</span>
-          <span id="quota-info"></span>
+          <div class="empty-hint" id="empty-hint">💬 Miễn phí — hỏi bao nhiêu cũng được</div>
         </div>
 
         <!-- Messages — hidden khi empty state shown -->
@@ -1410,7 +1384,6 @@ function updateChatState() {
   const hasMessages = !!document.querySelector('#chat-messages .msg');
   const empty = document.getElementById('chat-empty');
   const messages = document.getElementById('chat-messages');
-  const keyHint = document.getElementById('api-key-hint');
   const input = document.getElementById('chat-input');
   const send = document.getElementById('chat-send');
   const clear = document.getElementById('ch-clear');
@@ -1426,13 +1399,11 @@ function updateChatState() {
   if (hasMessages) {
     empty.hidden = true;
     messages.hidden = false;
-    keyHint.hidden = false;
     clear.hidden = false;
   } else {
     // No messages yet → show empty state with suggestions
     empty.hidden = false;
     messages.hidden = true;
-    keyHint.hidden = true;
     clear.hidden = true;
   }
 }
@@ -2156,36 +2127,6 @@ function matchFAQ(question, moduleId, stepId, threshold = 2) {
   return { item: best, score: bestScore, crossModule };
 }
 
-// Client-side LLM daily quota (server enforces hard limit too)
-const _LLM_CNT_KEY = 'nhapho_llm_cnt';
-const _LLM_DATE_KEY = 'nhapho_llm_date';
-const LLM_PER_DAY = 20;
-
-function getLLMCount() {
-  const today = new Date().toISOString().slice(0, 10);
-  if (localStorage.getItem(_LLM_DATE_KEY) !== today) {
-    localStorage.setItem(_LLM_DATE_KEY, today);
-    localStorage.setItem(_LLM_CNT_KEY, '0');
-    return 0;
-  }
-  return parseInt(localStorage.getItem(_LLM_CNT_KEY) || '0', 10);
-}
-function incLLMCount() {
-  localStorage.setItem(_LLM_CNT_KEY, String(getLLMCount() + 1));
-}
-
-// Circuit breaker — stops calling API after 3 consecutive errors
-const chatBreaker = {
-  failures: 0, lastFail: 0,
-  isOpen() {
-    if (this.failures < 3) return false;
-    if (Date.now() - this.lastFail > 2 * 60 * 1000) { this.failures = 0; return false; }
-    return true;
-  },
-  fail() { this.failures++; this.lastFail = Date.now(); },
-  ok()   { this.failures = 0; },
-};
-
 function addUserMsg(text) {
   const div = document.createElement('div');
   div.className = 'msg user';
@@ -2216,10 +2157,13 @@ async function sendChat() {
   sendBtn.disabled = true;
   const stepId = STATE.currentStep + 1;
 
-  // ── TIER 0: FAQ — nguồn trả lời CHÍNH, instant, free, no API call ────
+  // FAQ là nguồn trả lời DUY NHẤT — không gọi LLM lúc runtime. Toàn bộ câu hỏi/
+  // đáp đã có sẵn trong data/faq.json (build 1 lần từ KB, xem eval/run_eval.py
+  // + docs liên quan). Câu hỏi không khớp FAQ = ngoài phạm vi/spam → trả mẫu
+  // câu cố định, không lộ khái niệm "AI" ra product.
+  await new Promise(r => setTimeout(r, 350)); // natural typing feel
   const faqHit = matchFAQ(q, STATE.moduleId, stepId);
   if (faqHit) {
-    await new Promise(r => setTimeout(r, 350)); // natural typing feel
     let answer = faqHit.item.a;
     if (faqHit.crossModule) {
       const label = MODULE_LABELS[faqHit.crossModule] || faqHit.crossModule;
@@ -2227,154 +2171,12 @@ async function sendChat() {
     }
     addBotMsg(answer);
     STATE.history.push({ role: 'assistant', content: answer });
-    sendBtn.disabled = false;
-    input.focus();
-    return;
+  } else {
+    addBotMsg('Câu này chưa có trong hệ thống hỗ trợ. Bạn thử hỏi lại bằng cách khác, hoặc liên hệ nhóm hỗ trợ để được giải đáp nhé!');
+    STATE.history.pop(); // chưa có câu trả lời thật — bỏ khỏi history
   }
-
-  // ── FAQ không khớp → KHÔNG tự động gọi LLM ───────────────────
-  // Câu hỏi ngoài FAQ thường là lạc đề/spam. Chốt chặn chống cost ở đây là
-  // làm cho việc gọi LLM trở thành lựa chọn CHỦ ĐỘNG của user (bấm nút), không
-  // phải hành vi mặc định khi gõ enter — quota/circuit-breaker chỉ là lớp
-  // phòng thủ phụ (xem askLLM), không phải giải pháp chính.
-  await new Promise(r => setTimeout(r, 300));
-  STATE.history.pop(); // chưa có câu trả lời thật — bỏ khỏi history
-  addAskAiPrompt(q, stepId);
   sendBtn.disabled = false;
   input.focus();
-}
-
-function addAskAiPrompt(question, stepId) {
-  const div = document.createElement('div');
-  div.className = 'msg bot';
-  const p = document.createElement('div');
-  p.textContent = 'Câu này chưa có trong FAQ. Bạn thử hỏi cách khác xem, hoặc bấm nút dưới để hỏi AI nhé!';
-  div.appendChild(p);
-  const btn = document.createElement('button');
-  btn.type = 'button';
-  btn.className = 'ask-ai-btn';
-  btn.textContent = '🤖 Hỏi AI';
-  btn.addEventListener('click', () => askLLM(question, stepId, btn));
-  div.appendChild(btn);
-  const box = document.getElementById('chat-messages');
-  box.appendChild(div);
-  box.scrollTop = box.scrollHeight;
-  return div;
-}
-
-// Gọi LLM thật — chỉ chạy khi user CHỦ ĐỘNG bấm nút "Hỏi AI" (xem addAskAiPrompt).
-// quota/circuit-breaker vẫn giữ làm phòng thủ phụ, đề phòng user bấm nút này lặp lại nhiều lần.
-async function askLLM(q, stepId, triggerBtn) {
-  const sendBtn = document.getElementById('chat-send');
-  const input = document.getElementById('chat-input');
-  if (triggerBtn) { triggerBtn.disabled = true; triggerBtn.textContent = '⏳ Đang hỏi AI...'; }
-  sendBtn.disabled = true;
-  STATE.history.push({ role: 'user', content: q });
-
-  // ── Quota/giờ/ngày — phòng thủ phụ chống user bấm "Hỏi AI" lặp lại ────
-  if (getLLMCount() >= LLM_PER_DAY) {
-    const fallback = matchFAQ(q, STATE.moduleId, stepId, 1);
-    if (fallback) {
-      let msg = fallback.item.a;
-      if (fallback.crossModule) msg += `\n\n→ Xem hướng dẫn chi tiết trong "${MODULE_LABELS[fallback.crossModule] || fallback.crossModule}" trên trang chủ nhé!`;
-      addBotMsg(msg + '\n\n(Bạn đã dùng hết 20 lượt hỏi AI hôm nay — đây là câu gần nhất từ FAQ.)');
-    } else {
-      addErrMsg('Bạn đã dùng hết 20 lượt hỏi AI hôm nay. Hỏi tiếp qua nhóm hỗ trợ hoặc quay lại ngày mai nhé!');
-    }
-    if (triggerBtn) triggerBtn.remove();
-    STATE.history.pop();
-    sendBtn.disabled = false;
-    input.focus();
-    return;
-  }
-
-  // ── Circuit breaker (API lỗi liên tục) ───────────────────────
-  if (chatBreaker.isOpen()) {
-    const fallback = matchFAQ(q, STATE.moduleId, stepId, 1);
-    if (fallback) {
-      let msg = fallback.item.a;
-      if (fallback.crossModule) msg += `\n\n→ Xem hướng dẫn chi tiết trong "${MODULE_LABELS[fallback.crossModule] || fallback.crossModule}" trên trang chủ nhé!`;
-      addBotMsg(msg + '\n\n(Chat hỗ trợ đang tạm gián đoạn — gợi ý từ FAQ.)');
-    } else {
-      addErrMsg('Chat hỗ trợ đang tạm gián đoạn. Thử lại sau vài phút hoặc hỏi qua nhóm Zalo nhé!');
-    }
-    if (triggerBtn) triggerBtn.remove();
-    STATE.history.pop();
-    sendBtn.disabled = false;
-    input.focus();
-    return;
-  }
-
-  // ── Gọi LLM thật ──────────────────────────────────────────────
-  const typing = addBotMsg('', 'typing');
-  const s = STATE.steps[STATE.currentStep] || {};
-  const allSteps = (STATE.module?.steps || []).map(step => ({
-    id: step.id, name: step.name || '', title: step.title || '',
-    guide: Array.isArray(step.guide) ? step.guide : [],
-  }));
-  const payload = {
-    messages: STATE.history.slice(-8),
-    moduleId: STATE.moduleId,
-    moduleName: STATE.module?.name || '',
-    role: STATE.module?.role || '',
-    step: stepId,
-    stepName: s.name || '',
-    stepTitle: s.title || s.ttTitle || '',
-    stepGuide: s.guide || [],
-    allSteps,
-  };
-
-  try {
-    const res = await fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-
-    typing.remove();
-    const data = await res.json().catch(() => ({}));
-
-    if (!res.ok) {
-      chatBreaker.fail();
-      addErrMsg(data?.message || `Lỗi: HTTP ${res.status}`);
-      STATE.history.pop();
-      return;
-    }
-
-    chatBreaker.ok();
-    incLLMCount();
-    const text = data.message || '(không có phản hồi)';
-    addBotMsg(text);
-    STATE.history.push({ role: 'assistant', content: text });
-    if (triggerBtn) triggerBtn.remove();
-
-    if (data.remaining) {
-      const info = document.getElementById('quota-info');
-      const hint = document.getElementById('api-key-hint');
-      if (info && hint) {
-        const pct = data.remaining.hourPct ?? 100;
-        const left = LLM_PER_DAY - getLLMCount();
-        if (pct > 75 && left > 10) {
-          hint.hidden = true;
-        } else if (pct > 50 && left > 5) {
-          hint.hidden = false; info.textContent = `Còn ${left} lượt hỏi hôm nay 🟢`;
-        } else if (pct > 25) {
-          hint.hidden = false; info.textContent = `Còn ${left} lượt hỏi hôm nay 🟡`;
-        } else {
-          hint.hidden = false; info.textContent = `Còn ${left} lượt — sắp hết ⚠️`;
-        }
-      }
-    }
-  } catch (err) {
-    typing.remove();
-    chatBreaker.fail();
-    addErrMsg('Lỗi mạng — kiểm tra kết nối rồi thử lại nhé!');
-    STATE.history.pop();
-  } finally {
-    if (triggerBtn) { triggerBtn.textContent = '🤖 Hỏi AI'; triggerBtn.disabled = false; }
-    sendBtn.disabled = false;
-    input.focus();
-  }
 }
 
 function toggleMobileChat(show) {
