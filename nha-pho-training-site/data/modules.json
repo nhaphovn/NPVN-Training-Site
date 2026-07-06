@@ -1,6 +1,6 @@
 {
   "version": "v13",
-  "lastUpdated": "2026-07-06T09:44:27.982Z",
+  "lastUpdated": "2026-07-06T10:29:45.575Z",
   "brand": {
     "name": "Nhà Phố Việt Nam",
     "app": "App Nhà Phố",
@@ -7246,12 +7246,170 @@
           ]
         }
       ]
+    },
+    "gui_tin_nhan": {
+      "name": "Gửi tin nhắn ngay tại tin đăng",
+      "role": "Học viên / Chuyên viên",
+      "icon": "📘",
+      "iconImg": "/api/img?path=images/gui_tin_nhan/icon.png",
+      "description": "Gửi tin nhắn cho Đầu chủ về căn ban quan tâm ngay tại Tin đăng!",
+      "images": {
+        "b01": "/api/img?path=images/gui_tin_nhan/b01.jpg",
+        "b02": "/api/img?path=images/gui_tin_nhan/b02.jpg",
+        "b03": "/api/img?path=images/gui_tin_nhan/b03.jpg",
+        "b04": "/api/img?path=images/gui_tin_nhan/b04.jpg",
+        "b05": "/api/img?path=images/gui_tin_nhan/b05.jpg",
+        "b06": "/api/img?path=images/gui_tin_nhan/b06.jpg"
+      },
+      "steps": [
+        {
+          "id": 1,
+          "name": "Xem Chi tiết tin đăng",
+          "desc": "Mở chi tiết tin đăng tại Kho bạn quan tâm hoặc Kho tài nguyên",
+          "title": "Bước 1 — ",
+          "sub": "",
+          "imgKey": "b01",
+          "scrollY": 0,
+          "hs": {
+            "x": 146,
+            "y": 268,
+            "w": 52,
+            "h": 46
+          },
+          "ttPos": "right",
+          "ttTitle": "Bấm icon chat Nhà Phố",
+          "ttText": "Ngay tại chi tiết tin đăng dưới tên của Đầu chủ đăng tin",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 2,
+          "name": "Trực quan thông tin căn",
+          "desc": "Tiêu đề và ảnh của căn hiển thị trực quan ngay trong tin nhắn trước khi gửi tin",
+          "title": "Bước 2 — ",
+          "sub": "",
+          "imgKey": "b02",
+          "scrollY": 0,
+          "hs": {
+            "x": 14,
+            "y": 297,
+            "w": 366,
+            "h": 183
+          },
+          "ttPos": "top",
+          "ttTitle": "Thông tin căn trực quan",
+          "ttText": "Xem đầy đủ các thông tin căn: thông số, giá, địa chỉ, ảnh ",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 3,
+          "name": "Gửi tin nhắn kèm đường link căn",
+          "desc": "Đường link căn bạn quan tâm hiển thị ngay ô nhập text",
+          "title": "Bước 3 — ",
+          "sub": "",
+          "imgKey": "b03",
+          "scrollY": 0,
+          "hs": {
+            "x": 42,
+            "y": 488,
+            "w": 339,
+            "h": 76
+          },
+          "ttPos": "top",
+          "ttTitle": "Gửi tin nhắn",
+          "ttText": "đường link căn được tự động ghép vào nhắn tin ngay để đầu chủ biết nói về căn nào",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 4,
+          "name": "Tương tác tin nhắn",
+          "desc": "giữ tin nhắn để hiện popup tương tác",
+          "title": "Bước 4 — ",
+          "sub": "",
+          "imgKey": "b04",
+          "scrollY": 0,
+          "hs": {
+            "x": 52,
+            "y": 334,
+            "w": 293,
+            "h": 203
+          },
+          "ttPos": "top",
+          "ttTitle": "Giữ tin nhắn",
+          "ttText": "popup tương tác: trả lời, chia sẻ, sao chép, ghim, xóa, thu hồi",
+          "tip": "Có thể chọn nhiều tin cùng lúc để chia sẻ đi",
+          "guide": []
+        },
+        {
+          "id": 5,
+          "name": "Chia sẻ tin nhắn",
+          "desc": "Chọn chia sẻ ở popup tương tác",
+          "title": "Bước 5 — ",
+          "sub": "",
+          "imgKey": "b05",
+          "scrollY": 0,
+          "hs": {
+            "x": 144,
+            "y": 381,
+            "w": 88,
+            "h": 65
+          },
+          "ttPos": "bottom",
+          "ttTitle": "Chọn \"chia sẻ\"",
+          "ttText": "chia sẻ (forward) tin được chọn tới các chat, nhóm chat khác",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 6,
+          "name": "Chọn nhóm, thành viên chia sẻ",
+          "desc": "Chọn nhóm và gửi tin nhắn kèm",
+          "title": "Bước 6 — ",
+          "sub": "",
+          "imgKey": "b06",
+          "scrollY": 0,
+          "hs": {
+            "x": 5,
+            "y": 69,
+            "w": 381,
+            "h": 496
+          },
+          "ttPos": "bottom",
+          "ttTitle": "Chọn nhóm chia sẻ",
+          "ttText": "Nhóm được chọn được Bold đậm hơn",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 7,
+          "name": "Gửi tin chia sẻ",
+          "desc": "Bấm Icon gửi tin để chia sẻ tin",
+          "title": "Bước 7 — ",
+          "sub": "",
+          "imgKey": "b06",
+          "scrollY": 0,
+          "hs": {
+            "x": 318,
+            "y": 504,
+            "w": 68,
+            "h": 63
+          },
+          "ttPos": "left",
+          "ttTitle": "Bấm icon gửi",
+          "ttText": "Sau khi soạn xong tin nhắn kèm thì bấm gửi tin đi",
+          "tip": "",
+          "guide": []
+        }
+      ]
     }
   },
   "featured": [
     "tai_app_android",
     "tai_app_ios",
     "dang_tin",
-    "loc_kho"
+    "loc_kho",
+    "gui_tin_nhan"
   ]
 }
