@@ -1,6 +1,6 @@
 {
   "version": "v13",
-  "lastUpdated": "2026-07-06T09:38:59.462Z",
+  "lastUpdated": "2026-07-06T09:42:11.030Z",
   "brand": {
     "name": "Nhà Phố Việt Nam",
     "app": "App Nhà Phố",
@@ -6743,8 +6743,12 @@
       "icon": "📘",
       "description": "",
       "images": {
-        "b01": "/images/quan_ly_khach_cua_chuyen_vien/b01.jpg",
-        "b02": "/images/quan_ly_khach_cua_chuyen_vien/b02.jpg"
+        "b01": "/api/img?path=images/quan_ly_khach_cua_chuyen_vien/b01.jpg",
+        "b02": "/api/img?path=images/quan_ly_khach_cua_chuyen_vien/b02.jpg",
+        "b05": "/api/img?path=images/quan_ly_khach_cua_chuyen_vien/b05.jpg",
+        "b01_1": "/api/img?path=images/quan_ly_khach_cua_chuyen_vien/b01_1.jpg",
+        "b03": "/api/img?path=images/quan_ly_khach_cua_chuyen_vien/b03.jpg",
+        "b04": "/api/img?path=images/quan_ly_khach_cua_chuyen_vien/b04.jpg"
       },
       "steps": [
         {
@@ -6753,7 +6757,7 @@
           "desc": "Avatar góc phải → menu quản lý",
           "title": "Bước 1 — ",
           "sub": "",
-          "imgKey": "b01",
+          "imgKey": "b01_1",
           "scrollY": 0,
           "hs": {
             "x": 3,
@@ -6793,13 +6797,13 @@
           "desc": "Bấm Lọc để nhập tiêu chí",
           "title": "Bước 3 — ",
           "sub": "",
-          "imgKey": "b01",
+          "imgKey": "b03",
           "scrollY": 0,
           "hs": {
-            "x": 0,
-            "y": 73,
-            "w": 80,
-            "h": 80
+            "x": 5,
+            "y": 93,
+            "w": 73,
+            "h": 60
           },
           "ttPos": "right",
           "ttTitle": "Nút Lọc",
@@ -6813,7 +6817,7 @@
           "desc": "Chọn tiêu chí, tỉnh/thành phố...",
           "title": "Bước 3 — ",
           "sub": "",
-          "imgKey": "b01",
+          "imgKey": "b04",
           "scrollY": 0,
           "hs": {
             "x": 5,
@@ -6833,7 +6837,7 @@
           "desc": "Xem chi tiết thông tin khách hàng ",
           "title": "Bước 5 — ",
           "sub": "",
-          "imgKey": "b01",
+          "imgKey": "b05",
           "scrollY": 0,
           "hs": {
             "x": 6,
