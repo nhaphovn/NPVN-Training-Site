@@ -1,6 +1,6 @@
 {
   "version": "v13",
-  "lastUpdated": "2026-07-06T10:29:45.575Z",
+  "lastUpdated": "2026-07-06T10:49:24.552Z",
   "brand": {
     "name": "Nhà Phố Việt Nam",
     "app": "App Nhà Phố",
@@ -7403,6 +7403,181 @@
           "guide": []
         }
       ]
+    },
+    "tao_nhom_chat": {
+      "name": "Tạo nhóm chat",
+      "role": "Học viên / Chuyên viên",
+      "icon": "📘",
+      "iconImg": "/api/img?path=images/tao_nhom_chat/icon.png",
+      "description": "Tạo nhóm chat gồm 3 thành viên trở lên và không giới hạn số lượng!",
+      "images": {
+        "b01": "/api/img?path=images/tao_nhom_chat/b01.jpg",
+        "b02": "/api/img?path=images/tao_nhom_chat/b02.jpg",
+        "b04": "/api/img?path=images/tao_nhom_chat/b04.jpg",
+        "b05": "/api/img?path=images/tao_nhom_chat/b05.jpg"
+      },
+      "steps": [
+        {
+          "id": 1,
+          "name": "Bấm Tạo nhóm",
+          "desc": "Tại giao diện chat Nhà Phố bấm nút tạo nhóm góc phải phía trên",
+          "title": "Bước 1 — ",
+          "sub": "",
+          "imgKey": "b01",
+          "scrollY": 0,
+          "hs": {
+            "x": 258,
+            "y": 40,
+            "w": 126,
+            "h": 52
+          },
+          "ttPos": "left",
+          "ttTitle": "Tạo nhóm",
+          "ttText": "Bấm nút tạo nhóm góc phải phía trên để tạo",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 2,
+          "name": "Thêm thành viên nhóm",
+          "desc": "Thêm thành viên đã chat gần đây",
+          "title": "Bước 2 — ",
+          "sub": "",
+          "imgKey": "b02",
+          "scrollY": 0,
+          "hs": {
+            "x": 6,
+            "y": 299,
+            "w": 374,
+            "h": 341
+          },
+          "ttPos": "bottom",
+          "ttTitle": "Thêm thành viên gần đây",
+          "ttText": "Chọn người đã chat gần đây bạn muốn add vào nhóm",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 3,
+          "name": "Tìm kiếm ",
+          "desc": "Tìm kiếm thành viên Nhà Phố muốn thêm vào nhóm",
+          "title": "Bước 3 — ",
+          "sub": "",
+          "imgKey": "b02",
+          "scrollY": 0,
+          "hs": {
+            "x": 9,
+            "y": 145,
+            "w": 371,
+            "h": 51
+          },
+          "ttPos": "bottom",
+          "ttTitle": "Bấm ô tìm kiếm",
+          "ttText": "Nhập tên, hoặc số điện thoại thành viên Nhà Phố để tìm",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 4,
+          "name": "Kết quả tìm kiếm",
+          "desc": "Danh sách thành viên nhà phố theo tìm kiếm",
+          "title": "Bước 4 — ",
+          "sub": "",
+          "imgKey": "b04",
+          "scrollY": 0,
+          "hs": {
+            "x": 2,
+            "y": 40,
+            "w": 381,
+            "h": 161
+          },
+          "ttPos": "bottom",
+          "ttTitle": "Danh sách tìm kiếm",
+          "ttText": "Danh sách thành viên Nhà Phố theo tìm kiếm (tên, sđt)",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 5,
+          "name": "Avatar thành viên nhóm",
+          "desc": "List avatar các thành viên đã được add vào nhóm",
+          "title": "Bước 5 — ",
+          "sub": "",
+          "imgKey": "b05",
+          "scrollY": 0,
+          "hs": {
+            "x": 5,
+            "y": 186,
+            "w": 376,
+            "h": 75
+          },
+          "ttPos": "bottom",
+          "ttTitle": "Thành viên nhóm",
+          "ttText": "Avatar các thành viên đã được add vào nhóm",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 6,
+          "name": "Đặt tên nhóm",
+          "desc": "Chọn tên cho nhóm",
+          "title": "Bước 6 — ",
+          "sub": "",
+          "imgKey": "b05",
+          "scrollY": 0,
+          "hs": {
+            "x": 57,
+            "y": 87,
+            "w": 325,
+            "h": 73
+          },
+          "ttPos": "bottom",
+          "ttTitle": "Đặt tên nhóm",
+          "ttText": "Chọn tên nhóm bạn muốn",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 7,
+          "name": "Thêm ảnh đại diện nhóm",
+          "desc": "Upload ảnh đại diện nhóm bạn muốn",
+          "title": "Bước 7 — ",
+          "sub": "",
+          "imgKey": "b05",
+          "scrollY": 0,
+          "hs": {
+            "x": 5,
+            "y": 95,
+            "w": 74,
+            "h": 65
+          },
+          "ttPos": "right",
+          "ttTitle": "Bấm icon máy ảnh",
+          "ttText": "Upload ảnh từ máy bạn làm ảnh đại diện nhóm",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 8,
+          "name": "Bấm tạo nhóm",
+          "desc": "Bấm nút tạo nhóm để hoàn thành",
+          "title": "Bước 8 — ",
+          "sub": "",
+          "imgKey": "b05",
+          "scrollY": 0,
+          "hs": {
+            "x": 320,
+            "y": 42,
+            "w": 63,
+            "h": 63
+          },
+          "ttPos": "left",
+          "ttTitle": "Bấm \"Tạo\" nhóm",
+          "ttText": "bấm \"Tạo\" để hoàn thành tạo nhóm",
+          "tip": "",
+          "guide": []
+        }
+      ]
     }
   },
   "featured": [
@@ -7410,6 +7585,7 @@
     "tai_app_ios",
     "dang_tin",
     "loc_kho",
-    "gui_tin_nhan"
+    "gui_tin_nhan",
+    "tao_nhom_chat"
   ]
 }
