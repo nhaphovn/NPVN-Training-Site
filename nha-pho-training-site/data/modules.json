@@ -1,6 +1,6 @@
 {
   "version": "v13",
-  "lastUpdated": "2026-07-06T09:42:11.030Z",
+  "lastUpdated": "2026-07-06T09:44:27.982Z",
   "brand": {
     "name": "Nhà Phố Việt Nam",
     "app": "App Nhà Phố",
@@ -6860,8 +6860,12 @@
       "icon": "📘",
       "description": "",
       "images": {
-        "b01": "/images/quan_ly_bao_cao_cua_chuyen_vien/b01.jpg",
-        "b02": "/images/quan_ly_bao_cao_cua_chuyen_vien/b02.jpg"
+        "b01": "/api/img?path=images/quan_ly_bao_cao_cua_chuyen_vien/b01.jpg",
+        "b02": "/images/quan_ly_bao_cao_cua_chuyen_vien/b02.jpg",
+        "b02_1": "/api/img?path=images/quan_ly_bao_cao_cua_chuyen_vien/b02_1.jpg",
+        "b03": "/api/img?path=images/quan_ly_bao_cao_cua_chuyen_vien/b03.jpg",
+        "b04": "/api/img?path=images/quan_ly_bao_cao_cua_chuyen_vien/b04.jpg",
+        "b01_1": "/api/img?path=images/quan_ly_bao_cao_cua_chuyen_vien/b01_1.jpg"
       },
       "steps": [
         {
@@ -6870,7 +6874,7 @@
           "desc": "Avatar góc phải → mở menu cá nhân",
           "title": "Bước 1 — ",
           "sub": "",
-          "imgKey": "b01",
+          "imgKey": "b01_1",
           "scrollY": 0,
           "hs": {
             "x": 14,
@@ -6890,7 +6894,7 @@
           "desc": "Chọn QL báo cáo của CV",
           "title": "Bước 2 — ",
           "sub": "",
-          "imgKey": "b02",
+          "imgKey": "b02_1",
           "scrollY": 0,
           "hs": {
             "x": 8,
@@ -6910,7 +6914,7 @@
           "desc": "QL báo cáo của CV",
           "title": "Bước 3 — ",
           "sub": "",
-          "imgKey": "b01",
+          "imgKey": "b03",
           "scrollY": 0,
           "hs": {
             "x": 2,
@@ -6930,13 +6934,13 @@
           "desc": "QL báo cáo của CV",
           "title": "Bước 3 — ",
           "sub": "",
-          "imgKey": "b01",
+          "imgKey": "b04",
           "scrollY": 0,
           "hs": {
-            "x": 0,
+            "x": 11,
             "y": 38,
-            "w": 373,
-            "h": 715
+            "w": 370,
+            "h": 813
           },
           "ttPos": "bottom",
           "ttTitle": "Báo cáo dẫn khách",
