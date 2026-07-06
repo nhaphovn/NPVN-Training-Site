@@ -1,6 +1,6 @@
 {
   "version": "v13",
-  "lastUpdated": "2026-06-16T11:59:33.493Z",
+  "lastUpdated": "2026-07-06T09:38:59.462Z",
   "brand": {
     "name": "Nhà Phố Việt Nam",
     "app": "App Nhà Phố",
@@ -6606,7 +6606,12 @@
       "icon": "📘",
       "description": "",
       "images": {
-        "b01": "/images/quan_ly_thanh_vien/b01.jpg"
+        "b01": "/api/img?path=images/quan_ly_thanh_vien/b01.jpg",
+        "b02": "/api/img?path=images/quan_ly_thanh_vien/b02.jpg",
+        "b03": "/api/img?path=images/quan_ly_thanh_vien/b03.jpg",
+        "b04": "/api/img?path=images/quan_ly_thanh_vien/b04.jpg",
+        "b05": "/api/img?path=images/quan_ly_thanh_vien/b05.jpg",
+        "b06": "/api/img?path=images/quan_ly_thanh_vien/b06.jpg"
       },
       "steps": [
         {
@@ -6635,7 +6640,7 @@
           "desc": "Mục Quản lý thành viên trong list",
           "title": "Bước 1 — ",
           "sub": "",
-          "imgKey": "b01",
+          "imgKey": "b02",
           "scrollY": 0,
           "hs": {
             "x": 5,
@@ -6655,7 +6660,7 @@
           "desc": "Bộ lọc chức danh, nhóm",
           "title": "Bước 2 — ",
           "sub": "",
-          "imgKey": "b01",
+          "imgKey": "b03",
           "scrollY": 0,
           "hs": {
             "x": 0,
@@ -6675,7 +6680,7 @@
           "desc": "Bấm nút ba chấm mở form xem,sửa tài khoản...",
           "title": "Bước 2 — ",
           "sub": "",
-          "imgKey": "b01",
+          "imgKey": "b04",
           "scrollY": 0,
           "hs": {
             "x": 343,
@@ -6695,7 +6700,7 @@
           "desc": "Bấm nút ba chấm mở form xem,sửa tài khoản...",
           "title": "Bước 2 — ",
           "sub": "",
-          "imgKey": "b01",
+          "imgKey": "b05",
           "scrollY": 54,
           "hs": {
             "x": 6,
@@ -6715,7 +6720,7 @@
           "desc": "Bấm nút ba chấm mở form mở tài khoản",
           "title": "Bước 2 — ",
           "sub": "",
-          "imgKey": "b01",
+          "imgKey": "b06",
           "scrollY": 54,
           "hs": {
             "x": 6,
