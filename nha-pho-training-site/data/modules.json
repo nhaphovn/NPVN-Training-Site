@@ -1,6 +1,6 @@
 {
   "version": "v13",
-  "lastUpdated": "2026-07-07T04:29:43.925Z",
+  "lastUpdated": "2026-07-07T04:35:50.534Z",
   "brand": {
     "name": "Nhà Phố Việt Nam",
     "app": "App Nhà Phố",
@@ -6634,15 +6634,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Mở menu cá nhân",
+              "title": "👤 Mở menu cá nhân",
               "body": "Bấm avatar góc trên phải trang chủ để mở menu cá nhân."
             },
             {
-              "title": "Tìm mục Quản lý phòng",
+              "title": "🔍 Tìm mục Quản lý phòng",
               "body": "Cuộn trong menu tìm nhóm \"Quản lý phòng\" — chỉ hiện với tài khoản có quyền quản lý."
             },
             {
-              "title": "Bấm để mở",
+              "title": "👆 Bấm để mở",
               "body": "Chọn Quản lý phòng để xem danh sách đầy đủ tính năng quản lý phòng."
             }
           ],
@@ -6671,15 +6671,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Chọn Quản lý thành viên",
+              "title": "👥 Chọn Quản lý thành viên",
               "body": "Trong nhóm Quản lý phòng, bấm \"Quản lý thành viên\"."
             },
             {
-              "title": "Xem danh sách",
+              "title": "📋 Xem danh sách",
               "body": "Hiển thị toàn bộ thành viên trong phòng bạn quản lý — tên, chức danh, trạng thái."
             },
             {
-              "title": "Thông tin nhanh",
+              "title": "ℹ️ Thông tin nhanh",
               "body": "Mỗi thành viên hiện avatar, tên, vai trò và trạng thái hoạt động hiện tại."
             }
           ],
@@ -6708,15 +6708,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Mở bộ lọc",
+              "title": "🔍 Mở bộ lọc",
               "body": "Bấm nút Lọc ở góc trên màn hình danh sách thành viên."
             },
             {
-              "title": "Chọn tiêu chí",
+              "title": "✅ Chọn tiêu chí",
               "body": "Chọn chức danh (Học viên / Chuyên viên / Trưởng nhóm) và/hoặc nhóm cụ thể."
             },
             {
-              "title": "Xem kết quả",
+              "title": "🔄 Xem kết quả",
               "body": "Danh sách tự cập nhật theo bộ lọc — bấm Xóa bộ lọc để về lại toàn bộ."
             }
           ],
@@ -6745,15 +6745,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Nút ba chấm ⋮",
+              "title": "⚙️ Nút ba chấm (⋮)",
               "body": "Mỗi thành viên trong danh sách có nút ⋮ ở bên phải — bấm để mở tùy chọn."
             },
             {
-              "title": "Thành viên đang hợp tác",
+              "title": "🤝 Thành viên đang hợp tác",
               "body": "Với thành viên trạng thái Đang hợp tác: menu hiện Xem tài khoản, Sửa tài khoản."
             },
             {
-              "title": "Sửa tài khoản",
+              "title": "✏️ Sửa tài khoản",
               "body": "Chọn Sửa tài khoản để chỉnh chức danh, đặt giới hạn kho hoặc thay đổi thông tin khác."
             }
           ],
@@ -6782,15 +6782,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Thành viên sắp hết hạn",
+              "title": "⚠️ Thành viên sắp hết hạn",
               "body": "Thành viên sắp hết hạn hợp đồng hiển thị trạng thái khác trong danh sách."
             },
             {
-              "title": "Mở tùy chọn",
+              "title": "⚙️ Mở tùy chọn thành viên",
               "body": "Bấm ⋮ bên cạnh tên thành viên đó để xem menu: Xem tài khoản, Sửa tài khoản."
             },
             {
-              "title": "Xử lý kịp thời",
+              "title": "⏰ Xử lý kịp thời",
               "body": "Kiểm tra và cập nhật thông tin hợp đồng trước khi tài khoản hết hạn để tránh gián đoạn."
             }
           ],
@@ -6819,15 +6819,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Nhận biết tài khoản bị khóa",
+              "title": "🔒 Nhận biết tài khoản bị khóa",
               "body": "Thành viên bị khóa hiện trạng thái \"Đã khóa\" — không thể đăng nhập app."
             },
             {
-              "title": "Mở lại tài khoản",
+              "title": "🔓 Mở lại tài khoản",
               "body": "Bấm ⋮ bên cạnh thành viên → chọn \"Mở tài khoản\" → xác nhận hành động."
             },
             {
-              "title": "Hiệu lực ngay",
+              "title": "✅ Hiệu lực ngay",
               "body": "Sau khi mở, thành viên có thể đăng nhập lại ngay và tiếp tục sử dụng app."
             }
           ],
@@ -6873,15 +6873,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Bấm avatar cá nhân",
+              "title": "👤 Bấm avatar cá nhân",
               "body": "Từ trang chủ, bấm avatar góc trên phải để mở menu cá nhân."
             },
             {
-              "title": "Tìm nhóm Quản lý phòng",
+              "title": "🔍 Tìm nhóm Quản lý phòng",
               "body": "Cuộn xuống trong menu tìm nhóm tính năng \"Quản lý phòng\" — hiện với tài khoản quản lý."
             },
             {
-              "title": "Chọn tính năng",
+              "title": "👆 Chọn tính năng",
               "body": "Bấm vào nhóm Quản lý phòng để xem danh sách tính năng."
             }
           ],
@@ -6910,15 +6910,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Tìm mục QL khách của CV",
+              "title": "📋 Tìm mục QL khách của CV",
               "body": "Trong menu Quản lý phòng, bấm \"Quản lý khách của chuyên viên\"."
             },
             {
-              "title": "Danh sách khách theo CV",
+              "title": "👥 Danh sách khách theo CV",
               "body": "Màn hình hiện danh sách khách của từng chuyên viên trong phòng bạn quản lý."
             },
             {
-              "title": "Theo dõi tiến độ",
+              "title": "📊 Theo dõi tiến độ",
               "body": "Xem khách đang ở giai đoạn nào: mới tiếp cận, đang tư vấn, đã xem nhà."
             }
           ],
@@ -6947,15 +6947,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Mở bộ lọc",
+              "title": "🔍 Mở bộ lọc",
               "body": "Bấm nút Lọc ở góc trên danh sách để mở bộ tiêu chí tìm kiếm."
             },
             {
-              "title": "Nhập tiêu chí",
+              "title": "✍️ Nhập tiêu chí",
               "body": "Có thể lọc theo: tên chuyên viên, tên khách, tỉnh/thành phố, trạng thái tiếp cận."
             },
             {
-              "title": "Áp dụng",
+              "title": "✅ Áp dụng",
               "body": "Điền tiêu chí xong bấm Áp dụng — danh sách cập nhật ngay theo bộ lọc."
             }
           ],
@@ -6984,15 +6984,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Chọn từng tiêu chí",
+              "title": "✅ Chọn từng tiêu chí",
               "body": "Bấm vào từng ô để chọn: tỉnh/thành, chuyên viên, trạng thái khách."
             },
             {
-              "title": "Kết hợp tiêu chí",
+              "title": "🔢 Kết hợp tiêu chí",
               "body": "Có thể chọn nhiều tiêu chí cùng lúc để lọc chính xác hơn."
             },
             {
-              "title": "Xóa bộ lọc",
+              "title": "🔄 Xóa bộ lọc",
               "body": "Bấm Xóa bộ lọc hoặc Reset để quay về danh sách đầy đủ."
             }
           ],
@@ -7021,15 +7021,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Bấm icon xem",
+              "title": "👁️ Bấm icon xem",
               "body": "Bấm icon 👁 hoặc tên khách trong danh sách để mở màn hình chi tiết."
             },
             {
-              "title": "Thông tin đầy đủ",
+              "title": "📋 Thông tin đầy đủ",
               "body": "Xem: tên, SĐT, nhu cầu BĐS, lịch sử tư vấn, chuyên viên đang phụ trách."
             },
             {
-              "title": "Theo dõi tiến độ",
+              "title": "📊 Theo dõi tiến độ",
               "body": "Lịch sử hoạt động theo thời gian — biết khách đã được tư vấn gì và lịch hẹn nào."
             }
           ],
@@ -7075,15 +7075,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Bấm avatar",
+              "title": "👤 Bấm avatar",
               "body": "Từ trang chủ bấm avatar cá nhân ở góc trên phải để mở menu."
             },
             {
-              "title": "Tìm mục Quản lý phòng",
+              "title": "🔍 Tìm mục Quản lý phòng",
               "body": "Cuộn trong menu tìm nhóm tính năng \"Quản lý phòng\"."
             },
             {
-              "title": "Chọn QL báo cáo của CV",
+              "title": "📊 Chọn QL báo cáo của CV",
               "body": "Bấm \"Quản lý báo cáo của CV\" trong danh sách tính năng quản lý phòng."
             }
           ],
@@ -7112,15 +7112,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Màn hình báo cáo",
+              "title": "📊 Màn hình báo cáo",
               "body": "Hiển thị danh sách báo cáo đã nộp từ các chuyên viên trong phòng bạn quản lý."
             },
             {
-              "title": "Thông tin mỗi báo cáo",
+              "title": "📋 Thông tin mỗi báo cáo",
               "body": "Mỗi dòng ghi: tên CV, tên khách, ngày dẫn, trạng thái báo cáo."
             },
             {
-              "title": "Sắp xếp mới nhất",
+              "title": "⬆️ Sắp xếp mới nhất",
               "body": "Danh sách sắp theo báo cáo gần nhất — báo cáo mới nhất ở trên cùng."
             }
           ],
@@ -7149,15 +7149,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Cuộn xem thêm",
+              "title": "⬇️ Cuộn xem thêm",
               "body": "Vuốt lên để tải thêm báo cáo — danh sách tải dần theo cuộn."
             },
             {
-              "title": "Đọc thông tin báo cáo",
+              "title": "📋 Đọc thông tin báo cáo",
               "body": "Mỗi dòng: tên CV, tên khách, bất động sản đã xem, ngày dẫn."
             },
             {
-              "title": "Tìm kiếm nhanh",
+              "title": "🔍 Tìm kiếm nhanh",
               "body": "Dùng ô tìm kiếm phía trên để tìm theo tên CV hoặc tên khách."
             }
           ],
@@ -7186,15 +7186,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Bấm vào báo cáo",
+              "title": "👆 Bấm vào báo cáo",
               "body": "Bấm vào dòng báo cáo trong danh sách để mở nội dung chi tiết."
             },
             {
-              "title": "Thông tin chi tiết",
+              "title": "📋 Thông tin chi tiết",
               "body": "Ghi rõ: tên khách, CCCD, tin BĐS đã xem, phản hồi của khách, ghi chú CV."
             },
             {
-              "title": "Đánh giá chất lượng",
+              "title": "🎯 Đánh giá chất lượng",
               "body": "Dựa vào ghi chú CV để đánh giá chất lượng tư vấn và theo dõi tiến độ deal."
             }
           ],
@@ -7238,11 +7238,11 @@
           "tip": "",
           "guide": [
             {
-              "title": "Mở CH Play",
+              "title": "📲 Mở CH Play",
               "body": "Tìm icon CH Play trên điện thoại Android → bấm mở."
             },
             {
-              "title": "Tìm kiếm ứng dụng",
+              "title": "🔍 Tìm kiếm ứng dụng",
               "body": "Bấm ô tìm kiếm phía trên → nhập \"Nhà Phố Việt Nam\" → bấm Tìm kiếm."
             }
           ]
@@ -7267,12 +7267,12 @@
           "tip": "",
           "guide": [
             {
-              "title": "Nhận diện App đúng",
+              "title": "✅ Nhận diện App đúng",
               "body": "Tên ứng dụng: Nhà Phố Việt Nam — logo hình tòa nhà màu xanh lá.",
               "note": "Chọn đúng App của Tập đoàn Nhà Phố, không nhầm với app tên tương tự khác."
             },
             {
-              "title": "Vào trang chi tiết",
+              "title": "👆 Vào trang chi tiết",
               "body": "Bấm vào ứng dụng Nhà Phố Việt Nam để mở trang cài đặt trên CH Play."
             }
           ]
@@ -7297,11 +7297,11 @@
           "tip": "",
           "guide": [
             {
-              "title": "Bấm Cài đặt",
+              "title": "⬇️ Bấm Cài đặt",
               "body": "Bấm nút \"Cài đặt\" màu xanh → điện thoại tự động tải và cài App."
             },
             {
-              "title": "Chờ cài xong",
+              "title": "⏳ Chờ cài xong",
               "body": "Chờ đến khi nút chuyển thành \"Mở\" là cài đặt hoàn tất.",
               "note": "Cần kết nối Wi-Fi hoặc 4G trong quá trình tải."
             }
@@ -7327,11 +7327,11 @@
           "tip": "",
           "guide": [
             {
-              "title": "Mở App Nhà Phố",
+              "title": "🚀 Mở App Nhà Phố",
               "body": "Bấm nút \"Mở\" trên CH Play hoặc bấm icon App Nhà Phố trên màn hình chính."
             },
             {
-              "title": "Đăng nhập tài khoản",
+              "title": "🔑 Đăng nhập tài khoản",
               "body": "Nhập số điện thoại đã đăng ký trên khonhapho.com → nhập mật khẩu → bấm Đăng nhập."
             }
           ]
@@ -7373,11 +7373,11 @@
           "tip": "",
           "guide": [
             {
-              "title": "Mở App Store",
+              "title": "📲 Mở App Store",
               "body": "Tìm icon App Store (hình chữ A màu xanh) → bấm mở."
             },
             {
-              "title": "Tìm TestFlight",
+              "title": "🔍 Tìm TestFlight",
               "body": "Bấm ô tìm kiếm → nhập \"TestFlight\" → bấm Search.",
               "note": "TestFlight là ứng dụng của Apple, bắt buộc phải cài trước khi cài App Nhà Phố trên iOS."
             }
@@ -7403,11 +7403,11 @@
           "tip": "",
           "guide": [
             {
-              "title": "Nhận diện đúng",
+              "title": "✅ Nhận diện đúng",
               "body": "Tên ứng dụng: TestFlight — icon màu xanh dương, nhà phát hành: Apple."
             },
             {
-              "title": "Vào trang chi tiết",
+              "title": "👆 Vào trang chi tiết",
               "body": "Bấm vào TestFlight để mở trang cài đặt trong App Store."
             }
           ]
@@ -7432,11 +7432,11 @@
           "tip": "",
           "guide": [
             {
-              "title": "Bấm Nhận / Cài đặt",
+              "title": "⬇️ Bấm Nhận / Cài đặt",
               "body": "Bấm nút \"Nhận\" (nếu chưa cài) hoặc icon tải xuống để cài TestFlight."
             },
             {
-              "title": "Xác nhận tải xuống",
+              "title": "🔐 Xác nhận tải xuống",
               "body": "Xác nhận bằng Face ID, Touch ID hoặc mật khẩu Apple ID khi được yêu cầu."
             }
           ]
@@ -7461,11 +7461,11 @@
           "tip": "",
           "guide": [
             {
-              "title": "Mở trình duyệt Safari",
+              "title": "🌐 Mở trình duyệt Safari",
               "body": "Mở Safari hoặc Chrome → nhập khonhapho.com → bấm Go."
             },
             {
-              "title": "Tải App Nhà Phố",
+              "title": "📲 Tải App Nhà Phố",
               "body": "Tìm nút tải ứng dụng iOS → bấm để mở link TestFlight cài App Nhà Phố Việt Nam.",
               "note": "Cần đã cài TestFlight ở bước trước — link sẽ mở thẳng vào TestFlight."
             }
@@ -7491,11 +7491,11 @@
           "tip": "",
           "guide": [
             {
-              "title": "Mở App Nhà Phố",
+              "title": "🚀 Mở App Nhà Phố",
               "body": "Sau khi cài qua TestFlight, bấm \"Mở\" hoặc tìm icon App Nhà Phố trên màn hình chính."
             },
             {
-              "title": "Đăng nhập tài khoản",
+              "title": "🔑 Đăng nhập tài khoản",
               "body": "Nhập số điện thoại đã đăng ký trên khonhapho.com → nhập mật khẩu → bấm Đăng nhập."
             }
           ]
@@ -7537,15 +7537,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Mở chi tiết tin đăng",
+              "title": "📱 Mở chi tiết tin đăng",
               "body": "Vào bất kỳ tin đăng BĐS bạn quan tâm trong Kho tài nguyên hoặc Kho bạn quan tâm."
             },
             {
-              "title": "Tìm icon chat",
+              "title": "💬 Tìm icon chat",
               "body": "Ngay dưới tên Đầu chủ đăng tin có icon chat Nhà Phố — bấm vào đó."
             },
             {
-              "title": "Mở chat trực tiếp",
+              "title": "⚡ Mở chat trực tiếp",
               "body": "Màn hình chat với Đầu chủ mở ra ngay — không cần tìm thủ công trong danh sách chat."
             }
           ],
@@ -7574,15 +7574,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Thẻ căn tự động ghép",
+              "title": "🔗 Thẻ căn tự động ghép",
               "body": "Khi bấm chat từ tin đăng, thẻ thông tin căn tự động hiện sẵn trong khung chat."
             },
             {
-              "title": "Nội dung thẻ",
+              "title": "🏠 Nội dung thẻ",
               "body": "Thẻ hiện đầy đủ: ảnh đại diện, địa chỉ, diện tích, giá, loại hình BĐS."
             },
             {
-              "title": "Đầu chủ hiểu ngay",
+              "title": "💡 Đầu chủ hiểu ngay",
               "body": "Đầu chủ nhận tin nhắn biết ngay bạn đang hỏi về căn nào — không cần giải thích thêm."
             }
           ],
@@ -7611,15 +7611,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Gõ nội dung hỏi",
+              "title": "✏️ Gõ nội dung hỏi",
               "body": "Nhập câu hỏi hoặc nội dung muốn trao đổi với Đầu chủ vào ô nhập tin."
             },
             {
-              "title": "Link căn tự đính kèm",
+              "title": "🔗 Link căn tự đính kèm",
               "body": "Đường link tin đăng tự động ghép vào tin nhắn — không cần copy-paste thủ công."
             },
             {
-              "title": "Bấm Gửi",
+              "title": "📤 Bấm Gửi",
               "body": "Bấm icon gửi — tin nhắn kèm link căn gửi đến Đầu chủ ngay lập tức."
             }
           ],
@@ -7648,15 +7648,15 @@
           "tip": "Có thể chọn nhiều tin cùng lúc để chia sẻ đi",
           "guide": [
             {
-              "title": "Giữ ngón tay lên tin nhắn",
+              "title": "👆 Giữ ngón tay lên tin nhắn",
               "body": "Nhấn giữ bất kỳ tin nhắn nào để mở popup tương tác nhanh."
             },
             {
-              "title": "Các tùy chọn có sẵn",
+              "title": "⚙️ Các tùy chọn có sẵn",
               "body": "Trả lời, Chia sẻ, Sao chép, Ghim, Xóa, Thu hồi — chọn đúng tùy chọn cần."
             },
             {
-              "title": "Chia sẻ nhiều tin cùng lúc",
+              "title": "📤 Chia sẻ nhiều tin cùng lúc",
               "body": "Chọn Chia sẻ → tích chọn nhiều tin nhắn → forward tất cả đến chat khác cùng lúc."
             }
           ],
@@ -7685,15 +7685,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Bấm Chia sẻ",
+              "title": "📤 Bấm Chia sẻ",
               "body": "Trong popup tương tác, chọn \"Chia sẻ\" để vào màn hình chọn đích gửi."
             },
             {
-              "title": "Chọn đích nhận",
+              "title": "🎯 Chọn đích nhận",
               "body": "Danh sách chat/nhóm hiện ra — bấm chọn người hoặc nhóm muốn chia sẻ tới."
             },
             {
-              "title": "Thêm ghi chú",
+              "title": "✏️ Thêm ghi chú",
               "body": "Có thể thêm tin nhắn kèm theo trước khi bấm gửi đi."
             }
           ],
@@ -7722,15 +7722,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Chọn nhóm đích",
+              "title": "🎯 Chọn nhóm đích",
               "body": "Bấm vào tên nhóm hoặc cá nhân muốn chia sẻ tin — có thể chọn nhiều cùng lúc."
             },
             {
-              "title": "Nhận biết đã chọn",
+              "title": "✅ Nhận biết đã chọn",
               "body": "Nhóm/người đã chọn hiển thị tên in đậm hoặc có dấu tích xanh."
             },
             {
-              "title": "Bỏ chọn",
+              "title": "↩️ Bỏ chọn",
               "body": "Bấm lại vào tên đã chọn để bỏ chọn nếu chọn nhầm."
             }
           ],
@@ -7759,15 +7759,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Kiểm tra trước khi gửi",
+              "title": "✅ Kiểm tra trước khi gửi",
               "body": "Xem lại danh sách đích nhận và nội dung kèm theo lần cuối."
             },
             {
-              "title": "Bấm icon gửi",
+              "title": "📤 Bấm icon gửi",
               "body": "Bấm icon gửi (mũi tên) — tin nhắn chuyển tiếp đến tất cả đích đã chọn cùng lúc."
             },
             {
-              "title": "Xác nhận thành công",
+              "title": "✅ Xác nhận thành công",
               "body": "Màn hình quay về chat — tin nhắn đã được chia sẻ thành công đến các đích đã chọn."
             }
           ],
@@ -7811,15 +7811,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Vào màn hình Chat",
+              "title": "💬 Vào màn hình Chat",
               "body": "Bấm icon Chat từ trang chủ để mở danh sách hội thoại."
             },
             {
-              "title": "Chuyển sang tab Nhóm",
+              "title": "📑 Chuyển sang tab Nhóm",
               "body": "Bấm tab \"Nhóm chat\" ở trên cùng để xem danh sách các nhóm hiện có."
             },
             {
-              "title": "Bấm Tạo nhóm",
+              "title": "➕ Bấm Tạo nhóm",
               "body": "Bấm nút [Tạo nhóm] ở góc trên phải màn hình để bắt đầu tạo nhóm mới."
             }
           ],
@@ -7848,15 +7848,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Danh sách chat gần đây",
+              "title": "📋 Danh sách chat gần đây",
               "body": "App hiển thị những người bạn đã chat gần đây để thêm nhanh mà không cần tìm kiếm."
             },
             {
-              "title": "Bấm chọn",
+              "title": "✅ Bấm chọn",
               "body": "Bấm tên từng người muốn thêm vào nhóm — avatar có dấu tích khi đã chọn."
             },
             {
-              "title": "Tối thiểu 3 người",
+              "title": "👥 Tối thiểu 3 người",
               "body": "Nhóm chat cần ít nhất 3 thành viên — thêm đủ người trước khi bấm Tạo."
             }
           ],
@@ -7885,15 +7885,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Bấm ô tìm kiếm",
+              "title": "🔍 Bấm ô tìm kiếm",
               "body": "Bấm vào ô \"Tìm kiếm\" trên màn hình thêm thành viên."
             },
             {
-              "title": "Nhập tên hoặc SĐT",
+              "title": "✍️ Nhập tên hoặc SĐT",
               "body": "Gõ tên đồng nghiệp hoặc số điện thoại — tìm trong toàn bộ hệ thống Nhà Phố."
             },
             {
-              "title": "Chỉ trong hệ thống",
+              "title": "ℹ️ Chỉ trong hệ thống",
               "body": "Chỉ thêm được tài khoản đã có trong hệ thống Nhà Phố — người ngoài không tìm thấy."
             }
           ],
@@ -7922,15 +7922,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Xem kết quả tìm",
+              "title": "📋 Xem kết quả tìm",
               "body": "Danh sách thành viên Nhà Phố khớp với từ khóa hiện ra bên dưới ô tìm kiếm."
             },
             {
-              "title": "Bấm chọn thành viên",
+              "title": "✅ Bấm chọn thành viên",
               "body": "Bấm vào tên người muốn thêm — avatar có dấu tích khi đã được chọn."
             },
             {
-              "title": "Thêm nhiều người",
+              "title": "➕ Thêm nhiều người",
               "body": "Tiếp tục tìm và chọn thêm người khác — số thành viên đã chọn cập nhật ở trên."
             }
           ],
@@ -7959,15 +7959,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Hàng avatar thành viên",
+              "title": "👥 Hàng avatar thành viên",
               "body": "Hàng avatar phía trên hiển thị tất cả người đã được chọn vào nhóm."
             },
             {
-              "title": "Bỏ thành viên nhầm",
+              "title": "✏️ Bỏ thành viên nhầm",
               "body": "Bấm vào avatar của người muốn bỏ → xác nhận để bỏ khỏi danh sách."
             },
             {
-              "title": "Thêm tiếp nếu cần",
+              "title": "➕ Thêm tiếp nếu cần",
               "body": "Chưa đủ người? Tiếp tục tìm kiếm và chọn thêm trước khi tạo nhóm."
             }
           ],
@@ -7996,15 +7996,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Bấm vào ô tên nhóm",
+              "title": "✏️ Bấm vào ô tên nhóm",
               "body": "Bấm vào ô nhập tên nhóm — bàn phím mở ra để gõ."
             },
             {
-              "title": "Đặt tên có ý nghĩa",
+              "title": "💡 Đặt tên có ý nghĩa",
               "body": "Tên phản ánh mục đích nhóm (vd: \"Team Quận 3\", \"Dự án ABC\", \"P. Sale Hà Nội\")."
             },
             {
-              "title": "Có thể đổi sau",
+              "title": "🔄 Có thể đổi sau",
               "body": "Tên nhóm có thể thay đổi sau khi tạo — chỉ quản trị viên nhóm mới đổi được."
             }
           ],
@@ -8033,15 +8033,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Bấm icon máy ảnh",
+              "title": "📸 Bấm icon máy ảnh",
               "body": "Bấm icon camera bên cạnh tên nhóm để mở thư viện ảnh điện thoại."
             },
             {
-              "title": "Chọn ảnh",
+              "title": "🖼️ Chọn ảnh",
               "body": "Chọn ảnh từ thư viện hoặc chụp ảnh mới làm avatar nhóm."
             },
             {
-              "title": "Không bắt buộc",
+              "title": "ℹ️ Không bắt buộc",
               "body": "Có thể bỏ qua bước này — nhóm không có ảnh sẽ dùng avatar mặc định."
             }
           ],
@@ -8070,15 +8070,15 @@
           "tip": "",
           "guide": [
             {
-              "title": "Kiểm tra lần cuối",
+              "title": "✅ Kiểm tra lần cuối",
               "body": "Xem lại tên nhóm, ảnh đại diện và danh sách thành viên trước khi tạo."
             },
             {
-              "title": "Bấm Tạo",
+              "title": "🚀 Bấm Tạo",
               "body": "Bấm nút \"Tạo\" — nhóm chat được tạo ngay lập tức."
             },
             {
-              "title": "Nhóm sẵn sàng",
+              "title": "🎉 Nhóm sẵn sàng",
               "body": "Tất cả thành viên nhận thông báo được thêm vào nhóm — nhóm xuất hiện trong danh sách Chat."
             }
           ],
@@ -8106,8 +8106,8 @@
           "id": 1,
           "name": "Tab nhóm mặc đinh",
           "desc": "Mở module Chat Nhà Phố để xem danh sách nhòm chat mặc định",
-          "title": "Bước 1 — ",
-          "sub": "",
+          "title": "Bước 1 — Mở tab Nhóm mặc định",
+          "sub": "Vào Chat Nhà Phố và chuyển sang tab Nhóm mặc định để xem danh sách nhóm",
           "imgKey": "b01",
           "scrollY": 0,
           "hs": {
@@ -8120,14 +8120,31 @@
           "ttTitle": "Tab Nhóm mặc đinh",
           "ttText": "Danh sách các nhóm mặc định phân quyền theo từng thành viên",
           "tip": "",
-          "guide": []
+          "guide": [
+            {
+              "title": "💬 Vào Chat Nhà Phố",
+              "body": "Bấm icon Chat từ trang chủ để mở danh sách hội thoại."
+            },
+            {
+              "title": "📑 Chuyển sang tab Nhóm mặc định",
+              "body": "Bấm tab \"Nhóm mặc định\" — hiện danh sách các nhóm được phân quyền tự động theo vai trò."
+            },
+            {
+              "title": "🏢 Nhóm phân theo phòng và vai trò",
+              "body": "Mỗi thành viên chỉ thấy các nhóm phù hợp với phòng, khối và chức danh của mình."
+            }
+          ],
+          "suggestedQ": [
+            "Tab Nhóm mặc định khác tab Nhóm chat thường thế nào?",
+            "Nhóm mặc định phòng ở đâu trong chat?"
+          ]
         },
         {
           "id": 2,
           "name": "Các nhóm thông báo",
           "desc": "Phân quyền viết nội dung thông báo theo từng nhóm khác nhau",
-          "title": "Bước 2 — ",
-          "sub": "",
+          "title": "Bước 2 — Nhận biết nhóm thông báo",
+          "sub": "Nhóm có icon loa nhỏ ở avatar là nhóm thông báo — chỉ đọc, không tắt thông báo được",
           "imgKey": "b01",
           "scrollY": 0,
           "hs": {
@@ -8140,14 +8157,31 @@
           "ttTitle": "Nhóm Thông báo",
           "ttText": "Các nhóm thông báo có icon cái lo nhỏ ở ảnh đại diện nhóm",
           "tip": "Thành viên có thể vào xem các thông báo của công ty, phòng khối hoặc theo role. Lưu ý: nhóm thông báo không tắt Notification được!",
-          "guide": []
+          "guide": [
+            {
+              "title": "🔔 Nhóm thông báo là gì",
+              "body": "Nhóm có icon loa 🔊 nhỏ ở góc ảnh đại diện — dùng để phát thông báo chính thức từ công ty, phòng hoặc theo vai trò."
+            },
+            {
+              "title": "📢 Nội dung thông báo",
+              "body": "Chỉ admin nhóm được gửi — thông báo nội bộ, cập nhật chính sách, sự kiện từ HQ hoặc QL phòng."
+            },
+            {
+              "title": "⚠️ Không tắt được thông báo",
+              "body": "Nhóm thông báo không cho phép tắt Notification — để không bỏ lỡ thông tin quan trọng từ công ty."
+            }
+          ],
+          "suggestedQ": [
+            "Nhóm thông báo khác nhóm chat bình thường thế nào?",
+            "Tại sao không tắt được thông báo nhóm mặc định?"
+          ]
         },
         {
           "id": 3,
           "name": "Nhóm trò chuyện",
           "desc": "Phân quyền tương tự nhóm thông báo nhưng thành viên có thể chat trong nhóm",
-          "title": "Bước 3 — ",
-          "sub": "",
+          "title": "Bước 3 — Nhóm trò chuyện mặc định",
+          "sub": "Nhóm không có icon loa là nhóm trò chuyện — thành viên được nhắn tin và giao lưu",
           "imgKey": "b01",
           "scrollY": 0,
           "hs": {
@@ -8160,14 +8194,31 @@
           "ttTitle": "Nhóm trò chuyên mặc đinh",
           "ttText": "Thành viên chat trong nhóm, giao lưu và riêng tư! không có icon loa",
           "tip": "",
-          "guide": []
+          "guide": [
+            {
+              "title": "💬 Nhóm trò chuyện mặc định",
+              "body": "Nhóm không có icon loa ở avatar — thành viên đều có thể nhắn tin, trao đổi và giao lưu trong nhóm."
+            },
+            {
+              "title": "👥 Phân quyền tương tự nhóm thông báo",
+              "body": "Thành viên được phân vào nhóm theo phòng/khối/vai trò, nhưng tất cả đều được phép chat."
+            },
+            {
+              "title": "🔒 Không tự rời nhóm được",
+              "body": "Thành viên được tự động thêm theo phân quyền của hệ thống — không tự add thêm người hoặc rời nhóm."
+            }
+          ],
+          "suggestedQ": [
+            "Nhóm trò chuyện mặc định có icon gì?",
+            "Tôi có thể rời nhóm mặc định không?"
+          ]
         },
         {
           "id": 4,
           "name": "Nhắn tin trong nhóm mặc định phòng",
           "desc": "Trải nghiệm giống như nhóm chat bình thường Nhà phố",
-          "title": "Bước 4 — ",
-          "sub": "",
+          "title": "Bước 4 — Nhắn tin trong nhóm mặc định",
+          "sub": "Gõ tin, gửi ảnh, tag thành viên bằng @ — trải nghiệm như nhóm chat thường",
           "imgKey": "b04",
           "scrollY": 0,
           "hs": {
@@ -8180,14 +8231,31 @@
           "ttTitle": "Gửi tin nhắn",
           "ttText": "Mention (tag) thành viên khác trong nhóm bằng \"@\" tên của họ",
           "tip": "thành viên nhóm được tự động ở nhóm theo phân quyền, không thể tự add hoặc rời nhóm.",
-          "guide": []
+          "guide": [
+            {
+              "title": "✉️ Gửi tin nhắn",
+              "body": "Bấm ô nhập tin phía dưới → gõ nội dung → bấm gửi — giống chat nhóm thông thường."
+            },
+            {
+              "title": "💬 @ Mention thành viên",
+              "body": "Gõ @ rồi nhập tên thành viên để tag — người đó nhận thông báo riêng dù đang bận."
+            },
+            {
+              "title": "⚠️ Không thể tự add/rời",
+              "body": "Thành viên nhóm mặc định do hệ thống phân quyền tự động — không tự thêm người hoặc rời nhóm."
+            }
+          ],
+          "suggestedQ": [
+            "Nhắn tin trong nhóm mặc định bằng cách nào?",
+            "Tag đồng nghiệp trong nhóm mặc định dùng ký hiệu gì?"
+          ]
         },
         {
           "id": 5,
           "name": "Quản lý nhóm chat",
           "desc": "Tương tự như quản lý nhóm chat thường",
-          "title": "Bước 5 — ",
-          "sub": "",
+          "title": "Bước 5 — Mở quản lý nhóm",
+          "sub": "Bấm icon ⋮ để mở menu quản lý — nhóm mặc định có một số tính năng bị giới hạn",
           "imgKey": "b04",
           "scrollY": 0,
           "hs": {
@@ -8200,14 +8268,31 @@
           "ttTitle": "Mở Quản lý",
           "ttText": "Bấm icon 3 chấm để mở quản lý nhóm chat",
           "tip": "Nhóm mặc định sẽ bị khóa, hoặc không có một số tính năng quản lý khác với nhóm chat thường.",
-          "guide": []
+          "guide": [
+            {
+              "title": "⚙️ Mở menu quản lý",
+              "body": "Bấm icon ⋮ (3 chấm) ở góc trên phải màn hình nhóm chat để mở menu tùy chọn."
+            },
+            {
+              "title": "🔒 Tính năng bị giới hạn",
+              "body": "Nhóm mặc định không cho phép đổi tên, thay avatar hoặc thêm/rời nhóm tự do như nhóm tự tạo."
+            },
+            {
+              "title": "👑 Quyền admin",
+              "body": "Admin nhóm mặc định (HQ/QL phòng) có thêm tùy chọn quản lý thành viên và khóa chat."
+            }
+          ],
+          "suggestedQ": [
+            "Nhóm mặc định có thể đổi tên hay ảnh đại diện không?",
+            "Ai là admin của nhóm chat mặc định?"
+          ]
         },
         {
           "id": 6,
           "name": "Quản lý nhóm chat",
           "desc": "Quản lý nhóm cho admin và thành viên",
-          "title": "Bước 6 — ",
-          "sub": "",
+          "title": "Bước 6 — Menu quản lý nhóm",
+          "sub": "Xem các tùy chọn — một số thao tác chỉ dành riêng cho admin nhóm",
           "imgKey": "b05",
           "scrollY": 0,
           "hs": {
@@ -8220,14 +8305,31 @@
           "ttTitle": "Menu quản lý chat",
           "ttText": "Sẽ có một số thao tác chỉ dành cho admin nhóm",
           "tip": "",
-          "guide": []
+          "guide": [
+            {
+              "title": "📋 Tùy chọn quản lý",
+              "body": "Menu hiện: thông tin nhóm, danh sách thành viên, cài đặt thông báo — tất cả thành viên thấy được."
+            },
+            {
+              "title": "👑 Chỉ dành cho admin",
+              "body": "Admin thấy thêm: Khóa thành viên, Tạm khóa trò chuyện, Thêm quản trị viên."
+            },
+            {
+              "title": "👥 Xem danh sách thành viên",
+              "body": "Bấm vào mục \"Thành viên\" để xem toàn bộ người trong nhóm và vai trò của họ."
+            }
+          ],
+          "suggestedQ": [
+            "Quản lý nhóm mặc định có những tùy chọn nào?",
+            "Thành viên thường thấy được gì trong menu quản lý nhóm?"
+          ]
         },
         {
           "id": 7,
           "name": "Khóa thành viên",
           "desc": "Admin có thể khóa chat đối với các thành viên nhóm",
-          "title": "Bước 7 — ",
-          "sub": "",
+          "title": "Bước 7 — Khóa thành viên",
+          "sub": "Admin chọn Khóa trả lời hoặc Tạm khóa trò chuyện để hạn chế quyền thành viên",
           "imgKey": "b07",
           "scrollY": 0,
           "hs": {
@@ -8240,14 +8342,31 @@
           "ttTitle": "Thao tác từng thành viên",
           "ttText": "Chọn khóa trả lời hoặc tạm khóa trò chuyện",
           "tip": "Khóa trả lời - thành viên không gửi được tin nhắn vào nhóm\nTạm khóa trò chuyện - thành viên không gửi được tin và cũng không xem được các tin nhắn trong nhóm",
-          "guide": []
+          "guide": [
+            {
+              "title": "🔇 Khóa trả lời",
+              "body": "Thành viên bị Khóa trả lời vẫn đọc được tin nhắn nhóm nhưng không gửi tin được."
+            },
+            {
+              "title": "⛔ Tạm khóa trò chuyện",
+              "body": "Thành viên bị Tạm khóa không gửi tin và không xem được tin nhắn trong nhóm."
+            },
+            {
+              "title": "👆 Cách thực hiện",
+              "body": "Bấm vào tên thành viên trong danh sách → chọn \"Khóa trả lời\" hoặc \"Tạm khóa trò chuyện\"."
+            }
+          ],
+          "suggestedQ": [
+            "Khóa trả lời khác Tạm khóa trò chuyện thế nào?",
+            "Admin khóa thành viên nhóm mặc định bằng cách nào?"
+          ]
         },
         {
           "id": 8,
           "name": "Mở khóa thành viên",
           "desc": "Mở khóa trả lời hoặc mở khóa trò chuyên cho các thành viên bị khóa",
-          "title": "Bước 8 — ",
-          "sub": "",
+          "title": "Bước 8 — Mở khóa thành viên",
+          "sub": "Admin chọn Mở khóa để phục hồi quyền gửi tin hoặc xem tin nhắn cho thành viên",
           "imgKey": "b07",
           "scrollY": 0,
           "hs": {
@@ -8260,7 +8379,24 @@
           "ttTitle": "Thao tác thành viên",
           "ttText": "Mở khóa trả lời hoặc mở khóa trò chuyện thành viên trở lại bình thường",
           "tip": "",
-          "guide": []
+          "guide": [
+            {
+              "title": "🔓 Mở khóa trả lời",
+              "body": "Bấm vào thành viên đang bị khóa → chọn \"Mở khóa trả lời\" — thành viên gửi tin được ngay."
+            },
+            {
+              "title": "🔓 Mở khóa trò chuyện",
+              "body": "Chọn \"Mở khóa trò chuyện\" — thành viên khôi phục quyền xem và gửi tin trong nhóm."
+            },
+            {
+              "title": "✅ Hiệu lực ngay",
+              "body": "Mở khóa có hiệu lực ngay lập tức — thành viên không cần thoát rồi vào lại nhóm."
+            }
+          ],
+          "suggestedQ": [
+            "Mở khóa thành viên trong nhóm mặc định bằng cách nào?",
+            "Sau khi mở khóa thành viên có nhận thông báo không?"
+          ]
         }
       ]
     }
