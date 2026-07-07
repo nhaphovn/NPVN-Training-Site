@@ -1,6 +1,6 @@
 {
   "version": "v13",
-  "lastUpdated": "2026-07-06T11:14:23.850Z",
+  "lastUpdated": "2026-07-07T04:18:01.108Z",
   "brand": {
     "name": "Nhà Phố Việt Nam",
     "app": "App Nhà Phố",
@@ -8088,6 +8088,181 @@
           ]
         }
       ]
+    },
+    "chat_mac_dinh": {
+      "name": "Chat mặc định phòng",
+      "role": "Học viên / Chuyên viên",
+      "icon": "📘",
+      "iconImg": "/api/img?path=images/chat_mac_dinh/icon.png",
+      "description": "Phòng Khối sinh hoạt và giao lưu trên các nhóm mặc định dành riêng",
+      "images": {
+        "b01": "/api/img?path=images/chat_mac_dinh/b01.jpg",
+        "b04": "/api/img?path=images/chat_mac_dinh/b04.jpg",
+        "b05": "/api/img?path=images/chat_mac_dinh/b05.jpg",
+        "b07": "/api/img?path=images/chat_mac_dinh/b07.jpg"
+      },
+      "steps": [
+        {
+          "id": 1,
+          "name": "Tab nhóm mặc đinh",
+          "desc": "Mở module Chat Nhà Phố để xem danh sách nhòm chat mặc định",
+          "title": "Bước 1 — ",
+          "sub": "",
+          "imgKey": "b01",
+          "scrollY": 0,
+          "hs": {
+            "x": 185,
+            "y": 145,
+            "w": 196,
+            "h": 59
+          },
+          "ttPos": "left",
+          "ttTitle": "Tab Nhóm mặc đinh",
+          "ttText": "Danh sách các nhóm mặc định phân quyền theo từng thành viên",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 2,
+          "name": "Các nhóm thông báo",
+          "desc": "Phân quyền viết nội dung thông báo theo từng nhóm khác nhau",
+          "title": "Bước 2 — ",
+          "sub": "",
+          "imgKey": "b01",
+          "scrollY": 0,
+          "hs": {
+            "x": 8,
+            "y": 197,
+            "w": 387,
+            "h": 131
+          },
+          "ttPos": "bottom",
+          "ttTitle": "Nhóm Thông báo",
+          "ttText": "Các nhóm thông báo có icon cái lo nhỏ ở ảnh đại diện nhóm",
+          "tip": "Thành viên có thể vào xem các thông báo của công ty, phòng khối hoặc theo role. Lưu ý: nhóm thông báo không tắt Notification được!",
+          "guide": []
+        },
+        {
+          "id": 3,
+          "name": "Nhóm trò chuyện",
+          "desc": "Phân quyền tương tự nhóm thông báo nhưng thành viên có thể chat trong nhóm",
+          "title": "Bước 3 — ",
+          "sub": "",
+          "imgKey": "b01",
+          "scrollY": 0,
+          "hs": {
+            "x": 5,
+            "y": 319,
+            "w": 380,
+            "h": 186
+          },
+          "ttPos": "bottom",
+          "ttTitle": "Nhóm trò chuyên mặc đinh",
+          "ttText": "Thành viên chat trong nhóm, giao lưu và riêng tư! không có icon loa",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 4,
+          "name": "Nhắn tin trong nhóm mặc định phòng",
+          "desc": "Trải nghiệm giống như nhóm chat bình thường Nhà phố",
+          "title": "Bước 4 — ",
+          "sub": "",
+          "imgKey": "b04",
+          "scrollY": 0,
+          "hs": {
+            "x": 3,
+            "y": 43,
+            "w": 382,
+            "h": 502
+          },
+          "ttPos": "bottom",
+          "ttTitle": "Gửi tin nhắn",
+          "ttText": "Mention (tag) thành viên khác trong nhóm bằng \"@\" tên của họ",
+          "tip": "thành viên nhóm được tự động ở nhóm theo phân quyền, không thể tự add hoặc rời nhóm.",
+          "guide": []
+        },
+        {
+          "id": 5,
+          "name": "Quản lý nhóm chat",
+          "desc": "Tương tự như quản lý nhóm chat thường",
+          "title": "Bước 5 — ",
+          "sub": "",
+          "imgKey": "b04",
+          "scrollY": 0,
+          "hs": {
+            "x": 337,
+            "y": 43,
+            "w": 47,
+            "h": 56
+          },
+          "ttPos": "left",
+          "ttTitle": "Mở Quản lý",
+          "ttText": "Bấm icon 3 chấm để mở quản lý nhóm chat",
+          "tip": "Nhóm mặc định sẽ bị khóa, hoặc không có một số tính năng quản lý khác với nhóm chat thường.",
+          "guide": []
+        },
+        {
+          "id": 6,
+          "name": "Quản lý nhóm chat",
+          "desc": "Quản lý nhóm cho admin và thành viên",
+          "title": "Bước 6 — ",
+          "sub": "",
+          "imgKey": "b05",
+          "scrollY": 0,
+          "hs": {
+            "x": 5,
+            "y": 295,
+            "w": 376,
+            "h": 312
+          },
+          "ttPos": "bottom",
+          "ttTitle": "Menu quản lý chat",
+          "ttText": "Sẽ có một số thao tác chỉ dành cho admin nhóm",
+          "tip": "",
+          "guide": []
+        },
+        {
+          "id": 7,
+          "name": "Khóa thành viên",
+          "desc": "Admin có thể khóa chat đối với các thành viên nhóm",
+          "title": "Bước 7 — ",
+          "sub": "",
+          "imgKey": "b07",
+          "scrollY": 0,
+          "hs": {
+            "x": 247,
+            "y": 162,
+            "w": 132,
+            "h": 109
+          },
+          "ttPos": "left",
+          "ttTitle": "Thao tác từng thành viên",
+          "ttText": "Chọn khóa trả lời hoặc tạm khóa trò chuyện",
+          "tip": "Khóa trả lời - thành viên không gửi được tin nhắn vào nhóm\nTạm khóa trò chuyện - thành viên không gửi được tin và cũng không xem được các tin nhắn trong nhóm",
+          "guide": []
+        },
+        {
+          "id": 8,
+          "name": "Mở khóa thành viên",
+          "desc": "Mở khóa trả lời hoặc mở khóa trò chuyên cho các thành viên bị khóa",
+          "title": "Bước 8 — ",
+          "sub": "",
+          "imgKey": "b07",
+          "scrollY": 0,
+          "hs": {
+            "x": 240,
+            "y": 318,
+            "w": 144,
+            "h": 103
+          },
+          "ttPos": "left",
+          "ttTitle": "Thao tác thành viên",
+          "ttText": "Mở khóa trả lời hoặc mở khóa trò chuyện thành viên trở lại bình thường",
+          "tip": "",
+          "guide": []
+        }
+      ]
     }
   },
   "featured": [
@@ -8096,6 +8271,7 @@
     "dang_tin",
     "loc_kho",
     "gui_tin_nhan",
-    "tao_nhom_chat"
+    "tao_nhom_chat",
+    "chat_mac_dinh"
   ]
 }
