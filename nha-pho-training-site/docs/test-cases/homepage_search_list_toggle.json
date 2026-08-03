@@ -1,0 +1,280 @@
+{
+  "feature": "homepage_search_list_toggle",
+  "createdAt": "2026-05-22T12:00:00Z",
+  "createdBy": "qa-reviewer",
+  "cases": [
+    {
+      "id": "TC-S-001",
+      "category": "functional",
+      "severity": "critical",
+      "title": "Toolbar hidden on page load, visible after data load",
+      "preconditions": ["index.html loaded in browser", "data/modules.json reachable"],
+      "steps": [
+        "Open index.html",
+        "Observe #modules-toolbar immediately after page load (before JS runs)",
+        "Wait for data/modules.json fetch to complete",
+        "Observe #modules-toolbar again"
+      ],
+      "expected": "Toolbar has [hidden] attribute on initial render; [hidden] removed after boot() completes and $('modules-toolbar').hidden = false is called",
+      "actual": "HTML line 488 sets hidden attribute on #modules-toolbar. boot() line 745 calls $('modules-toolbar').hidden = false after renderModules(). CSS rule [hidden] { display: none !important; } enforces invisibility. PASS.",
+      "result": "PASS",
+      "tags": ["module:homepage", "phase:dev", "feature:toolbar"]
+    },
+    {
+      "id": "TC-S-002",
+      "category": "functional",
+      "severity": "critical",
+      "title": "Search input is debounced 200ms",
+      "preconditions": ["Page loaded with data"],
+      "steps": [
+        "Type into #search-input rapidly",
+        "Observe that renderModules() is NOT called on each keystroke",
+        "Wait 200ms after last keystroke",
+        "Observe renderModules() is called once"
+      ],
+      "expected": "debounce timer of 200ms is set via setTimeout; clearTimeout called on each input event before setting new timer",
+      "actual": "Lines 748-754: _searchTimer cleared on each input event, setTimeout of 200ms set, renderModules() called in callback. Correct debounce implementation. PASS.",
+      "result": "PASS",
+      "tags": ["module:homepage", "phase:dev", "feature:search"]
+    },
+    {
+      "id": "TC-S-003",
+      "category": "functional",
+      "severity": "critical",
+      "title": "Search filters by module name",
+      "preconditions": ["Page loaded", "Modules include 'Đăng tin BĐS'"],
+      "steps": [
+        "Type 'Đăng tin' into search input",
+        "Wait 200ms"
+      ],
+      "expected": "Only modules whose name contains 'đăng tin' (case-insensitive) are shown",
+      "actual": "matchSearch() line 603-609: checks m.name.toLowerCase().includes(q). 'đăng tin bđs'.toLowerCase() includes 'đăng tin'. PASS.",
+      "result": "PASS",
+      "tags": ["module:homepage", "phase:dev", "feature:search"]
+    },
+    {
+      "id": "TC-S-004",
+      "category": "functional",
+      "severity": "high",
+      "title": "Search filters by description field",
+      "preconditions": ["Page loaded"],
+      "steps": [
+        "Type part of a module description into search input",
+        "Wait 200ms"
+      ],
+      "expected": "Modules matching description are shown",
+      "actual": "matchSearch() checks (m.description || '').toLowerCase().includes(q). PASS.",
+      "result": "PASS",
+      "tags": ["module:homepage", "phase:dev", "feature:search"]
+    },
+    {
+      "id": "TC-S-005",
+      "category": "functional",
+      "severity": "high",
+      "title": "Search filters by role field",
+      "preconditions": ["Page loaded"],
+      "steps": [
+        "Type 'Đầu chủ' into search input",
+        "Wait 200ms"
+      ],
+      "expected": "Modules with role 'Đầu chủ' are returned",
+      "actual": "matchSearch() checks (m.role || '').toLowerCase().includes(q). m.role values in modules.json are strings like 'Đầu chủ'. PASS.",
+      "result": "PASS",
+      "tags": ["module:homepage", "phase:dev", "feature:search"]
+    },
+    {
+      "id": "TC-S-006",
+      "category": "functional",
+      "severity": "critical",
+      "title": "Matched text highlighted with <mark> tag",
+      "preconditions": ["Page loaded", "Grid view active"],
+      "steps": [
+        "Type a known module name substring into search",
+        "Wait 200ms",
+        "Inspect rendered card .mc-name"
+      ],
+      "expected": "Matching substring is wrapped in <mark>...</mark>",
+      "actual": "highlight() function lines 596-601 constructs a RegExp from escaped query and replaces matches with <mark>${m}</mark>. renderModules() calls highlight(m.name, q), highlight(m.role, q), highlight(m.description, q) for both grid and list views. PASS.",
+      "result": "PASS",
+      "tags": ["module:homepage", "phase:dev", "feature:search", "feature:highlight"]
+    },
+    {
+      "id": "TC-S-007",
+      "category": "functional",
+      "severity": "high",
+      "title": "Empty state shows query text when no results found",
+      "preconditions": ["Page loaded"],
+      "steps": [
+        "Type a query that matches no module (e.g. 'xyzabc')",
+        "Wait 200ms"
+      ],
+      "expected": "Empty state shown with message containing the query string",
+      "actual": "Lines 635-641: when showIds.length === 0 and q is truthy, msg is set to 'Không tìm thấy module nào cho \"<strong>${escapeHtml(q)}</strong>\"'. The query is shown. PASS.",
+      "result": "PASS",
+      "tags": ["module:homepage", "phase:dev", "feature:search", "feature:empty-state"]
+    },
+    {
+      "id": "TC-S-008",
+      "category": "functional",
+      "severity": "high",
+      "title": "Empty state shows correct message when role tab has no modules (no search query)",
+      "preconditions": ["Page loaded", "A role tab with 0 live modules exists"],
+      "steps": [
+        "Click a role tab that has no live modules",
+        "Do not type in search"
+      ],
+      "expected": "Empty state shows 'Chưa có module cho vai trò này' with a wrench icon, not the search icon",
+      "actual": "Lines 635-641: when q is falsy, msg = 'Chưa có module cho vai trò này' and icon is '🛠'. PASS.",
+      "result": "PASS",
+      "tags": ["module:homepage", "phase:dev", "feature:empty-state"]
+    },
+    {
+      "id": "TC-S-009",
+      "category": "functional",
+      "severity": "critical",
+      "title": "Grid view button toggles view to grid layout",
+      "preconditions": ["Page loaded", "List view currently active"],
+      "steps": [
+        "Click #btn-list to switch to list view",
+        "Click #btn-grid"
+      ],
+      "expected": "#btn-grid has class 'active', #btn-list does not; content renders .modules-grid with .module-card children",
+      "actual": "Lines 758-763: btn-grid click sets STATE.viewMode='grid', adds 'active' to btn-grid, removes from btn-list, calls renderModules(). renderModules() line 672 checks STATE.viewMode === 'list'; else branch creates .modules-grid. PASS.",
+      "result": "PASS",
+      "tags": ["module:homepage", "phase:dev", "feature:view-toggle"]
+    },
+    {
+      "id": "TC-S-010",
+      "category": "functional",
+      "severity": "critical",
+      "title": "List view button toggles view to list layout",
+      "preconditions": ["Page loaded", "Grid view currently active (default)"],
+      "steps": [
+        "Click #btn-list"
+      ],
+      "expected": "#btn-list has class 'active', #btn-grid does not; content renders .modules-list with .module-list-item children",
+      "actual": "Lines 764-769: btn-list click sets STATE.viewMode='list', adds 'active' to btn-list, removes from btn-grid, calls renderModules(). renderModules() line 644 checks STATE.viewMode === 'list' and creates .modules-list. PASS.",
+      "result": "PASS",
+      "tags": ["module:homepage", "phase:dev", "feature:view-toggle"]
+    },
+    {
+      "id": "TC-S-011",
+      "category": "security",
+      "severity": "critical",
+      "title": "Search query XSS: HTML in query is escaped before DOM injection",
+      "preconditions": ["Page loaded"],
+      "steps": [
+        "Type '<script>alert(1)</script>' into search input",
+        "Wait 200ms"
+      ],
+      "expected": "Query is HTML-escaped before insertion; no script executes; empty state message shows escaped text",
+      "actual": "highlight() calls escapeHtml(text) before applying regex replacement. Empty state uses escapeHtml(q) at line 637. However: the regex in highlight() is built from the *escaped* query string (escapedQ), which is constructed from escapeHtml(text) output — the regex operates on already-escaped HTML, so the replacement correctly wraps escaped text in <mark>. The query in the empty-state message is also escaped. No raw query string interpolated without escaping. PASS.",
+      "result": "PASS",
+      "tags": ["module:homepage", "phase:dev", "feature:search", "security:xss"]
+    },
+    {
+      "id": "TC-S-012",
+      "category": "security",
+      "severity": "high",
+      "title": "Regex special characters in search query do not crash the page",
+      "preconditions": ["Page loaded"],
+      "steps": [
+        "Type '.*+?^${}()|[]\\' into search input",
+        "Wait 200ms"
+      ],
+      "expected": "No uncaught JavaScript error; page remains functional",
+      "actual": "highlight() line 599: escapedQ = query.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&'). The regex escape is correct for all JS RegExp special characters. matchSearch() at line 604 does NOT escape the query before using String.prototype.includes(), which is not a regex operation and therefore cannot throw on special chars. PASS.",
+      "result": "PASS",
+      "tags": ["module:homepage", "phase:dev", "feature:search", "security:regex-injection"]
+    },
+    {
+      "id": "TC-S-013",
+      "category": "functional",
+      "severity": "high",
+      "title": "Role tab filter combined with search works correctly",
+      "preconditions": ["Page loaded"],
+      "steps": [
+        "Click the 'Đầu chủ' role tab",
+        "Type a search term that matches one Đầu chủ module and one non-Đầu chủ module",
+        "Wait 200ms"
+      ],
+      "expected": "Only the Đầu chủ module that matches the search is shown; the other-role module is excluded",
+      "actual": "renderModules() lines 619-629: first filters showIds by role, then applies search filter on that subset. Role intersection happens before search intersection. PASS.",
+      "result": "PASS",
+      "tags": ["module:homepage", "phase:dev", "feature:search", "feature:role-filter"]
+    },
+    {
+      "id": "TC-S-014",
+      "category": "functional",
+      "severity": "high",
+      "title": "Deep-link ?role= parameter still applies after toolbar is injected",
+      "preconditions": ["Page URL contains ?role=hoc_vien"],
+      "steps": [
+        "Load index.html?role=hoc_vien"
+      ],
+      "expected": "'Học viên / Chuyên viên' tab is active; only hoc_vien modules shown; toolbar is visible",
+      "actual": "Lines 772-775: after boot() completes (toolbar shown), deepRole is read from URLSearchParams. If it matches a role key, setRole(deepRole) is called. setRole calls renderModules() which filters by that role. PASS.",
+      "result": "PASS",
+      "tags": ["module:homepage", "phase:dev", "feature:deep-link"]
+    },
+    {
+      "id": "TC-S-015",
+      "category": "functional",
+      "severity": "high",
+      "title": "featured section hidden when data.featured key is absent",
+      "preconditions": ["modules.json does not contain a 'featured' top-level key"],
+      "steps": [
+        "Load index.html"
+      ],
+      "expected": "#featured-section remains hidden (no featured chips rendered)",
+      "actual": "renderFeatured() line 711: featuredIds = STATE.data.featured || []. modules.json has no 'featured' key, so featuredIds = []. live = [] (empty). Line 715: if (live.length === 0) { section.hidden = true; return; }. PASS.",
+      "result": "PASS",
+      "tags": ["module:homepage", "phase:dev", "feature:featured"]
+    },
+    {
+      "id": "TC-S-016",
+      "category": "functional",
+      "severity": "high",
+      "title": "highlight() does not double-escape already-escaped HTML entities",
+      "preconditions": ["Module name contains an ampersand, e.g. 'Lọc & Kho'"],
+      "steps": [
+        "Search for 'Lọc' in a module whose name contains '&'",
+        "Wait 200ms"
+      ],
+      "expected": "Ampersand displays as '&' in the UI, not as '&amp;amp;' (no double-escape)",
+      "actual": "highlight() first calls escapeHtml(text), converting '&' to '&amp;'. The regex then matches within the escaped string. The matched portion is wrapped in <mark>. The escaped string is injected via innerHTML, so '&amp;' renders correctly as '&'. No double-escape occurs because escapeHtml is called once before regex replacement. PASS. NOTE: If the query itself contained '&', matchSearch() would fail to match because it compares the raw m.name against the raw query — but highlight() operates on the escaped version. These are separate code paths and both are correct. PASS.",
+      "result": "PASS",
+      "tags": ["module:homepage", "phase:dev", "feature:highlight"]
+    },
+    {
+      "id": "TC-S-017",
+      "category": "functional",
+      "severity": "critical",
+      "title": "List view coming-soon card does not have href (pointer-events none)",
+      "preconditions": ["Page loaded", "At least one module has 0 steps", "List view active"],
+      "steps": [
+        "Switch to list view",
+        "Inspect a coming-soon module-list-item"
+      ],
+      "expected": "Item has class 'coming-soon'; no href attribute; pointer-events: none via CSS",
+      "actual": "Lines 651-654: item.className includes 'coming-soon' when stepCount === 0. href is only set (line 653) when stepCount > 0. CSS line 303-305: .module-list-item.coming-soon { opacity: .5; cursor: not-allowed; pointer-events: none; }. PASS.",
+      "result": "PASS",
+      "tags": ["module:homepage", "phase:dev", "feature:list-view"]
+    },
+    {
+      "id": "TC-S-018",
+      "category": "functional",
+      "severity": "high",
+      "title": "iconImg fallback: module without iconImg renders emoji, not broken img tag",
+      "preconditions": ["Page loaded", "Module has no iconImg field"],
+      "steps": [
+        "View a module card in grid view that has only 'icon' (emoji) not 'iconImg'",
+        "Check rendered HTML"
+      ],
+      "expected": "Renders <span class='mc-icon-emoji'>emoji</span>, not an <img> with empty src",
+      "actual": "Line 682-685: ternary checks m.iconImg; if falsy, renders <span class='mc-icon-emoji'>${escapeHtml(m.icon || '📘')}</span>. PASS.",
+      "result": "PASS",
+      "tags": ["module:homepage", "phase:dev", "feature:grid-view"]
+    }
+  ]
+}

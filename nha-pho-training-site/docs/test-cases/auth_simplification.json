@@ -1,0 +1,155 @@
+{
+  "feature": "auth_simplification",
+  "createdAt": "2026-05-22T12:00:00Z",
+  "createdBy": "qa-reviewer",
+  "cases": [
+    {
+      "id": "TC-A-001",
+      "category": "functional",
+      "severity": "critical",
+      "title": "mock-idp renderLoginPage renders single login button, not persona picker",
+      "preconditions": ["GET /api/auth/mock-idp?_sub=authorize without action/persona params"],
+      "steps": [
+        "Trigger renderLoginPage() by sending GET authorize request without action or persona",
+        "Inspect returned HTML"
+      ],
+      "expected": "Page contains exactly one <a> button labelled 'Đăng nhập với App Nhà Phố'; no persona picker (no radio buttons, no select, no multiple persona options)",
+      "actual": "renderLoginPage() (lines 47-92) returns HTML with a single <a class='btn'> element. The href is built with persona=test hardcoded in qs array (line 57). No other persona selection UI elements exist in the HTML. PASS.",
+      "result": "PASS",
+      "tags": ["module:auth", "phase:dev", "feature:mock-idp"]
+    },
+    {
+      "id": "TC-A-002",
+      "category": "functional",
+      "severity": "critical",
+      "title": "Clicking login button auto-logins with persona=test",
+      "preconditions": ["renderLoginPage() HTML rendered in browser"],
+      "steps": [
+        "Click the single login button",
+        "Observe redirect"
+      ],
+      "expected": "Request goes to same endpoint with persona=test and action=login in query string, triggering handleAuthorize to issue auth code for test persona",
+      "actual": "The button href (line 84: href='?${qs}') includes persona=test and action=login (qs array lines 50-58). handleAuthorize() at line 99: condition (action === 'login' || (persona && !action)) && persona evaluates to true when action=login and persona=test. PERSONAS['test'] exists (line 37). Auth code is issued. PASS.",
+      "result": "PASS",
+      "tags": ["module:auth", "phase:dev", "feature:mock-idp"]
+    },
+    {
+      "id": "TC-A-003",
+      "category": "functional",
+      "severity": "critical",
+      "title": "PERSONAS.test has all 5 required fields",
+      "preconditions": ["api/auth/mock-idp.js loaded"],
+      "steps": [
+        "Inspect PERSONAS.test object"
+      ],
+      "expected": "Fields present: sub, name, role, tenant, level — all non-empty strings",
+      "actual": "Line 37: test: { sub: 'user_test_001', name: 'Tài khoản Test', role: 'hoc_vien', tenant: 'nhapho', level: 'beginner' }. All 5 fields present and non-empty. PASS.",
+      "result": "PASS",
+      "tags": ["module:auth", "phase:dev", "feature:mock-idp"]
+    },
+    {
+      "id": "TC-A-004",
+      "category": "functional",
+      "severity": "high",
+      "title": "auth-widget logged-out renders login button pointing to /api/auth/login",
+      "preconditions": ["auth-widget.js loaded", "/api/auth/me returns non-ok or unauthenticated"],
+      "steps": [
+        "initAuthWidget() called with /api/auth/me returning 401 or { authenticated: false }",
+        "Inspect rendered HTML"
+      ],
+      "expected": "Renders <a href='/api/auth/login?returnTo=...' class='aw-login-btn'>Đăng nhập</a>",
+      "actual": "renderLoggedOut() line 54: loginHref = '/api/auth/login?returnTo=' + encodeURIComponent(location.href). This is '/api/auth/login', not '/login.html'. PASS.",
+      "result": "PASS",
+      "tags": ["module:auth", "phase:dev", "feature:auth-widget"]
+    },
+    {
+      "id": "TC-A-005",
+      "category": "functional",
+      "severity": "critical",
+      "title": "auth-widget logged-in state shows name only, no role badge",
+      "preconditions": ["/api/auth/me returns { authenticated: true, user: { name: 'Tài khoản Test', role: 'hoc_vien' } }"],
+      "steps": [
+        "initAuthWidget() resolves with authenticated user",
+        "Inspect rendered widget HTML"
+      ],
+      "expected": "Widget shows <span class='aw-name'>Tài khoản Test</span> and <a class='aw-logout'>Đăng xuất</a>. No role badge element.",
+      "actual": "renderLoggedIn() lines 44-50: renders only .aw-name (user.name) and .aw-logout. No role badge element, no mention of ROLE_LABELS, no role display. NOTE: ROLE_LABELS is defined at line 18 and roleLabel() function at lines 35-41, but they are NEVER called by renderLoggedIn() or renderLoggedOut(). These are dead code. PASS for spec requirement (no badge shown). Dead code is a maintenance concern (defect DEF-A-001 below).",
+      "result": "PASS",
+      "tags": ["module:auth", "phase:dev", "feature:auth-widget"]
+    },
+    {
+      "id": "TC-A-006",
+      "category": "functional",
+      "severity": "high",
+      "title": "auth-widget degrades gracefully when /api/auth/me is unreachable",
+      "preconditions": ["Network error on fetch to /api/auth/me"],
+      "steps": [
+        "initAuthWidget() called with network request throwing",
+        "Inspect rendered widget"
+      ],
+      "expected": "Catch block handles the error, falls through to renderLoggedOut()",
+      "actual": "Lines 103-106: catch (_e) block is present and silences the error. Lines 108-109: _cachedUser = null; renderLoggedOut(containerEl); called unconditionally after try-catch. PASS.",
+      "result": "PASS",
+      "tags": ["module:auth", "phase:dev", "feature:auth-widget"]
+    },
+    {
+      "id": "TC-A-007",
+      "category": "functional",
+      "severity": "high",
+      "title": "auth-widget degrades gracefully when containerEl is null",
+      "preconditions": ["initAuthWidget called with null argument"],
+      "steps": [
+        "Call initAuthWidget(null)"
+      ],
+      "expected": "Function returns early without error",
+      "actual": "Line 87: if (!containerEl) return; Guard is first line of function. PASS.",
+      "result": "PASS",
+      "tags": ["module:auth", "phase:dev", "feature:auth-widget"]
+    },
+    {
+      "id": "TC-A-008",
+      "category": "security",
+      "severity": "critical",
+      "title": "auth-widget escapes user.name before injecting into DOM",
+      "preconditions": ["API returns user.name containing HTML characters"],
+      "steps": [
+        "Set user.name = '<script>alert(1)</script>'",
+        "initAuthWidget resolves with that user",
+        "Inspect rendered .aw-name"
+      ],
+      "expected": "Name is HTML-escaped; no script executes",
+      "actual": "renderLoggedIn() line 47: ${escAttr(user.name || 'Tài khoản')}. escAttr() (lines 62-70) replaces &, <, >, \", ' with HTML entities. PASS.",
+      "result": "PASS",
+      "tags": ["module:auth", "phase:dev", "feature:auth-widget", "security:xss"]
+    },
+    {
+      "id": "TC-A-009",
+      "category": "functional",
+      "severity": "high",
+      "title": "index.html auth widget mount: import failure does not crash the page",
+      "preconditions": ["auth-widget.js fails to load (e.g. 404)"],
+      "steps": [
+        "Load index.html with auth-widget.js returning 404",
+        "Observe rest of page"
+      ],
+      "expected": "Remaining page content (modules, search, etc.) loads normally; widget mount is empty",
+      "actual": "index.html lines 784-789: dynamic import wrapped in try-catch with empty catch block. Page boot() is called separately via DOMContentLoaded listener (line 781) — it does not depend on auth widget. PASS.",
+      "result": "PASS",
+      "tags": ["module:auth", "phase:dev", "feature:auth-widget", "feature:homepage-integration"]
+    },
+    {
+      "id": "TC-A-010",
+      "category": "functional",
+      "severity": "high",
+      "title": "mock-idp authorize: unknown persona returns 400",
+      "preconditions": ["GET /api/auth/mock-idp?_sub=authorize&action=login&persona=fake_persona&..."],
+      "steps": [
+        "Call authorize with persona=nonexistent"
+      ],
+      "expected": "Returns 400 { error: 'unknown_persona' }",
+      "actual": "handleAuthorize() line 101: if (!user) return res.status(400).json({ error: 'unknown_persona' }). PERSONAS['fake_persona'] is undefined. PASS.",
+      "result": "PASS",
+      "tags": ["module:auth", "phase:dev", "feature:mock-idp"]
+    }
+  ]
+}

@@ -1,0 +1,298 @@
+{
+  "feature": "vi-search-accent-folding",
+  "createdAt": "2026-05-22T00:00:00Z",
+  "createdBy": "qa-reviewer",
+  "gate": 1,
+  "note": "Written BEFORE FE implementation. 'actual' and 'result' fields are blank — to be filled during Gate 2 execution.",
+  "cases": [
+    {
+      "id": "TC-VS-001",
+      "category": "functional",
+      "severity": "critical",
+      "title": "Query without diacritics matches module name with diacritics",
+      "preconditions": [
+        "index.html loaded with data/modules.json",
+        "modules.json contains module with name 'Đăng tin BĐS'"
+      ],
+      "steps": [
+        "Type 'dang tin' into #search-input (no diacritics, no accents)",
+        "Wait 200ms for debounce"
+      ],
+      "expected": "Module 'Đăng tin BĐS' appears in results. stripDiacritics('Đăng tin BĐS') = 'Dang tin BDS' and stripDiacritics('dang tin') = 'dang tin'; 'dang tin bds'.includes('dang tin') is true.",
+      "actual": "",
+      "result": "",
+      "tags": ["module:homepage", "phase:dev", "feature:accent-folding", "field:name"]
+    },
+    {
+      "id": "TC-VS-002",
+      "category": "functional",
+      "severity": "critical",
+      "title": "Query with full diacritics still matches (backward compatibility)",
+      "preconditions": [
+        "index.html loaded with data",
+        "modules.json contains module with name 'Đăng tin BĐS'"
+      ],
+      "steps": [
+        "Type 'đăng tin' into #search-input (full diacritics)",
+        "Wait 200ms"
+      ],
+      "expected": "Module 'Đăng tin BĐS' appears in results. After stripDiacritics both sides normalize to equivalent ASCII; match succeeds.",
+      "actual": "",
+      "result": "",
+      "tags": ["module:homepage", "phase:dev", "feature:accent-folding", "field:name"]
+    },
+    {
+      "id": "TC-VS-003",
+      "category": "functional",
+      "severity": "critical",
+      "title": "Query in UPPERCASE without diacritics matches",
+      "preconditions": [
+        "index.html loaded with data",
+        "modules.json contains module with name 'Đăng tin BĐS'"
+      ],
+      "steps": [
+        "Type 'DANG TIN' into #search-input (uppercase, no diacritics)",
+        "Wait 200ms"
+      ],
+      "expected": "Module 'Đăng tin BĐS' appears in results. stripDiacritics applies .toLowerCase() so 'DANG TIN' → 'dang tin', which matches stripped name.",
+      "actual": "",
+      "result": "",
+      "tags": ["module:homepage", "phase:dev", "feature:accent-folding", "case:uppercase"]
+    },
+    {
+      "id": "TC-VS-004",
+      "category": "functional",
+      "severity": "high",
+      "title": "Query without diacritics matches on description field",
+      "preconditions": [
+        "index.html loaded with data",
+        "modules.json 'dang_tin' has description 'Toàn bộ quy trình đăng tin từ trang chủ đến gửi duyệt'"
+      ],
+      "steps": [
+        "Type 'toan bo quy trinh' into #search-input",
+        "Wait 200ms"
+      ],
+      "expected": "Module 'Đăng tin BĐS' appears. matchSearch() applies stripDiacritics on m.description so 'toan bo quy trinh dang tin tu trang chu den gui duyet' includes 'toan bo quy trinh'.",
+      "actual": "",
+      "result": "",
+      "tags": ["module:homepage", "phase:dev", "feature:accent-folding", "field:description"]
+    },
+    {
+      "id": "TC-VS-005",
+      "category": "functional",
+      "severity": "high",
+      "title": "Query without diacritics matches on role field",
+      "preconditions": [
+        "index.html loaded with data",
+        "At least one module has role 'Đầu chủ'"
+      ],
+      "steps": [
+        "Type 'dau chu' into #search-input",
+        "Wait 200ms"
+      ],
+      "expected": "All modules with role 'Đầu chủ' appear. matchSearch() applies stripDiacritics on m.role: 'dau chu' matches stripped 'Dau chu'.",
+      "actual": "",
+      "result": "",
+      "tags": ["module:homepage", "phase:dev", "feature:accent-folding", "field:role"]
+    },
+    {
+      "id": "TC-VS-006",
+      "category": "functional",
+      "severity": "high",
+      "title": "Mixed diacritics query (some letters accented, some not) still matches",
+      "preconditions": [
+        "index.html loaded with data",
+        "modules.json contains 'Lọc kho tài nguyên'"
+      ],
+      "steps": [
+        "Type 'loc kho tai' into #search-input (no diacritics, partial)",
+        "Wait 200ms"
+      ],
+      "expected": "Module matching 'Lọc kho tài nguyên' appears. Each character's diacritic is stripped independently by NFD normalization.",
+      "actual": "",
+      "result": "",
+      "tags": ["module:homepage", "phase:dev", "feature:accent-folding", "case:mixed"]
+    },
+    {
+      "id": "TC-VS-007",
+      "category": "functional",
+      "severity": "high",
+      "title": "highlight() uses original query, not stripped version — diacriticed query highlights correctly",
+      "preconditions": [
+        "index.html loaded with data",
+        "Module 'Đăng tin BĐS' is visible"
+      ],
+      "steps": [
+        "Type 'Đăng tin' (with diacritics) into #search-input",
+        "Wait 200ms",
+        "Inspect rendered .mc-name or .mli-name in DOM"
+      ],
+      "expected": "<mark>Đăng tin</mark> wraps the matching portion. highlight() is called with the original query (with diacritics), and the module name contains the same characters. The <mark> tag is present with the exact original text.",
+      "actual": "",
+      "result": "",
+      "tags": ["module:homepage", "phase:dev", "feature:highlight", "feature:accent-folding"]
+    },
+    {
+      "id": "TC-VS-008",
+      "category": "functional",
+      "severity": "high",
+      "title": "highlight() NOT modified — query without diacritics does NOT produce <mark> (accent-stripped highlight is out of scope)",
+      "preconditions": [
+        "index.html loaded with data",
+        "Module 'Đăng tin BĐS' is visible"
+      ],
+      "steps": [
+        "Type 'dang tin' (no diacritics) into #search-input",
+        "Wait 200ms",
+        "Inspect rendered .mc-name in DOM"
+      ],
+      "expected": "Module appears in results (TC-VS-001 passes) but the name text 'Đăng tin BĐS' does NOT have a <mark> wrapper — because highlight() still uses the original query and 'Đăng tin' does not literally contain 'dang tin'. This is the accepted design per spec.",
+      "actual": "",
+      "result": "",
+      "tags": ["module:homepage", "phase:dev", "feature:highlight", "feature:accent-folding", "regression:highlight"]
+    },
+    {
+      "id": "TC-VS-009",
+      "category": "functional",
+      "severity": "critical",
+      "title": "Empty query shows all modules (no change from existing behaviour)",
+      "preconditions": [
+        "index.html loaded with data"
+      ],
+      "steps": [
+        "Ensure #search-input is empty (or clear it)",
+        "Wait 200ms"
+      ],
+      "expected": "All modules for the active role tab are shown. matchSearch() returns true immediately when query is falsy — stripDiacritics is never called. Behavior identical to pre-fix.",
+      "actual": "",
+      "result": "",
+      "tags": ["module:homepage", "phase:dev", "feature:accent-folding", "edge:empty-query"]
+    },
+    {
+      "id": "TC-VS-010",
+      "category": "functional",
+      "severity": "high",
+      "title": "Whitespace-only query is treated as empty (no crash, shows all)",
+      "preconditions": [
+        "index.html loaded with data"
+      ],
+      "steps": [
+        "Type '   ' (three spaces) into #search-input",
+        "Wait 200ms"
+      ],
+      "expected": "Behavior depends on whether STATE.searchQuery is trimmed before passing to matchSearch. If not trimmed: stripDiacritics('   ') = '   '; no module name contains '   ' so empty state is shown with a search icon. If trimmed: all modules shown. Either way no uncaught exception. Document the actual behaviour.",
+      "actual": "",
+      "result": "",
+      "tags": ["module:homepage", "phase:dev", "feature:accent-folding", "edge:whitespace"]
+    },
+    {
+      "id": "TC-VS-011",
+      "category": "functional",
+      "severity": "normal",
+      "title": "Very long query (200+ characters) does not crash stripDiacritics or matchSearch",
+      "preconditions": [
+        "index.html loaded with data"
+      ],
+      "steps": [
+        "Paste a 250-character string of random Vietnamese text into #search-input",
+        "Wait 200ms"
+      ],
+      "expected": "No uncaught JS exception. Page remains responsive. Empty state shown because no module matches a 250-char query. stripDiacritics handles long strings without error.",
+      "actual": "",
+      "result": "",
+      "tags": ["module:homepage", "phase:dev", "feature:accent-folding", "edge:long-query"]
+    },
+    {
+      "id": "TC-VS-012",
+      "category": "functional",
+      "severity": "high",
+      "title": "Regression: role tab filter still works correctly alongside accent-folded search",
+      "preconditions": [
+        "index.html loaded with data"
+      ],
+      "steps": [
+        "Click 'Đầu chủ' role tab",
+        "Type 'dang tin' (no diacritics) into #search-input",
+        "Wait 200ms"
+      ],
+      "expected": "Only modules belonging to role 'Đầu chủ' AND matching 'đăng tin' (accent-folded) are shown. Role filter is applied before search filter — this ordering is unchanged.",
+      "actual": "",
+      "result": "",
+      "tags": ["module:homepage", "phase:dev", "feature:accent-folding", "regression:role-filter"]
+    },
+    {
+      "id": "TC-VS-013",
+      "category": "functional",
+      "severity": "high",
+      "title": "Regression: grid view and list view both render correctly after an accent-folded search",
+      "preconditions": [
+        "index.html loaded with data",
+        "At least one module matches 'loc kho'"
+      ],
+      "steps": [
+        "Type 'loc kho' into #search-input, wait 200ms",
+        "Confirm results appear in default view",
+        "Click #btn-list to switch to list view",
+        "Confirm same results appear in list view",
+        "Click #btn-grid to switch back",
+        "Confirm same results in grid view"
+      ],
+      "expected": "Matched modules render correctly in both .modules-grid and .modules-list layouts. renderModules() is called on view toggle and re-applies the current query. No visual breakage.",
+      "actual": "",
+      "result": "",
+      "tags": ["module:homepage", "phase:dev", "feature:accent-folding", "regression:view-toggle"]
+    },
+    {
+      "id": "TC-VS-014",
+      "category": "functional",
+      "severity": "normal",
+      "title": "Regression: numeric query (e.g. module step count) does not crash stripDiacritics",
+      "preconditions": [
+        "index.html loaded with data"
+      ],
+      "steps": [
+        "Type '12' into #search-input",
+        "Wait 200ms"
+      ],
+      "expected": "stripDiacritics receives a string ('12'); String(s).normalize() is a no-op for ASCII digits; .replace() returns '12'; .toLowerCase() returns '12'. No exception. Empty state or matching result displayed.",
+      "actual": "",
+      "result": "",
+      "tags": ["module:homepage", "phase:dev", "feature:accent-folding", "edge:numeric"]
+    },
+    {
+      "id": "TC-VS-015",
+      "category": "security",
+      "severity": "critical",
+      "title": "XSS: HTML tags in accent-folded query are still escaped before DOM injection",
+      "preconditions": [
+        "index.html loaded with data"
+      ],
+      "steps": [
+        "Type '<script>alert(1)</script>' into #search-input",
+        "Wait 200ms",
+        "Inspect DOM of empty state and any rendered module cards"
+      ],
+      "expected": "No script executes. The query passed to highlight() is the raw STATE.searchQuery string; highlight() calls escapeHtml(text) on the module field before regex replacement, and escapeHtml(q) on the query in the empty-state message. stripDiacritics is called only inside matchSearch() for comparison; it does not affect the DOM path. XSS protection is unchanged.",
+      "actual": "",
+      "result": "",
+      "tags": ["module:homepage", "phase:dev", "feature:accent-folding", "security:xss"]
+    },
+    {
+      "id": "TC-VS-016",
+      "category": "security",
+      "severity": "high",
+      "title": "Regex special characters in query do not crash stripDiacritics or matchSearch",
+      "preconditions": [
+        "index.html loaded with data"
+      ],
+      "steps": [
+        "Type '.*+?^${}()|[]\\' into #search-input",
+        "Wait 200ms"
+      ],
+      "expected": "No uncaught JS exception. stripDiacritics uses String.normalize() and String.replace() with a Unicode property escape — neither is affected by regex special chars in the input value. matchSearch uses String.prototype.includes() (not regex) so special chars are treated as literals. highlight() already escapes the query with regex-escape before building a RegExp — this path is unchanged.",
+      "actual": "",
+      "result": "",
+      "tags": ["module:homepage", "phase:dev", "feature:accent-folding", "security:regex-injection"]
+    }
+  ]
+}
